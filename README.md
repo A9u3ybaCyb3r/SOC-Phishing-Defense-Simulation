@@ -1,34 +1,23 @@
-# Blue-Team-Virtual-Security-Lab
+# Home-SIEM-Lab
 
 ## Objective
 
-This lab serves as a safe and controlled space to practice various security skills, including networking, virtual machine communication, log analysis, SIEM operations, malware analysis, and more. By building virtual machines and configuring a network with a firewall, you can simulate real-world scenarios and gain hands-on experience with security tools and techniques.
+The objective of the lab is to build a home lab for Elastic SIEM (Security Information and Event Management) using a free Elastic account and a Kali Linux virtual machine (VM). To learn how to generate security events on the Kali VM, set up an agent to forward data to the SIEM, and query and analyze the logs in the SIEM.
 
 ### Skills Learned
 
 - Virtualization: Installing and configuring VMware software, creating and managing virtual machines (VMs), allocating resources to VMs, and installing guest operating systems.
-- Network Security: Understanding network concepts (VLANs, subnets, IP addressing), configuring virtual networks with pfSense firewall, setting up network segmentation, and implementing network security controls.
-- Network Configuration and Management: Understanding the setup and management of virtual networks, including VLAN configurations.
-- Windows Security: Implementing security measures on Windows servers and workstations, including hardening practices.
-- Security Monitoring and Logging: Setting up and configuring logging mechanisms and monitoring solutions to capture security events.
-- Incident Response: Developing and practicing incident response plans, including identification, containment, eradication, and recovery from security incidents.
-- Threat Detection: Utilizing tools and techniques for detecting threats, including signature-based and behavioral detection methods.
-- Malware Analysis: Understanding malware behavior, conducting static and dynamic analysis, and using various tools for analysis.
-- Vulnerability Assessment: Conducting assessments to identify and remediate vulnerabilities within systems and applications.
-- Security Policy Development: Creating and implementing security policies and procedures to govern organizational security practices.
-- Forensic Analysis: Learning techniques for digital forensics, including data recovery and analysis of compromised systems.
-- SIEM Configuration: Setting up and configuring Security Information and Event Management (SIEM) solutions for centralized logging and threat detection.
-- Threat Hunting: Engaging in proactive threat hunting to identify potential security threats before they escalate.
-
+- SIEM Fundamentals: Gain hands-on experience with Elastic SIEM, a popular tool for security monitoring and analysis.
+- Log Management: Learn how to collect, forward, and analyze security logs from your Kali VM.
+- Security Event Detection: Simulate security events like Nmap scans and see how SIEM detects them.
+- Dashboarding and Alerting: Create visualizations to understand security trends and set up alerts for suspicious activity.
+- 
 
 ### Tools Used
 
 
 - VMware: A virtualization software platform used to create and manage virtual machines.
-- pfSense: An open-source firewall software used to create a secure network gateway for the virtual lab environment.
-- Kali Linux: A Linux distribution pre-loaded with various security and penetration testing tools.
-- Splunk:
-- Wazuh:
+- Kali Linux:
 - 
 
 ## Steps
