@@ -1,4 +1,4 @@
-# Splunk-Powered Active Directory Threat Detection
+# Active Directory Security Lab
 
 ## Objective
 
