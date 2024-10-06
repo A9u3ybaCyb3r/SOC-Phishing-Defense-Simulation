@@ -27,19 +27,19 @@ The objective of this lab is to develop a comprehensive understanding of Active 
 ## Steps
 
 ### Network Diagram
-
+-
 Network Diagram
 
 ### Links of iso files to download
 
 Microsoft 2022 Server and Windows 10
-- 
+- Link
 
 Kali Linux
-- 
+- Link
 
 Ubuntu Server
-- 
+- Link
 
 ### Setting up Ubuntu Server
 
@@ -47,6 +47,6 @@ Ubuntu Server
 
 ### Building an Active Directory 
 
-#### Installing Splunk Fowarder and Sysmon on the environment
+#### Installing Splunk Forwarder and Sysmon on the environment
 
 ### Setting up Kali Linux
