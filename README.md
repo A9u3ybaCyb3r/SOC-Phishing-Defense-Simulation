@@ -25,10 +25,28 @@ The objective of this lab is to develop a comprehensive understanding of Active 
 - Lima Charlie: A comprehensive security operations platform offering real-time telemetry, endpoint detection and response (EDR), and security monitoring capabilities. LimaCharlie integrates with other tools, such as Splunk, to provide enhanced threat detection and mitigation.
 
 ## Steps
-drag & drop screenshots here or use imgur and reference them using imgsrc
 
-Every screenshot should have some text explaining what the screenshot is about.
+### Network Diagram
 
-Example below.
+Network Diagram
 
-*Ref 1: Network Diagram*
+### Links of iso files to download
+
+Microsoft 2022 Server and Windows 10
+- 
+
+Kali Linux
+- 
+
+Ubuntu Server
+- 
+
+### Setting up Ubuntu Server
+
+#### Installing Splunk on Ubuntu
+
+### Building an Active Directory 
+
+#### Installing Splunk Fowarder and Sysmon on the environment
+
+### Setting up Kali Linux
