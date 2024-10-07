@@ -28,7 +28,7 @@ The objective of this lab is to develop a comprehensive understanding of Active 
 
 ### Network Diagram
 
-![Network Diagram]()
+![Network Diagram](https://github.com/A9u3ybaCyb3r/Active-Directory-Security-Lab/blob/main/NetworkDiagram-AD-Security-Lab.drawio.pdf)
 
 ### Links of iso files to download
 
