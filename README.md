@@ -24,7 +24,7 @@ Endpoint Detection and Response (EDR): Develop expertise in using LimaCharlie to
 - Kali Linux: A popular penetration testing distribution containing a wide range of tools for vulnerability assessment and ethical hacking.
 - Lima Charlie: A comprehensive security operations platform offering real-time telemetry, endpoint detection and response (EDR), and security monitoring capabilities.
 
-## Steps
+## Lab Setup
 
 ### Network Diagram
 
@@ -41,12 +41,12 @@ Kali Linux
 Ubuntu Server
 - Link
 
-### Setting up Ubuntu Server
+## Setting up Ubuntu Server
 
 #### Installing Splunk on Ubuntu
 
-### Building an Active Directory 
+## Building an Active Directory 
 
 #### Installing Splunk Forwarder and Sysmon on the environment
 
-### Setting up Kali Linux
+## Setting up Kali Linux
