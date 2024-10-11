@@ -19,6 +19,7 @@ Endpoint Detection and Response (EDR): Develop expertise in using LimaCharlie to
 ### Tools Used
 
 - Virtualbox: A virtualization software platform used to create and manage virtual machines.
+- Ubuntu Desktop: A free and open-source operating system based on the Linux kernel. It provides a user-friendly interface and a wide range of applications for personal and professional use.
 - Active Directory: A Microsoft directory service that manages user accounts, computers, and other network resources.
 - Splunk: A powerful SIEM platform for collecting, analyzing, and acting on machine data.
 - Kali Linux: A popular penetration testing distribution containing a wide range of tools for vulnerability assessment and ethical hacking.
@@ -28,20 +29,23 @@ Endpoint Detection and Response (EDR): Develop expertise in using LimaCharlie to
 
 ### Network Diagram
 
-![Network Diagram](https://github.com/A9u3ybaCyb3r/Active-Directory-Security-Lab/blob/main/NetworkDiagram-AD-Security-Lab.drawio.pdf)
+[Network Diagram](https://github.com/A9u3ybaCyb3r/Active-Directory-Security-Lab/blob/main/NetworkDiagram-AD-Security-Lab.drawio.pdf)
 
 ### Links of iso files to download
 
 Microsoft 2022 Server and Windows 10
-- Link
+- [Microsoft 2022 Server](https://info.microsoft.com/ww-landing-windows-server-2022.html)
+- [Windows 10](https://info.microsoft.com/ww-landing-windows-10-enterprise.html)
 
-Kali Linux
-- Link
+**Fill out the form to get the iso files**
 
-Ubuntu Server
-- Link
+Kali Linux 
+- [Kali](https://www.kali.org/get-kali/#kali-installer-images)
 
-## Setting up Ubuntu Server
+Ubuntu Desktop
+- [Ubuntu](https://ubuntu.com/download/desktop)
+
+## Setting up Ubuntu Desktop
 
 #### Installing Splunk on Ubuntu
 
