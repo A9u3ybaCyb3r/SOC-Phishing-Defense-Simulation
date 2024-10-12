@@ -143,19 +143,19 @@ Hit Restart and then log in to the machine with your profile
 
 ![image](https://github.com/user-attachments/assets/b7d28532-c722-4c24-9c90-ed6efcfde3b1)
 
-Update system packages, command: sudo apt update
+Update system packages, command: **sudo apt update**
 
 ![image](https://github.com/user-attachments/assets/b3777a70-67a7-4879-89ee-5448b82363dc)
 
-Install required packages, command: sudo apt install bzip2 tar gcc make perl git
+Install required packages, command: **sudo apt install bzip2 tar gcc make perl git**
 
 ![image](https://github.com/user-attachments/assets/f0fd8c7d-550a-4b56-b014-7a4386c0818c)
 
-Install the generic kernel headers, command: sudo apt install linux-headers-generic
+Install the generic kernel headers, command: **sudo apt install linux-headers-generic**
 
 ![image](https://github.com/user-attachments/assets/2e92508d-8e3d-4ef7-9fd5-b59693e8c0e6)
 
-Install our system-specific kernel headers, command: sudo apt install linux-headers-$(uname -r)
+Install our system-specific kernel headers, command: **sudo apt install linux-headers-$(uname -r)**
 
 ![image](https://github.com/user-attachments/assets/2b93e0dd-f7f9-4f0d-b6b2-804ad9003573)
 
@@ -171,7 +171,47 @@ Run the VirtualBox additions
 
 ![image](https://github.com/user-attachments/assets/7a3d48c2-1009-4457-bf5b-aaad289761d6)
 
-#### Installing Splunk on Ubuntu
+### Setting an IP to the machine
+
+Open a terminal and write the command: **ip a**  you can see the IP that we have 
+
+![image](https://github.com/user-attachments/assets/9a659493-91b2-40b3-8e72-201f6522a7af)
+
+Go to the network settings of the machine
+
+![image](https://github.com/user-attachments/assets/2d9b0143-1c74-4a98-9465-5e42a2791d5b)
+
+Click on the settings
+
+![image](https://github.com/user-attachments/assets/95176f40-0f24-480e-946a-b61ba95e36d6)
+
+Go to IPv4 and fill in the contents with the IP that you want for your machine and subnet and gateway then hit Apply
+
+![image](https://github.com/user-attachments/assets/1c3aa72a-e5ad-4703-bbe8-12dbbf82a2ba)
+
+Confirm the IP with the command: **ip a**
+
+![image](https://github.com/user-attachments/assets/b56054d4-b4ae-430e-8cf0-5d13052231f4)
+
+### Installing Splunk on Ubuntu
+
+Go to https://www.splunk.com/en_us/download.html log in and grab the Splunk Enterprise
+
+![image](https://github.com/user-attachments/assets/3bfd482a-7018-4085-8285-9fddaa2efa7f)
+
+Grab the Linux .tgz version of Splunk
+
+![image](https://github.com/user-attachments/assets/213e9d53-a073-46fa-a903-2673b09b2b03)
+
+Go to Downloads in the terminal and then run the command: **sudo tar xvzf (splunk file) -C /opt**
+
+![image](https://github.com/user-attachments/assets/1647559c-cd30-4931-a285-bd8185e2b0ca)
+
+After the download is done run this command: **cd /opt** and go to the splunk directory
+
+![image](https://github.com/user-attachments/assets/5267939f-0a7b-4e22-a306-8b1d6978ad63)
+
+
 
 ## Building an Active Directory 
 
