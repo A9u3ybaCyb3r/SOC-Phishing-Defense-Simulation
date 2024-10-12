@@ -135,7 +135,41 @@ Choose your time-zone
 
 ![image](https://github.com/user-attachments/assets/7164ebbb-1967-46ce-8016-0b580ddba58d)
 
+Hit Install and wait for the installation to be completed
 
+![image](https://github.com/user-attachments/assets/0387d603-cf67-4d5f-b093-c8c7c23fe0ad)
+
+Hit Restart and then log in to the machine with your profile
+
+![image](https://github.com/user-attachments/assets/b7d28532-c722-4c24-9c90-ed6efcfde3b1)
+
+Update system packages, command: sudo apt update
+
+![image](https://github.com/user-attachments/assets/b3777a70-67a7-4879-89ee-5448b82363dc)
+
+Install required packages, command: sudo apt install bzip2 tar gcc make perl git
+
+![image](https://github.com/user-attachments/assets/f0fd8c7d-550a-4b56-b014-7a4386c0818c)
+
+Install the generic kernel headers, command: sudo apt install linux-headers-generic
+
+![image](https://github.com/user-attachments/assets/2e92508d-8e3d-4ef7-9fd5-b59693e8c0e6)
+
+Install our system-specific kernel headers, command: sudo apt install linux-headers-$(uname -r)
+
+![image](https://github.com/user-attachments/assets/2b93e0dd-f7f9-4f0d-b6b2-804ad9003573)
+
+Now install Guest additions on the machine
+
+![image](https://github.com/user-attachments/assets/5ef60e06-c2e3-4a0b-a5d2-88db608a929c)
+
+Open a terminal on the disk that was just added
+
+![image](https://github.com/user-attachments/assets/967d8a4b-7973-4216-bd24-9a3072fb3311)
+
+Run the VirtualBox additions
+
+![image](https://github.com/user-attachments/assets/7a3d48c2-1009-4457-bf5b-aaad289761d6)
 
 #### Installing Splunk on Ubuntu
 
