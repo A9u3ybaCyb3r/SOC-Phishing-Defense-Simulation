@@ -207,10 +207,33 @@ Go to Downloads in the terminal and then run the command: **sudo tar xvzf (splun
 
 ![image](https://github.com/user-attachments/assets/1647559c-cd30-4931-a285-bd8185e2b0ca)
 
-After the download is done run this command: **cd /opt** and go to the splunk directory
+After the download is done run this command: **cd /opt** and go to the /splunk/bin directory
 
 ![image](https://github.com/user-attachments/assets/5267939f-0a7b-4e22-a306-8b1d6978ad63)
 
+![image](https://github.com/user-attachments/assets/0dd806ab-e1bd-4de4-bb6c-3e98f04d04d4)
+
+Run Splunk with the command: **sudo ./splunk start --accept-license**
+
+![image](https://github.com/user-attachments/assets/ecbe0a05-e233-4292-9725-a63e8a3dc700)
+
+Create a username and password to use Splunk
+
+![image](https://github.com/user-attachments/assets/3b6cec53-95f2-4b7b-b963-87c7d916b1a3)
+
+Now we can go to the web server using one of these two links
+
+![image](https://github.com/user-attachments/assets/9a7ac6a4-87eb-44d3-826e-69d271bda6bd)
+
+If you want to access the web server with another machine use the IP address of Ubuntu
+
+![image](https://github.com/user-attachments/assets/b7600173-eff5-4b40-bbf9-588d53e2a6b9)
+
+Accessing the Splunk web server using another machine
+
+![image](https://github.com/user-attachments/assets/37b467ee-f995-458c-bbb4-b520bd39fe61)
+
+Use the credentials that you created earlier when installing splunk to get access
 
 
 ## Building an Active Directory 
