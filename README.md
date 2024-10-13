@@ -373,9 +373,9 @@ I will use the tool, go to the link https://github.com/Dewalt-arch/pimpmyadlab a
 
 After following the instructions log in with the credentials of the domain users and now you have built an Active Directory
 
-## Installing Splunk  Universal Forwarder, Sysmon and LimaCharlie on the environment
+## Installing Splunk  Universal Forwarder, Sysmon, and LimaCharlie on the environment
 
-On the three machines on the domain, we will install Splunk Universal Forwarder, Sysmon and LimaCharlie these are the links:
+On the three machines on the domain, we will install Splunk Universal Forwarder, Sysmon, and LimaCharlie these are the links:
 
 - Splunk Universal Forwarder: https://www.splunk.com/en_us/download/universal-forwarder.html
 
@@ -384,5 +384,90 @@ On the three machines on the domain, we will install Splunk Universal Forwarder,
 - LimaCharlie:
   
 ### Installing Splunk Universal Forwarder
+
+Download the 64-bit
+
+![image](https://github.com/user-attachments/assets/af4584b6-2239-4361-8b04-d5c8e7286882)
+
+Double-click on the file that you downloaded and check the box to agree with the License
+
+![image](https://github.com/user-attachments/assets/912406a7-910c-46af-bf4c-7ec4dc5fb9e4)
+
+For the username use admin and check the box to generate a random password
+
+![image](https://github.com/user-attachments/assets/4b9c8c1d-6bf2-408a-923e-d71e4e998b5e)
+
+Leave it like this because we do not have a deployment server
+
+![image](https://github.com/user-attachments/assets/8b718979-7dde-4ee5-9914-a27cc1d51d9f)
+
+The IP is going to be the Splunk machine that we just created
+
+![image](https://github.com/user-attachments/assets/183fd850-f06c-4223-8532-bbdf2666c4c9)
+
+Hit Install and wait for the installation to be done, then hit Finish
+
+![image](https://github.com/user-attachments/assets/38bccafe-86b4-49a0-b07f-0bf59bdc6ea2)
+
+
+### Installing Sysmon
+
+Download Sysmon
+
+![image](https://github.com/user-attachments/assets/f89e1eda-bd12-4a9a-916c-c6c41f8ab10e)
+
+We also are going to use sysmon olaf config
+
+![image](https://github.com/user-attachments/assets/7f5457e4-4ddd-4437-ab15-d86e7ce720a8)
+
+We want this file
+
+![image](https://github.com/user-attachments/assets/73407917-6b03-4c9f-8b5e-1646c85f7fec)
+
+Click on Raw and Save as 
+
+![image](https://github.com/user-attachments/assets/9b6b605c-3912-45f8-9fd9-abf09b99c643)
+
+![image](https://github.com/user-attachments/assets/42d351e6-f7ce-411c-8bd6-470f56ae03dc)
+
+![image](https://github.com/user-attachments/assets/5c8729e8-f735-411f-939d-fc5352796b94)
+
+Extract the zip file 
+
+![image](https://github.com/user-attachments/assets/d6ed30e4-4ae5-4560-b3bf-9c84008687c3)
+
+Copy the path, open a Windows Powershell, and Run as administrator
+
+![image](https://github.com/user-attachments/assets/29b557f6-189c-46e0-a38e-914d775f5fda)
+
+![image](https://github.com/user-attachments/assets/8b18a2a5-1a0b-483c-b3f2-d67590cfc069)
+
+Change directory and run this command: **.\Sysmon64.exe -i ..\sysmonconfig.xml**
+
+![image](https://github.com/user-attachments/assets/0bce0ef7-8f4f-4bd6-a7c7-5170763d42ef)
+
+Hit Agree and it will start the installation
+
+![image](https://github.com/user-attachments/assets/78ddda26-b3ea-4f94-af74-0c68d41f4910)
+
+### Configuring the Splunk Universal Forwarder 
+
+We need to instruct Splunk on what we want to be sent to the Splunk Server, so we need the inputs.conf
+
+![image](https://github.com/user-attachments/assets/890f4719-c0f7-4ccc-8c88-9f7ce1284999)
+
+Copy the file
+
+![image](https://github.com/user-attachments/assets/4a496772-8c80-4444-ab40-7958a30e2ad4)
+
+Then we go to the local file 
+
+![image](https://github.com/user-attachments/assets/8ee079ed-3a6c-4218-8c32-ee5b2d915f00)
+
+![image](https://github.com/user-attachments/assets/efe4a1b0-85ec-4947-8d8b-f25df4370b7f)
+
+
+
+
 
 ## Setting up Kali Linux
