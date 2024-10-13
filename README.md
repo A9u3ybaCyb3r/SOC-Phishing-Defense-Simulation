@@ -233,8 +233,17 @@ Accessing the Splunk web server using another machine
 
 ![image](https://github.com/user-attachments/assets/37b467ee-f995-458c-bbb4-b520bd39fe61)
 
-Use the credentials that you created earlier when installing splunk to get access
+Use the credentials that you created earlier when installing Splunk to get access
 
+![image](https://github.com/user-attachments/assets/c376e027-79b0-4898-9cca-f6362db9f9f4)
+
+Now you are inside the Splunk web server
+
+![image](https://github.com/user-attachments/assets/9ca05a5d-2008-4f18-8289-9f4516b20888)
+
+You can also make Splunk start every time you turn on the machine with this command: **sudo ./splunk enable boot-start**
+
+![image](https://github.com/user-attachments/assets/2e1ced1f-1e41-4a01-8d79-dc6b6865dec6)
 
 ## Building an Active Directory 
 
