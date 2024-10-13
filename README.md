@@ -536,3 +536,47 @@ Write index="endpoint" and hit search and you will see the machines and the even
 
 
 ## Setting up Kali Linux
+
+ Go to https://kali.org/get-kali/
+
+   - Click on the image that says Virtual Machines and download the 64-bit version of Virtualbox.
+
+      ![image](https://github.com/user-attachments/assets/ae2d558e-57a4-4d1a-8576-5ad25de659ec)
+     
+     ![image](https://github.com/user-attachments/assets/6430026d-9ca1-46db-9dd6-98e6d758617c)
+
+ After downloading the file, extract it and hit the Add button on Virtualbox. 
+
+![image](https://github.com/user-attachments/assets/37ef160d-c250-4151-80df-bdfb038f063c)
+
+Then choose the .vbox extension file.
+
+![image-38](https://github.com/user-attachments/assets/5cf67d2e-ebd6-4c6e-ab83-f49f87a27b82)
+
+ Right-click the machine and choose the Network settings.
+
+![cd25168f5bf7404cb6e4d5a8b84ca441](https://github.com/user-attachments/assets/465b1135-d2b9-4e79-aa75-f6eb9f315ed1)
+
+Change the network settings to the NAT Network that you created
+
+![image](https://github.com/user-attachments/assets/13a03bdb-84e5-4cad-bac3-aa89af5adb77)
+
+Then increase your RAM depending on how much you need. Mine is 8GB RAM because of the tools that I use. You can do it on the machine settings. 
+
+![image](https://github.com/user-attachments/assets/9cf482b6-64c7-48be-8248-fe25ad5868eb)
+
+ Click OK and now you can start the machine. Use the default credentials of *kali:kali*.
+
+![image](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
+
+ To create a static IP, right-click on the Network Connection and hit Edit Connections
+
+![image](https://github.com/user-attachments/assets/6760384a-e918-4589-8e5a-a73f0f78d0e8)
+
+Double-click on the profile
+
+![image](https://github.com/user-attachments/assets/02818c7a-224e-43a3-a4ce-247bb8e8076f)
+
+
+
+
