@@ -569,13 +569,26 @@ Then increase your RAM depending on how much you need. Mine is 8GB RAM because o
 
 ![image](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
 
- To create a static IP, right-click on the Network Connection and hit Edit Connections
+ To create a static IP, right-click on the Ethernet Network and hit Edit Connections
 
 ![image](https://github.com/user-attachments/assets/6760384a-e918-4589-8e5a-a73f0f78d0e8)
 
 Double-click on the profile
 
 ![image](https://github.com/user-attachments/assets/02818c7a-224e-43a3-a4ce-247bb8e8076f)
+
+Go to IPv4 Settings, change Method to Manual, hit Add, and then fill it out
+
+![image](https://github.com/user-attachments/assets/f02f3d95-b6a3-4e5c-a6af-ed78dc9987cf)
+
+Then go to Ethernet Network, hit Disconnect, and then connect again to the profile
+
+![image](https://github.com/user-attachments/assets/2f63d53c-7d2f-4c9c-b427-5f6dcc84cef6)
+
+To confirm that we have the IP that we want open a terminal and write the command: **ip a**
+
+![image](https://github.com/user-attachments/assets/c21ee078-371a-4571-ac78-aa6038217198)
+
 
 
 
