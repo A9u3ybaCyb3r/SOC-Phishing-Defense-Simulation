@@ -357,7 +357,7 @@ Then answer the security questions, turn off everything, and lastly log into the
 
 Repeat this step for the third machine
 
-### Creating the Active Directory
+### Creating the Active Directory Domain
 
 There are two ways to do this:
 
@@ -373,6 +373,16 @@ I will use the tool, go to the link https://github.com/Dewalt-arch/pimpmyadlab a
 
 After following the instructions log in with the credentials of the domain users and now you have built an Active Directory
 
-### Installing Splunk Forwarder and Sysmon on the environment
+## Installing Splunk  Universal Forwarder, Sysmon and LimaCharlie on the environment
+
+On the three machines on the domain, we will install Splunk Universal Forwarder, Sysmon and LimaCharlie these are the links:
+
+- Splunk Universal Forwarder: https://www.splunk.com/en_us/download/universal-forwarder.html
+
+- Sysmon: https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
+
+- LimaCharlie:
+  
+### Installing Splunk Universal Forwarder
 
 ## Setting up Kali Linux
