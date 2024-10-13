@@ -362,6 +362,7 @@ Repeat this step for the third machine
 There are two ways to do this:
 
 - Use this tool: https://github.com/Dewalt-arch/pimpmyadlab
+  
 - Do it manually following this video: https://youtu.be/VXxH4n684HE?si=gIwdJf221BlEpB2c
 
 I will use the tool, go to the link https://github.com/Dewalt-arch/pimpmyadlab and follow the instructions
@@ -372,6 +373,6 @@ I will use the tool, go to the link https://github.com/Dewalt-arch/pimpmyadlab a
 
 After following the instructions log in with the credentials of the domain users and now you have built an Active Directory
 
-#### Installing Splunk Forwarder and Sysmon on the environment
+### Installing Splunk Forwarder and Sysmon on the environment
 
 ## Setting up Kali Linux
