@@ -10,10 +10,9 @@ This lab aims to develop a comprehensive understanding of Active Directory secur
 - Active Directory Fundamentals: Gain a solid understanding of how domain environments function within Active Directory.
 - SIEM Implementation: Learn to set up and utilize Splunk as a Security Information and Event Management (SIEM) tool for collecting and analyzing security data.
 - Log Management: Master ingesting security events into an SIEM system for efficient analysis.
-- Threat Detection Techniques: Develop skills in identifying and responding to common Active Directory security threats, enhancing your ability to protect domain environments.
-- Attack Simulation and Mitigation: Learn how to simulate common attacks on Active Directory environments and implement defense strategies using real-time telemetry and alerts from LimaCharlie and Splunk.
-- Incident Response: Learn to respond to security incidents, identify attack vectors, and use SIEM/EDR data to quickly mitigate threats.
-Endpoint Detection and Response (EDR): Develop expertise in using LimaCharlie to detect, monitor, and respond to endpoint security threats in real time.
+- Threat Detection Techniques: Develop skills in identifying and responding to common Active Directory security threats, enhancing my ability to protect domain environments.
+- Attack Simulation and Mitigation: Learned how to simulate common attacks on Active Directory environments and implement defense strategies using real-time telemetry and alerts from Splunk.
+- Incident Response: Learn to respond to security incidents, identify attack vectors, and use SIEM data to quickly mitigate threats.
 - Network Traffic Analysis: Understand how to analyze network traffic and detect suspicious behavior or patterns that could indicate a security breach.
 
 ### Tools Used
@@ -23,7 +22,6 @@ Endpoint Detection and Response (EDR): Develop expertise in using LimaCharlie to
 - Active Directory: A Microsoft directory service that manages user accounts, computers, and other network resources.
 - Splunk: A powerful SIEM platform for collecting, analyzing, and acting on machine data.
 - Kali Linux: A popular penetration testing distribution containing a wide range of tools for vulnerability assessment and ethical hacking.
-- Lima Charlie: A comprehensive security operations platform offering real-time telemetry, endpoint detection and response (EDR), and security monitoring capabilities.
 
 ## Lab Setup
 
