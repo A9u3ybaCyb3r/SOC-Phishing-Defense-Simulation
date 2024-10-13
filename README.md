@@ -247,6 +247,126 @@ You can also make Splunk start every time you turn on the machine with this comm
 
 ## Building an Active Directory 
 
+### Building Windows 2022 Server
+
+Create a new machine
+
+![image](https://github.com/user-attachments/assets/39d5f1c7-099b-4d70-9008-bf46342ae038)
+
+Increase RAM
+
+![image](https://github.com/user-attachments/assets/265e3851-dd5a-4432-8335-a10a0df949a4)
+
+Increase the storage
+
+![image](https://github.com/user-attachments/assets/c470a06a-986b-42c5-a4b7-28b4285d9b59)
+
+Go to machine settings > System and uncheck the Floppy disk
+
+![image](https://github.com/user-attachments/assets/b3347046-4cb9-484b-9333-5426fc4bd02e)
+
+Go to Network and then choose NAT Network and the network that you created 
+
+![image](https://github.com/user-attachments/assets/0e6decf0-cffe-4f67-a9b1-86cd671989da)
+
+Turn on the machine and choose the Language and the keyboard language
+
+![image](https://github.com/user-attachments/assets/36f48e3a-92d9-454f-b833-e349a657d813)
+
+Hit Install now
+
+![image](https://github.com/user-attachments/assets/cec36e91-e472-4d5e-984a-736a73f755f4)
+
+Choose Windows 2022 Standard Evaluation (Desktop Experience)
+
+![image](https://github.com/user-attachments/assets/ea7c6b0e-17a8-4b6a-a05f-cabe999d46c9)
+
+Choose Custom
+
+![image](https://github.com/user-attachments/assets/1cedd3ae-ee85-4363-b4f7-5ba27806438c)
+
+Choose New and Apply and then hit OK. Hit Next and wait for the Installation to finish
+
+![image](https://github.com/user-attachments/assets/a2dfa82b-9e67-4ad6-9bfd-d63955d9d438)
+
+Create a password for your Administrator
+
+![image](https://github.com/user-attachments/assets/6a3a7dbd-00ff-4d99-ac8b-40694925721d)
+
+Log in and now you have built the machine
+
+### Building the Windows 10 Machine
+
+Create the machine
+
+![image](https://github.com/user-attachments/assets/6ffad3c7-8d69-4829-896b-63e042afadc8)
+
+Increase the RAM
+
+![image](https://github.com/user-attachments/assets/df174513-71f3-44f4-afa9-b081a0831325)
+
+Increase the storage
+
+![image](https://github.com/user-attachments/assets/8cab0a3c-1604-45c9-a5e5-869544fb9153)
+
+Go to machine settings > System and uncheck the Floppy disk
+
+![image](https://github.com/user-attachments/assets/b3347046-4cb9-484b-9333-5426fc4bd02e)
+
+Go to Network and then choose NAT Network and the network that you created 
+
+![image](https://github.com/user-attachments/assets/0e6decf0-cffe-4f67-a9b1-86cd671989da)
+
+Turn on the machine and choose the language and keyboard language
+
+![image](https://github.com/user-attachments/assets/7d6bf863-59b8-4201-aa1c-775094ae506a)
+
+Install now
+
+![image](https://github.com/user-attachments/assets/27daa2c2-e2db-4d93-8dc6-df946b1e5c2e)
+
+Choose Custom
+
+![image](https://github.com/user-attachments/assets/1cedd3ae-ee85-4363-b4f7-5ba27806438c)
+
+Choose New and Apply and then hit OK. Hit Next and wait for the Installation to finish
+
+![image](https://github.com/user-attachments/assets/a2dfa82b-9e67-4ad6-9bfd-d63955d9d438)
+
+Choose the language
+
+![image](https://github.com/user-attachments/assets/5bb249ee-05b8-4ba2-b3ba-d5ff16113294)
+
+Choose the keyboard language
+
+![image](https://github.com/user-attachments/assets/0a3afc45-1131-4509-ad7e-0c6a7353fcaf)
+
+Choose Domain Join Instead
+
+![image](https://github.com/user-attachments/assets/de35fcfd-313c-4c19-921a-95bcc3dcad67)
+
+Create a user
+
+![image](https://github.com/user-attachments/assets/25192082-c4b0-48bc-a3f3-95d1eec498f3)
+
+Set a password
+
+![image](https://github.com/user-attachments/assets/c5377e43-c2db-42f4-a756-7d5b64c13a07)
+
+Then answer the security questions, turn off everything, and lastly log into the machine
+
+Repeat this step for the third machine
+
+### Creating the Active Directory
+
+There are two ways to do this:
+
+- Use this tool: https://github.com/Dewalt-arch/pimpmyadlab
+- Do it manually following this video: https://youtu.be/VXxH4n684HE?si=gIwdJf221BlEpB2c
+
+I will use the tool, go to the link https://github.com/Dewalt-arch/pimpmyadlab and follow the instructions
+
+
 #### Installing Splunk Forwarder and Sysmon on the environment
 
 ## Setting up Kali Linux
