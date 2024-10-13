@@ -589,7 +589,16 @@ To confirm that we have the IP that we want open a terminal and write the comman
 
 ![image](https://github.com/user-attachments/assets/c21ee078-371a-4571-ac78-aa6038217198)
 
+Also, ping google.com to verify that you can connect to the Internet
 
+![image](https://github.com/user-attachments/assets/31af29ba-572c-4c6d-9f2c-a1888c161473)
 
+Now we are good to go
+
+## Hacking Active Directory
+
+To learn how to hack Active Directory use this video https://youtu.be/VXxH4n684HE?si=tnfx40422Siz2PXv
+
+Also while you are hacking your environment look in your Splunk to see the telemetry that you are making
 
 
