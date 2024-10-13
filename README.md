@@ -366,6 +366,11 @@ There are two ways to do this:
 
 I will use the tool, go to the link https://github.com/Dewalt-arch/pimpmyadlab and follow the instructions
 
+![image](https://github.com/user-attachments/assets/2ce769e4-304e-4e13-a7c0-b91d38f72a92)
+
+![image](https://github.com/user-attachments/assets/857e8820-495d-445a-b9a4-804015b97e94)
+
+After following the instructions log in with the credentials of the domain users and now you have built an Active Directory
 
 #### Installing Splunk Forwarder and Sysmon on the environment
 
