@@ -373,15 +373,13 @@ I will use the tool, go to the link https://github.com/Dewalt-arch/pimpmyadlab a
 
 After following the instructions log in with the credentials of the domain users and now you have built an Active Directory
 
-## Installing Splunk  Universal Forwarder, Sysmon, and LimaCharlie on the environment
+## Installing Splunk  Universal Forwarder and Sysmon on the environment
 
-On the three machines on the domain, we will install Splunk Universal Forwarder, Sysmon, and LimaCharlie these are the links:
+On the three machines on the domain, we will install Splunk Universal Forwarder and Sysmon these are the links:
 
 - Splunk Universal Forwarder: https://www.splunk.com/en_us/download/universal-forwarder.html
 
 - Sysmon: https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
-
-- LimaCharlie:
   
 ### Installing Splunk Universal Forwarder
 
@@ -436,7 +434,7 @@ Extract the zip file
 
 ![image](https://github.com/user-attachments/assets/d6ed30e4-4ae5-4560-b3bf-9c84008687c3)
 
-Copy the path, open a Windows Powershell, and Run as administrator
+Copy the path, open a Windows Powershell, and Run as an administrator
 
 ![image](https://github.com/user-attachments/assets/29b557f6-189c-46e0-a38e-914d775f5fda)
 
@@ -466,8 +464,75 @@ Then we go to the local file
 
 ![image](https://github.com/user-attachments/assets/efe4a1b0-85ec-4947-8d8b-f25df4370b7f)
 
+Then we open Notepad as administrator
 
+![image](https://github.com/user-attachments/assets/8dc3129a-1b94-4846-8993-0e70ad250313)
 
+Use this link: https://github.com/MyDFIR/Active-Directory-Project/blob/main/README.md to copy and paste the configuration that you need
+
+![image](https://github.com/user-attachments/assets/39b1f1b5-a514-4fdd-8c87-5c2d1134d5b3)
+
+This is so that all of the events including the Sysmon, can be forwarded to Splunk
+
+Save the file in the local file of the Splunk Universal Forwarder
+
+![image](https://github.com/user-attachments/assets/bada5383-6112-4eb3-92ae-78014c506a55)
+
+Now we need to restart the Splunk Universal Forwarder and you need to do it every time you update the inputs.conf file
+
+Go to Services and Run as administrator
+
+![image](https://github.com/user-attachments/assets/6b89fe22-cd67-4746-87c5-c5d6ecba6895)
+
+Look for Splunk Forwarder, make sure that it is logged on as a Local System, and then Restart the service
+
+![image](https://github.com/user-attachments/assets/91e1a112-473a-4fe4-8177-2148d23093aa)
+
+If it is not logged on as a Local System, double-click on it, go to Log On, and make sure that it is a Local System account
+
+![image](https://github.com/user-attachments/assets/655c996f-b37b-44b3-86fa-b738c3792846)
+
+Also, verify that Sysmon is running and it is logged on as a Local System
+
+![image](https://github.com/user-attachments/assets/eae0a486-6c63-40a2-a3e4-05747f059d80)
+
+Then we go into our Splunk web, log in, and go to Settings and Indexes
+
+![image](https://github.com/user-attachments/assets/38a76459-6cc4-42f8-9f65-99e22a46b4c1)
+
+Create a New Index
+
+![image](https://github.com/user-attachments/assets/e5178808-a0d8-4221-99db-5058f41ec504)
+
+Name it endpoint and save it
+
+![image](https://github.com/user-attachments/assets/4324d381-fbd8-4118-afdc-9d1e2bcad5df)
+
+Now we go to Settings and Forwarding and receiving
+
+![image](https://github.com/user-attachments/assets/cb986d88-d0b2-44c3-90a8-81ca6f8d116e)
+
+Go to Configure receiving
+
+![image](https://github.com/user-attachments/assets/694b4939-d900-4d9a-a1cf-0bf41d410420)
+
+Click on New Receiving Port
+
+![image](https://github.com/user-attachments/assets/90bc70ab-f8c8-47d6-a949-62fdd816dcb8)
+
+Write the receiving port 
+
+![image](https://github.com/user-attachments/assets/9d531f94-78e1-4d75-a97c-d319896771b7)
+
+Now we are done, do this process for the other machines and you will receive events that occur on those machines
+
+To see the events go to APP > Search and Reporting 
+
+![image](https://github.com/user-attachments/assets/9b22cdba-82a1-422b-a879-ea47ed65aefe)
+
+Write index="endpoint" and hit search and you will see the machines and the events
+
+![image](https://github.com/user-attachments/assets/afe24dbf-06fc-4321-b169-474fa3299991)
 
 
 ## Setting up Kali Linux
