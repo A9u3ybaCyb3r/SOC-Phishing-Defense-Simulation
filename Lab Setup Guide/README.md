@@ -2,7 +2,7 @@
 
 ## Network Diagram
 
-[Network Diagram](https://github.com/A9u3ybaCyb3r/Active-Directory-Security-Lab/blob/main/NetworkDiagram-AD-Security-Lab.drawio.pdf)
+[Network Diagram](https://github.com/A9u3ybaCyb3r/Active-Directory-Security-Lab/blob/main/Lab%20Setup%20Guide/NetworkDiagram-Splunk-AD-Lab.drawio.pdf)
 
 ## Links of iso files to download
 
