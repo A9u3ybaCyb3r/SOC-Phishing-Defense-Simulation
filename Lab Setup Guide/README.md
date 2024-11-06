@@ -1,8 +1,8 @@
 # Lab Setup
 
 ## Table of Contents
-- [Network Diagram](#network-diagram)
-- 
+1. [Network Diagram](#network-diagram)
+2. 
 
 ---
 
@@ -224,133 +224,360 @@ You can also make Splunk start every time you turn on the machine with this comm
 
 ![image](https://github.com/user-attachments/assets/2e1ced1f-1e41-4a01-8d79-dc6b6865dec6)
 
-## Building an Active Directory 
+## Building an Active Directory
 
-### Building Windows 2022 Server
+## Setting Up Windows Server and Domain Controller
 
-Create a new machine
+### Downloading the ISOs
 
-![image](https://github.com/user-attachments/assets/39d5f1c7-099b-4d70-9008-bf46342ae038)
+### Step 1: Visit Microsoft Evaluation Center
+1. Go to Google and search for "Microsoft Evaluation Center."
+   - Official link: [Microsoft Evaluation Center](https://www.microsoft.com/en-us/evalcenter)
+2. Open the official Microsoft Evaluation Center page from the search results.
 
-Increase RAM
+### Step 2: Browse Available Software
+- The Evaluation Center offers trial versions of Windows, Windows Server, SQL Server, and more.
+- For this lab, download **Windows 10 Enterprise** and **Windows Server 2022**.
 
-![image](https://github.com/user-attachments/assets/265e3851-dd5a-4432-8335-a10a0df949a4)
+### Step 3: Download Windows 10 Enterprise
+1. Select **Windows 10 Enterprise** from the list.
+2. Choose the **64-bit ISO** version for your region (e.g., United States).
+3. Fill out the registration form (generic information is acceptable).
+4. Click **Download Now** to start the download.
 
-Increase the storage
+### Step 4: Download Windows Server 2022
+1. Select **Windows Server 2022** and open the download page.
+2. Choose the **64-bit ISO** version.
+3. Complete the registration form, then click **Download Now** to begin.
 
-![image](https://github.com/user-attachments/assets/c470a06a-986b-42c5-a4b7-28b4285d9b59)
+### Step 5: Notes
+- Note that these downloads are large (Windows 10 Enterprise is ~5.2 GB, Windows Server 2022 is ~4.7 GB).
+- After 90 days, the OS may prompt for activation or start shutting down if inactive. Reboot as needed for testing.
 
-Go to machine settings > System and uncheck the Floppy disk
+---
 
-![image](https://github.com/user-attachments/assets/b3347046-4cb9-484b-9333-5426fc4bd02e)
+## Setting Up the Domain Controller
 
-Go to Network and then choose NAT Network and the network that you created 
+### Step 1: Create a New Virtual Machine
+1. In VMware or VirtualBox, select **Create a New Virtual Machine**.
+2. Choose the **Typical** setup option.
+3. Browse for the **Windows Server 2022 ISO** file you downloaded and select it.
 
-![image](https://github.com/user-attachments/assets/0e6decf0-cffe-4f67-a9b1-86cd671989da)
+### Step 2: Operating System Selection
+- Choose **Windows Server 2016** if Windows Server 2022 isn’t listed. This won’t affect the setup.
 
-Turn on the machine and choose the Language and the keyboard language
+### Step 3: Configure Disk Space
+- Allocate **at least 60 GB** of disk space.
+- Select the option to **Split virtual disk into multiple files** for efficient disk space use.
 
-![image](https://github.com/user-attachments/assets/36f48e3a-92d9-454f-b833-e349a657d813)
+### Step 4: Adjust Virtual Machine Settings
+1. Open **Edit Virtual Machine Settings**.
+2. Set memory to **4–8 GB** (8 GB recommended if available).
+3. Remove any **floppy disk device** if it appears.
 
-Hit Install now
+### Step 5: Power On and Install Windows Server
+1. Power on the virtual machine.
+2. Press any key to boot from the ISO when prompted.
+3. Follow installation prompts, choosing:
+   - **Language and region** (defaults are typically fine).
+   - **Standard Evaluation Desktop Experience** as the installation type.
+   - Accept **license terms**.
+   - **Custom installation** on Drive 0 (unallocated space).
 
-![image](https://github.com/user-attachments/assets/cec36e91-e472-4d5e-984a-736a73f755f4)
+### Step 6: Complete Initial Setup
+- After installation, Windows will reboot.
+- Set an **administrator password** (e.g., `P@$$w0rd!`).
 
-Choose Windows 2022 Standard Evaluation (Desktop Experience)
+### Step 7: Install VMware Tools (Optional but Recommended)
+1. In VMware, go to **VM > Install VMware Tools**.
+2. Run the `setup64` file from the **D drive** to install the tools.
+3. Choose the **Complete** installation option, then finish and reboot if needed.
 
-![image](https://github.com/user-attachments/assets/ea7c6b0e-17a8-4b6a-a05f-cabe999d46c9)
+### Step 8: Rename the Computer
+1. Open the Start menu and search for **View your PC name**.
+2. Click **Rename this PC**.
+3. Name your domain controller (e.g., **Hydra-PC**).
+4. Restart the virtual machine after renaming.
 
-Choose Custom
+### Step 9: Reboot and Continue
+- Allow the machine to restart.
+- Once logged back in, continue with additional domain controller configurations as needed.
 
-![image](https://github.com/user-attachments/assets/1cedd3ae-ee85-4363-b4f7-5ba27806438c)
+---
 
-Choose New and Apply and then hit OK. Hit Next and wait for the Installation to finish
+## Making the Machine a Domain Controller
 
-![image](https://github.com/user-attachments/assets/a2dfa82b-9e67-4ad6-9bfd-d63955d9d438)
+### Step 1: Open Server Manager
+- Open Server Manager, then select **Manage > Add Roles and Features**.
 
-Create a password for your Administrator
+### Step 2: Roles and Features Wizard
+1. Click **Next** on the introduction screen.
+2. Choose **Role-based or feature-based installation** and click **Next**.
+3. Select the server (e.g., "Hydra DC") and click **Next**.
 
-![image](https://github.com/user-attachments/assets/6a3a7dbd-00ff-4d99-ac8b-40694925721d)
+### Step 3: Select AD DS
+1. Select **Active Directory Domain Services** and add any required features when prompted.
+2. Click **Next** until you reach the **Install** button, then start the installation.
+3. Wait for the installation to complete.
 
-Log in and now you have built the machine
+### Step 4: Promote to Domain Controller
+1. After installation, click **Promote this server to a domain controller**.
+2. Choose **Add a new forest** and enter a root domain name (e.g., `Marvel.local`).
+3. Click **Next** and set the Forest and Domain functional levels (e.g., 2016).
+4. Set the **Directory Services Restore Mode (DSRM) password**.
 
-### Building the Windows 10 Machine
+### Step 5: Configure NetBIOS and Paths
+1. Accept the automatically generated NetBIOS domain name.
+2. Proceed with default paths for **NTDS, SYSVOL**, etc.
+3. Click **Install** and let the server reboot after installation.
 
-Create the machine
+### Step 6: Log into the Domain
+- After reboot, log in using the new domain (e.g., `Marvel\administrator`) and the administrator password.
 
-![image](https://github.com/user-attachments/assets/6ffad3c7-8d69-4829-896b-63e042afadc8)
+---
 
-Increase the RAM
+## Setting Up Active Directory Certificate Services (AD CS)
 
-![image](https://github.com/user-attachments/assets/df174513-71f3-44f4-afa9-b081a0831325)
+### Step 1: Add Roles and Features for AD CS
+1. In Server Manager, select **Manage > Add Roles and Features**.
+2. Choose **Role-based or feature-based installation** and proceed by clicking **Next**.
+3. Select **Active Directory Certificate Services** and add required features.
 
-Increase the storage
+### Step 2: Install Certificate Authority
+1. Continue through the wizard and select **Certification Authority**.
+2. Enable **Restart if required**, then click **Install**.
 
-![image](https://github.com/user-attachments/assets/8cab0a3c-1604-45c9-a5e5-869544fb9153)
 
-Go to machine settings > System and uncheck the Floppy disk
 
-![image](https://github.com/user-attachments/assets/b3347046-4cb9-484b-9333-5426fc4bd02e)
+### Step 3: Configure AD CS
+1. After installation, select **Configure Active Directory Certificate Services**.
+2. Choose **Certification Authority** and set it up as an **Enterprise CA** and **Root CA**.
+3. Create a **New Private Key** and use default cryptographic settings (e.g., SHA-256).
+4. Set the **Validity Period** to 99 years for long-term lab setup.
+5. Click **Next**, review settings, then **Configure**.
 
-Go to Network and then choose NAT Network and the network that you created 
+### Step 4: Reboot
+- After configuration, restart the server to finalize setup.
 
-![image](https://github.com/user-attachments/assets/0e6decf0-cffe-4f67-a9b1-86cd671989da)
+## Setting Up User Virtual Machines for Lab
 
-Turn on the machine and choose the language and keyboard language
+## Step 1: Shut Down the Domain Controller
+- Shut down the domain controller to free up resources, especially if working with limited RAM or storage.
 
-![image](https://github.com/user-attachments/assets/7d6bf863-59b8-4201-aa1c-775094ae506a)
+## Step 2: Create New Virtual Machines
+1. Open **VMware Workstation** and select **Create a New Virtual Machine**.
+2. Select the **ISO file for Windows 10** (instead of the Windows Server ISO used for the domain controller).
+3. Click **Next** to proceed through setup steps.
+4. When prompted, skip entering the **Windows product key**.
+5. Select **Windows 10 Enterprise** as the version.
 
-Install now
+## Step 3: Name the Machines
+- Assign unique names to each VM. Examples:
+  - **Punisher** (e.g., for one user)
+  - **Spider-Man** (for another user)
 
-![image](https://github.com/user-attachments/assets/27daa2c2-e2db-4d93-8dc6-df946b1e5c2e)
+## Step 4: Configure Virtual Machine Hardware
+1. Allocate **60 GB** of disk space and select **Split virtual disk**.
+2. Customize hardware settings:
+   - Remove the **floppy disk drive**.
+   - Set **memory allocation** based on system resources:
+     - Use **8 GB** if available, or adjust to **4 GB** or **2 GB** if limited.
+   - Use **NAT** for the network adapter, similar to previous lab configurations.
 
-Choose Custom
+## Step 5: Power On and Start Installation
+1. Power on each VM, and when prompted, press a key to start the boot sequence.
+2. Go through the Windows setup:
+   - Set language to **English** (or your region’s language).
+   - Choose **Custom Install**.
+   - Partition the drive by clicking **New** and applying settings, then proceed with **Next** to start the installation.
 
-![image](https://github.com/user-attachments/assets/1cedd3ae-ee85-4363-b4f7-5ba27806438c)
+## Step 6: Complete Windows Installation Steps
+1. After installation, reboot each machine as prompted.
+2. Select region (e.g., **U.S.**) and keyboard layout.
+3. Choose to **skip the second keyboard layout**.
 
-Choose New and Apply and then hit OK. Hit Next and wait for the Installation to finish
+## Step 7: Configure User Accounts
+1. When prompted to sign in with Microsoft, select **Domain Join Instead**.
+   - For Punisher:
+     - **Username**: Frank Castle
+     - **Password**: Password1
+   - For Spider-Man:
+     - **Username**: Peter Parker
+     - **Password**: Password1
+2. Set security questions with generic answers (e.g., answer each with "Bob").
 
-![image](https://github.com/user-attachments/assets/a2dfa82b-9e67-4ad6-9bfd-d63955d9d438)
+## Step 8: Disable Optional Settings
+- Skip optional settings like **advertising**, **location services**, and **Cortana setup**.
 
-Choose the language
+## Step 9: Install VMware Tools
+1. In each VM, install **VMware Tools** to enable full-screen mode and improved performance.
+2. Perform a **Complete Install** and restart if prompted.
+3. Adjust display settings if needed (e.g., **150%** for better visibility).
 
-![image](https://github.com/user-attachments/assets/5bb249ee-05b8-4ba2-b3ba-d5ff16113294)
+## Step 10: Rename Each VM for Identification
+1. Rename **Frank Castle’s** machine as **Punisher**.
+2. Rename **Peter Parker’s** machine as **Spider-Man**.
 
-Choose the keyboard language
+## Step 11: Final Reboot
+- Restart each machine after renaming to complete the setup process for both VMs.
 
-![image](https://github.com/user-attachments/assets/0a3afc45-1131-4509-ad7e-0c6a7353fcaf)
+Once these steps are complete, both user machines should be ready. The next step is to join them to the domain when you power on the domain controller again.
 
-Choose Domain Join Instead
+## Setting Up Users, Groups, Policies, and Configurations on a Windows Server Domain Controller
 
-![image](https://github.com/user-attachments/assets/de35fcfd-313c-4c19-921a-95bcc3dcad67)
+## Step 1: Boot up the Domain Controller
+1. Power down any non-essential virtual machines (e.g., workstations named Punisher and Spider-Man).
+2. Start the Domain Controller (Windows Server 2022, named as Windows Server 2016 in this example) and log in.
 
-Create a user
+## Step 2: Access Active Directory Users and Computers
+1. Open **Server Manager** on the domain controller.
+2. Navigate to **Tools > Active Directory Users and Computers**.
+3. Observe the existing **Organizational Units (OUs)**, users, and groups.
 
-![image](https://github.com/user-attachments/assets/25192082-c4b0-48bc-a3f3-95d1eec498f3)
+## Step 3: Create Organizational Units (OUs) for Users and Groups
+1. Right-click on the root of your domain (e.g., Marvel.local), select **New > Organizational Unit**, and name it **Groups**.
+2. Move default system groups (e.g., Domain Admins, Enterprise Admins) into the **Groups OU** for organizational clarity.
 
-Set a password
+## Step 4: Create New User Accounts
+1. **Tony Stark (Domain Admin)**:
+   - Right-click the existing **Administrator** account, select **Copy**, and create a new user with the following:
+     - Full Name: **Tony Stark**
+     - Username: **TStark**
+     - Password: **Password12345!**
+     - **Password Never Expires**: Enabled
+2. **SQL Service Account (for demonstration)**:
+   - Copy the **Administrator** account and create a new service account with the following:
+     - Full Name: **SQL Service**
+     - Username: **SQLService**
+     - Password: **MyPassword123#**
+     - Add a description for demonstration purposes: "Password is MyPassword123#".
+3. **Standard Users (Frank Castle and Peter Parker)**:
+   - Create individual user accounts as follows:
+     - **Frank Castle**:
+       - Username: **FCastle**
+       - Password: **Password1**
+       - **Password Never Expires**: Enabled
+     - **Peter Parker**:
+       - Username: **PParker**
+       - Password: **Password2**
+       - **Password Never Expires**: Enabled
 
-![image](https://github.com/user-attachments/assets/c5377e43-c2db-42f4-a756-7d5b64c13a07)
+## Step 5: Configure an SMB File Share
+1. In **Server Manager**, go to **File and Storage Services > Shares**.
+2. Click **Tasks > New Share**, and select **SMB Share - Quick**.
+3. Choose a share location on the **C:** drive, name the share **HackMe**, and complete the configuration.
+4. The network path should look like `\\Hydra-DC\HackMe`.
 
-Then answer the security questions, turn off everything, and lastly log into the machine
+## Step 6: Set up a Service Principal Name (SPN) for the SQL Service Account
+1. Open **Command Prompt** as Administrator.
+2. Use the following command to set up an SPN for the SQL service account:
+   ```shell
+   setspn -a Hydra-DC/SQLService.Marvel.local:60111 Marvel\SQLService
+3. Verify the SPN by querying with:
+   ```shell
+   setspn -T Marvel.local -Q */*
 
-Repeat this step for the third machine
+## Step 7: Create a Group Policy to Disable Microsoft Defender
+1. In Server Manager, open Group Policy Management.
+2. Expand **Forest: Marvel.local > Domains > Marvel.local.**
+3. Right-click Marvel.local and select **Create a GPO** in this domain. Name it Disable Windows Defender.
+4. Right-click the new GPO and select **Edit**. Navigate to:
+    ```shell
+    Computer Configuration > Policies > Administrative Templates > Windows Components > Microsoft Defender Antivirus
+5. Double-click **Turn off Microsoft Defender Antivirus**, set it to **Enabled**, then click **Apply** and **OK**.
+6. Enforce the policy by right-clicking the GPO and selecting Enforce.
 
-### Creating the Active Directory Domain
+## Step 8: Set a Static IP Address
+1. Go to **Network & Internet Settings > Change adapter options**.
+2. Open **Properties** for the network adapter, and configure IPv4 settings:
+   - **IP Address**: 192.168.138.136 (IP Address of pfSense network interface)
+   - **Subnet Mask**: 255.255.255.0
+   - **Default Gateway**: 192.168.138.2 (IP Address of pfSense Gateway)
+3. Apply the settings.
 
-There are two ways to do this:
+## Final Notes
+- Confirm all configurations are as expected.
+- Ensure the domain controller is correctly configured for user authentication, file sharing, and group policies before running further security tests.
 
-- Use this tool: https://github.com/Dewalt-arch/pimpmyadlab
-  
-- Do it manually following this video: https://youtu.be/VXxH4n684HE?si=gIwdJf221BlEpB2c
+## Joining Machines to the Domain (Marvel.local)
 
-I will use the tool, go to the link https://github.com/Dewalt-arch/pimpmyadlab and follow the instructions
+This guide outlines the steps to join client machines to the Marvel.local domain, configure network settings, set up user roles, and verify shared drive access.
 
-![image](https://github.com/user-attachments/assets/2ce769e4-304e-4e13-a7c0-b91d38f72a92)
+## Step 1: Adjust RAM Allocation (If Necessary)
 
-![image](https://github.com/user-attachments/assets/857e8820-495d-445a-b9a4-804015b97e94)
+- **Windows Server**: 2 GB (unless more RAM is available).
+- **Punisher Machine**: 4 GB.
+- **Spider-Man Machine**: 2 GB (optional, you can allocate 4 GB for better performance).
 
-After following the instructions log in with the credentials of the domain users and now you have built an Active Directory
+## Step 2: Power On All Machines
+
+- Start the domain controller (DC) and both client machines (Punisher and Spider-Man).
+- Log in with the default local admin password (`Password1` with a capital "P" as per your setup).
+
+## Step 3: Configure Network Settings on Each Machine
+
+1. Open **Network and Sharing Center**:
+   - Go to **Change Adapter Settings**.
+   - Right-click on **Ethernet0** and choose **Properties**.
+   - Select **Internet Protocol Version 4 (TCP/IPv4)**, then **Properties**.
+
+2. **Set Static IP and DNS**:
+   - Use the domain controller’s IP as the DNS server (e.g., `192.168.138.136`).
+   - Save the settings.
+
+## Step 4: Join Each Machine to the Domain (Marvel.local)
+
+1. On each machine:
+   - Go to **Settings > Accounts > Access work or school**.
+   - Select **Connect** and choose **Join this device to a local Active Directory domain**.
+
+2. **Enter the Domain Information**:
+   - **Domain Name**: `Marvel.local`
+   - **Username**: `administrator`
+   - **Password**: (use the administrator password for the DC).
+
+3. **Restart Each Machine** once they’re successfully joined.
+
+## Step 5: Verify Domain Join on Domain Controller
+
+- On the DC, open **Active Directory Users and Computers**:
+   - Navigate to **Computers** in the **Marvel.local** domain.
+   - Ensure **Punisher** and **Spider-Man** appear in the list.
+
+## Step 6: Configure Local Users and Groups on Each Client Machine
+
+1. **Enable and Set Password for the Local Administrator Account**:
+   - Go to **Computer Management > Local Users and Groups > Users**.
+   - Double-click on **Administrator**, set the password (`Password1!`), and enable the account.
+
+2. **Add Domain Users as Local Administrators**:
+   - Go to **Computer Management > Local Users and Groups > Groups > Administrators**.
+   - Add `Fcastle` (Frank Castle) as a local administrator on **Punisher**.
+   - Add both `Fcastle` and `Pparker` (Peter Parker) as local administrators on **Spider-Man**.
+
+## Step 7: Enable Network Discovery
+
+- On each client, go to **Network & Sharing Center > Change advanced sharing settings**:
+   - Turn on **Network discovery** and **File and printer sharing**.
+
+## Step 8: Map the Shared Drive (HackMe) on Spider-Man
+
+1. Open **File Explorer**:
+   - Go to **This PC > Map Network Drive**.
+
+2. **Set Drive Mapping**:
+   - Choose a drive letter (e.g., `Z:`).
+   - Enter the path `\\Hydra-DC\HackMe`.
+   - Select **Connect using different credentials**.
+   - Use the **Administrator** account and password for authentication.
+
+## Step 9: Verify Access to Shared Drive
+
+- Ensure the **HackMe** shared drive is accessible on **Spider-Man**.
+
+---
+
+By following these steps, your machines should now be correctly joined to the **Marvel.local** domain with all necessary configurations for domain access, shared drive mapping, and user roles.
 
 ## Installing Splunk  Universal Forwarder and Sysmon on the environment
 
