@@ -1,12 +1,12 @@
 # Lab Setup
 
 ## Table of Contents
-1. [Network Diagram](#network-diagram)
+1. [Planning Phase](#planning-phase)
 2. 
 
 ---
 
-## Network Diagram
+## Planning Phase
 
 [Network Diagram](https://github.com/A9u3ybaCyb3r/Active-Directory-Security-Lab/blob/main/Lab%20Setup%20Guide/NetworkDiagram-Lab.drawio.pdf)
 
