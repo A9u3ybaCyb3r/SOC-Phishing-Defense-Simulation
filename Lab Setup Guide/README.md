@@ -2,7 +2,11 @@
 
 ## Table of Contents
 1. [Planning Phase](#planning-phase)
-2. 
+2. [Create a new NAT Network](#create-a-new-nat-network)
+3. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
+4. [Building an Active Directory](#building-an-active-directory)
+5. [Installing Splunk Forwarder and Sysmon](#installing-splunk-forwarder-and-sysmon)
+6. [Setting up Kali Linux](#setting-up-kali-linux)
 
 ---
 
@@ -38,6 +42,7 @@ Set up your name and IP address range
 
 ![image](https://github.com/user-attachments/assets/8565b6fa-bb0b-498b-8d4c-ee3aded21032)
 
+---
 
 ## Setting up Ubuntu Desktop
 
@@ -223,6 +228,8 @@ Now you are inside the Splunk web server
 You can also make Splunk start every time you turn on the machine with this command: **sudo ./splunk enable boot-start**
 
 ![image](https://github.com/user-attachments/assets/2e1ced1f-1e41-4a01-8d79-dc6b6865dec6)
+
+---
 
 ## Building an Active Directory
 
@@ -579,7 +586,9 @@ This guide outlines the steps to join client machines to the Marvel.local domain
 
 By following these steps, your machines should now be correctly joined to the **Marvel.local** domain with all necessary configurations for domain access, shared drive mapping, and user roles.
 
-## Installing Splunk  Universal Forwarder and Sysmon on the environment
+---
+
+## Installing Splunk Forwarder and Sysmon 
 
 On the three machines on the domain, we will install Splunk Universal Forwarder and Sysmon these are the links:
 
@@ -740,6 +749,7 @@ Write index="endpoint" and hit search and you will see the machines and the even
 
 ![image](https://github.com/user-attachments/assets/afe24dbf-06fc-4321-b169-474fa3299991)
 
+---
 
 ## Setting up Kali Linux
 
@@ -800,12 +810,5 @@ Also, ping google.com to verify that you can connect to the Internet
 ![image](https://github.com/user-attachments/assets/31af29ba-572c-4c6d-9f2c-a1888c161473)
 
 Now we are good to go
-
-## Hacking Active Directory
-
-To learn how to hack Active Directory use this video https://youtu.be/VXxH4n684HE?si=tnfx40422Siz2PXv
-
-Also while you are hacking your environment look in your Splunk to see the telemetry that you are making
-
 
 
