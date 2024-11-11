@@ -514,9 +514,9 @@ You can view the current IP of the machine.
    - Remove the **floppy disk drive**.
    - Set **memory allocation** based on system resources:
      - Use **8 GB** if available, or adjust to **4 GB** or **2 GB** if limited.
-   - Use **Internal Network** for the network adapter, similar to the server.
+   - Use the **Nat Network** that you created for the network adapter, similar to the server.
 
-     ![image](https://github.com/user-attachments/assets/efb23e90-cea6-4b46-8898-dbcfa54e72ef)
+![image](https://github.com/user-attachments/assets/b808c2d9-7f65-4daa-b74b-2b109534b734)
 
 ## Step 5: Power On and Start Installation
 1. Power on each VM, and when prompted, press a key to start the boot sequence.
