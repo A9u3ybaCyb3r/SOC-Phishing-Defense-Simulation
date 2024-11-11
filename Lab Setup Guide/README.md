@@ -17,19 +17,19 @@ First, we build the network architecture for the lab environment using [Draw.io]
 - [Network Diagram](https://github.com/A9u3ybaCyb3r/Active-Directory-Security-Lab/blob/main/Lab%20Setup%20Guide/NetworkDiagram-Lab.drawio.pdf)
 
 
-## Create a new NAT Network
+## Creating a New NAT Network in VirtualBox
 
-On Virtualbox go to File > Tools > Network Manager
+1. Open VirtualBox and go to **File > Tools > Network Manager**.
 
-![image](https://github.com/user-attachments/assets/ec55021a-a04e-43d4-9d00-97e9e2fb3717)
+   ![image](https://github.com/user-attachments/assets/ec55021a-a04e-43d4-9d00-97e9e2fb3717)
 
-Go to NAT Network tab and hit Create to create a new network
+2. In the **Network Manager**, select the **NAT Network** tab and click **Create** to create a new network.
 
-![image](https://github.com/user-attachments/assets/440ede8a-f2be-4438-9d5c-3e2f7cfc3101)
+   ![image](https://github.com/user-attachments/assets/440ede8a-f2be-4438-9d5c-3e2f7cfc3101)
 
-Set up your name and IP address range
+3. Configure the network by setting your preferred **name** and **IP address range**.
 
-![image](https://github.com/user-attachments/assets/8565b6fa-bb0b-498b-8d4c-ee3aded21032)
+   ![image](https://github.com/user-attachments/assets/8565b6fa-bb0b-498b-8d4c-ee3aded21032)
 
 ---
 
