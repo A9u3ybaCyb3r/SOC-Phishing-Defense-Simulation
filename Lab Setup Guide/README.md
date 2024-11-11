@@ -35,6 +35,10 @@ Set up your name and IP address range
 
 ## Setting up Ubuntu Desktop
 
+### Download the iso file
+
+https://ubuntu.com/download/desktop
+
 ### Create the Ubuntu Machine
 
 Create a virtual machine
