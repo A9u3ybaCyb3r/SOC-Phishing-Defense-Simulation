@@ -486,9 +486,9 @@ Once these steps are complete, both user machines should be ready. The next step
 ## Step 8: Set a Static IP Address
 1. Go to **Network & Internet Settings > Change adapter options**.
 2. Open **Properties** for the network adapter, and configure IPv4 settings:
-   - **IP Address**: 192.168.138.136 (IP Address of pfSense network interface)
+   - **IP Address**: 192.168.255.250 (Static IP of the Domain Controller)
    - **Subnet Mask**: 255.255.255.0
-   - **Default Gateway**: 192.168.138.2 (IP Address of pfSense Gateway)
+   - **Default Gateway**: 192.168.255.2 (NAT Network that you created)
 3. Apply the settings.
 
 ## Final Notes
@@ -518,7 +518,7 @@ This guide outlines the steps to join client machines to the Marvel.local domain
    - Select **Internet Protocol Version 4 (TCP/IPv4)**, then **Properties**.
 
 2. **Set Static IP and DNS**:
-   - Use the domain controller’s IP as the DNS server (e.g., `192.168.138.136`).
+   - Use the domain controller’s IP as the DNS server (e.g., `192.168.255.250`).
    - Save the settings.
 
 ## Step 4: Join Each Machine to the Domain (Marvel.local)
