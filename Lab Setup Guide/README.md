@@ -696,7 +696,7 @@ This guide outlines the steps to join client machines to the Empire.local domain
 - On each client, go to **Network & Sharing Center > Change advanced sharing settings**:
    - Turn on **Network discovery** and **File and printer sharing**.
 
-## Step 8: Map the Shared Drive (HackMe) on Spider-Man
+## Step 8: Map the Shared Drive (ImperialPlans) on Darth_Sidious
 
 1. Open **File Explorer**:
    - Go to **This PC > Map Network Drive**.
