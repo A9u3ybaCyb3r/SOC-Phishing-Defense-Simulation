@@ -217,19 +217,6 @@ You can view the current IP of the machine.
    ```bash
    sudo tar xvzf splunk-file.tgz -C /opt
 
-## Installing Splunk on Ubuntu
-
-### Download Splunk Enterprise
-
-1. Go to [Splunk's download page](https://www.splunk.com/en_us/download.html).
-2. Log in and download the Splunk Enterprise version.
-
-   ![image](https://github.com/user-attachments/assets/3bfd482a-7018-4085-8285-9fddaa2efa7f)
-
-3. Grab the Linux `.tgz` version of Splunk.
-
-   ![image](https://github.com/user-attachments/assets/213e9d53-a073-46fa-a903-2673b09b2b03)
-
 ### Install Splunk on Ubuntu
 
 1. Open a terminal and navigate to the Downloads folder. Run the following command to extract the Splunk archive:
