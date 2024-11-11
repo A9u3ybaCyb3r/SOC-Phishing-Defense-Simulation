@@ -4,9 +4,10 @@
 1. [Planning Phase](#planning-phase)
 2. [Create a new NAT Network](#create-a-new-nat-network)
 3. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
-4. [Building an Active Directory](#building-an-active-directory)
-5. [Installing Splunk Forwarder and Sysmon](#installing-splunk-forwarder-and-sysmon)
-6. [Setting up Kali Linux](#setting-up-kali-linux)
+4. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
+5. [Setting up Kali Linux](#setting-up-kali-linux)
+6. [Building an Active Directory](#building-an-active-directory)
+7. [Installing Splunk Forwarder and Sysmon](#installing-splunk-forwarder-and-sysmon)
 
 ---
 
@@ -169,11 +170,10 @@ First, we build the network architecture for the lab environment using [Draw.io]
 
     ```bash
     ip a
-    ```
 
-   You can view the current IP of the machine.
+You can view the current IP of the machine.
 
-   ![image](https://github.com/user-attachments/assets/9a659493-91b2-40b3-8e72-201f6522a7af)
+![image](https://github.com/user-attachments/assets/9a659493-91b2-40b3-8e72-201f6522a7af)
 
 2. Go to the network settings of the machine.
 
@@ -189,64 +189,184 @@ First, we build the network architecture for the lab environment using [Draw.io]
 
 5. Confirm the IP address using the command:
 
-    ```bash
-    ip a
-    ```
-
-   ![image](https://github.com/user-attachments/assets/b56054d4-b4ae-430e-8cf0-5d13052231f4)
+   ```bash
+   ip a
 
 
-### Installing Splunk on Ubuntu
+![image](https://github.com/user-attachments/assets/b56054d4-b4ae-430e-8cf0-5d13052231f4)
 
-Go to https://www.splunk.com/en_us/download.html log in and grab the Splunk Enterprise
+---
 
-![image](https://github.com/user-attachments/assets/3bfd482a-7018-4085-8285-9fddaa2efa7f)
+## Installing Splunk on Ubuntu
 
-Grab the Linux .tgz version of Splunk
+### Download Splunk Enterprise
 
-![image](https://github.com/user-attachments/assets/213e9d53-a073-46fa-a903-2673b09b2b03)
+1. Go to [Splunk's download page](https://www.splunk.com/en_us/download.html).
+2. Log in and download the Splunk Enterprise version.
 
-Go to Downloads in the terminal and then run the command: **sudo tar xvzf (splunk file) -C /opt**
+   ![image](https://github.com/user-attachments/assets/3bfd482a-7018-4085-8285-9fddaa2efa7f)
+
+3. Grab the Linux `.tgz` version of Splunk.
+
+   ![image](https://github.com/user-attachments/assets/213e9d53-a073-46fa-a903-2673b09b2b03)
+
+### Install Splunk on Ubuntu
+
+1. Open a terminal and navigate to the Downloads folder. Run the following command to extract the Splunk archive:
+
+   ```bash
+   sudo tar xvzf splunk-file.tgz -C /opt
+
+## Installing Splunk on Ubuntu
+
+### Download Splunk Enterprise
+
+1. Go to [Splunk's download page](https://www.splunk.com/en_us/download.html).
+2. Log in and download the Splunk Enterprise version.
+
+   ![image](https://github.com/user-attachments/assets/3bfd482a-7018-4085-8285-9fddaa2efa7f)
+
+3. Grab the Linux `.tgz` version of Splunk.
+
+   ![image](https://github.com/user-attachments/assets/213e9d53-a073-46fa-a903-2673b09b2b03)
+
+### Install Splunk on Ubuntu
+
+1. Open a terminal and navigate to the Downloads folder. Run the following command to extract the Splunk archive:
+
+   ```bash
+   sudo tar xvzf splunk-file.tgz -C /opt
 
 ![image](https://github.com/user-attachments/assets/1647559c-cd30-4931-a285-bd8185e2b0ca)
 
-After the download is done run this command: **cd /opt** and go to the /splunk/bin directory
+2. Change to the Splunk directory:
+
+   ```bash
+   cd /opt/splunk/bin
+
 
 ![image](https://github.com/user-attachments/assets/5267939f-0a7b-4e22-a306-8b1d6978ad63)
 
 ![image](https://github.com/user-attachments/assets/0dd806ab-e1bd-4de4-bb6c-3e98f04d04d4)
 
-Run Splunk with the command: **sudo ./splunk start --accept-license**
+3. Start Splunk and accept the license:
+
+   ```bash
+   sudo ./splunk start --accept-license
+
 
 ![image](https://github.com/user-attachments/assets/ecbe0a05-e233-4292-9725-a63e8a3dc700)
 
-Create a username and password to use Splunk
+4. You will be prompted to create a username and password for Splunk.
 
 ![image](https://github.com/user-attachments/assets/3b6cec53-95f2-4b7b-b963-87c7d916b1a3)
 
-Now we can go to the web server using one of these two links
+### Access the Splunk Web Interface
+
+1. Open a web browser and navigate to one of the following URLs to access the Splunk web interface:
+
+- `http://localhost:8000`
+- `http://<your-ubuntu-ip>:8000` (if accessing from another machine)
 
 ![image](https://github.com/user-attachments/assets/9a7ac6a4-87eb-44d3-826e-69d271bda6bd)
 
-If you want to access the web server with another machine use the IP address of Ubuntu
+2. To access the web interface from another machine, use the IP address of your Ubuntu server.
 
 ![image](https://github.com/user-attachments/assets/b7600173-eff5-4b40-bbf9-588d53e2a6b9)
 
-Accessing the Splunk web server using another machine
+3. Log in using the credentials you created during installation.
 
 ![image](https://github.com/user-attachments/assets/37b467ee-f995-458c-bbb4-b520bd39fe61)
 
-Use the credentials that you created earlier when installing Splunk to get access
-
 ![image](https://github.com/user-attachments/assets/c376e027-79b0-4898-9cca-f6362db9f9f4)
 
-Now you are inside the Splunk web server
+4. After logging in, you should see the Splunk dashboard.
 
 ![image](https://github.com/user-attachments/assets/9ca05a5d-2008-4f18-8289-9f4516b20888)
 
-You can also make Splunk start every time you turn on the machine with this command: **sudo ./splunk enable boot-start**
+5. To have Splunk start automatically when the machine boots, run:
+
+   ```bash
+   sudo ./splunk enable boot-start
 
 ![image](https://github.com/user-attachments/assets/2e1ced1f-1e41-4a01-8d79-dc6b6865dec6)
+
+---
+
+## Setting up Kali Linux
+
+### Downloading Kali Linux Virtual Machine Image
+
+1. Go to [Kali's official download page](https://kali.org/get-kali/).
+2. Click on **Virtual Machines** and download the 64-bit version for VirtualBox.
+
+   ![image](https://github.com/user-attachments/assets/ae2d558e-57a4-4d1a-8576-5ad25de659ec)
+   
+   ![image](https://github.com/user-attachments/assets/6430026d-9ca1-46db-9dd6-98e6d758617c)
+
+### Importing Kali Linux into VirtualBox
+
+1. After downloading, extract the `.ova` file.
+2. Open VirtualBox, click **Add**, and select the `.vbox` extension file from the extracted contents.
+
+   ![image](https://github.com/user-attachments/assets/37ef160d-c250-4151-80df-bdfb038f063c)
+   
+   ![image](https://github.com/user-attachments/assets/5cf67d2e-ebd6-4c6e-ab83-f49f87a27b82)
+
+### Configuring Network Settings
+
+1. Right-click on the Kali Linux machine in VirtualBox, then select **Settings > Network**.
+
+   ![image](https://github.com/user-attachments/assets/465b1135-d2b9-4e79-aa75-f6eb9f315ed1)
+
+2. Change the network adapter to the **NAT Network** that you created.
+
+   ![image](https://github.com/user-attachments/assets/13a03bdb-84e5-4cad-bac3-aa89af5adb77)
+
+### Adjusting System Resources
+
+1. To allocate more RAM, go to **Settings > System > Motherboard**. Increase the RAM based on your system’s resources (e.g., 8GB for resource-intensive tools).
+
+   ![image](https://github.com/user-attachments/assets/9cf482b6-64c7-48be-8248-fe25ad5868eb)
+
+### Starting Kali Linux
+
+1. Click **OK** to save the settings, then start the machine.
+2. Log in using the default credentials: `kali` for both the username and password.
+
+   ![image](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
+
+### Setting a Static IP Address
+
+1. Right-click on the Ethernet network icon and select **Edit Connections**.
+
+   ![image](https://github.com/user-attachments/assets/6760384a-e918-4589-8e5a-a73f0f78d0e8)
+
+2. Double-click the active network profile.
+
+   ![image](https://github.com/user-attachments/assets/02818c7a-224e-43a3-a4ce-247bb8e8076f)
+
+3. Go to the **IPv4 Settings** tab, set **Method** to **Manual**, click **Add**, and enter your IP address, netmask, and gateway.
+
+   ![image](https://github.com/user-attachments/assets/f02f3d95-b6a3-4e5c-a6af-ed78dc9987cf)
+
+4. Disconnect and reconnect to the network to apply the changes.
+
+   ![image](https://github.com/user-attachments/assets/2f63d53c-7d2f-4c9c-b427-5f6dcc84cef6)
+
+5. Open a terminal to verify the IP configuration:
+
+   ```bash
+   ip a
+
+![image](https://github.com/user-attachments/assets/c21ee078-371a-4571-ac78-aa6038217198)
+
+6. To confirm internet connectivity, run:
+
+   ```bash
+   ping google.com
+
+![image](https://github.com/user-attachments/assets/31af29ba-572c-4c6d-9f2c-a1888c161473)
 
 ---
 
