@@ -35,140 +35,166 @@ First, we build the network architecture for the lab environment using [Draw.io]
 
 ## Setting up Ubuntu Desktop
 
-### Download the iso file
+### Download the ISO File
 
-https://ubuntu.com/download/desktop
+[Download Ubuntu Desktop ISO](https://ubuntu.com/download/desktop)
 
 ### Create the Ubuntu Machine
 
-Create a virtual machine
+1. Create a virtual machine.
 
-![image](https://github.com/user-attachments/assets/c1fb78f6-e41d-4b8a-aa85-61003cec5ece)
+   ![image](https://github.com/user-attachments/assets/c1fb78f6-e41d-4b8a-aa85-61003cec5ece)
 
-Increase the RAM
+2. Increase the RAM.
 
-![image](https://github.com/user-attachments/assets/3e96eb97-22e1-4768-b1f6-fc5cfccd9123)
+   ![image](https://github.com/user-attachments/assets/3e96eb97-22e1-4768-b1f6-fc5cfccd9123)
 
-Increase the storage
+3. Increase the storage.
 
-![image](https://github.com/user-attachments/assets/8cc68869-cbdf-46cb-a230-f04a27029d6d)
+   ![image](https://github.com/user-attachments/assets/8cc68869-cbdf-46cb-a230-f04a27029d6d)
 
-Set your network to NAT Network and the name of the network that you created then hit OK
+4. Set your network to **NAT Network**, and choose the name of the network that you created, then click **OK**.
 
-![image](https://github.com/user-attachments/assets/1c22e291-17bb-4247-985f-dc98c2fdad6e)
-
+   ![image](https://github.com/user-attachments/assets/1c22e291-17bb-4247-985f-dc98c2fdad6e)
 
 ### Installing Ubuntu Desktop
 
-Hit Start, to turn on the machine
+1. Hit **Start** to turn on the machine.
 
-![image](https://github.com/user-attachments/assets/69a5dbdf-5af8-4cba-ae86-e9661c273662)
+   ![image](https://github.com/user-attachments/assets/69a5dbdf-5af8-4cba-ae86-e9661c273662)
 
-Hit ENTER on Try or Install Ubuntu 
+2. Hit **ENTER** on **Try or Install Ubuntu**.
 
-![image](https://github.com/user-attachments/assets/f0762659-8f0e-4380-bfad-4236a95fd5d1)
+   ![image](https://github.com/user-attachments/assets/f0762659-8f0e-4380-bfad-4236a95fd5d1)
 
-Choose your Language
+3. Choose your **Language**.
 
-![image](https://github.com/user-attachments/assets/3d4084f9-e655-49f1-b5bc-88bba873c63b)
+   ![image](https://github.com/user-attachments/assets/3d4084f9-e655-49f1-b5bc-88bba873c63b)
 
-Hit Next
+4. Hit **Next**.
 
-![image](https://github.com/user-attachments/assets/0b8d9dda-803a-42d5-9531-5ea8e2fb0daa)
+   ![image](https://github.com/user-attachments/assets/0b8d9dda-803a-42d5-9531-5ea8e2fb0daa)
 
-Choose your Keyboard Language
+5. Choose your **Keyboard Language**.
 
-![image](https://github.com/user-attachments/assets/59893904-4886-4970-b923-acd221d8890e)
+   ![image](https://github.com/user-attachments/assets/59893904-4886-4970-b923-acd221d8890e)
 
-Hit Next
+6. Hit **Next**.
 
-![image](https://github.com/user-attachments/assets/caea4edb-8adf-4cf0-8697-d8f9512bb152)
+   ![image](https://github.com/user-attachments/assets/caea4edb-8adf-4cf0-8697-d8f9512bb152)
 
-Install Ubuntu and hit Next
+7. Install Ubuntu and hit **Next**.
 
-![image](https://github.com/user-attachments/assets/7d4266ef-95f3-44ca-8472-b6d3b428af81)
+   ![image](https://github.com/user-attachments/assets/7d4266ef-95f3-44ca-8472-b6d3b428af81)
 
-Hit Next
+8. Hit **Next**.
 
-![image](https://github.com/user-attachments/assets/9e9c120b-7281-4462-bb23-91e506f42a28)
+   ![image](https://github.com/user-attachments/assets/9e9c120b-7281-4462-bb23-91e506f42a28)
 
-Hit Next
+9. Hit **Next**.
 
-![image](https://github.com/user-attachments/assets/b2e84545-b8e0-4563-a535-957a6c96c79c)
+   ![image](https://github.com/user-attachments/assets/b2e84545-b8e0-4563-a535-957a6c96c79c)
 
-Hit Next
+10. Hit **Next**.
 
-![image](https://github.com/user-attachments/assets/f99918f9-f678-4618-874f-59644379867e)
+    ![image](https://github.com/user-attachments/assets/f99918f9-f678-4618-874f-59644379867e)
 
-Hit Next
+11. Hit **Next**.
 
-![image](https://github.com/user-attachments/assets/fa2b1daa-5c6b-4678-b779-b58ea683562a)
+    ![image](https://github.com/user-attachments/assets/fa2b1daa-5c6b-4678-b779-b58ea683562a)
 
-Create your account
+12. Create your account.
 
-![image](https://github.com/user-attachments/assets/dbb70d73-3c75-44a6-b3e4-03c6a8ed068c)
+    ![image](https://github.com/user-attachments/assets/dbb70d73-3c75-44a6-b3e4-03c6a8ed068c)
 
-Choose your time-zone
+13. Choose your time zone.
 
-![image](https://github.com/user-attachments/assets/7164ebbb-1967-46ce-8016-0b580ddba58d)
+    ![image](https://github.com/user-attachments/assets/7164ebbb-1967-46ce-8016-0b580ddba58d)
 
-Hit Install and wait for the installation to be completed
+14. Hit **Install** and wait for the installation to complete.
 
-![image](https://github.com/user-attachments/assets/0387d603-cf67-4d5f-b093-c8c7c23fe0ad)
+    ![image](https://github.com/user-attachments/assets/0387d603-cf67-4d5f-b093-c8c7c23fe0ad)
 
-Hit Restart and then log in to the machine with your profile
+15. Hit **Restart** and log in to the machine with your profile.
 
-![image](https://github.com/user-attachments/assets/b7d28532-c722-4c24-9c90-ed6efcfde3b1)
+    ![image](https://github.com/user-attachments/assets/b7d28532-c722-4c24-9c90-ed6efcfde3b1)
 
-Update system packages, command: **sudo apt update**
+16. Update system packages using the command: 
 
-![image](https://github.com/user-attachments/assets/b3777a70-67a7-4879-89ee-5448b82363dc)
+    ```bash
+    sudo apt update
+    ```
 
-Install required packages, command: **sudo apt install bzip2 tar gcc make perl git**
+    ![image](https://github.com/user-attachments/assets/b3777a70-67a7-4879-89ee-5448b82363dc)
 
-![image](https://github.com/user-attachments/assets/f0fd8c7d-550a-4b56-b014-7a4386c0818c)
+17. Install required packages using the command:
 
-Install the generic kernel headers, command: **sudo apt install linux-headers-generic**
+    ```bash
+    sudo apt install bzip2 tar gcc make perl git
+    ```
 
-![image](https://github.com/user-attachments/assets/2e92508d-8e3d-4ef7-9fd5-b59693e8c0e6)
+    ![image](https://github.com/user-attachments/assets/f0fd8c7d-550a-4b56-b014-7a4386c0818c)
 
-Install our system-specific kernel headers, command: **sudo apt install linux-headers-$(uname -r)**
+18. Install the generic kernel headers using the command:
 
-![image](https://github.com/user-attachments/assets/2b93e0dd-f7f9-4f0d-b6b2-804ad9003573)
+    ```bash
+    sudo apt install linux-headers-generic
+    ```
 
-Now install Guest additions on the machine
+    ![image](https://github.com/user-attachments/assets/2e92508d-8e3d-4ef7-9fd5-b59693e8c0e6)
 
-![image](https://github.com/user-attachments/assets/5ef60e06-c2e3-4a0b-a5d2-88db608a929c)
+19. Install the system-specific kernel headers using the command:
 
-Open a terminal on the disk that was just added
+    ```bash
+    sudo apt install linux-headers-$(uname -r)
+    ```
 
-![image](https://github.com/user-attachments/assets/967d8a4b-7973-4216-bd24-9a3072fb3311)
+    ![image](https://github.com/user-attachments/assets/2b93e0dd-f7f9-4f0d-b6b2-804ad9003573)
 
-Run the VirtualBox additions
+20. Install Guest Additions on the machine.
 
-![image](https://github.com/user-attachments/assets/7a3d48c2-1009-4457-bf5b-aaad289761d6)
+    ![image](https://github.com/user-attachments/assets/5ef60e06-c2e3-4a0b-a5d2-88db608a929c)
 
-### Setting an IP to the machine
+21. Open a terminal on the disk that was just added.
 
-Open a terminal and write the command: **ip a**  you can see the IP that we have 
+    ![image](https://github.com/user-attachments/assets/967d8a4b-7973-4216-bd24-9a3072fb3311)
 
-![image](https://github.com/user-attachments/assets/9a659493-91b2-40b3-8e72-201f6522a7af)
+22. Run the VirtualBox additions.
 
-Go to the network settings of the machine
+    ![image](https://github.com/user-attachments/assets/7a3d48c2-1009-4457-bf5b-aaad289761d6)
 
-![image](https://github.com/user-attachments/assets/2d9b0143-1c74-4a98-9465-5e42a2791d5b)
+### Setting an IP Address to the Machine
 
-Click on the settings
+1. Open a terminal and run the command: 
 
-![image](https://github.com/user-attachments/assets/95176f40-0f24-480e-946a-b61ba95e36d6)
+    ```bash
+    ip a
+    ```
 
-Go to IPv4 and fill in the contents with the IP that you want for your machine and subnet and gateway then hit Apply
+   You can view the current IP of the machine.
 
-![image](https://github.com/user-attachments/assets/1c3aa72a-e5ad-4703-bbe8-12dbbf82a2ba)
+   ![image](https://github.com/user-attachments/assets/9a659493-91b2-40b3-8e72-201f6522a7af)
 
-Confirm the IP with the command: **ip a**
+2. Go to the network settings of the machine.
 
-![image](https://github.com/user-attachments/assets/b56054d4-b4ae-430e-8cf0-5d13052231f4)
+   ![image](https://github.com/user-attachments/assets/2d9b0143-1c74-4a98-9465-5e42a2791d5b)
+
+3. Click on the settings.
+
+   ![image](https://github.com/user-attachments/assets/95176f40-0f24-480e-946a-b61ba95e36d6)
+
+4. Go to **IPv4** and configure the IP, subnet, and gateway. Then hit **Apply**.
+
+   ![image](https://github.com/user-attachments/assets/1c3aa72a-e5ad-4703-bbe8-12dbbf82a2ba)
+
+5. Confirm the IP address using the command:
+
+    ```bash
+    ip a
+    ```
+
+   ![image](https://github.com/user-attachments/assets/b56054d4-b4ae-430e-8cf0-5d13052231f4)
+
 
 ### Installing Splunk on Ubuntu
 
