@@ -192,7 +192,6 @@ You can view the current IP of the machine.
    ```bash
    ip a
 
-
 ![image](https://github.com/user-attachments/assets/b56054d4-b4ae-430e-8cf0-5d13052231f4)
 
 ---
@@ -217,20 +216,12 @@ You can view the current IP of the machine.
    ```bash
    sudo tar xvzf splunk-file.tgz -C /opt
 
-### Install Splunk on Ubuntu
-
-1. Open a terminal and navigate to the Downloads folder. Run the following command to extract the Splunk archive:
-
-   ```bash
-   sudo tar xvzf splunk-file.tgz -C /opt
-
 ![image](https://github.com/user-attachments/assets/1647559c-cd30-4931-a285-bd8185e2b0ca)
 
 2. Change to the Splunk directory:
 
    ```bash
    cd /opt/splunk/bin
-
 
 ![image](https://github.com/user-attachments/assets/5267939f-0a7b-4e22-a306-8b1d6978ad63)
 
@@ -240,7 +231,6 @@ You can view the current IP of the machine.
 
    ```bash
    sudo ./splunk start --accept-license
-
 
 ![image](https://github.com/user-attachments/assets/ecbe0a05-e233-4292-9725-a63e8a3dc700)
 
@@ -319,7 +309,7 @@ You can view the current IP of the machine.
 ### Starting Kali Linux
 
 1. Click **OK** to save the settings, then start the machine.
-2. Log in using the default credentials: `kali` for both the username and password.
+2. Login using the default credentials: `kali` for both the username and password.
 
    ![image](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
 
@@ -392,7 +382,7 @@ You can view the current IP of the machine.
 ## Setting Up the Domain Controller
 
 ### Step 1: Create a New Virtual Machine
-1. In VMware or VirtualBox, select **Create a New Virtual Machine**.
+1. In VirtualBox, select **Create a New Virtual Machine**.
 2. Choose the **Typical** setup option.
 3. Browse for the **Windows Server 2022 ISO** file you downloaded and select it.
 
@@ -407,6 +397,10 @@ You can view the current IP of the machine.
 1. Open **Edit Virtual Machine Settings**.
 2. Set memory to **4–8 GB** (8 GB recommended if available).
 3. Remove any **floppy disk device** if it appears.
+4. Go to **Network** and change the network settings
+   - Choose the **NAT Network** that you created.
+
+![image](https://github.com/user-attachments/assets/455954ea-2dac-402d-b682-bbda225868c6)
 
 ### Step 5: Power On and Install Windows Server
 1. Power on the virtual machine.
@@ -421,15 +415,19 @@ You can view the current IP of the machine.
 - After installation, Windows will reboot.
 - Set an **administrator password** (e.g., `P@$$w0rd!`).
 
-### Step 7: Install VMware Tools (Optional but Recommended)
-1. In VMware, go to **VM > Install VMware Tools**.
-2. Run the `setup64` file from the **D drive** to install the tools.
+### Step 7: Install Virtualbox Tools (Optional but Recommended)
+1. In Virtualbox, go to **Devices > Insert Guest Additions CD image**.
+2. Run the `amd64` file from the **This PC** to install the tools.
 3. Choose the **Complete** installation option, then finish and reboot if needed.
+
+![image](https://github.com/user-attachments/assets/6799f85a-7a14-4948-b6fb-c3ce1a67cf8e)
+
+![image](https://github.com/user-attachments/assets/16995426-5122-4ead-bc4d-5849a19ecf5e)
 
 ### Step 8: Rename the Computer
 1. Open the Start menu and search for **View your PC name**.
 2. Click **Rename this PC**.
-3. Name your domain controller (e.g., **Hydra-PC**).
+3. Name your domain controller (e.g., **Death-Star-DC**).
 4. Restart the virtual machine after renaming.
 
 ### Step 9: Reboot and Continue
@@ -446,7 +444,7 @@ You can view the current IP of the machine.
 ### Step 2: Roles and Features Wizard
 1. Click **Next** on the introduction screen.
 2. Choose **Role-based or feature-based installation** and click **Next**.
-3. Select the server (e.g., "Hydra DC") and click **Next**.
+3. Select the server (e.g., "Death-Star-DC") and click **Next**.
 
 ### Step 3: Select AD DS
 1. Select **Active Directory Domain Services** and add any required features when prompted.
@@ -455,9 +453,10 @@ You can view the current IP of the machine.
 
 ### Step 4: Promote to Domain Controller
 1. After installation, click **Promote this server to a domain controller**.
-2. Choose **Add a new forest** and enter a root domain name (e.g., `Marvel.local`).
+2. Choose **Add a new forest** and enter a root domain name (e.g., `Empire.local`).
 3. Click **Next** and set the Forest and Domain functional levels (e.g., 2016).
 4. Set the **Directory Services Restore Mode (DSRM) password**.
+5. Use the Password that you use for **Administrator** of the server. Then hit **Next**.
 
 ### Step 5: Configure NetBIOS and Paths
 1. Accept the automatically generated NetBIOS domain name.
@@ -465,8 +464,8 @@ You can view the current IP of the machine.
 3. Click **Install** and let the server reboot after installation.
 
 ### Step 6: Log into the Domain
-- After reboot, log in using the new domain (e.g., `Marvel\administrator`) and the administrator password.
-
+- After reboot, log in using the new domain (e.g., `Empire\administrator`) and the administrator password.
+  
 ---
 
 ## Setting Up Active Directory Certificate Services (AD CS)
@@ -506,8 +505,8 @@ You can view the current IP of the machine.
 
 ## Step 3: Name the Machines
 - Assign unique names to each VM. Examples:
-  - **Punisher** (e.g., for one user)
-  - **Spider-Man** (for another user)
+  - **Darth-Vader** (e.g., for one user)
+  - **Darth-Sidious** (for another user)
 
 ## Step 4: Configure Virtual Machine Hardware
 1. Allocate **60 GB** of disk space and select **Split virtual disk**.
@@ -515,7 +514,9 @@ You can view the current IP of the machine.
    - Remove the **floppy disk drive**.
    - Set **memory allocation** based on system resources:
      - Use **8 GB** if available, or adjust to **4 GB** or **2 GB** if limited.
-   - Use **NAT** for the network adapter, similar to previous lab configurations.
+   - Use **Internal Network** for the network adapter, similar to the server.
+
+     ![image](https://github.com/user-attachments/assets/efb23e90-cea6-4b46-8898-dbcfa54e72ef)
 
 ## Step 5: Power On and Start Installation
 1. Power on each VM, and when prompted, press a key to start the boot sequence.
@@ -531,25 +532,25 @@ You can view the current IP of the machine.
 
 ## Step 7: Configure User Accounts
 1. When prompted to sign in with Microsoft, select **Domain Join Instead**.
-   - For Punisher:
-     - **Username**: Frank Castle
+   - For Darth-Vader:
+     - **Username**: Anakin Skywalker
      - **Password**: Password1
-   - For Spider-Man:
-     - **Username**: Peter Parker
-     - **Password**: Password1
+   - For Darth-Sidious:
+     - **Username**: Sheev Palpatine
+     - **Password**: Password2
 2. Set security questions with generic answers (e.g., answer each with "Bob").
 
 ## Step 8: Disable Optional Settings
 - Skip optional settings like **advertising**, **location services**, and **Cortana setup**.
 
-## Step 9: Install VMware Tools
-1. In each VM, install **VMware Tools** to enable full-screen mode and improved performance.
+## Step 9: Install Virtualbox Tools
+1. In each **Devices**, install **Virtualbox Tools** to enable full-screen mode and improved performance.
 2. Perform a **Complete Install** and restart if prompted.
-3. Adjust display settings if needed (e.g., **150%** for better visibility).
+3. Adjust display settings if needed.
 
 ## Step 10: Rename Each VM for Identification
-1. Rename **Frank Castle’s** machine as **Punisher**.
-2. Rename **Peter Parker’s** machine as **Spider-Man**.
+1. Rename **Anakin Skywalker** machine as **Darth-Vader**.
+2. Rename **Sheev Palpatine** machine as **Darth-Sidious**.
 
 ## Step 11: Final Reboot
 - Restart each machine after renaming to complete the setup process for both VMs.
@@ -559,7 +560,7 @@ Once these steps are complete, both user machines should be ready. The next step
 ## Setting Up Users, Groups, Policies, and Configurations on a Windows Server Domain Controller
 
 ## Step 1: Boot up the Domain Controller
-1. Power down any non-essential virtual machines (e.g., workstations named Punisher and Spider-Man).
+1. Power down any non-essential virtual machines (e.g., workstations named Darth-Vader and Darth-Sidious).
 2. Start the Domain Controller (Windows Server 2022, named as Windows Server 2016 in this example) and log in.
 
 ## Step 2: Access Active Directory Users and Computers
@@ -568,14 +569,14 @@ Once these steps are complete, both user machines should be ready. The next step
 3. Observe the existing **Organizational Units (OUs)**, users, and groups.
 
 ## Step 3: Create Organizational Units (OUs) for Users and Groups
-1. Right-click on the root of your domain (e.g., Marvel.local), select **New > Organizational Unit**, and name it **Groups**.
+1. Right-click on the root of your domain (e.g., Empire.local), select **New > Organizational Unit**, and name it **Groups**.
 2. Move default system groups (e.g., Domain Admins, Enterprise Admins) into the **Groups OU** for organizational clarity.
 
 ## Step 4: Create New User Accounts
-1. **Tony Stark (Domain Admin)**:
+1. **Moff Tarkin (Domain Admin)**:
    - Right-click the existing **Administrator** account, select **Copy**, and create a new user with the following:
-     - Full Name: **Tony Stark**
-     - Username: **TStark**
+     - Full Name: **Moff Tarkin**
+     - Username: **MTarkin**
      - Password: **Password12345!**
      - **Password Never Expires**: Enabled
 2. **SQL Service Account (for demonstration)**:
@@ -584,36 +585,38 @@ Once these steps are complete, both user machines should be ready. The next step
      - Username: **SQLService**
      - Password: **MyPassword123#**
      - Add a description for demonstration purposes: "Password is MyPassword123#".
-3. **Standard Users (Frank Castle and Peter Parker)**:
-   - Create individual user accounts as follows:
-     - **Frank Castle**:
-       - Username: **FCastle**
+3. **Standard Users (Anakin Skywalker and Sheev Palpatine)**:
+   - Create individual user accounts as follows, **Right-click black space > New > User **:
+     - **Anakin Skywalker**:
+       - Username: **ASkywalker**
        - Password: **Password1**
        - **Password Never Expires**: Enabled
-     - **Peter Parker**:
-       - Username: **PParker**
+     - **Sheev Palpatine**:
+       - Username: **SPalpatine**
        - Password: **Password2**
        - **Password Never Expires**: Enabled
 
 ## Step 5: Configure an SMB File Share
 1. In **Server Manager**, go to **File and Storage Services > Shares**.
 2. Click **Tasks > New Share**, and select **SMB Share - Quick**.
-3. Choose a share location on the **C:** drive, name the share **HackMe**, and complete the configuration.
-4. The network path should look like `\\Hydra-DC\HackMe`.
+3. Choose a share location on the **C:** drive, name the share **ImperialPlans**.
+4. Complete the configuration with default settings and hit **Create**.
+5. The network path should look like `\\Death-Star-DC\ImperialPlans`.
 
 ## Step 6: Set up a Service Principal Name (SPN) for the SQL Service Account
 1. Open **Command Prompt** as Administrator.
 2. Use the following command to set up an SPN for the SQL service account:
    ```shell
-   setspn -a Hydra-DC/SQLService.Marvel.local:60111 Marvel\SQLService
+   setspn -a Death-Star-DC/SQLService.Empire.local:60111 Empire\SQLService
 3. Verify the SPN by querying with:
    ```shell
-   setspn -T Marvel.local -Q */*
+   setspn -T Empire.local -Q */*
+4. If you see the message **Existing SPN found!** you are done.
 
 ## Step 7: Create a Group Policy to Disable Microsoft Defender
-1. In Server Manager, open Group Policy Management.
-2. Expand **Forest: Marvel.local > Domains > Marvel.local.**
-3. Right-click Marvel.local and select **Create a GPO** in this domain. Name it Disable Windows Defender.
+1. In Server Manager, **Tools** open Group Policy Management.
+2. Expand **Forest: Empire.local > Domains > Empire.local.**
+3. Right-click Empire.local and select **Create a GPO** in this domain. Name it Disable Windows Defender.
 4. Right-click the new GPO and select **Edit**. Navigate to:
     ```shell
     Computer Configuration > Policies > Administrative Templates > Windows Components > Microsoft Defender Antivirus
@@ -632,20 +635,20 @@ Once these steps are complete, both user machines should be ready. The next step
 - Confirm all configurations are as expected.
 - Ensure the domain controller is correctly configured for user authentication, file sharing, and group policies before running further security tests.
 
-## Joining Machines to the Domain (Marvel.local)
+## Joining Machines to the Domain (Empire.local)
 
-This guide outlines the steps to join client machines to the Marvel.local domain, configure network settings, set up user roles, and verify shared drive access.
+This guide outlines the steps to join client machines to the Empire.local domain, configure network settings, set up user roles, and verify shared drive access.
 
 ## Step 1: Adjust RAM Allocation (If Necessary)
 
 - **Windows Server**: 2 GB (unless more RAM is available).
-- **Punisher Machine**: 4 GB.
-- **Spider-Man Machine**: 2 GB (optional, you can allocate 4 GB for better performance).
+- **Darth_Vader Machine**: 4 GB.
+- **Darth_Sidious Machine**: 2 GB (optional, you can allocate 4 GB for better performance).
 
 ## Step 2: Power On All Machines
 
-- Start the domain controller (DC) and both client machines (Punisher and Spider-Man).
-- Log in with the default local admin password (`Password1` with a capital "P" as per your setup).
+- Start the domain controller (DC) and both client machines (Darth_Vader and Darth_Sidious).
+- Log in with the default local admin password (`Password1` for Darth-Vader and `Password2` for Darth-Sidious).
 
 ## Step 3: Configure Network Settings on Each Machine
 
@@ -658,14 +661,14 @@ This guide outlines the steps to join client machines to the Marvel.local domain
    - Use the domain controller’s IP as the DNS server (e.g., `192.168.255.250`).
    - Save the settings.
 
-## Step 4: Join Each Machine to the Domain (Marvel.local)
+## Step 4: Join Each Machine to the Domain (Empire.local)
 
 1. On each machine:
    - Go to **Settings > Accounts > Access work or school**.
    - Select **Connect** and choose **Join this device to a local Active Directory domain**.
 
 2. **Enter the Domain Information**:
-   - **Domain Name**: `Marvel.local`
+   - **Domain Name**: `Empire.local`
    - **Username**: `administrator`
    - **Password**: (use the administrator password for the DC).
 
@@ -674,8 +677,8 @@ This guide outlines the steps to join client machines to the Marvel.local domain
 ## Step 5: Verify Domain Join on Domain Controller
 
 - On the DC, open **Active Directory Users and Computers**:
-   - Navigate to **Computers** in the **Marvel.local** domain.
-   - Ensure **Punisher** and **Spider-Man** appear in the list.
+   - Navigate to **Computers** in the **Empire.local** domain.
+   - Ensure **Darth_Vader** and **Darth_Sidious** appear in the list.
 
 ## Step 6: Configure Local Users and Groups on Each Client Machine
 
@@ -685,8 +688,8 @@ This guide outlines the steps to join client machines to the Marvel.local domain
 
 2. **Add Domain Users as Local Administrators**:
    - Go to **Computer Management > Local Users and Groups > Groups > Administrators**.
-   - Add `Fcastle` (Frank Castle) as a local administrator on **Punisher**.
-   - Add both `Fcastle` and `Pparker` (Peter Parker) as local administrators on **Spider-Man**.
+   - Add `ASkywalker` (Anakin Skywalker) as a local administrator on **Darth_Vader**.
+   - Add both `ASkywalker` and `SPalpatine` (Sheev Palpatine) as local administrators on **Darth_Sidious**.
 
 ## Step 7: Enable Network Discovery
 
@@ -700,17 +703,29 @@ This guide outlines the steps to join client machines to the Marvel.local domain
 
 2. **Set Drive Mapping**:
    - Choose a drive letter (e.g., `Z:`).
-   - Enter the path `\\Hydra-DC\HackMe`.
+   - Enter the path `\\Death-Star-DC\ImperialPlans`.
    - Select **Connect using different credentials**.
    - Use the **Administrator** account and password for authentication.
+   - Check the box for **Remember my Credentials**
 
-## Step 9: Verify Access to Shared Drive
+## Step 8: Verify Access to Shared Drive
 
-- Ensure the **HackMe** shared drive is accessible on **Spider-Man**.
+- Ensure the **ImperialPlans** shared drive is accessible on **Darth_Sidious**.
+
+## Step 9: Loggin to the machines with the domain users created
+
+- To log in to the machines use the domain credentials that were created.
+- Darth-Vader machine
+  
+  ![image](https://github.com/user-attachments/assets/ad7f318c-d0e5-4757-a408-e89794e36d30)
+
+- Darth-Sidious machine
+
+image here
 
 ---
 
-By following these steps, your machines should now be correctly joined to the **Marvel.local** domain with all necessary configurations for domain access, shared drive mapping, and user roles.
+By following these steps, your machines should now be correctly joined to the **Empire.local** domain with all necessary configurations for domain access, shared drive mapping, and user roles.
 
 ---
 
