@@ -5,9 +5,11 @@
 2. [Create a new NAT Network](#create-a-new-nat-network)
 3. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
 4. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
-5. [Setting up Kali Linux](#setting-up-kali-linux)
-6. [Building an Active Directory](#building-an-active-directory)
-7. [Installing Splunk Forwarder and Sysmon](#installing-splunk-forwarder-and-sysmon)
+5. [Installing Snort](#installing-snort)
+6. [Setting up Kali Linux](#setting-up-kali-linux)
+7. [Building an Active Directory](#building-an-active-directory)
+8. [Installing Splunk Forwarder and Sysmon](#installing-splunk-forwarder-and-sysmon)
+9. [Installing LimaCharlie](#installing-limacharlie)
 
 ---
 
@@ -285,6 +287,9 @@ You can view the current IP of the machine.
    ```bash
    sudo systemctl enable splunk
 
+---
+
+## Installing Snort
 
 ---
 
@@ -969,5 +974,91 @@ Also, ping google.com to verify that you can connect to the Internet
 ![image](https://github.com/user-attachments/assets/31af29ba-572c-4c6d-9f2c-a1888c161473)
 
 Now we are good to go
+
+## Installing LimaCharlie
+
+1. Create an Account:
+
+- Visit LimaCharlie.io and sign up using an email or other authentication methods.
+
+- Verify your email to proceed.
+
+2. Set Up an Organization:
+
+- Enter your organization’s name.
+
+- Select a data residency region for storage compliance (e.g., Canada).
+
+- Enable demo configuration for a pre-populated environment or choose a pre-made template (e.g., incident response).
+
+   - In our case we are going to to leave the demo configuration with no pre-configurations
+
+### Deploying Endpoint Agents
+
+1. Define Logical Groupings with Installation Keys
+
+- Navigate to the Installation Keys section in the LimaCharlie dashboard.
+
+- Create installation keys based on endpoint categories. Examples:
+   
+   - Windows Lab Workstations: For Windows systems used in lab environments.
+   
+   - Linux Servers: For production or lab Linux servers.
+   
+   - Critical Infrastructure: For endpoints requiring log forwarding instead of direct agents.
+
+- Use descriptive tags (e.g., ```workstations```, ```windows```, ```servers```) to simplify management and filtering.
+
+2. Prepare Sensor Binaries
+
+- Download the appropriate agent binary from the Sensor Download section. Ensure compatibility with the endpoint’s architecture and OS:
+   
+   - For Windows, download the ```Windows 64-bit``` executable.
+   
+   - For other systems (Linux, macOS, etc.), select the corresponding binary.
+
+- Organize binaries for automated deployment to endpoints.
+
+3. Centralized Deployment
+
+- Integrate agent installation into endpoint provisioning pipelines:
+   
+   - Embed the sensor in baseline installation images for new endpoints.
+   
+   - Use configuration management tools (e.g., Ansible, SCCM) to push the agent to existing endpoints.
+
+- Ensure administrative privileges on target endpoints for successful agent installation.
+
+4. Agent Installation
+
+- Deploy the agent using the installation key to link it with the corresponding logical group:
+
+  1. Open a terminal or PowerShell as an administrator on the endpoint.
+
+  2. Execute the downloaded agent binary with the -i option followed by the installation key:
+
+      ```cmd
+      ./sensor_binary_name.exe -i <installation_key>
+			
+   - Confirm successful installation by verifying the agent appears under the Sensors List in the LimaCharlie dashboard.
+
+5. Validate Deployment
+
+- Check the Sensors List to ensure endpoints are properly registered.
+
+- Verify telemetry data collection and connectivity.
+
+- Perform a functional test using built-in commands like ```netstat``` via the Console feature to confirm operational status.
+
+6. Post-Deployment Configuration
+
+- Utilize the metadata provided in the dashboard to configure policies and detection rules for each endpoint group.
+
+- Use the Autoruns feature to inspect and address persistence mechanisms on deployed endpoints.
+
+- Leverage the Console for remote command execution and endpoint management.
+
+
+
 
 
