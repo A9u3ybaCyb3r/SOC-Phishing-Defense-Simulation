@@ -2,7 +2,7 @@
 
 ## Objective:
 
-To develop a comprehensive understanding of advanced threat detection and incident response techniques by configuring and integrating multiple security tools. This project aims to enhance defensive cybersecurity skills, focusing on identifying, analyzing, and mitigating cyber threats within an Active Directory environment. Through hands-on simulations, the project offers practical insights into building a resilient security framework that aligns with the NIST Incident Response Plan.
+To develop and execute a comprehensive Active Directory-based cybersecurity lab that simulates a phishing attack scenario, demonstrating the complete lifecycle of an incident response. The project will integrate tools like Splunk, Snort, Sysmon, and LimaCharlie to detect, analyze, and mitigate cyber threats in a controlled environment. This includes setting up defenses, simulating realistic attack techniques following the Cyber Kill Chain framework, detecting malicious activities through Indicators of Compromise (IOCs), and implementing response strategies based on the NIST Incident Response Plan. The aim is to enhance practical skills in threat detection, analysis, and post-incident remediation within an Active Directory ecosystem.
 
 ## Skills Learned:
 
