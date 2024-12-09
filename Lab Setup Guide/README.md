@@ -268,6 +268,24 @@ You can view the current IP of the machine.
 
 ![image](https://github.com/user-attachments/assets/2e1ced1f-1e41-4a01-8d79-dc6b6865dec6)
 
+### Managing Splunk on Your Lab Machine
+
+1. To stop the Splunk service, use:
+
+   ```bash
+   sudo /opt/splunk/bin/splunk stop
+
+2. To disable Splunk from starting automatically at boot:
+
+   ```bash
+   sudo systemctl disable splunk
+
+3. If needed, you can re-enable it later with:
+
+   ```bash
+   sudo systemctl enable splunk
+
+
 ---
 
 ## Setting up Kali Linux
