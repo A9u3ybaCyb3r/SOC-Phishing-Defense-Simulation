@@ -371,7 +371,7 @@ You can view the current IP of the machine.
 
 ---
 
-## Setting up Rules
+### Setting up Rules
 
 ---
 
