@@ -6,6 +6,7 @@
 3. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
 4. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
 5. [Installing Snort](#installing-snort)
+	- [Setting up Rules](setting-up-rules)
 6. [Setting up Kali Linux](#setting-up-kali-linux)
 7. [Building an Active Directory](#building-an-active-directory)
 8. [Installing Splunk Forwarder and Sysmon](#installing-splunk-forwarder-and-sysmon)
@@ -368,6 +369,9 @@ You can view the current IP of the machine.
 
 - IDS/IPS Mode: Implements rule-based monitoring and prevention.
 
+---
+
+## Setting up Rules
 
 ---
 
