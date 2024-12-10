@@ -5,6 +5,7 @@
 2. [Create a new NAT Network](#create-a-new-nat-network)
 3. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
 4. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
+	- [Configuring Splunk for Alerts](#configuring-splunk-for-alerts)
 5. [Installing Snort](#installing-snort)
 	- [Setting up Rules](#setting-up-rules)
 6. [Setting up Kali Linux](#setting-up-kali-linux)
@@ -290,6 +291,11 @@ You can view the current IP of the machine.
 
 ---
 
+## Configuring Splunk for Alerts
+
+
+---
+
 ## Installing Snort
 
 1. Open a terminal and run:
@@ -371,7 +377,7 @@ You can view the current IP of the machine.
 
 ---
 
-### Setting up Rules
+## Setting up Rules
 
 ---
 
