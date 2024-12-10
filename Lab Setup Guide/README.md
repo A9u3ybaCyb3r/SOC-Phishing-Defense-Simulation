@@ -291,6 +291,84 @@ You can view the current IP of the machine.
 
 ## Installing Snort
 
+1. Open a terminal and run:
+
+	```bash
+	sudo apt install snort
+
+- Enter your password if prompted.
+
+- During installation, Snort will ask for the local network address range. You can find this information using:
+
+	```bash
+	ifconfig
+
+- Note your IP address and subnet mask. For example, if your IP is `192.168.1.4` and subnet mask is `255.255.255.0`, the network range is `192.168.1.0/24`.
+
+  2. Verify the installed version:
+
+	```bash
+	snort --version
+
+3. Directory and Files Overview
+
+- Configuration File: Located at `/etc/snort/snort.conf`. This file controls Snort's settings, including network variables and rules.
+
+- Rules Directory: `/etc/snort/rules/` contains predefined rule files for detecting malicious activity.
+
+4. Before making changes:
+
+	```bash
+	sudo cp /etc/snort/snort.conf /etc/snort/snort.conf.bak
+
+### Editing Configuration
+
+1. Open the configuration file:
+
+	```bash
+	sudo nano /etc/snort/snort.conf
+
+2. Set Network Variables:
+
+- `HOME_NET`: Defines the monitored subnet. For example:
+
+	```bash
+	var HOME_NET 192.168.1.0/24
+
+- `EXTERNAL_NET`: Defines the external network. Use:
+
+	```bash
+	var EXTERNAL_NET any
+
+- Rule Configuration: Locate the rules section and ensure it points to your rule files:
+
+	```bash
+	include $RULE_PATH/local.rules
+	include $RULE_PATH/backdoor.rules
+
+### Testing Configuration:
+
+1. Validate configuration changes using:
+
+	```bash
+	sudo snort -T -c /etc/snort/snort.conf
+
+- A successful test ensures that changes don't introduce errors.
+
+2. Practical Usage:
+
+- Sniffer Mode:
+
+	```bash
+	sudo snort -i <interface>
+
+3. Displays captured packet headers.
+
+- Packet Logger Mode: Stores packets in files for analysis.
+
+- IDS/IPS Mode: Implements rule-based monitoring and prevention.
+
+
 ---
 
 ## Setting up Kali Linux
