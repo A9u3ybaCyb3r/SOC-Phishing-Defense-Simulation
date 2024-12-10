@@ -305,7 +305,7 @@ You can view the current IP of the machine.
 
 - Note your IP address and subnet mask. For example, if your IP is `192.168.1.4` and subnet mask is `255.255.255.0`, the network range is `192.168.1.0/24`.
 
-  2. Verify the installed version:
+2. Verify the installed version:
 
 	```bash
 	snort --version
