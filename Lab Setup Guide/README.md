@@ -496,7 +496,8 @@ You can view the current IP of the machine.
 ### Step 1: Create a New Virtual Machine
 1. In VirtualBox, select **Create a New Virtual Machine**.
 2. Choose the **Typical** setup option.
-3. Browse for the **Windows Server 2022 ISO** file you downloaded and select it.
+3. Name it `Jarvis-DC`
+4. Browse for the **Windows Server 2022 ISO** file you downloaded and select it.
 
 ### Step 2: Operating System Selection
 - Choose **Windows Server 2016** if Windows Server 2022 isn’t listed. This won’t affect the setup.
@@ -539,7 +540,7 @@ You can view the current IP of the machine.
 ### Step 8: Rename the Computer
 1. Open the Start menu and search for **View your PC name**.
 2. Click **Rename this PC**.
-3. Name your domain controller (e.g., **Death-Star-DC**).
+3. Name your domain controller (e.g., **Jarvis-DC**).
 4. Restart the virtual machine after renaming.
 
 ### Step 9: Reboot and Continue
@@ -556,7 +557,7 @@ You can view the current IP of the machine.
 ### Step 2: Roles and Features Wizard
 1. Click **Next** on the introduction screen.
 2. Choose **Role-based or feature-based installation** and click **Next**.
-3. Select the server (e.g., "Death-Star-DC") and click **Next**.
+3. Select the server (e.g., "Jarvis-DC") and click **Next**.
 
 ### Step 3: Select AD DS
 1. Select **Active Directory Domain Services** and add any required features when prompted.
@@ -565,7 +566,7 @@ You can view the current IP of the machine.
 
 ### Step 4: Promote to Domain Controller
 1. After installation, click **Promote this server to a domain controller**.
-2. Choose **Add a new forest** and enter a root domain name (e.g., `Empire.local`).
+2. Choose **Add a new forest** and enter a root domain name (e.g., `StarkTech.local`).
 3. Click **Next** and set the Forest and Domain functional levels (e.g., 2016).
 4. Set the **Directory Services Restore Mode (DSRM) password**.
 5. Use the Password that you use for **Administrator** of the server. Then hit **Next**.
@@ -576,7 +577,7 @@ You can view the current IP of the machine.
 3. Click **Install** and let the server reboot after installation.
 
 ### Step 6: Log into the Domain
-- After reboot, log in using the new domain (e.g., `Empire\administrator`) and the administrator password.
+- After reboot, log in using the new domain (e.g., `StarkTech\administrator`) and the administrator password.
   
 ---
 
@@ -609,7 +610,7 @@ You can view the current IP of the machine.
 - Shut down the domain controller to free up resources, especially if working with limited RAM or storage.
 
 ## Step 2: Create New Virtual Machines
-1. Open **VMware Workstation** and select **Create a New Virtual Machine**.
+1. Open **Virtualbox** and select **Create a New Virtual Machine**.
 2. Select the **ISO file for Windows 10** (instead of the Windows Server ISO used for the domain controller).
 3. Click **Next** to proceed through setup steps.
 4. When prompted, skip entering the **Windows product key**.
@@ -617,8 +618,8 @@ You can view the current IP of the machine.
 
 ## Step 3: Name the Machines
 - Assign unique names to each VM. Examples:
-  - **Darth-Vader** (e.g., for one user)
-  - **Darth-Sidious** (for another user)
+  - **Pepper** (e.g., for one user)
+  - **Happy** (for another user)
 
 ## Step 4: Configure Virtual Machine Hardware
 1. Allocate **60 GB** of disk space and select **Split virtual disk**.
@@ -644,11 +645,11 @@ You can view the current IP of the machine.
 
 ## Step 7: Configure User Accounts
 1. When prompted to sign in with Microsoft, select **Domain Join Instead**.
-   - For Darth-Vader:
-     - **Username**: Anakin Skywalker
+   - For Pepper:
+     - **Username**: Pepper Potts
      - **Password**: Password1
-   - For Darth-Sidious:
-     - **Username**: Sheev Palpatine
+   - For Happy:
+     - **Username**: Happy Hogan
      - **Password**: Password2
 2. Set security questions with generic answers (e.g., answer each with "Bob").
 
@@ -661,8 +662,8 @@ You can view the current IP of the machine.
 3. Adjust display settings if needed.
 
 ## Step 10: Rename Each VM for Identification
-1. Rename **Anakin Skywalker** machine as **Darth-Vader**.
-2. Rename **Sheev Palpatine** machine as **Darth-Sidious**.
+1. Rename **Pepper Potts** machine as **Pepper**.
+2. Rename **Happy Hogan** machine as **Happy**.
 
 ## Step 11: Final Reboot
 - Restart each machine after renaming to complete the setup process for both VMs.
@@ -672,7 +673,7 @@ Once these steps are complete, both user machines should be ready. The next step
 ## Setting Up Users, Groups, Policies, and Configurations on a Windows Server Domain Controller
 
 ## Step 1: Boot up the Domain Controller
-1. Power down any non-essential virtual machines (e.g., workstations named Darth-Vader and Darth-Sidious).
+1. Power down any non-essential virtual machines (e.g., workstations named Pepper Potts and Happy Hogan).
 2. Start the Domain Controller (Windows Server 2022, named as Windows Server 2016 in this example) and log in.
 
 ## Step 2: Access Active Directory Users and Computers
@@ -685,10 +686,10 @@ Once these steps are complete, both user machines should be ready. The next step
 2. Move default system groups (e.g., Domain Admins, Enterprise Admins) into the **Groups OU** for organizational clarity.
 
 ## Step 4: Create New User Accounts
-1. **Moff Tarkin (Domain Admin)**:
+1. **Tony Stark (Domain Admin)**:
    - Right-click the existing **Administrator** account, select **Copy**, and create a new user with the following:
-     - Full Name: **Moff Tarkin**
-     - Username: **MTarkin**
+     - Full Name: **Tony Stark**
+     - Username: **stony**
      - Password: **Password12345!**
      - **Password Never Expires**: Enabled
 2. **SQL Service Account (for demonstration)**:
@@ -697,38 +698,38 @@ Once these steps are complete, both user machines should be ready. The next step
      - Username: **SQLService**
      - Password: **MyPassword123#**
      - Add a description for demonstration purposes: "Password is MyPassword123#".
-3. **Standard Users (Anakin Skywalker and Sheev Palpatine)**:
+3. **Standard Users (Pepper Potts and Happy Hogman)**:
    - Create individual user accounts as follows, **Right-click black space > New > User **:
-     - **Anakin Skywalker**:
-       - Username: **ASkywalker**
+     - **Pepper Potts**:
+       - Username: **ppotts**
        - Password: **Password1**
        - **Password Never Expires**: Enabled
-     - **Sheev Palpatine**:
-       - Username: **SPalpatine**
+     - **Happy Hogman**:
+       - Username: **hhogman**
        - Password: **Password2**
        - **Password Never Expires**: Enabled
 
 ## Step 5: Configure an SMB File Share
 1. In **Server Manager**, go to **File and Storage Services > Shares**.
 2. Click **Tasks > New Share**, and select **SMB Share - Quick**.
-3. Choose a share location on the **C:** drive, name the share **ImperialPlans**.
+3. Choose a share location on the **C:** drive, name the share **JarvisShare**.
 4. Complete the configuration with default settings and hit **Create**.
-5. The network path should look like `\\Death-Star-DC\ImperialPlans`.
+5. The network path should look like `\\Jarvis-DC\JarvisShare`.
 
 ## Step 6: Set up a Service Principal Name (SPN) for the SQL Service Account
 1. Open **Command Prompt** as Administrator.
 2. Use the following command to set up an SPN for the SQL service account:
    ```shell
-   setspn -a Death-Star-DC/SQLService.Empire.local:60111 Empire\SQLService
+   setspn -a Jarvis-DC/SQLService.StarkTech.local:60111 StarkTech\SQLService
 3. Verify the SPN by querying with:
    ```shell
-   setspn -T Empire.local -Q */*
+   setspn -T StarkTech.local -Q */*
 4. If you see the message **Existing SPN found!** you are done.
 
 ## Step 7: Create a Group Policy to Disable Microsoft Defender
 1. In Server Manager, **Tools** open Group Policy Management.
-2. Expand **Forest: Empire.local > Domains > Empire.local.**
-3. Right-click Empire.local and select **Create a GPO** in this domain. Name it Disable Windows Defender.
+2. Expand **Forest: StarkTech.local > Domains > Empire.local.**
+3. Right-click StarkTech.local and select **Create a GPO** in this domain. Name it Disable Windows Defender.
 4. Right-click the new GPO and select **Edit**. Navigate to:
     ```shell
     Computer Configuration > Policies > Administrative Templates > Windows Components > Microsoft Defender Antivirus
@@ -747,20 +748,20 @@ Once these steps are complete, both user machines should be ready. The next step
 - Confirm all configurations are as expected.
 - Ensure the domain controller is correctly configured for user authentication, file sharing, and group policies before running further security tests.
 
-## Joining Machines to the Domain (Empire.local)
+## Joining Machines to the Domain (StarkTech.local)
 
-This guide outlines the steps to join client machines to the Empire.local domain, configure network settings, set up user roles, and verify shared drive access.
+This guide outlines the steps to join client machines to the StarkTech.local domain, configure network settings, set up user roles, and verify shared drive access.
 
 ## Step 1: Adjust RAM Allocation (If Necessary)
 
 - **Windows Server**: 2 GB (unless more RAM is available).
-- **Darth_Vader Machine**: 4 GB.
-- **Darth_Sidious Machine**: 2 GB (optional, you can allocate 4 GB for better performance).
+- **Pepper Machine**: 4 GB.
+- **Happy Machine**: 2 GB (optional, you can allocate 4 GB for better performance).
 
 ## Step 2: Power On All Machines
 
-- Start the domain controller (DC) and both client machines (Darth_Vader and Darth_Sidious).
-- Log in with the default local admin password (`Password1` for Darth-Vader and `Password2` for Darth-Sidious).
+- Start the domain controller (DC) and both client machines (Pepper and Happy).
+- Log in with the default local admin password (`Password1` for Pepper and `Password2` for Happy).
 
 ## Step 3: Configure Network Settings on Each Machine
 
@@ -780,7 +781,7 @@ This guide outlines the steps to join client machines to the Empire.local domain
    - Select **Connect** and choose **Join this device to a local Active Directory domain**.
 
 2. **Enter the Domain Information**:
-   - **Domain Name**: `Empire.local`
+   - **Domain Name**: `StarkTech.local`
    - **Username**: `administrator`
    - **Password**: (use the administrator password for the DC).
 
@@ -789,8 +790,8 @@ This guide outlines the steps to join client machines to the Empire.local domain
 ## Step 5: Verify Domain Join on Domain Controller
 
 - On the DC, open **Active Directory Users and Computers**:
-   - Navigate to **Computers** in the **Empire.local** domain.
-   - Ensure **Darth_Vader** and **Darth_Sidious** appear in the list.
+   - Navigate to **Computers** in the **StarkTech.local** domain.
+   - Ensure **Potts** and **Happy** appear in the list.
 
 ## Step 6: Configure Local Users and Groups on Each Client Machine
 
@@ -800,44 +801,44 @@ This guide outlines the steps to join client machines to the Empire.local domain
 
 2. **Add Domain Users as Local Administrators**:
    - Go to **Computer Management > Local Users and Groups > Groups > Administrators**.
-   - Add `ASkywalker` (Anakin Skywalker) as a local administrator on **Darth_Vader**.
-   - Add both `ASkywalker` and `SPalpatine` (Sheev Palpatine) as local administrators on **Darth_Sidious**.
+   - Add `ppotts` (Pepper Potts) as a local administrator on **Happy Hogman**.
+   - Add both `ppotts` and `hhogman` (Sheev Palpatine) as local administrators on **Happy**.
 
 ## Step 7: Enable Network Discovery
 
 - On each client, go to **Network & Sharing Center > Change advanced sharing settings**:
    - Turn on **Network discovery** and **File and printer sharing**.
 
-## Step 8: Map the Shared Drive (ImperialPlans) on Darth_Sidious
+## Step 8: Map the Shared Drive (JarvisShare) on Happy
 
 1. Open **File Explorer**:
    - Go to **This PC > Map Network Drive**.
 
 2. **Set Drive Mapping**:
    - Choose a drive letter (e.g., `Z:`).
-   - Enter the path `\\Death-Star-DC\ImperialPlans`.
+   - Enter the path `\\Jarvis-DC\JarvisShare`.
    - Select **Connect using different credentials**.
    - Use the **Administrator** account and password for authentication.
    - Check the box for **Remember my Credentials**
 
 ## Step 8: Verify Access to Shared Drive
 
-- Ensure the **ImperialPlans** shared drive is accessible on **Darth_Sidious**.
+- Ensure the **JarvisShare** shared drive is accessible on **Happy**.
 
 ## Step 9: Loggin to the machines with the domain users created
 
 - To log in to the machines use the domain credentials that were created.
-- Darth-Vader machine
+- Pepper machine
   
   ![image](https://github.com/user-attachments/assets/ad7f318c-d0e5-4757-a408-e89794e36d30)
 
-- Darth-Sidious machine
+- Happy machine
 
 image here
 
 ---
 
-By following these steps, your machines should now be correctly joined to the **Empire.local** domain with all necessary configurations for domain access, shared drive mapping, and user roles.
+By following these steps, your machines should now be correctly joined to the **StarkTech.local** domain with all necessary configurations for domain access, shared drive mapping, and user roles.
 
 ---
 
