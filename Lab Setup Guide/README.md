@@ -842,166 +842,38 @@ By following these steps, your machines should now be correctly joined to the **
 
 ---
 
-## Installing Splunk Forwarder and Sysmon 
+## Installing Splunk Forwarder
+
+### Deployment Steps
+1. **Configuring the Splunk Indexer to Receive Data**
+
+	- Navigate to **Settings > Data > Forwarding and Receiving** in Splunk.
+
+	- Under **Configure Receiving Data**, click **Add New** and specify the port for listening (default: 9997).
+
+	- Save the configuration to prepare the indexer for receiving forwarded events.
+
+2. **Installing the Splunk Universal Forwarder**
+	- Download the Universal Forwarder from Splunk's official site: https://www.splunk.com/en_us/download/universal-forwarder.html
+	- Use a mass deployment tool (e.g., GPO, Ansible) for enterprise environments or manually download the MSI for testing purposes.
+	- During installation:
+		- Select **Security** and **System Logs** to forward.
+		- Specify the Splunk server's IP address and port (default: 8089 for management and 9997 for telemetry).
+		- Complete the installation.
+4. **Configuring Firewall Rules**
+	- Allow Splunk's necessary ports (8089 and 9997) in **Windows Defender Firewall** for both inbound and outbound rules.
+	- Create rules under **Advanced Settings**:
+		- **Inbound Rule**: Allow TCP ports 8089 and 9997.
+		- **Outbound Rule**: Allow TCP ports 8089 and 9997.
+		- Name the rules "Splunk Forwarder."
+5. **Verifying Data Transmission**
+	- In Splunk, go to **Apps > Search & Reporting**.
+	- Click **Data Summary** and verify the host and event logs appear.
+	- Run a basic query to confirm events are being indexed:
+
+	```spl
+	index=* | stats count by host, sourcetype
 
-On the three machines on the domain, we will install Splunk Universal Forwarder and Sysmon these are the links:
-
-- Splunk Universal Forwarder: https://www.splunk.com/en_us/download/universal-forwarder.html
-
-- Sysmon: https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
-  
-### Installing Splunk Universal Forwarder
-
-Download the 64-bit
-
-![image](https://github.com/user-attachments/assets/af4584b6-2239-4361-8b04-d5c8e7286882)
-
-Double-click on the file that you downloaded and check the box to agree with the License
-
-![image](https://github.com/user-attachments/assets/912406a7-910c-46af-bf4c-7ec4dc5fb9e4)
-
-For the username use admin and check the box to generate a random password
-
-![image](https://github.com/user-attachments/assets/4b9c8c1d-6bf2-408a-923e-d71e4e998b5e)
-
-Leave it like this because we do not have a deployment server
-
-![image](https://github.com/user-attachments/assets/8b718979-7dde-4ee5-9914-a27cc1d51d9f)
-
-The IP is going to be the Splunk machine that we just created
-
-![image](https://github.com/user-attachments/assets/183fd850-f06c-4223-8532-bbdf2666c4c9)
-
-Hit Install and wait for the installation to be done, then hit Finish
-
-![image](https://github.com/user-attachments/assets/38bccafe-86b4-49a0-b07f-0bf59bdc6ea2)
-
-
-### Installing Sysmon
-
-Download Sysmon
-
-![image](https://github.com/user-attachments/assets/f89e1eda-bd12-4a9a-916c-c6c41f8ab10e)
-
-We also are going to use sysmon olaf config
-
-![image](https://github.com/user-attachments/assets/7f5457e4-4ddd-4437-ab15-d86e7ce720a8)
-
-We want this file
-
-![image](https://github.com/user-attachments/assets/73407917-6b03-4c9f-8b5e-1646c85f7fec)
-
-Click on Raw and Save as 
-
-![image](https://github.com/user-attachments/assets/9b6b605c-3912-45f8-9fd9-abf09b99c643)
-
-![image](https://github.com/user-attachments/assets/42d351e6-f7ce-411c-8bd6-470f56ae03dc)
-
-![image](https://github.com/user-attachments/assets/5c8729e8-f735-411f-939d-fc5352796b94)
-
-Extract the zip file 
-
-![image](https://github.com/user-attachments/assets/d6ed30e4-4ae5-4560-b3bf-9c84008687c3)
-
-Copy the path, open a Windows Powershell, and Run as an administrator
-
-![image](https://github.com/user-attachments/assets/29b557f6-189c-46e0-a38e-914d775f5fda)
-
-![image](https://github.com/user-attachments/assets/8b18a2a5-1a0b-483c-b3f2-d67590cfc069)
-
-Change directory and run this command: **.\Sysmon64.exe -i ..\sysmonconfig.xml**
-
-![image](https://github.com/user-attachments/assets/0bce0ef7-8f4f-4bd6-a7c7-5170763d42ef)
-
-Hit Agree and it will start the installation
-
-![image](https://github.com/user-attachments/assets/78ddda26-b3ea-4f94-af74-0c68d41f4910)
-
-### Configuring the Splunk Universal Forwarder 
-
-We need to instruct Splunk on what we want to be sent to the Splunk Server, so we need the inputs.conf
-
-![image](https://github.com/user-attachments/assets/890f4719-c0f7-4ccc-8c88-9f7ce1284999)
-
-Copy the file
-
-![image](https://github.com/user-attachments/assets/4a496772-8c80-4444-ab40-7958a30e2ad4)
-
-Then we go to the local file 
-
-![image](https://github.com/user-attachments/assets/8ee079ed-3a6c-4218-8c32-ee5b2d915f00)
-
-![image](https://github.com/user-attachments/assets/efe4a1b0-85ec-4947-8d8b-f25df4370b7f)
-
-Then we open Notepad as administrator
-
-![image](https://github.com/user-attachments/assets/8dc3129a-1b94-4846-8993-0e70ad250313)
-
-Use this link: https://github.com/MyDFIR/Active-Directory-Project/blob/main/README.md to copy and paste the configuration that you need
-
-![image](https://github.com/user-attachments/assets/39b1f1b5-a514-4fdd-8c87-5c2d1134d5b3)
-
-This is so that all of the events including the Sysmon, can be forwarded to Splunk
-
-Save the file in the local file of the Splunk Universal Forwarder
-
-![image](https://github.com/user-attachments/assets/bada5383-6112-4eb3-92ae-78014c506a55)
-
-Now we need to restart the Splunk Universal Forwarder and you need to do it every time you update the inputs.conf file
-
-Go to Services and Run as administrator
-
-![image](https://github.com/user-attachments/assets/6b89fe22-cd67-4746-87c5-c5d6ecba6895)
-
-Look for Splunk Forwarder, make sure that it is logged on as a Local System, and then Restart the service
-
-![image](https://github.com/user-attachments/assets/91e1a112-473a-4fe4-8177-2148d23093aa)
-
-If it is not logged on as a Local System, double-click on it, go to Log On, and make sure that it is a Local System account
-
-![image](https://github.com/user-attachments/assets/655c996f-b37b-44b3-86fa-b738c3792846)
-
-Also, verify that Sysmon is running and it is logged on as a Local System
-
-![image](https://github.com/user-attachments/assets/eae0a486-6c63-40a2-a3e4-05747f059d80)
-
-Then we go into our Splunk web, log in, and go to Settings and Indexes
-
-![image](https://github.com/user-attachments/assets/38a76459-6cc4-42f8-9f65-99e22a46b4c1)
-
-Create a New Index
-
-![image](https://github.com/user-attachments/assets/e5178808-a0d8-4221-99db-5058f41ec504)
-
-Name it endpoint and save it
-
-![image](https://github.com/user-attachments/assets/4324d381-fbd8-4118-afdc-9d1e2bcad5df)
-
-Now we go to Settings and Forwarding and receiving
-
-![image](https://github.com/user-attachments/assets/cb986d88-d0b2-44c3-90a8-81ca6f8d116e)
-
-Go to Configure receiving
-
-![image](https://github.com/user-attachments/assets/694b4939-d900-4d9a-a1cf-0bf41d410420)
-
-Click on New Receiving Port
-
-![image](https://github.com/user-attachments/assets/90bc70ab-f8c8-47d6-a949-62fdd816dcb8)
-
-Write the receiving port 
-
-![image](https://github.com/user-attachments/assets/9d531f94-78e1-4d75-a97c-d319896771b7)
-
-Now we are done, do this process for the other machines and you will receive events that occur on those machines
-
-To see the events go to APP > Search and Reporting 
-
-![image](https://github.com/user-attachments/assets/9b22cdba-82a1-422b-a879-ea47ed65aefe)
-
-Write index="endpoint" and hit search and you will see the machines and the events
-
-![image](https://github.com/user-attachments/assets/afe24dbf-06fc-4321-b169-474fa3299991)
 
 ---
 
