@@ -26,15 +26,13 @@ This lab leverages various industry-standard tools and frameworks for comprehens
 
 3. **Splunk SIEM** - Security Information and Event Management system for log analysis, alerting, and security incident management.
 
-4. **MITRE ATT&CK Framework** - Framework for mapping and understanding attacker tactics, techniques, and procedures (TTPs).
+4. **Cyber Kill Chain** - A model that breaks down each phase of an attack, assisting in identifying and mitigating threats at various stages.
 
-5. **Cyber Kill Chain** - A model that breaks down each phase of an attack, assisting in identifying and mitigating threats at various stages.
+5. **Meterpreter** - A Metasploit payload used to simulate attacks, such as reverse shells, persistence tactics, and lateral movement.
 
-6. **Meterpreter** - A Metasploit payload used to simulate attacks, such as reverse shells, persistence tactics, and lateral movement.
+6. **NIST Incident Response Plan** - Structured framework for managing each phase of incident response, from preparation to recovery.
 
-7. **NIST Incident Response Plan** - Structured framework for managing each phase of incident response, from preparation to recovery.
-
-8. **Active Directory** - Core environment for user and resource management, creating a realistic setting for attack simulations and responses.
+7. **Active Directory** - Core environment for user and resource management, creating a realistic setting for attack simulations and responses.
 
 Each tool is integral to achieving a practical and robust cybersecurity defense and incident response setup.
 
