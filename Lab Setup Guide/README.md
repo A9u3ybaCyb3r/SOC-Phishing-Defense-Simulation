@@ -10,7 +10,7 @@
 	- [Setting up Rules](#setting-up-rules)
 6. [Setting up Kali Linux](#setting-up-kali-linux)
 7. [Building an Active Directory](#building-an-active-directory)
-8. [Installing Splunk Forwarder and Sysmon](#installing-splunk-forwarder-and-sysmon)
+8. [Installing Splunk Forwarder](#installing-splunk-forwarder)
 9. [Installing LimaCharlie](#installing-limacharlie)
 	- [Deploying Endpoint Agents](#deploying-endpoint-agents) 
 
