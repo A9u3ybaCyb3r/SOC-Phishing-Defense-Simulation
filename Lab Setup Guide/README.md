@@ -13,7 +13,7 @@
 8. [Installing Splunk Forwarder](#installing-splunk-forwarder)
 9. [Installing LimaCharlie](#installing-limacharlie)
 	- [Deploying Endpoint Agents](#deploying-endpoint-agents) 
-
+10.[Installing Sysmon](#installing-sysmon)
 ---
 
 ## Planning Phase
@@ -827,7 +827,7 @@ This guide outlines the steps to join client machines to the StarkTech.local dom
 
 ## Step 9: Loggin to the machines with the domain users created
 
-- To log in to the machines use the domain credentials that were created.
+- To log in to the machines, use the created domain credentials.
 - Pepper machine
   
   ![image](https://github.com/user-attachments/assets/ad7f318c-d0e5-4757-a408-e89794e36d30)
@@ -835,8 +835,6 @@ This guide outlines the steps to join client machines to the StarkTech.local dom
 - Happy machine
 
 image here
-
----
 
 By following these steps, your machines should now be correctly joined to the **StarkTech.local** domain with all necessary configurations for domain access, shared drive mapping, and user roles.
 
@@ -1020,6 +1018,30 @@ Now we are good to go
 
 - Leverage the Console for remote command execution and endpoint management.
 
+---
+
+## Installing Sysmon
+
+1. **Download and Extract**:
+	- Available from [Microsoft Sysinternals](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon).
+	- Extract to a directory for use.
+2. **Choose a Configuration File**:
+	- Use pre-configured templates like:
+		- **SwiftOnSecurity Sysmon Config** ([GitHub link](https://github.com/SwiftOnSecurity/sysmon-config)).
+			- Default high-quality configuration for baseline monitoring.
+		- **Olaf Hartong's Modular Config** ([GitHub link](https://github.com/olafhartong/sysmon-modular)).
+			- Modular approach for granular monitoring.
+	- These files define what Sysmon monitors and logs.
+3. **Run the Installer**:
+	- Example command in **PowerShell** (run as Administrator):
+
+		```powershell
+		.\Sysmon64.exe -i .\sysmonconfig.xml --accept-eula
+		
+	- This installs Sysmon and applies the configuration.
+4. **Verify Installation**:
+	- Use net start to confirm Sysmon is running. Open **services.msc** and verify Sysmon’s status.
+	- Check **Event Viewer** under: `Applications and Service Logs > Microsoft > Windows > Sysmon`
 
 
 
