@@ -13,7 +13,7 @@
 8. [Installing Splunk Forwarder](#installing-splunk-forwarder)
 9. [Installing LimaCharlie](#installing-limacharlie)
 	- [Deploying Endpoint Agents](#deploying-endpoint-agents) 
-10.[Installing Sysmon](#installing-sysmon)
+10. [Installing Sysmon](#installing-sysmon)
 ---
 
 ## Planning Phase
