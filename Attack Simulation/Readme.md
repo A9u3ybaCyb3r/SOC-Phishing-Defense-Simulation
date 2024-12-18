@@ -28,4 +28,6 @@ In this final phase of the Cyber Kill Chain, the attacker:
 - **Exfiltrates sensitive data** (e.g., `passwords.txt`, `secrets.txt`).
 - Deletes the exfiltrated file and clears system logs to erase evidence.
 
+---
 
+## Actions on the Domain
