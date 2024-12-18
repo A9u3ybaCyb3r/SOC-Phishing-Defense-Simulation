@@ -1,2 +1,0 @@
-# NIST Incident Response Plan
-
