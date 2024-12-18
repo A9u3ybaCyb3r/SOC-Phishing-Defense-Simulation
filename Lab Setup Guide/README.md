@@ -941,6 +941,9 @@ By following these steps, your machines should now be correctly joined to the **
 	- Use net start to confirm Sysmon is running. Open **services.msc** and verify Sysmon’s status.
 	- Check **Event Viewer** under: `Applications and Service Logs > Microsoft > Windows > Sysmon`
 
+---
+
+### Now that we are done with the Lab Setup let's go to the [Preparation Phase](https://github.com/A9u3ybaCyb3r/Adaptive-Threat-Detection-and-Incident-Response-Lab/tree/main/Preparation%20Phase) to configure alerts and integrate logs to Splunk.
 
 
 
