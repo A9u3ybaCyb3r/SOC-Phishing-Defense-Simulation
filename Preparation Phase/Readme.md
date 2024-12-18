@@ -42,7 +42,8 @@ In the preparation phase, several key configurations are made:
 
 ---
 
-# Send Everything to Splunk Server
+# Integrate Snort, Sysmon, Windows System, and Security logs to Splunk
+
 
 ---
 
