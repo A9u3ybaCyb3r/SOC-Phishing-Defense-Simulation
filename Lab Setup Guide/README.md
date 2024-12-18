@@ -5,15 +5,14 @@
 2. [Create a new NAT Network](#create-a-new-nat-network)
 3. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
 4. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
-	- [Configuring Splunk for Alerts](#configuring-splunk-for-alerts)
 5. [Installing Snort](#installing-snort)
-	- [Setting up Rules](#setting-up-rules)
 6. [Setting up Kali Linux](#setting-up-kali-linux)
 7. [Building an Active Directory](#building-an-active-directory)
 8. [Installing Splunk Forwarder](#installing-splunk-forwarder)
 9. [Installing LimaCharlie](#installing-limacharlie)
 	- [Deploying Endpoint Agents](#deploying-endpoint-agents) 
 10. [Installing Sysmon](#installing-sysmon)
+
 ---
 
 ## Planning Phase
@@ -292,29 +291,6 @@ You can view the current IP of the machine.
 
 ---
 
-## Configuring Splunk for Alerts
-
-### Creating a Real-Time Alert
-1. **Search for Critical Events**
-	- Use Splunk to search for Event ID 1102, which indicates the clearing of security logs:
-
-		```spl
-		index=* sourcetype="WinEventLog:Security" EventCode=1102
-  
-	- Modify the query to test using a different event code, such as 4624 (logon events), to verify the search logic.
-2. **Save Search as an Alert**
-	- Click **Save As** and select **Alert**.
-	- Configure alert settings:
-		- **Name**: Security Event Log Cleared.
-		- **Real-Time Alert**: Trigger per result as soon as the event is detected.
-		- **Actions**: Add to **Triggered Alerts** and configure alert severity (e.g., medium).
-		- Optionally, set up notifications via email, Slack, or other integrations.
-3. **Simulate and Test the Alert**
-	- Clear the security log on the monitored Windows system to generate an Event ID 1102.
-	- Confirm the alert triggers and appears in the **Triggered Alerts** section of Splunk.
-
----
-
 ## Installing Snort
 
 1. Open a terminal and run:
@@ -396,10 +372,6 @@ You can view the current IP of the machine.
 
 ---
 
-## Setting up Rules
-
----
-
 ## Setting up Kali Linux
 
 ### Downloading Kali Linux Virtual Machine Image
@@ -442,38 +414,6 @@ You can view the current IP of the machine.
 2. Login using the default credentials: `kali` for both the username and password.
 
    ![image](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
-
-### Setting a Static IP Address
-
-1. Right-click on the Ethernet network icon and select **Edit Connections**.
-
-   ![image](https://github.com/user-attachments/assets/6760384a-e918-4589-8e5a-a73f0f78d0e8)
-
-2. Double-click the active network profile.
-
-   ![image](https://github.com/user-attachments/assets/02818c7a-224e-43a3-a4ce-247bb8e8076f)
-
-3. Go to the **IPv4 Settings** tab, set **Method** to **Manual**, click **Add**, and enter your IP address, netmask, and gateway.
-
-   ![image](https://github.com/user-attachments/assets/f02f3d95-b6a3-4e5c-a6af-ed78dc9987cf)
-
-4. Disconnect and reconnect to the network to apply the changes.
-
-   ![image](https://github.com/user-attachments/assets/2f63d53c-7d2f-4c9c-b427-5f6dcc84cef6)
-
-5. Open a terminal to verify the IP configuration:
-
-   ```bash
-   ip a
-
-![image](https://github.com/user-attachments/assets/c21ee078-371a-4571-ac78-aa6038217198)
-
-6. To confirm internet connectivity, run:
-
-   ```bash
-   ping google.com
-
-![image](https://github.com/user-attachments/assets/31af29ba-572c-4c6d-9f2c-a1888c161473)
 
 ---
 
@@ -892,66 +832,6 @@ By following these steps, your machines should now be correctly joined to the **
 
 
 ---
-
-## Setting up Kali Linux
-
- Go to https://kali.org/get-kali/
-
-   - Click on the image that says Virtual Machines and download the 64-bit version of Virtualbox.
-
-      ![image](https://github.com/user-attachments/assets/ae2d558e-57a4-4d1a-8576-5ad25de659ec)
-     
-     ![image](https://github.com/user-attachments/assets/6430026d-9ca1-46db-9dd6-98e6d758617c)
-
- After downloading the file, extract it and hit the Add button on Virtualbox. 
-
-![image](https://github.com/user-attachments/assets/37ef160d-c250-4151-80df-bdfb038f063c)
-
-Then choose the .vbox extension file.
-
-![image-38](https://github.com/user-attachments/assets/5cf67d2e-ebd6-4c6e-ab83-f49f87a27b82)
-
- Right-click the machine and choose the Network settings.
-
-![cd25168f5bf7404cb6e4d5a8b84ca441](https://github.com/user-attachments/assets/465b1135-d2b9-4e79-aa75-f6eb9f315ed1)
-
-Change the network settings to the NAT Network that you created
-
-![image](https://github.com/user-attachments/assets/13a03bdb-84e5-4cad-bac3-aa89af5adb77)
-
-Then increase your RAM depending on how much you need. Mine is 8GB RAM because of the tools that I use. You can do it on the machine settings. 
-
-![image](https://github.com/user-attachments/assets/9cf482b6-64c7-48be-8248-fe25ad5868eb)
-
- Click OK and now you can start the machine. Use the default credentials of *kali:kali*.
-
-![image](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
-
- To create a static IP, right-click on the Ethernet Network and hit Edit Connections
-
-![image](https://github.com/user-attachments/assets/6760384a-e918-4589-8e5a-a73f0f78d0e8)
-
-Double-click on the profile
-
-![image](https://github.com/user-attachments/assets/02818c7a-224e-43a3-a4ce-247bb8e8076f)
-
-Go to IPv4 Settings, change Method to Manual, hit Add, and then fill it out
-
-![image](https://github.com/user-attachments/assets/f02f3d95-b6a3-4e5c-a6af-ed78dc9987cf)
-
-Then go to Ethernet Network, hit Disconnect, and then connect again to the profile
-
-![image](https://github.com/user-attachments/assets/2f63d53c-7d2f-4c9c-b427-5f6dcc84cef6)
-
-To confirm that we have the IP that we want open a terminal and write the command: **ip a**
-
-![image](https://github.com/user-attachments/assets/c21ee078-371a-4571-ac78-aa6038217198)
-
-Also, ping google.com to verify that you can connect to the Internet
-
-![image](https://github.com/user-attachments/assets/31af29ba-572c-4c6d-9f2c-a1888c161473)
-
-Now we are good to go
 
 ## Installing LimaCharlie
 
