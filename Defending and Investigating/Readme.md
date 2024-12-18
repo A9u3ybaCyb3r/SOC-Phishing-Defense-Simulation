@@ -1,4 +1,4 @@
-# Incident Response (NIST IR)
+# NIST Incident Response Framework
 
 ---
 
