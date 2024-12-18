@@ -2,7 +2,19 @@
 
 ## Objective:
 
-To develop and execute a comprehensive Active Directory-based cybersecurity lab that simulates a phishing attack scenario, demonstrating the complete lifecycle of an incident response. The project will integrate tools like Splunk, Snort, Sysmon, and LimaCharlie to detect, analyze, and mitigate cyber threats in a controlled environment. This includes setting up defenses, simulating realistic attack techniques following the Cyber Kill Chain framework, detecting malicious activities through Indicators of Compromise (IOCs), and implementing response strategies based on the NIST Incident Response Plan. The aim is to enhance practical skills in threat detection, analysis, and post-incident remediation within an Active Directory ecosystem.
+To simulate a phishing attack in a controlled lab environment and demonstrate the full incident response lifecycle—from attack preparation and execution to threat detection, analysis, and mitigation—using tools like Splunk, Snort, Sysmon, and LimaCharlie. The project follows the NIST Incident Response Plan and Cyber Kill Chain framework to provide hands-on experience in detecting, analyzing, and responding to cyber threats while identifying key Indicators of Compromise (IOCs) and improving security measures.
+
+## Overview
+
+The project follows the NIST Incident Response Plan for blue teaming and the Cyber Kill Chain for red teaming. The workflow consists of several phases:
+1. **Preparation Phase**: Setting up defenses.
+2. **Attacking Phase**: Simulating a cyber attack.
+3. **Detection, Analysis, and Response Phases**: Handling the incident.
+4. **Post-Incident Activities**: Discussing lessons learned and improvements.
+
+## Attack Scenario
+
+In an Active Directory environment with one Windows Server 2022 and two Windows 10 machines, an attacker sends a phishing email containing a malicious payload disguised as a critical software update. The victim downloads and executes the payload, establishing a reverse TCP connection to the attacker’s machine using Metasploit. The attacker escalates privileges, creates a new user account, and moves laterally to compromise the domain controller, gaining domain admin access. Sensitive data is exfiltrated from the server, and the attacker clears logs to erase traces of the attack.
 
 ## Skills Learned:
 
