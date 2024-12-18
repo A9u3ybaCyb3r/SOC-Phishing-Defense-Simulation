@@ -8,7 +8,7 @@ In the Incident Response phase of the project, the goal is to effectively identi
 
 ## Preparation
 
-Go to this [link]() to see the preparation phase of what we did before the attack was done. Which is setting up alerts and configurations on the tools. 
+[Click here](https://github.com/A9u3ybaCyb3r/Adaptive-Threat-Detection-and-Incident-Response-Lab/tree/main/Preparation%20Phase) to explore the **Preparation Phase**, where we set up alerts and configured the necessary tools in advance of the attack.
 
 ---
 
@@ -26,3 +26,5 @@ Go to this [link]() to see the preparation phase of what we did before the attac
 ---
 
 ## Post-Incident Activity
+
+---
