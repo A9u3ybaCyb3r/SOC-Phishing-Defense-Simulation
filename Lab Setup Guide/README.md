@@ -20,7 +20,7 @@
 
 First, we build the network architecture for the lab environment using [Draw.io](https://www.drawio.com/). This includes creating a detailed network diagram outlining the Active Directory Security Lab's structure, components, and connections. The diagram helps visualize how different elements interact, ensuring a well-organized setup for testing and security exercises.
 
-- [Network Diagram](https://github.com/A9u3ybaCyb3r/Active-Directory-Security-Lab/blob/main/Lab%20Setup%20Guide/NetworkDiagram-Lab.drawio.pdf)
+- [Network Diagram](https://github.com/A9u3ybaCyb3r/Adaptive-Threat-Detection-and-Incident-Response-Lab/blob/main/Lab%20Setup%20Guide/ATDIR%20Lab%20Network%20Diagram.drawio.pdf)
 
 
 ## Creating a New NAT Network in VirtualBox
