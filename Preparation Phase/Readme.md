@@ -22,15 +22,15 @@ In the preparation phase, several key configurations are made:
 	
 - Modify the query to test using a different event code, such as 4624 (logon events), to verify the search logic.
 2. Save Search as an Alert
-	• Click Save As and select Alert.
-	• Configure alert settings:
-		○ Name: Security Event Log Cleared.
-		○ Real-Time Alert: Trigger per result as soon as the event is detected.
-		○ Actions: Add to Triggered Alerts and configure alert severity (e.g., medium).
-		○ Optionally, set up notifications via email, Slack, or other integrations.
+- Click Save As and select Alert.
+- Configure alert settings:
+	- Name: Security Event Log Cleared.
+	- Real-Time Alert: Trigger per result as soon as the event is detected.
+	- Actions: Add to Triggered Alerts and configure alert severity (e.g., medium).
+	- Optionally, set up notifications via email, Slack, or other integrations.
 3. Simulate and Test the Alert
-	• Clear the security log on the monitored Windows system to generate an Event ID 1102.
-	• Confirm the alert triggers and appears in the Triggered Alerts section of Splunk.
+- Clear the security log on the monitored Windows system to generate an Event ID 1102.
+- Confirm the alert triggers and appears in the Triggered Alerts section of Splunk.
 
 ---
 
