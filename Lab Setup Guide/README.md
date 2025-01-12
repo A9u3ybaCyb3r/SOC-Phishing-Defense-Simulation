@@ -535,7 +535,7 @@ You can view the current IP of the machine.
 3. Click **Install** and let the server reboot after installation.
 
 ### Step 6: Log into the Domain
-- After reboot, log in using the new domain (e.g., `StarkTech\administrator`) and the administrator password.
+- After reboot, log in using the new domain (e.g., `StarkTech\Administrator`) and the Administrator password.
   
 ---
 
@@ -684,7 +684,8 @@ Once these steps are complete, both user machines should be ready. The next step
    setspn -T StarkTech.local -Q */*
 4. If you see the message **Existing SPN found!** you are done.
 
-## Step 7: Create a Group Policy to Disable Microsoft Defender
+## Step 7: Create a Group Policy to Disable Microsoft Defender (Optional)
+`In my case I will not do it in order to keep as real as possible the assessment`
 1. In Server Manager, **Tools** open Group Policy Management.
 2. Expand **Forest: StarkTech.local > Domains > Empire.local.**
 3. Right-click StarkTech.local and select **Create a GPO** in this domain. Name it Disable Windows Defender.
@@ -697,10 +698,15 @@ Once these steps are complete, both user machines should be ready. The next step
 ## Step 8: Set a Static IP Address
 1. Go to **Network & Internet Settings > Change adapter options**.
 2. Open **Properties** for the network adapter, and configure IPv4 settings:
-   - **IP Address**: 192.168.255.250 (Static IP of the Domain Controller)
+   - **IP Address**: 10.19.19.250 (Static IP of the Domain Controller)
    - **Subnet Mask**: 255.255.255.0
-   - **Default Gateway**: 192.168.255.2 (NAT Network that you created)
+   - **Default Gateway**: 10.19.19.2 (NAT Network that you created)
+   - **Preferred DNS server**: 10.19.19.250
+
+![image](https://github.com/user-attachments/assets/452ae5c4-3877-44af-9067-923a91fb651c)
+
 3. Apply the settings.
+
 
 ## Final Notes
 - Confirm all configurations are as expected.
@@ -729,7 +735,7 @@ This guide outlines the steps to join client machines to the StarkTech.local dom
    - Select **Internet Protocol Version 4 (TCP/IPv4)**, then **Properties**.
 
 2. **Set Static IP and DNS**:
-   - Use the domain controller’s IP as the DNS server (e.g., `192.168.255.250`).
+   - Use the domain controller’s IP as the DNS server (e.g., `10.19.19.250`).
    - Save the settings.
 
 ## Step 4: Join Each Machine to the Domain (Empire.local)
@@ -740,10 +746,11 @@ This guide outlines the steps to join client machines to the StarkTech.local dom
 
 2. **Enter the Domain Information**:
    - **Domain Name**: `StarkTech.local`
-   - **Username**: `administrator`
+   - **Username**: `Administrator`
    - **Password**: (use the administrator password for the DC).
 
-3. **Restart Each Machine** once they’re successfully joined.
+3. For the **Account Type** choose `Administrator`
+4.  **Restart Each Machine** once they’re successfully joined.
 
 ## Step 5: Verify Domain Join on Domain Controller
 
@@ -759,8 +766,8 @@ This guide outlines the steps to join client machines to the StarkTech.local dom
 
 2. **Add Domain Users as Local Administrators**:
    - Go to **Computer Management > Local Users and Groups > Groups > Administrators**.
-   - Add `ppotts` (Pepper Potts) as a local administrator on **Happy Hogman**.
-   - Add both `ppotts` and `hhogman` (Sheev Palpatine) as local administrators on **Happy**.
+   - Add `ppotts` as a local administrator on **Pepper-Computer**
+   - Add `hhogman` as local administrators on **Happy-Computer**.
 
 ## Step 7: Enable Network Discovery
 
@@ -786,13 +793,13 @@ This guide outlines the steps to join client machines to the StarkTech.local dom
 ## Step 9: Loggin to the machines with the domain users created
 
 - To log in to the machines, use the created domain credentials.
-- Pepper machine
-  
-  ![image](https://github.com/user-attachments/assets/ad7f318c-d0e5-4757-a408-e89794e36d30)
+- Computer: **Pepper-Computer**
+- Username: `StarkTech\ppotts`
+- Password: `Password1`
+- Computer: **Happy-Computer**
+- Username: `StarkTech\hhogman`
+- Password: `Password2`
 
-- Happy machine
-
-image here
 
 By following these steps, your machines should now be correctly joined to the **StarkTech.local** domain with all necessary configurations for domain access, shared drive mapping, and user roles.
 
