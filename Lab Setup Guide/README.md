@@ -607,7 +607,7 @@ You can view the current IP of the machine.
      - **Username**: Pepper Potts
      - **Password**: Password1
    - For Happy:
-     - **Username**: Happy Hogan
+     - **Username**: Happy Hogman
      - **Password**: Password2
 2. Set security questions with generic answers (e.g., answer each with "Bob").
 
@@ -621,7 +621,7 @@ You can view the current IP of the machine.
 
 ## Step 10: Rename Each VM for Identification
 1. Rename **Pepper Potts** machine as **Pepper**.
-2. Rename **Happy Hogan** machine as **Happy**.
+2. Rename **Happy Hogman** machine as **Happy**.
 
 ## Step 11: Final Reboot
 - Restart each machine after renaming to complete the setup process for both VMs.
@@ -631,7 +631,7 @@ Once these steps are complete, both user machines should be ready. The next step
 ## Setting Up Users, Groups, Policies, and Configurations on a Windows Server Domain Controller
 
 ## Step 1: Boot up the Domain Controller
-1. Power down any non-essential virtual machines (e.g., workstations named Pepper Potts and Happy Hogan).
+1. Power down any non-essential virtual machines (e.g., workstations named Pepper Potts and Happy Hogman).
 2. Start the Domain Controller (Windows Server 2022, named as Windows Server 2016 in this example) and log in.
 
 ## Step 2: Access Active Directory Users and Computers
@@ -647,15 +647,15 @@ Once these steps are complete, both user machines should be ready. The next step
 1. **Tony Stark (Domain Admin)**:
    - Right-click the existing **Administrator** account, select **Copy**, and create a new user with the following:
      - Full Name: **Tony Stark**
-     - Username: **stony**
+     - Username: **tstark**
      - Password: **Password12345!**
      - **Password Never Expires**: Enabled
 2. **SQL Service Account (for demonstration)**:
    - Copy the **Administrator** account and create a new service account with the following:
      - Full Name: **SQL Service**
      - Username: **SQLService**
-     - Password: **MyPassword123#**
-     - Add a description for demonstration purposes: "Password is MyPassword123#".
+     - Password: **MyPassword123!**
+     - Add a description for demonstration purposes: "Password is MyPassword123!".
 3. **Standard Users (Pepper Potts and Happy Hogman)**:
    - Create individual user accounts as follows, **Right-click black space > New > User **:
      - **Pepper Potts**:
