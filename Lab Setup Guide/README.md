@@ -484,7 +484,7 @@ You can view the current IP of the machine.
 
 ### Step 6: Complete Initial Setup
 - After installation, Windows will reboot.
-- Set an **administrator password** (e.g., `P@$$w0rd!`).
+- Set an **administrator password** (e.g., `#IronMan`).
 
 ### Step 7: Install Virtualbox Tools (Optional but Recommended)
 1. In Virtualbox, go to **Devices > Insert Guest Additions CD image**.
