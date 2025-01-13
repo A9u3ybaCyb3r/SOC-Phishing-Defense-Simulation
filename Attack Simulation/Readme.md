@@ -4,11 +4,11 @@ Developed by Lockheed Martin, it is a conceptual framework that describes the st
 
 ## Reconnaissance and Weaponization
 - The attacker (Ubuntu VM) gathers a victim’s email from LinkedIn.
-- Creates a malicious payload (`payload.exe`) using MSFVenom.
+- Creates a malicious payload (`payload.exe`) using DSViper to bypass Windows Defender.
 - Hosts the payload on port **8000** using Python HTTP server.
 
 ## Delivery Phase
-- Sends a phishing email with a disguised **shortened URL** linking to the payload.
+- Sends a spoofed phishing email with a disguised **shortened URL** linking to the payload using Emkei's Fake Mailer.
 - Subject: "*Critical Update: Immediate Action Required.*"
 
 ## Exploitation Phase
@@ -30,4 +30,12 @@ In this final phase of the Cyber Kill Chain, the attacker:
 
 ---
 
-## Actions on the Domain
+## Tools Utilized
+
+### DS Viper
+
+DS Viper is a powerful tool designed to bypass Windows Defender's security mechanisms, enabling seamless execution of payloads on Windows systems without triggering security alerts. It utilizes a combination of advanced techniques to manipulate and disguise payloads, providing cybersecurity professionals, red teamers, and penetration testers with a robust solution for achieving undetected access.
+
+### Emkei's Fake Mailer
+
+Emkei's Fake Mailer is an online tool that allows users to send spoofed emails by forging the "From" address and other email headers. It is typically used to simulate email communications from any sender address, making it appear as though the email originates from a legitimate source.
