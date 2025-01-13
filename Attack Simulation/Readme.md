@@ -13,18 +13,18 @@ Developed by Lockheed Martin, it is a conceptual framework that describes the st
 
 ## Exploitation Phase
 - Victim downloads and executes `payload.exe`.
-- A reverse TCP connection is established on port **4444** using **Metasploit**.
+- A reverse TCP connection is established on port **4444** using a **Meterpreter session**.
 
 ## Installation Phase
 - The attacker modifies the **Windows Registry** to create a backdoor for persistence.
 
 ## Command and Control Phase
-- The attacker executes commands remotely, exploring the compromised system and preparing for data exfiltration.
+- The attacker executes commands remotely, disables Windows Defender to execute Mimikatz, explores the compromised system, and prepares for data exfiltration.
 
 ## Actions on Objectives Phase
 In this final phase of the Cyber Kill Chain, the attacker:
-- **Escalates privileges** to domain admin using credential dumping.
-- Adds a new user: `EvilUser` to the domain.
+- **Defender Deactivation** to dump all of the credentials using Mimikatz.
+- Adds a new user: `EvilUser` to the computer.
 - **Exfiltrates sensitive data** (e.g., `passwords.txt`, `secrets.txt`).
 - Deletes the exfiltrated file and clears system logs to erase evidence.
 
