@@ -14,7 +14,7 @@ The project follows the NIST Incident Response Plan for blue teaming and the Cyb
 
 ## Attack Scenario
 
-In an Active Directory environment with one Windows Server 2022 and two Windows 10 machines, an attacker sends a phishing email containing a malicious payload disguised as a critical software update. The victim downloads and executes the payload, establishing a reverse TCP connection to the attacker’s machine using Metasploit. The attacker escalates privileges, creates a new user account, and moves laterally to compromise the domain controller, gaining domain admin access. Sensitive data is exfiltrated from the server, and the attacker clears logs to erase traces of the attack.
+On a standalone Windows 11 machine, an attacker sends a phishing email containing a malicious payload disguised as a critical software update. The victim downloads and executes the payload, establishing a reverse TCP connection to the attacker’s machine using Metasploit. To make the attack more realistic, the attacker employs techniques to bypass Windows Defender. The attacker escalates privileges, creates a new user account, and compromises the machine, gaining admin access. Sensitive data is exfiltrated from the machine, and the attacker clears logs to erase traces of the attack.
 
 ## Skills Learned:
 
@@ -43,8 +43,6 @@ This lab leverages various industry-standard tools and frameworks for comprehens
 5. **Meterpreter** - A Metasploit payload used to simulate attacks, such as reverse shells, persistence tactics, and lateral movement.
 
 6. **NIST Incident Response Plan** - Structured framework for managing each phase of incident response, from preparation to recovery.
-
-7. **Active Directory** - Core environment for user and resource management, creating a realistic setting for attack simulations and responses.
 
 Each tool is integral to achieving a practical and robust cybersecurity defense and incident response setup.
 
