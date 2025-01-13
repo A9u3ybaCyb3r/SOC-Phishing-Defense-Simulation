@@ -3,7 +3,7 @@
 Developed by Lockheed Martin, it is a conceptual framework that describes the stages of a cyberattack. Originating from military concepts, the model parallels physical attack planning and execution, providing organizations with a systematic approach to understanding, detecting, and defending against cyber threats. We are going to use this framework for our attack simulation. 
 
 ## Reconnaissance and Weaponization
-- The attacker (Ubuntu VM) gathers a victim’s email from LinkedIn.
+- The attacker (Kali VM) gathers a victim’s email from LinkedIn.
 - Creates a malicious payload (`payload.exe`) using DSViper to bypass Windows Defender.
 - Hosts the payload on port **8000** using Python HTTP server.
 
