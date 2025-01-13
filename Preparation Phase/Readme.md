@@ -7,7 +7,7 @@ In the preparation phase, several key configurations are made:
   - Rule 3: Checks for executable files in HTTP traffic looking for MZ headers.
   - Rule 4: Monitors standard HTTP traffic on port 80.
 - Lima Charlie: Integrated with the Windows workstations and server VMs for advanced threat detection and response capabilities.
-  - YARA rules are written to detect executable files in the downloads directory.
+- YARA Rules: Rules are written to detect executable files in the downloads directory.
 - Splunk Configuration: Alerts are set up for detecting reverse TCP connections.
 - Forensic Tools: Tools like Kape, Registry Explorer, and FTK Imager are downloaded for forensic analysis.
 
@@ -20,7 +20,7 @@ In the preparation phase, several key configurations are made:
   ```spl
   index=* sourcetype="WinEventLog:Security" EventCode=1102
 	
-- Modify the query to test using a different event code, such as 4624 (logon events), to verify the search logic.
+- To verify the search logic, modify the query to test using a different event code, such as 4624 (logon events).
 2. **Save Search as an Alert**
 - Click **Save As** and select **Alert**.
 - Configure alert settings:
@@ -36,15 +36,19 @@ In the preparation phase, several key configurations are made:
 
 # Writing Snort Rules
 
----
-
-# Writing Yara Rules in LimaCharlie
+# Integrate Snort logs to Splunk
 
 ---
 
-# Integrate Snort, Sysmon, Windows System, and Security logs to Splunk
+# Writing Yara Rules
+
+# Integrate Yara logs to Splunk
+
+---
+
+# Integrate Sysmon, Windows System, and Security logs to Splunk
 
 
 ---
 
-# Downloading Forensic Tools
+# Downloading Forensic Tools on the Machine
