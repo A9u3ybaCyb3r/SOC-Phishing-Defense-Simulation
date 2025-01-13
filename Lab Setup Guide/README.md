@@ -12,7 +12,7 @@
 9. [Installing LimaCharlie](#installing-limacharlie)
 	- [Deploying Endpoint Agents](#deploying-endpoint-agents) 
 10. [Installing Sysmon](#installing-sysmon)
-11. [Installing Yara on Windows](installing-yara-on-windows)
+11. [Installing Yara on Windows](#installing-yara-on-windows)
 
 ---
 
