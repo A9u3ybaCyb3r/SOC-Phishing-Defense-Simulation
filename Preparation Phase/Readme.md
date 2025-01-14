@@ -121,6 +121,8 @@ Testing Snort
 
 # Writing Yara Rules
 
+
+
 # Integrate Yara logs to Splunk
 
 ---
@@ -131,3 +133,36 @@ Testing Snort
 ---
 
 # Downloading Forensic Tools on the Machine
+
+## Installation and Setup
+- Downloading FTK Imager:
+Visit [Exterro's FTK Product Downloads](https://www.exterro.com/ftk-product-downloads/) to download the latest version. The website may require basic information and CAPTCHA verification.
+
+### Installation Steps:
+1. Run the installer and follow the wizard.
+2. Accept the license agreement.
+3. Choose the default installation location or specify a custom path.
+4. Finish the installation process.
+5. Organizing Forensic Tools:
+- Create a dedicated folder, such as `Forensic Tools`, on the forensic workstation desktop to store FTK Imager and other utilities.
+
+## Registry Explorer
+- Purpose: Analyze registry hives for evidence.
+- Download: [Eric Zimmerman's Tools](https://ericzimmerman.github.io)
+- Requirements: Install the [.NET Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet).
+
+### Steps to Use:
+1. Download and extract Registry Explorer.
+2. Install .NET Runtime if prompted.
+3. Open registry hives for analysis.
+
+## KAPE (Kroll Artifact Parser and Extractor)
+◇ Purpose: Rapid triage and extraction of artifacts from live systems.
+◇ Download:
+  ▪ Primary: [KAPE](https://s3.amazonaws.com/cyb-us-prd-kape/kape.zip)
+  ▪ Alternate: [Kroll's KAPE Page](https://www.kroll.com/en/services/cyber-risk/incident-response-litigation-support/kroll-artifact-parser-extractor-kape)
+
+### Steps to Use:
+1. Download and extract KAPE.
+2. Configure targets and modules for specific artifact extraction.
+3. Run KAPE on live systems for rapid data collection.
