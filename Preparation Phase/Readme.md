@@ -36,7 +36,86 @@ In the preparation phase, several key configurations are made:
 
 # Writing Snort Rules
 
-# Integrate Snort logs to Splunk
+## Integrate Snort logs to Splunk
+### Adding Snort to Splunk
+1. Install Snort App for Splunk:
+- Navigate to **Apps** **>** **Find more Apps**.
+- Search for ‘**Snort**’ and install the **"Snort Alert for Splunk"** app.
+- After installation, you should see Snort listed on the left side of the Splunk interface.
+
+2. Install Splunk’s Universal Forwarder:
+- Download the 64-bit **.deb** package from Splunk Universal Forwarder.
+- After installation, add your Splunk server for log forwarding:
+
+	```bash
+	sudo ./splunk add forward-server 45.56.114.54:9997
+
+3. Configure Outputs:
+- Navigate to the configuration directory:
+
+	```bash
+	cd /opt/splunkforwarder/etc/system/local
+
+
+ - Open and verify `outputs.conf`:
+
+	```bash
+	sudo vim outputs.conf
+
+- Ensure the correct IP address for your Splunk server is set.
+
+
+Testing Snort
+1. Run a Test with Snort:
+- Use the following command to run Snort and check logs:
+
+	```bash
+	sudo snort -q -l /var/log/snort/ -i enp0s3 -A full -c /etc/snort/snort.conf
+
+
+- The command options are:
+	- `-q`: Quiet mode.
+	- `-l`: Log directory.
+	- `-i`: Network interface.
+	- `-A`: Alert mode.
+	- `-c`: Rules file.
+
+
+2. Verify Logs:
+- Check the logs in `/var/log/snort` to see pings from the attacker's PC.
+
+
+### Adding Snort Logs to Splunk
+1. Monitor Snort Alert Logs:
+- Add the Snort alert log to the Splunk forwarder:
+
+	```bash
+	sudo ./splunk add monitor /var/log/snort/alert
+
+2. Configure Inputs:
+- Navigate to the `inputs.conf` file in the search app directory:
+
+	```bash
+	/opt/splunkforwarder/etc/apps/search
+
+
+- Edit `inputs.conf` as needed (ensure you have root access).
+
+3. Restart Splunk:
+- Switch back to your user and restart Splunk:
+
+	```bash
+	sudo ./splunk restart
+
+4. Verify Data in Splunk:
+- Go to `http://[your-IP]:8000`, and click on **Search** > **Data Summary**.
+- Confirm that your host and sources are correctly added.
+
+### Final Snort Check
+- Ensure Snort is running by executing:
+
+	```bash
+	sudo snort -q -l /var/log/snort -i enp0s3 -A full -c /etc/snort/snort.conf
 
 ---
 
