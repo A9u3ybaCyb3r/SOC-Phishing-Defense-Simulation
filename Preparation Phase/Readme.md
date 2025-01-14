@@ -55,6 +55,7 @@ alert icmp any any -> 8.8.8.8 any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;
   - **Revision**: 1
 
 Then we are going to create our rules for the lab.
+
 alert tcp any 4444 -> 10.19.19.132 any (msg:"Reverse TCP connection detected"; sid:1000002; rev:2;)
 
 alert tcp any 8000:9000 -> any any (msg:"HTTP Traffic on common Non-Standard Port Detected"; sid:1000003; rev:3;)
@@ -93,7 +94,7 @@ alert tcp any any <> any 80 (msg:"HTTP Traffic Detected"; sid:1000005; rev:5;)
 - Ensure the correct IP address for your Splunk server is set.
 
 
-Testing Snort
+### Testing Snort
 1. Run a Test with Snort:
 - Use the following command to run Snort and check logs:
 
@@ -107,7 +108,6 @@ Testing Snort
 	- `-i`: Network interface.
 	- `-A`: Alert mode.
 	- `-c`: Rules file.
-
 
 2. Verify Logs:
 - Check the logs in `/var/log/snort` to see pings from the attacker's PC.
@@ -213,7 +213,53 @@ Once the Yara logs are in Splunk, you can create dashboards or alerts to visuali
 
 ---
 
-# Integrate Sysmon, Windows System, and Security logs to Splunk
+# Integrate Sysmon to Splunk
+
+## Setting Up Microsoft Sysmon for Splunk
+
+## 1. Configure Sysmon to Collect Data
+- Sysmon logs events in `Applications and Services Logs/Microsoft/Windows/Sysmon/Operational` or on a WEC server if using Windows Event Collection (WEC).
+- **Prepare your Sysmon configuration file**:
+  - Start with the `SwiftOnSecurity/sysmon-config` template.
+  - Customize filtering rules to match your organization's needs.
+  - Avoid using Sysmon without a custom config to prevent unnecessary event logs or limited event monitoring.
+
+**Resources for Configuration**:
+- Microsoft Sysmon documentation
+- TrustedSec Sysmon Community Guide
+- Olaf Hartong's sysmon-modular
+- SwiftOnSecurity sysmon-config
+
+## 2. Install the Splunk Add-on for Sysmon
+1. **Download the Add-On**:
+   - From [Splunkbase](https://splunkbase.splunk.com/app/5709/) or via the Splunk Web app browser.
+2. **Decide Where to Install**:
+   - Use the deployment tables for guidance.
+3. **Follow Any Prerequisites**:
+   - Check if there are specific steps required before installation.
+4. **Complete Installation**:
+   - Refer to the installation walkthroughs for specific deployment setups (single-instance, distributed, or Splunk Cloud).
+
+## 3. Distributed Deployments
+- **Install the Add-On on Various Components**:
+  - **Search Heads**: Required for Sysmon knowledge management.
+  - **Indexers**: Required.
+  - **Forwarders** (Heavy/Universal): Install on monitored Windows endpoints or WEC for data collection.
+  - **Splunk Cloud**: Compatible via Self Service App Install (SSAI).
+
+**Compatibility Table**:
+- Supported on Search Head Clusters, Indexer Clusters, and Deployment Servers.
+
+## 4. Configure Inputs for the Splunk Add-on
+- **Default Inputs**:
+  - `WinEventLog://Microsoft-Windows-Sysmon/Operational` (enabled by default).
+  - `WinEventLog://WEC-Sysmon` (needs to be enabled for WEC architecture).
+
+**Steps for WEC Installation**:
+1. Go to `Settings > Data Inputs > Remote event log collections`.
+2. Enable 'WEC-Sysmon' log collection.
+3. Ensure Sysmon events are collected in `WEC-Sysmon` log or modify `inputs.conf`.
+4. If forwarding from WEC to its Sysmon channel, disable `WinEventLog://Microsoft-Windows-Sysmon/Operational` to prevent duplicate logs.
 
 
 ---
