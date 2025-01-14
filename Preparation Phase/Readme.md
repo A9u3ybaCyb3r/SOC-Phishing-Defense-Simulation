@@ -36,6 +36,31 @@ In the preparation phase, several key configurations are made:
 
 # Writing Snort Rules
 
+We are going to use [Snort Rule Generator](https://anir0y.in/snort2-rulgen/) to make our rules.
+
+First we are going to create a rule for testing pings.
+
+		
+	alert icmp any any -> 8.8.8.8 any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;)
+
+
+- **Action**: alert
+- **Protocol**: ICMP
+- **Source**: Any IP and port.
+- **Direction**: From source to destination.
+- **Destination**: IP 8.8.8.8, any port.
+- **Options**:
+  - **Message**: "ICMP Ping Detected"
+  - **SID**: 1000001
+  - **Revision**: 1
+
+Then we are going to create our rules for the lab.
+alert tcp any 4444 -> 10.19.19.132 any (msg:"Reverse TCP connection detected"; sid:1000002; rev:2;)
+alert tcp any 8000:9000 -> any any (msg:"HTTP Traffic on common Non-Standard Port Detected"; sid:1000003; rev:3;)
+alert tcp any 8000:9000 -> any any (msg:"HTTP on Non-Standard Port Payload contains executable"; file_data; content:"|4D 5A|"; sid:1000004; rev:4;)
+alert tcp any any <> any 80 (msg:"HTTP Traffic Detected"; sid:1000005; rev:5;)
+
+
 ## Integrate Snort logs to Splunk
 ### Adding Snort to Splunk
 1. Install Snort App for Splunk:
