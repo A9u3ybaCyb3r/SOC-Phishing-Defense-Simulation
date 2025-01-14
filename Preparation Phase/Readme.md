@@ -56,8 +56,11 @@ alert icmp any any -> 8.8.8.8 any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;
 
 Then we are going to create our rules for the lab.
 alert tcp any 4444 -> 10.19.19.132 any (msg:"Reverse TCP connection detected"; sid:1000002; rev:2;)
+
 alert tcp any 8000:9000 -> any any (msg:"HTTP Traffic on common Non-Standard Port Detected"; sid:1000003; rev:3;)
+
 alert tcp any 8000:9000 -> any any (msg:"HTTP on Non-Standard Port Payload contains executable"; file_data; content:"|4D 5A|"; sid:1000004; rev:4;)
+
 alert tcp any any <> any 80 (msg:"HTTP Traffic Detected"; sid:1000005; rev:5;)
 
 
@@ -165,7 +168,6 @@ rule MAL_Mimikatz_Win_exe_2024_08_24 {
     $mz_header and $url
 }
 ```
-# Integrate Yara logs to Splunk
 
 # Importing Yara Rules Logs into Splunk
 
