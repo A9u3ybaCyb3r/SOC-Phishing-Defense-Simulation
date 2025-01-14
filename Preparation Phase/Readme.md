@@ -40,9 +40,9 @@ We are going to use [Snort Rule Generator](https://anir0y.in/snort2-rulgen/) to 
 
 First we are going to create a rule for testing pings.
 
-		
-	alert icmp any any -> 8.8.8.8 any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;)
-
+```snort	
+alert icmp any any -> 8.8.8.8 any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;)
+```
 
 - **Action**: alert
 - **Protocol**: ICMP
@@ -146,9 +146,68 @@ Testing Snort
 
 # Writing Yara Rules
 
+The rule that we are going to write is going to be named exe for executables related to Mimikatz.
 
 
+```yara
+rule MAL_Mimikatz_Win_exe_2024_08_24 {
+  meta:
+    description = "Detects Mimikatz executable"
+    author = "Bryan"
+    reference = "https://blog.gentlekiwi.com/Mimikatz"
+    date = "2024-08-24"
+  
+  strings:
+    $mz_header = "This program cannot be run in DOS mode"
+    $url = "blog.gentlekiwi.com/Mimikatz"
+  
+  condition:
+    $mz_header and $url
+}
+```
 # Integrate Yara logs to Splunk
+
+# Importing Yara Rules Logs into Splunk
+
+## 1. Set Up Yara to Generate Logs
+Configure Yara to log its findings to a specific directory:
+```bash
+yara -r /path/to/rules.yar /path/to/scan/ > /var/log/yara/yara.log
+```
+
+## 2. Install Splunk Universal Forwarder
+Download and install the Splunk Universal Forwarder from [Splunk Universal Forwarder](https://www.splunk.com/en_us/download/universal-forwarder.html) if you have not done it.
+
+## 3. Add Yara Log Directory to Splunk Forwarder
+Use the Splunk Universal Forwarder to monitor the Yara log directory:
+```bash
+sudo ./splunk add monitor /var/log/yara
+```
+
+## 4. Configure Splunk Inputs
+Edit the `inputs.conf` file to ensure the Yara logs are being indexed correctly:
+```bash
+sudo vim /opt/splunkforwarder/etc/system/local/inputs.conf
+```
+Add or modify the following lines:
+```ini
+[monitor:///var/log/yara]
+index = main
+sourcetype = yara_logs
+```
+
+## 5. Restart Splunk Forwarder
+Restart the Splunk Universal Forwarder to apply the changes:
+```bash
+sudo ./splunk restart
+```
+
+## 6. Verify Logs in Splunk
+Log in to the Splunk Web interface (`http://[your-IP]:8000`).
+- Go to `Search` > `Data Summary` and check if the Yara logs are appearing under the specified index and sourcetype.
+
+## 7. Create Dashboards or Alerts (Optional)
+Once the Yara logs are in Splunk, you can create dashboards or alerts to visualize and respond to any threats detected by Yara.
 
 ---
 
