@@ -67,85 +67,70 @@ alert tcp any any <> any 80 (msg:"HTTP Traffic Detected"; sid:1000005; rev:5;)
 ```
 
 
-## Integrate Snort logs to Splunk
-### Adding Snort to Splunk
-1. Install Snort App for Splunk:
-- Navigate to **Apps** **>** **Find more Apps**.
-- Search for ‘**Snort**’ and install the **"Snort Alert for Splunk"** app.
-- After installation, you should see Snort listed on the left side of the Splunk interface.
+# Sending Snort Logs to Splunk
 
-2. Install Splunk’s Universal Forwarder:
-- Download the 64-bit **.deb** package from Splunk Universal Forwarder.
-- After installation, add your Splunk server for log forwarding:
+This guide focuses on configuring Snort to send logs to Splunk, assuming both are already installed on the same system.
 
-	```bash
-	sudo ./splunk add forward-server 45.56.114.54:9997
+---
 
-3. Configure Outputs:
-- Navigate to the configuration directory:
+## 1. Configure Snort Logging
+1. Ensure Snort logs are saved in a directory accessible by Splunk:
+   - Default directory: `/var/log/snort/`
 
-	```bash
-	cd /opt/splunkforwarder/etc/system/local
+2. Confirm the log format is compatible with Splunk (e.g., plain text or syslog format).
 
+---
 
- - Open and verify `outputs.conf`:
+## 2. Set Up Splunk to Monitor Snort Logs
 
-	```bash
-	sudo vim outputs.conf
+1. **Access Splunk Web Interface:**
+   Open a browser and navigate to `http://localhost:8000`.
 
-- Ensure the correct IP address for your Splunk server is set.
+2. **Create a Data Input:**
+   - Go to `Settings > Data Inputs > Files & Directories`.
+   - Add a new data input pointing to `/var/log/snort/`.
 
+3. **Set Source Type:**
+   - Choose `Network & Security > snort` as the source type.
+   - Alternatively, create a custom source type if needed.
 
-### Testing Snort
-1. Run a Test with Snort:
-- Use the following command to run Snort and check logs:
+4. **Assign an Index:**
+   - Specify an index (e.g., `snort_logs`).
 
-	```bash
-	sudo snort -q -l /var/log/snort/ -i enp0s3 -A full -c /etc/snort/snort.conf
+---
 
+## 3. Verify Logs in Splunk
 
-- The command options are:
-	- `-q`: Quiet mode.
-	- `-l`: Log directory.
-	- `-i`: Network interface.
-	- `-A`: Alert mode.
-	- `-c`: Rules file.
+1. Trigger Snort alerts by simulating network activity (e.g., pinging or scanning):
+   ```bash
+   sudo snort -q -l /var/log/snort/ -i ens33 -A full -c /etc/snort/snort.conf
+   ```
 
-2. Verify Logs:
-- Check the logs in `/var/log/snort` to see pings from the attacker's PC.
+2. Check Splunk for indexed logs:
+   - Go to `Search > Data Summary`.
+   - Confirm logs are indexed under `snort_logs`.
 
+3. Run a search query to view logs:
+   ```spl
+   index=snort_logs
+   ```
 
-### Adding Snort Logs to Splunk
-1. Monitor Snort Alert Logs:
-- Add the Snort alert log to the Splunk forwarder:
+---
 
-	```bash
-	sudo ./splunk add monitor /var/log/snort/alert
+## 4. Optional: Field Extraction and Parsing
 
-2. Configure Inputs:
-- Navigate to the `inputs.conf` file in the search app directory:
+1. Use Splunk's field extraction feature to parse Snort logs into structured fields:
+   - Timestamp
+   - Source IP
+   - Destination IP
+   - Alert message
 
-	```bash
-	/opt/splunkforwarder/etc/apps/search
+2. Use regex to manually extract fields if needed.
 
+---
 
-- Edit `inputs.conf` as needed (ensure you have root access).
+By following these steps, Snort logs will be sent to Splunk for efficient analysis and monitoring.
 
-3. Restart Splunk:
-- Switch back to your user and restart Splunk:
-
-	```bash
-	sudo ./splunk restart
-
-4. Verify Data in Splunk:
-- Go to `http://[your-IP]:8000`, and click on **Search** > **Data Summary**.
-- Confirm that your host and sources are correctly added.
-
-### Final Snort Check
-- Ensure Snort is running by executing:
-
-	```bash
-	sudo snort -q -l /var/log/snort -i enp0s3 -A full -c /etc/snort/snort.conf
 
 ---
 
