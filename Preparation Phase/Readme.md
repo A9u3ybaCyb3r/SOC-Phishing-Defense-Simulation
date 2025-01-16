@@ -92,10 +92,12 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
 
 3. **Set Source Type:**
    - Choose `Network & Security > snort` as the source type.
-   - Alternatively, create a custom source type if needed.
+   - Also, you can create a custom source type if you need it.
 
 4. **Assign an Index:**
    - Specify an index (e.g., `snort_logs`).
+
+![image](https://github.com/user-attachments/assets/059bc6cb-5bc7-488f-9c57-3936519b2c17)
 
 ---
 
@@ -103,7 +105,7 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
 
 1. Trigger Snort alerts by simulating network activity (e.g., pinging or scanning):
    ```bash
-   sudo snort -q -l /var/log/snort/ -i ens33 -A full -c /etc/snort/snort.conf
+   sudo snort -q -l /var/log/snort/ -i [your interface] -A full -c /etc/snort/snort.conf
    ```
 
 2. Check Splunk for indexed logs:
@@ -125,7 +127,7 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
    - Destination IP
    - Alert message
 
-2. Use regex to manually extract fields if needed.
+2. Use regex to extract fields if needed manually.
 
 ---
 
