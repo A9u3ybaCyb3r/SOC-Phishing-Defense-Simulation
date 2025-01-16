@@ -36,9 +36,9 @@ In the preparation phase, several key configurations are made:
 
 # Writing Snort Rules
 
-We are going to use [Snort Rule Generator](https://anir0y.in/snort2-rulgen/) to make our rules.
+We will use [Snort Rule Generator](https://anir0y.in/snort2-rulgen/) to make our rules.
 
-First we are going to create a rule for testing pings.
+First, we are going to create a rule for testing pings.
 
 ```snort
 alert icmp any any -> 8.8.8.8 any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;)
