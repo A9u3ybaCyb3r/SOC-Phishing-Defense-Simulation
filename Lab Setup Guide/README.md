@@ -7,12 +7,11 @@
 4. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
 5. [Installing Snort](#installing-snort)
 6. [Setting up Kali Linux](#setting-up-kali-linux)
-7. [Setting up Windows 11](#setting-up-windows-11)
+7. [Setting up a Small Active Directory](#setting-up-a-small-active-directory)
 8. [Installing Splunk Forwarder](#installing-splunk-forwarder)
 9. [Installing LimaCharlie](#installing-limacharlie)
 	- [Deploying Endpoint Agents](#deploying-endpoint-agents) 
-10. [Installing Sysmon](#installing-sysmon)
-11. [Installing Yara on Windows](#installing-yara-on-windows)
+10. [Installing Yara on Windows](#installing-yara-on-windows)
 
 ---
 
@@ -418,7 +417,7 @@ You can view the current IP of the machine.
 
 ---
 
-## Setting up Windows 11
+## Setting up a Small Active Directory
 
 ### Download the ISO
 
@@ -429,75 +428,202 @@ You can view the current IP of the machine.
 
 ### Step 2: Browse Available Software
 - The Evaluation Center offers trial versions of Windows, Windows Server, SQL Server, and more.
-- For this lab, download **Windows 11 Enterprise**.
+- For this lab, download **Windows 10 Enterprise** and **Windows Server 2022**.
 
-### Step 3: Download Windows 11 Enterprise
-1. Select **Windows 11 Enterprise** from the list.
+### Step 3: Download Windows 10 Enterprise
+1. Select **Windows 10 Enterprise** from the list.
 2. Choose the **64-bit ISO** version for your region (e.g., United States).
 3. Fill out the registration form (generic information is acceptable).
 4. Click **Download Now** to start the download.
 
-### Step 4: Notes
-- Note that these downloads are large (Windows 11 Enterprise is ~5.0 GB).
+### Step 4: Download Windows Server 2022:
+   1. Similarly, select **Windows Server 2022** and open the download page.
+   2. Choose the **64-bit ISO** version.
+   3. Complete the registration form, then click **Download Now** to begin.
+
+### Step 5: Notes
+- Note that these downloads are large.
 - After 90 days, the OS may prompt for activation or start shutting down if inactive. Reboot as needed for testing.
 
 ---
 
-## Building The Machine
+## Steps for Domain Controller Setup
 
-**Create a New Virtual Machine in VMware:**
-   - Open VMware Workstation and click "Create a New Virtual Machine".
-   - Select "Typical (recommended)" and click Next.
-   - Choose "Installer disc image file (ISO)" and browse to the Windows 11 ISO file.
-   - Click Next and enter the product key if required (or choose to enter it later).
-   - Set the VM name (e.g., Windows11-VM) and specify the location where the VM files will be stored.
+### 1. Create a New Virtual Machine
+1. In VMware or VirtualBox, select **Create a New Virtual Machine**.
+2. Choose the **Typical setup** option.
+3. Browse for the Windows Server 2022 ISO file and select it.
 
-4. **Configure VM Settings:**
-   - **Memory:** Allocate RAM for the VM. It’s recommended to use 6–8 GB of RAM if your physical machine supports it.
-   - **Virtual Hard Disk:** Create a new virtual disk with a size of at least 50 GB (this can be adjusted later).
-   - Review your settings and click Finish.
+### 2. Operating System Selection
+- If **Windows Server 2022** isn’t listed, select **Windows Server 2016**. This won’t affect your setup.
 
-5. **Start the VM:**
-   - Click "Power on this virtual machine" to boot up the VM. The system will load the Windows installation process.
+### 3. Configure Disk Space
+- Allocate at least **60 GB** of disk space.
+- Select the option to **Split virtual disk into multiple files**.
 
-6. **Install Windows 11:**
-   - **Language and Region:** Select your preferred language, time, and keyboard layout, then click Next.
-   - **Install Now:** Click Install Now to begin the installation process.
-   - **License Agreement:** Accept the Windows license terms.
-   - **Custom Installation:** Choose the Custom installation option to perform a clean install.
-   - **Drive Allocation:** Click New to create a partition on the virtual hard disk and click Apply. This will automatically create additional partitions necessary for the installation.
-   - Click Next to begin the installation. The process may take some time.
+### 4. Adjust Virtual Machine Settings
+- Open **Edit Virtual Machine Settings**.
+- Set memory to **4–8 GB** (8 GB recommended if available).
+- Remove any floppy disk device if listed.
 
-7. **Complete the Initial Setup:**
-   - After the installation, Windows will prompt for some initial configuration:
-     - **Keyboard Layout:** Confirm the layout and click Next.
-     - **Sign-in:** Choose a local account setup (e.g., Username: User, Password: password).
-     - **Security Questions:** Provide answers to security questions (e.g., first pet, childhood nickname, birthplace).
-     - **Privacy Settings:** Adjust privacy settings as desired.
-     - **Cortana:** Choose Not Now when prompted about Cortana.
+### 5. Power On and Install Windows Server
+1. Power on the virtual machine.
+2. Press any key to boot from the ISO.
+3. Follow the installation prompts:
+   - Select language and region (default options are fine).
+   - Choose **Standard Evaluation Desktop Experience**.
+   - Accept license terms.
+   - Perform a **Custom installation** on Drive 0 (unallocated space).
 
-8. **Enhance VM Usability:**
-   - Install VMware Tools:
-     - In the VMware menu, go to "VM > Install VMware Tools".
-     - Open File Explorer in the VM, navigate to the VMware Tools installer and run it.
-     - Follow the on-screen instructions to complete the installation.
-     - Reboot the VM after installation.
+### 6. Complete Initial Setup
+- After installation, Windows will reboot.
+- Set an administrator password (e.g., `P@$$w0rd!`).
 
-9. **Optimize VM Display:**
-   - Once the system restarts, adjust the display settings as needed for optimal resolution and performance.
+### 7. Install VMware Tools (Optional)
+1. In VMware, go to **VM > Install VMware Tools**.
+2. Run the `setup64` file from the D drive.
+3. Select the **Complete installation** option and reboot if prompted.
 
-10. **Enable Shared Clipboard:**
-    - In VMware, go to "VM > Settings > Options tab > Guest Isolation".
-    - Enable "Drag and Drop" and "Copy and Paste" options to allow easy interaction between the host and the VM.
+### 8. Rename the Computer
+1. Go to **Start** > Search for **View your PC name**.
+2. Click **Rename this PC** and name your domain controller (e.g., `Jarvis-DC`).
+3. Restart the virtual machine.
 
-11. **Take a Snapshot:**
-    - To save the current state of your VM, go to "VM > Snapshot > Take Snapshot".
-    - Name the snapshot (e.g., Base-Install) to preserve the clean installation state.
+### 9. Promote to Domain Controller
+1. Open **Server Manager**.
+2. Select **Manage > Add Roles and Features**.
+3. In the wizard:
+   - Choose **Role-based or feature-based installation**.
+   - Select the server and add **Active Directory Domain Services (AD DS)**.
+4. After installation, click **Promote this server to a domain controller**.
+5. Select **Add a new forest** and enter a root domain name (e.g., `StarkTech.local`).
+6. Set the Forest and Domain functional levels to 2016.
+7. Set a Directory Services Restore Mode (DSRM) password.
+8. Accept default NetBIOS and path settings.
+9. Complete the installation and let the server reboot.
 
-12. **Ready for Use:**
-    - Your Windows 11 VM is now ready for use. You can proceed with any additional configuration or software installation as needed.
+### 10. Install Active Directory Certificate Services (AD CS)
+1. Add **Active Directory Certificate Services** via **Add Roles and Features**.
+2. Install **Certification Authority** as an Enterprise and Root CA.
+3. Create a new private key and set the validity period (e.g., 99 years).
+4. Restart the server after configuration.
 
-By following these steps, you will have a fully functional Windows 11 virtual machine in VMware, optimized for lab work and further configurations.
+## Steps for Windows 10 Client Setup
+
+### 1. Create New Virtual Machines
+1. In VMware or VirtualBox, select **Create a New Virtual Machine**.
+2. Use the Windows 10 ISO file.
+3. Skip the product key and select **Windows 10 Enterprise** as the version.
+
+### 2. Configure Virtual Machine Hardware
+- Allocate **60 GB** of disk space.
+- Remove the floppy disk drive.
+- Set memory to **4–8 GB**.
+- Use **NAT** for the network adapter.
+
+### 3. Install Windows 10
+1. Power on the VM and press a key to boot from the ISO.
+2. Complete the setup:
+   - Select language, region, and keyboard layout.
+   - Perform a **Custom Install**.
+   - Partition the drive and proceed.
+
+### 4. Configure User Accounts
+- For **IronMan**:
+  - Username: `Tony`
+  - Password: `Password1`
+- Set security questions with generic answers (e.g., "Bob").
+
+### 5. Finalize Setup
+- Install VMware Tools for each VM.
+- Rename the machines:
+  - `IronMan` for Tony.
+- Restart the machines.
+
+## Setting Up Users, Groups, and Policies
+
+### 1. Create Organizational Units (OUs)
+1. Open **Active Directory Users and Computers**.
+2. Right-click the domain root and create OUs for **Users** and **Groups**.
+
+### 2. Create User Accounts
+- **SQL Service Account**:
+  - Username: `SQLService`
+  - Password: `MyPassword123#`
+- **Standard Users**:
+  - Tony Stark: `tstark` / `Password1`
+
+### 3. Configure SMB File Share
+1. In **Server Manager**, go to **File and Storage Services > Shares**.
+2. Create an SMB share named `Projects`.
+3. Share path: `\\Jarvis-DC\Projects`.
+
+### 4. Set up a Service Principal Name (SPN)
+1. Open Command Prompt as Administrator.
+2. Use the following command to set up an SPN:
+   ```cmd
+     setspn -a Jarvis-DC/SQLService.StarkTech.local:60111 StarkTech\SQLService
+   ```
+3. Verify the SPN by querying with:
+ ```cmd
+     setspn -T StarkTech.local -Q */*
+   ```
+
+### 5: Set a Static IP Address (Optional)
+ 1. Go to Network & Internet Settings > Change adapter options.
+ 2. Open Properties for the network adapter, and configure IPv4 settings:
+    - IP Address: 10.19.19.250 (Static IP Address)
+    - Subnet Mask: 255.255.255.0
+    - Default Gateway: 10.19.19.2 (NAT Network Gateway)
+
+
+## Joining Windows 10 Client to the Domain
+
+1. Boot up the Domain Controller.
+2. On the Windows 10 machine:
+   - Configure Network Settings on Each Machine
+     1. Open **Network and Sharing Center**:
+     2. Go to **Change Adapter Settings**.
+     3. Right-click on **Ethernet0** and choose **Properties**.
+     4. Select **Internet Protocol Version 4 (TCP/IPv4)**, then **Properties**.
+     5. Use the domain controller’s IP as the **DNS** server (e.g., 10.19.19.250).
+     6. Save the settings.
+   - Go to **Settings > Accounts > Access work or school**.
+   - Select **Connect** and choose **Join this device to a local Active Directory domain**.
+   - Enter the domain name (e.g., `StarkTech.local`).
+   - Provide domain admin credentials.
+4. Restart the machines to complete the domain join.
+
+### Configure Local Users and Groups on Each Client Machine
+
+1. Enable and Set Password for the Local Administrator Account:
+-  Go to **Computer Management > Local Users and Groups > Users**.
+-  Double-click on **Administrator**, set the password (**Password1!**) and enable the account.
+
+2. Add Domain Users as Local Administrators:
+- Go to **Computer Management > Local Users and Groups > Groups > Administrators**.
+- Add **tstark** (**Tony Stark**) as a local administrator on **IronMan**.
+
+### Enable Network Discovery
+ - On each client, go to **Network & Sharing Center > Change advanced sharing settings**:
+   - Turn **ON** **Network discovery and File and printer sharing**.
+ 
+
+### Map the Shared Drive (Projects) on IronMan
+ - Open File Explorer:
+   - Go to **This PC > Map Network Drive**.
+ 
+ - Set Drive Mapping:
+   - Choose a drive letter (e.g., Z:).
+   - Enter the path \\Jarvis-DC\Projects.
+   - Select **Connect using different credentials**.
+   - Use the Administrator account and password for authentication.
+ 
+### Verify Access to Shared Drive
+ ◇ Ensure the HackMe shared drive is accessible on IronMan.
+---
+
+With this setup, you have a functional domain controller and Windows 10 clients ready for further testing or configurations.
 
 ---
 
@@ -617,32 +743,6 @@ By following these steps, you will have a fully functional Windows 11 virtual ma
 - Use the Autoruns feature to inspect and address persistence mechanisms on deployed endpoints.
 
 - Leverage the Console for remote command execution and endpoint management.
-
----
-
-## Installing Sysmon
-
-On the Windows 11 machine, we are going to also install Sysmon.
-1. **Download and Extract**:
-	- Available from [Microsoft Sysinternals](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon).
-	- Extract to a directory for use.
-2. **Choose a Configuration File**:
-	- Use pre-configured templates like:
-		- **SwiftOnSecurity Sysmon Config** ([GitHub link](https://github.com/SwiftOnSecurity/sysmon-config)).
-			- Default high-quality configuration for baseline monitoring.
-		- **Olaf Hartong's Modular Config** ([GitHub link](https://github.com/olafhartong/sysmon-modular)).
-			- Modular approach for granular monitoring.
-	- These files define what Sysmon monitors and logs.
-3. **Run the Installer**:
-	- Example command in **PowerShell** (run as Administrator):
-
-		```powershell
-		.\Sysmon64.exe -i .\sysmonconfig.xml --accept-eula
-		
-	- This installs Sysmon and applies the configuration.
-4. **Verify Installation**:
-	- Use net start to confirm Sysmon is running. Open **services.msc** and verify Sysmon’s status.
-	- Check **Event Viewer** under: `Applications and Service Logs > Microsoft > Windows > Sysmon`
 
 ---
 
