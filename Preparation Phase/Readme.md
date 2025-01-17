@@ -195,7 +195,7 @@ sudo ./splunk restart
 
 ## 6. Verify Logs in Splunk
 Log in to the Splunk Web interface (`http://[your-IP]:8000`).
-- Go to `Search` > `Data Summary` and check if the Yara logs are appearing under the specified index and sourcetype.
+- Go to `Search` > `Data Summary` and check if the Yara logs appear under the specified index and sourcetype.
 
 ## 7. Create Dashboards or Alerts (Optional)
 Once the Yara logs are in Splunk, you can create dashboards or alerts to visualize and respond to any threats detected by Yara.
