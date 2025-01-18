@@ -1,4 +1,4 @@
-# Adaptive Threat Detection and Incident Response Lab
+# Cyber Defense Lab
 
 ## Objective:
 
