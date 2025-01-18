@@ -7,7 +7,7 @@ In the preparation phase, several key configurations are made:
   - Rule 3: Checks for executable files in HTTP traffic looking for MZ headers.
   - Rule 4: Monitors standard HTTP traffic on port 80.
 - Lima Charlie: Integrated with the Windows workstations and server VMs for advanced threat detection and response capabilities.
-- YARA Rules: Rules are written to detect executable files in the downloads directory.
+  - YARA Rules: Rules are written to detect executable files in the downloads directory.
 - Splunk Configuration: Alerts are set up for detecting reverse TCP connections.
 - Forensic Tools: Tools like Kape, Registry Explorer, and FTK Imager are downloaded for forensic analysis.
 
