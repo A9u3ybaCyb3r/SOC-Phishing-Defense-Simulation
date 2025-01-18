@@ -32,6 +32,11 @@ In the preparation phase, several key configurations are made:
 - Clear the security log on the monitored Windows system to generate an Event ID 1102.
 - Confirm the alert triggers and appears in the **Triggered Alerts** section of Splunk.
 
+Alerts that we are going to create with splunk:
+
+1. Windows Defender Disabled
+
+
 ---
 
 # Writing Snort Rules
