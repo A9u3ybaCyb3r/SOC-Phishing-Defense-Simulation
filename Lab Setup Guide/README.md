@@ -550,7 +550,10 @@ By following these steps, you will have a fully functional Windows 10 virtual ma
 2. **Installing the Splunk Universal Forwarder**
 	- Download the Universal Forwarder on the Windows 11 machine from Splunk's official site: https://www.splunk.com/en_us/download/universal-forwarder.html
 	- During installation:
-		- Select **Security** and **System Logs** to forward.
+		- Accept the **Terms and Conditions** then choose **Customize Options**.
+  		- Continue using default options and skip the SSL Certificate.
+    		- Install on **Local System** 
+  		- Select **Security** and **System Logs** to forward.
 		- Specify the Splunk server's IP address and port (default: 8089 for management and 9997 for telemetry).
 		- Complete the installation.
 4. **Configuring Firewall Rules**
