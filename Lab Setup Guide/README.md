@@ -419,7 +419,7 @@ You can view the current IP of the machine.
 
 ## Installing Windows 11
 
-## 1. Download the Windows 10 ISO:
+## 1. Download the Windows 11 ISO:
 - Visit the Windows Evaluation Center.
 - Choose the 64-bit edition and English as the language.
 - Download the ISO file (approximately 5 GB in size). This may take a while depending on your internet speed.
@@ -441,7 +441,7 @@ You can view the current IP of the machine.
 ## 4. Start the VM:
 - Click **Power on this virtual machine** to boot up the VM. The system will load the Windows installation process.
 
-## 5. Install Windows 10:
+## 5. Install Windows 11:
 - **Language and Region**: Select your preferred language, time, and keyboard layout, then click **Next**.
 - **Install Now**: Click **Install Now** to begin the installation process.
 - **License Agreement**: Accept the Windows license terms.
