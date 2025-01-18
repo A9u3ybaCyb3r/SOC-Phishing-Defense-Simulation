@@ -2,14 +2,15 @@
 
 ## Table of Contents
 1. [Planning Phase](#planning-phase)
-2. [Create a new NAT Network](#create-a-new-nat-network)
-3. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
-4. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
-5. [Installing Snort](#installing-snort)
-6. [Setting up Kali Linux](#setting-up-kali-linux)
-7. [Installing Windows 11](#installing-windows-11)
-8. [Installing Splunk Forwarder](#installing-splunk-forwarder)
-9. [Installing LimaCharlie](#installing-limacharlie)
+2. [Changing VMware NAT Subnet Settings](#changing-vmware-nat-subnet-settings)
+  - [(On Virtualbox)Create a new NAT Network](#(on-virtualbox)create-a-new-nat-network)
+4. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
+5. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
+6. [Installing Snort](#installing-snort)
+7. [Setting up Kali Linux](#setting-up-kali-linux)
+8. [Installing Windows 11](#installing-windows-11)
+9. [Installing Splunk Forwarder](#installing-splunk-forwarder)
+10. [Installing LimaCharlie](#installing-limacharlie)
 	- [Deploying Endpoint Agents](#deploying-endpoint-agents)
  	- [Installing Yara Extension](#installing-yara-extension)
 
@@ -21,8 +22,60 @@ First, we build the network architecture for the lab environment using [Draw.io]
 
 - [Network Diagram](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Lab%20Setup%20Guide/CyberDefense-Lab%20Network%20Diagram.drawio.pdf)
 
+## Changing VMware NAT Subnet Settings
 
-## Creating a New NAT Network in VirtualBox
+This guide outlines the steps for configuring a NAT network in VMware Workstation Pro.
+
+## Step 1: Open VMware Network Editor
+1. Launch VMware Workstation Pro.
+2. Go to the **Edit** menu and select **Virtual Network Editor**.
+3. On macOS, it may be under **Preferences**.
+
+## Step 2: Select the NAT Network
+1. In the Virtual Network Editor, look for the **NAT (VMnet8)** network.
+2. Select **VMnet8** from the list of virtual networks.
+
+## Step 3: Change the Subnet IP
+1. Click the **Change Settings** button (you may need administrative privileges to proceed).
+2. In the NAT settings for **VMnet8**:
+   - Locate the **Subnet IP** field (e.g., `192.168.1.0`).
+   - Change it to your desired subnet, such as `10.19.19.0`.
+   - Ensure the subnet mask is appropriate (usually `255.255.255.0` for `/24`).
+
+## Step 4: Update the DHCP Settings (Optional)
+If you want VMware to automatically assign IPs in the new subnet:
+1. Click the **DHCP Settings** button.
+2. Adjust the **Start IP Address** and **End IP Address** to match the new subnet range (e.g., `10.19.19.2` to `10.19.19.254`).
+
+## Step 5: Save Changes
+1. Click **OK** to save the changes in the Virtual Network Editor.
+2. Close the editor.
+
+## Step 6: Restart VMware Services
+Restart the VMware NAT Service to apply the changes:
+- **On Windows**:
+   1. Open the **Services** app (type `services.msc` in the Start menu).
+   2. Locate **VMware NAT Service** and **VMware DHCP Service**.
+   3. Right-click each service and select **Restart**.
+- **On macOS**, restart VMware Workstation.
+
+## Step 7: Verify the Changes
+1. Power on a virtual machine connected to the NAT network.
+2. Check the assigned IP address using a command:
+   - **On Linux**: `ifconfig` or `ip a`
+   - **On Windows**: `ipconfig`
+3. Confirm the IP address is in the new subnet range (e.g., `10.19.19.x`).
+
+## Step 8: Test Connectivity
+1. Ping the NAT gateway (e.g., `10.19.19.1`) to ensure proper routing.
+2. Test internet access from the virtual machine to confirm NAT functionality.
+
+---
+
+**Note**: If you encounter any issues, ensure that your virtual machine is properly connected to the NAT network and that no firewall or network restrictions are blocking the connection.
+
+
+## (On Virtualbox) Creating a New NAT Network in VirtualBox
 
 1. Open VirtualBox and go to **File > Tools > Network Manager**.
 
