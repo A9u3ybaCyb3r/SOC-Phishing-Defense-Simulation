@@ -271,10 +271,10 @@ Visit [Exterro's FTK Product Downloads](https://www.exterro.com/ftk-product-down
 3. Open registry hives for analysis.
 
 ## KAPE (Kroll Artifact Parser and Extractor)
-◇ Purpose: Rapid triage and extraction of artifacts from live systems.
-◇ Download:
-  ▪ Primary: [KAPE](https://s3.amazonaws.com/cyb-us-prd-kape/kape.zip)
-  ▪ Alternate: [Kroll's KAPE Page](https://www.kroll.com/en/services/cyber-risk/incident-response-litigation-support/kroll-artifact-parser-extractor-kape)
+- Purpose: Rapid triage and extraction of artifacts from live systems.
+- Download:
+  - Primary: [KAPE](https://s3.amazonaws.com/cyb-us-prd-kape/kape.zip)
+  - Alternate: [Kroll's KAPE Page](https://www.kroll.com/en/services/cyber-risk/incident-response-litigation-support/kroll-artifact-parser-extractor-kape)
 
 ### Steps to Use:
 1. Download and extract KAPE.
