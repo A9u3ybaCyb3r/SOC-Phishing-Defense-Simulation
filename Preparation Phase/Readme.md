@@ -141,19 +141,18 @@ By following these steps, Snort logs will be sent to Splunk for efficient analys
 ## YARA Rule for mimikatz
 
 ```yara
-rule MAL_Mimikatz_Win_exe_2024_08_24 {
-  meta:
-    description = "Detects Mimikatz executable"
-    author = "Bryan"
-    reference = "https://blog.gentlekiwi.com/Mimikatz"
-    date = "2024-08-24"
+{
+     meta:
+       description = "Detects Mimikatz executable"
+       author = "Bryan"
+        reference = "https://blog.gentlekiwi.com/Mimikatz"
+        date = "2024-08-24"
   
-  strings:
-    $mz_header = "This program cannot be run in DOS mode"
-    $url = "blog.gentlekiwi.com/Mimikatz"
+    strings:
+        $mz_magic = { 4D 5A } // 'MZ' header (magic bytes)
   
   condition:
-    $mz_header and $url
+       $mz_magic at 0 // 'MZ' must be at the beginning of the file
 }
 ```
 
