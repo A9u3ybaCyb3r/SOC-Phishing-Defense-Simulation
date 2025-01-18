@@ -2,7 +2,7 @@
 
 ## Objective:
 
-To simulate a phishing attack in a controlled lab environment and demonstrate the full incident response lifecycle—from attack preparation and execution to threat detection, analysis, and mitigation—using tools like Splunk, Snort, Sysmon, and LimaCharlie. The project follows the NIST Incident Response Plan and Cyber Kill Chain framework to provide hands-on experience in detecting, analyzing, and responding to cyber threats while identifying key Indicators of Compromise (IOCs) and improving security measures.
+To simulate a phishing attack in a controlled lab environment and demonstrate the full incident response lifecycle from attack preparation and execution to threat detection, analysis, and mitigation—using tools like Splunk, Snort, Sysmon, and LimaCharlie. The project follows the NIST Incident Response Plan and Cyber Kill Chain framework to provide hands-on experience in detecting, analyzing, and responding to cyber threats while identifying key Indicators of Compromise (IOCs) and improving security measures.
 
 ## Overview
 
