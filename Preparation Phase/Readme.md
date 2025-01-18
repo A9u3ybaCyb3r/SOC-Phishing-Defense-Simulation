@@ -138,8 +138,7 @@ By following these steps, Snort logs will be sent to Splunk for efficient analys
 
 # Writing Yara Rules
 
-The rule that we are going to write is going to be named exe for executables related to Mimikatz.
-
+## YARA Rule for mimikatz
 
 ```yara
 rule MAL_Mimikatz_Win_exe_2024_08_24 {
@@ -158,98 +157,92 @@ rule MAL_Mimikatz_Win_exe_2024_08_24 {
 }
 ```
 
-# Importing Yara Rules Logs into Splunk
+### Rule Highlights:
+1. Metadata (**meta**):
+- Provides a description, author, and reference for documentation.
+2. Strings (**strings**):
+- Includes the tool's name and URL.
+- Adds specific commands or phrases commonly associated with Mimikatz, such as:
+  - **$mz_header** (identifies a Windows PE file).
+  - **$url** (URL of the creator).
+3. Condition (**condition**):
+- Triggers if any of the defined strings are found in the scanned file.
 
-## 1. Set Up Yara to Generate Logs
-Configure Yara to log its findings to a specific directory:
-```bash
-yara -r /path/to/rules.yar /path/to/scan/ > /var/log/yara/yara.log
+## YARA Rule for LaZagne.exe
+
+```yara
+rule Detect_lazagne {
+    meta:
+        description = "Detects LaZagne executable"
+        author = "Bryan"
+        date = "2025-01-17"
+        reference = "https://github.com/AlessandroZ/LaZagne"
+
+    strings:
+        $name = "lazagne" nocase
+        $url = "https://github.com/AlessandroZ/LaZagne" nocase
+        $string1 = "Retrieve credentials from browsers"
+        $string2 = "Dumping saved passwords"
+        $string3 = "Extracting credentials from system"
+
+    condition:
+        any of ($name, $url, $string1, $string2, $string3)
+}
 ```
 
-## 2. Install Splunk Universal Forwarder
-Download and install the Splunk Universal Forwarder from [Splunk Universal Forwarder](https://www.splunk.com/en_us/download/universal-forwarder.html) if you have not done it.
+### Rule Highlights:
+1. Metadata (**meta**):
+- Provides a description, author, and reference for documentation.
+2. Strings (**strings**):
+- The rule uses a combination of generic and specific strings to detect LaZagne:
+  - **$name**: Matches the term "lazagne" in a case-insensitive manner (**nocase**).
+  - **$url**: Detects the GitHub repository URL, useful for identifying files referencing the tool.
+  - **$string1**, **$string2**, **$string3**: Detects descriptive strings commonly associated with LaZagne's functionality, such as:
+    - **"Retrieve credentials from browsers"**
+    - **"Dumping saved passwords"**
+    - **"Extracting credentials from system"**
+3. Condition (**condition**):
+- Triggers if any of the defined strings are found in the scanned file.
+4. Case-Insensitive Matching:
+- Strings like **$name** and **$url** are marked with **nocase** to detect variations in capitalization.
 
-## 3. Add Yara Log Directory to Splunk Forwarder
-Use the Splunk Universal Forwarder to monitor the Yara log directory:
-```bash
-sudo ./splunk add monitor /var/log/yara
+## YARA Rule for Winpeas
+
+```yara
+rule Detect_winpeas {
+    meta:
+        description = "Detects winpeas executable or script"
+        author = "Bryan"
+        date = "2025-01-17"
+        reference = "https://github.com/carlospolop/PEASS-ng"
+
+    strings:
+        $name = "winpeas" nocase
+        $url = "https://github.com/carlospolop/PEASS-ng" nocase
+        $string1 = "Checking Windows enumeration"
+        $string2 = "Find interesting files"
+        $string3 = "Checking for installed programs"
+
+    condition:
+        any of ($name, $url, $string1, $string2, $string3)
+}
 ```
 
-## 4. Configure Splunk Inputs
-Edit the `inputs.conf` file to ensure the Yara logs are being indexed correctly:
-```bash
-sudo vim /opt/splunkforwarder/etc/system/local/inputs.conf
-```
-Add or modify the following lines:
-```ini
-[monitor:///var/log/yara]
-index = main
-sourcetype = yara_logs
-```
-
-## 5. Restart Splunk Forwarder
-Restart the Splunk Universal Forwarder to apply the changes:
-```bash
-sudo ./splunk restart
-```
-
-## 6. Verify Logs in Splunk
-Log in to the Splunk Web interface (`http://[your-IP]:8000`).
-- Go to `Search` > `Data Summary` and check if the Yara logs appear under the specified index and sourcetype.
-
-## 7. Create Dashboards or Alerts (Optional)
-Once the Yara logs are in Splunk, you can create dashboards or alerts to visualize and respond to any threats detected by Yara.
-
----
-
-# Integrate Sysmon to Splunk
-
-## Setting Up Microsoft Sysmon for Splunk
-
-## 1. Configure Sysmon to Collect Data
-- Sysmon logs events in `Applications and Services Logs/Microsoft/Windows/Sysmon/Operational` or on a WEC server if using Windows Event Collection (WEC).
-- **Prepare your Sysmon configuration file**:
-  - Start with the `SwiftOnSecurity/sysmon-config` template.
-  - Customize filtering rules to match your organization's needs.
-  - Avoid using Sysmon without a custom config to prevent unnecessary event logs or limited event monitoring.
-
-**Resources for Configuration**:
-- Microsoft Sysmon documentation
-- TrustedSec Sysmon Community Guide
-- Olaf Hartong's sysmon-modular
-- SwiftOnSecurity sysmon-config
-
-## 2. Install the Splunk Add-on for Sysmon
-1. **Download the Add-On**:
-   - From [Splunkbase](https://splunkbase.splunk.com/app/5709/) or via the Splunk Web app browser.
-2. **Decide Where to Install**:
-   - Use the deployment tables for guidance.
-3. **Follow Any Prerequisites**:
-   - Check if there are specific steps required before installation.
-4. **Complete Installation**:
-   - Refer to the installation walkthroughs for specific deployment setups (single-instance, distributed, or Splunk Cloud).
-
-## 3. Distributed Deployments
-- **Install the Add-On on Various Components**:
-  - **Search Heads**: Required for Sysmon knowledge management.
-  - **Indexers**: Required.
-  - **Forwarders** (Heavy/Universal): Install on monitored Windows endpoints or WEC for data collection.
-  - **Splunk Cloud**: Compatible via Self Service App Install (SSAI).
-
-**Compatibility Table**:
-- Supported on Search Head Clusters, Indexer Clusters, and Deployment Servers.
-
-## 4. Configure Inputs for the Splunk Add-on
-- **Default Inputs**:
-  - `WinEventLog://Microsoft-Windows-Sysmon/Operational` (enabled by default).
-  - `WinEventLog://WEC-Sysmon` (needs to be enabled for WEC architecture).
-
-**Steps for WEC Installation**:
-1. Go to `Settings > Data Inputs > Remote event log collections`.
-2. Enable 'WEC-Sysmon' log collection.
-3. Ensure Sysmon events are collected in `WEC-Sysmon` log or modify `inputs.conf`.
-4. If forwarding from WEC to its Sysmon channel, disable `WinEventLog://Microsoft-Windows-Sysmon/Operational` to prevent duplicate logs.
-
+### Rule Highlights:
+1. Metadata (**meta**):
+- Provides a description, author, and reference for documentation.
+2. Strings (**strings**):
+- Combines tool-specific and functional strings for reliable detection:
+  - **$name**: Matches the term "winpeas" in a case-insensitive manner (**nocase**).
+  - **$url**: Detects references to the GitHub repository for PEASS-ng.
+  - **$string1**, **$string2**, **$string3**: Captures descriptive strings commonly associated with WinPEAS functionality:
+    - **"Checking Windows enumeration"**
+    - **"Find interesting files"**
+    - **"Checking for installed programs"**
+3. Condition (**condition**):
+- Triggers if any of the defined strings are found in the scanned file.
+4. Case-Insensitive Matching:
+- Strings like **$name** and **$url** are marked with **nocase** to detect variations in capitalization.
 
 ---
 
