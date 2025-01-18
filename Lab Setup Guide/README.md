@@ -12,7 +12,7 @@
 8. [Installing Splunk Forwarder](#installing-splunk-forwarder)
 9. [Installing LimaCharlie](#installing-limacharlie)
 	- [Deploying Endpoint Agents](#deploying-endpoint-agents)
- 	- [Installing Yara Extension](#installing-yara-extension)
+
 
 ---
 
@@ -655,20 +655,6 @@ By following these steps, you will have a fully functional Windows 10 virtual ma
 - Use the Autoruns feature to inspect and address persistence mechanisms on deployed endpoints.
 
 - Leverage the Console for remote command execution and endpoint management.
-
----
-
-## Installing Yara Extension
-
-1. Download Yara:
-- Visit the [Yara GitHub Releases page](https://github.com/VirusTotal/yara/releases/tag/v4.5.2) and download the latest Windows binaries.
-
-2. Extract and Install:
-- Extract the downloaded archive to a directory of your choice.
-- Optionally, add the Yara executable to your system's PATH for easier access:
-- Search for "Environment Variables" in the Windows search bar.
-- Click "Environment Variables," then edit the "Path" variable under "System variables."
-- Add the directory where you extracted Yara.
 
 ---
 ### Now that we are done with the Lab Setup let's go to the [Preparation Phase](https://github.com/A9u3ybaCyb3r/Adaptive-Threat-Detection-and-Incident-Response-Lab/tree/main/Preparation%20Phase) to configure alerts and integrate logs to Splunk.
