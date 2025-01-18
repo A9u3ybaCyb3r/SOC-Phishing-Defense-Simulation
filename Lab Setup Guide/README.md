@@ -10,8 +10,8 @@
 7. [Installing Windows 11](#installing-windows-11)
 8. [Installing Splunk Forwarder](#installing-splunk-forwarder)
 9. [Installing LimaCharlie](#installing-limacharlie)
-	- [Deploying Endpoint Agents](#deploying-endpoint-agents) 
-10. [Installing Yara on Windows](#installing-yara-on-windows)
+	- [Deploying Endpoint Agents](#deploying-endpoint-agents)
+ 	- [Installing Yara Extension](#installing-yara-extension)
 
 ---
 
@@ -602,7 +602,7 @@ By following these steps, you will have a fully functional Windows 10 virtual ma
 
 ---
 
-## Installing Yara on Windows
+## Installing Yara Extension
 
 1. Download Yara:
 - Visit the [Yara GitHub Releases page](https://github.com/VirusTotal/yara/releases/tag/v4.5.2) and download the latest Windows binaries.
