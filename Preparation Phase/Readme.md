@@ -246,6 +246,14 @@ rule Detect_winpeas {
 
 ---
 
+# LimaCharlie Detection & Response Rules with Yara
+
+Examples: https://docs.limacharlie.io/v2/docs/detection-and-response-examples
+
+
+
+---
+
 # Downloading Forensic Tools on the Machine
 
 ## Installation and Setup
