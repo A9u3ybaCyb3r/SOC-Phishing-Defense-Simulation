@@ -8,7 +8,8 @@ In the preparation phase, several key configurations are made:
   - Rule 4: Monitors standard HTTP traffic on port 80.
 - **Lima Charlie**: It is integrated with a Windows workstation for advanced threat detection and response capabilities.
   - **YARA Rules**: Rules are written to detect executable files in the downloads directory.
-- **Splunk Configuration**: Alerts are set up for detecting reverse TCP connections.
+- **Splunk Configuration**: Alerts are set up to detect reverse TCP connections.
+  - Both **Snort Logs** and **Sysmon Logs** are going to be sent to **Splunk** for centralised monitoring and analysis.
 - **Forensic Tools**: Tools like Kape, Registry Explorer, and FTK Imager are downloaded for forensic analysis.
 
 ---
@@ -32,7 +33,7 @@ In the preparation phase, several key configurations are made:
 - Clear the security log on the monitored Windows system to generate an Event ID 1102.
 - Confirm the alert triggers and appears in the **Triggered Alerts** section of Splunk.
 
-Alerts that we are going to create with splunk:
+Alerts that we are going to create with Splunk:
 
 1. Windows Defender Disabled
 
@@ -252,9 +253,89 @@ rule Detect_winpeas {
 
 # LimaCharlie Detection & Response Rules with Yara
 
-Examples: https://docs.limacharlie.io/v2/docs/detection-and-response-examples
+Examples: [Detection & Response Rules Examples](https://docs.limacharlie.io/v2/docs/detection-and-response-examples)
 
+---
 
+# Setting Up Microsoft Sysmon for Splunk
+
+This detailed guide provides step-by-step instructions for configuring the Splunk Universal Forwarder to send logs to a Splunk server, setting up the necessary configurations, and verifying data ingestion.
+
+## 1. Inputs.conf Configuration
+
+- **File Location:**
+  - `C:\Program Files\Splunk Universal Forwarder\etc\system\default\inputs.conf`
+
+- **Important:** Do not edit the default `inputs.conf`. Instead, create a new one under:
+  - `C:\Program Files\Splunk Universal Forwarder\etc\system\local\inputs.conf`
+
+- **Steps:**
+  1. Open Notepad as Administrator.
+  2. Create a new file with the name `inputs.conf`.
+  3. Copy the desired configuration into this file, specifying the logs to forward (e.g., security, application, system, Sysmon).
+  4. Save the file as `inputs.conf` in the `local` directory.
+
+- **Configuration:**
+  ```
+  [WinEventLog://Application]
+  index = endpoint
+  disabled = false
+
+  [WinEventLog://Security]
+  index = endpoint
+  disabled = false
+
+  [WinEventLog://System]
+  index = endpoint
+  disabled = false
+
+  [WinEventLog://Microsoft-Windows-Sysmon/Operational]
+  index = endpoint
+  disabled = false
+  renderXml = true
+  source = XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+  ```
+
+- Reference: [Active Directory Project GitHub](https://github.com/MyDFIR/Active-Directory-Project)
+
+## 2. Restart Splunk Forwarder Service
+
+1. Navigate to **Services** in Windows.
+2. Locate **Splunk Forwarder Service**.
+3. Update the **Log On As** account:
+   - Change from `NT Service\SplunkForwarder` to **Local System Account**.
+4. Restart the service to apply changes.
+
+## 3. Splunk Server Configuration
+
+1. **Create Index:**
+   - Log in to the Splunk web portal.
+   - Go to **Settings > Indexes**.
+   - Create a new index named `Endpoint`.
+
+2. **Enable Receiving:**
+   - Go to **Settings > Forwarding and Receiving**.
+   - Under **Receive Data**, configure a new receiving port (e.g., `9997`).
+
+## 4. Verify Data Ingestion
+
+1. Go to **Apps > Search & Reporting**.
+2. Search for:
+   ```
+   index=Endpoint
+   ```
+3. Verify:
+   - Event count.
+   - Host details (e.g., Bob-PC).
+   - Sources and sourcetypes (e.g., security, application, system, Sysmon).
+
+## Key Notes
+
+- Restart the Splunk Forwarder service after every `inputs.conf` update.
+- Ensure the Splunk server has the same index (`Endpoint`) as specified in `inputs.conf`.
+- Use the default port (`9997`) for data forwarding.
+
+By following these steps, you can successfully configure and verify the Splunk Universal Forwarder to send logs to your Splunk server.
 
 ---
 
@@ -262,7 +343,7 @@ Examples: https://docs.limacharlie.io/v2/docs/detection-and-response-examples
 
 ## Installation and Setup
 - Downloading FTK Imager:
-Visit [Exterro's FTK Product Downloads](https://www.exterro.com/ftk-product-downloads/) to download the latest version. The website may require basic information and CAPTCHA verification.
+To download the latest version, visit [Exterro's FTK Product Downloads](https://www.exterro.com/ftk-product-downloads/). The website may require basic information and CAPTCHA verification.
 
 ### Installation Steps:
 1. Run the installer and follow the wizard.
