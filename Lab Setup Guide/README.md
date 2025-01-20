@@ -3,15 +3,16 @@
 ## Table of Contents
 1. [Planning Phase](#planning-phase)
 2. [Changing VMware NAT Subnet Settings](#changing-vmware-nat-subnet-settings)
-	- [(On Virtualbox)Create a new NAT Network](#(on-virtualbox)create-a-new-nat-network)
+	- [(On Virtualbox) Create a new NAT Network](#(on-virtualbox)-create-a-new-nat-network)
 3. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
 4. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
 5. [Installing Snort](#installing-snort)
 6. [Setting up Kali Linux](#setting-up-kali-linux)
-7. [Installing Windows 11](#installing-windows-11)
+7. [Installing Windows 10](#installing-windows-11)
 8. [Installing Splunk Forwarder](#installing-splunk-forwarder)
 9. [Installing LimaCharlie](#installing-limacharlie)
 	- [Deploying Endpoint Agents](#deploying-endpoint-agents)
+10. [Installing Sysmon](#installing-sysmon)
 
 
 ---
@@ -470,9 +471,9 @@ You can view the current IP of the machine.
 
 ---
 
-## Installing Windows 11
+## Installing Windows 10
 
-## 1. Download the Windows 11 ISO:
+## 1. Download the Windows 10 ISO:
 - Visit the Windows Evaluation Center.
 - Choose the 64-bit edition and English as the language.
 - Download the ISO file (approximately 5 GB in size). This may take a while depending on your internet speed.
@@ -483,7 +484,7 @@ You can view the current IP of the machine.
 - Choose **Installer disc image file (ISO)** and browse to the Windows 10 ISO you downloaded.
 - Click **Next**.
 - Enter a name for the VM (e.g., `Bob-VM`) and specify a location for the VM files.
-- Allocate the disk size (e.g., 50 GB) and choose **Store virtual disk as a single file**.
+- Allocate the disk size (e.g., 60 GB) and choose **Store virtual disk as a single file**.
 - Click **Finish** to create the VM.
 
 ## 3. Configure VM Settings:
@@ -494,11 +495,11 @@ You can view the current IP of the machine.
 ## 4. Start the VM:
 - Click **Power on this virtual machine** to boot up the VM. The system will load the Windows installation process.
 
-## 5. Install Windows 11:
+## 5. Install Windows 10:
 - **Language and Region**: Select your preferred language, time, and keyboard layout, then click **Next**.
 - **Install Now**: Click **Install Now** to begin the installation process.
 - **License Agreement**: Accept the Windows license terms.
-- **Custom Installation**: Choose the Custom installation option to perform a clean install.
+- **Custom Installation**: Choose the **Custom Installation** option to perform a clean install.
 - **Drive Allocation**: Click **New** to create a partition on the virtual hard disk and click **Apply**. This will automatically create additional partitions necessary for the installation.
 - Click **Next** to begin the installation. The process may take some time.
 
@@ -655,6 +656,47 @@ By following these steps, you will have a fully functional Windows 10 virtual ma
 - Use the Autoruns feature to inspect and address persistence mechanisms on deployed endpoints.
 
 - Leverage the Console for remote command execution and endpoint management.
+
+---
+
+## Installing Sysmon
+
+### 1. Download Sysmon
+Sysmon is available from the Microsoft Sysinternals website:
+[https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)
+
+### 2. Obtain Configuration Files
+Use community-supported configurations as a baseline for setup:
+
+- [**SwiftOnSecurity's Sysmon Configuration**](https://github.com/SwiftOnSecurity/sysmon-config): A high-quality default configuration.
+
+- [**Olaf Hartong's Sysmon Modular**](https://github.com/olafhartong/sysmon-modular): A modular and customizable approach.
+  - **We will choose this one to send the logs to Splunk**.
+
+### 3. Install Sysmon
+
+1. Extract the Sysmon executable from the downloaded package.
+2. Run the installer with administrative privileges in PowerShell using a configuration file:
+
+   ```powershell
+   sysmon64.exe -i <config-file-path> -accepteula
+   ```
+
+   Replace `<config-file-path>` with the path to your chosen configuration file.
+
+### 4. Verify Installation
+
+1. **Check Running Services**:
+   ```powershell
+   net start
+   ```
+
+   Ensure the Sysmon service is listed as running.
+
+2. **Confirm Sysmon Logs**:
+   Open the Event Viewer and navigate to **Applications and Service Logs > Microsoft > Windows > Sysmon > Operational**
+   - Verify that Sysmon is logging events as expected.
+
 
 ---
 ### Now that we are done with the Lab Setup let's go to the [Preparation Phase](https://github.com/A9u3ybaCyb3r/Adaptive-Threat-Detection-and-Incident-Response-Lab/tree/main/Preparation%20Phase) to configure alerts and integrate logs to Splunk.
