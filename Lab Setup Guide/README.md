@@ -588,9 +588,10 @@ By following these steps, you will have a fully functional Windows 10 virtual ma
 
 - Select a data residency region for storage compliance (e.g., Canada).
 
-- Enable demo configuration for a pre-populated environment or choose a pre-made template (e.g., incident response).
+- Enable demo configuration for a pre-populated environment or choose a pre-made template (e.g., **Incident Response**).
 
-   - In our case, we are going to leave the demo configuration with no pre-configurations
+![image](https://github.com/user-attachments/assets/cd238046-bd85-4cc5-b01c-67476542c7fb)
+
 
 ### Deploying Endpoint Agents
 
