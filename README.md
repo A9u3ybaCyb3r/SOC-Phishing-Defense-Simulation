@@ -19,7 +19,7 @@ On a standalone Windows 11 machine, an attacker sends a phishing email containin
 ## Skills Learned:
 
 - **Intrusion Detection:** Configuring Snort IDS to identify and alert on network-based threats.
-- **Endpoint Threat Monitoring and Response:** Using LimaCharlie EDR to detect and contain endpoint threats in real-time.
+- **Endpoint Threat Monitoring and Response:** Using LimaCharlie EDR to detect and contain endpoint threats in real time.
 - **Security Information and Event Management (SIEM):** Setting up and managing Splunk SIEM for log analysis, alert configuration, and network anomaly tracking.
 - **Incident Response:** Applying the NIST Incident Response Plan framework to handle each phase of cyber incidents, from detection through to remediation.
 - **Threat Analysis:** Leveraging the MITRE ATT&CK Framework and Cyber Kill Chain to analyze attacker tactics, techniques, and procedures (TTPs).
@@ -36,13 +36,15 @@ This lab leverages various industry-standard tools and frameworks for comprehens
 
 2. **LimaCharlie EDR** - Endpoint Detection and Response platform providing continuous endpoint monitoring, threat detection, and response.
 
-3. **Splunk SIEM** - Security Information and Event Management system for log analysis, alerting, and security incident management.
+3. **Sysmon** -  Windows system service and device driver that monitors and logs critical system activity to the Windows Event Log
 
-4. **Cyber Kill Chain** - A model that breaks down each phase of an attack, assisting in identifying and mitigating threats at various stages.
+4. **Splunk SIEM** - Security Information and Event Management system for log analysis, alerting, and security incident management.
 
-5. **Meterpreter** - A Metasploit payload used to simulate attacks, such as reverse shells, persistence tactics, and lateral movement.
+5. **Cyber Kill Chain** - A model that breaks down each phase of an attack, assisting in identifying and mitigating threats at various stages.
 
-6. **NIST Incident Response Plan** - Structured framework for managing each phase of incident response, from preparation to recovery.
+6. **Meterpreter** - A Metasploit payload used to simulate attacks, such as reverse shells, persistence tactics, and lateral movement.
+
+7. **NIST Incident Response Plan** - Structured framework for managing each phase of incident response, from preparation to recovery.
 
 Each tool is integral to achieving a practical and robust cybersecurity defense and incident response setup.
 
