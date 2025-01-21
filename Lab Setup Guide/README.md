@@ -561,6 +561,8 @@ By following these steps, you will have a fully functional Windows 10 virtual ma
 	- Create rules under **Advanced Settings**:
 		- **Inbound Rule**: Allow TCP ports 8089 and 9997.
 		- **Outbound Rule**: Allow TCP ports 8089 and 9997.
+  		- **Allow the connection** on both of the rules.
+    		- Use all of the profiles.
 		- Name the rules "Splunk Forwarder."
 5. **Verifying Data Transmission**
 	- In Splunk, go to **Apps > Search & Reporting**.
