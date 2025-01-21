@@ -54,10 +54,12 @@ In this final phase of the Cyber Kill Chain, the attacker:
   Attachment: Social_Media_Policy.docx (macro-enabled Word document).
   ```
 - Create the payload using DS Viper
-- Host the payload on Python HTTP server 
+- Host the payload on Python HTTP server on port **8000**
   
 
 ## Delivery Phase
+
+- We will send the email using Emkei's Fake Mailer
 
 ## Exploitation Phase
 
