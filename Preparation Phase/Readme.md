@@ -277,22 +277,33 @@ This detailed guide provides step-by-step instructions for configuring the Splun
 
 - **Configuration:**
   ```
+
   [WinEventLog://Application]
+
   index = endpoint
+
   disabled = false
 
   [WinEventLog://Security]
+
   index = endpoint
+
   disabled = false
 
   [WinEventLog://System]
+
   index = endpoint
+
   disabled = false
 
   [WinEventLog://Microsoft-Windows-Sysmon/Operational]
+
   index = endpoint
+
   disabled = false
+
   renderXml = true
+
   source = XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
   ```
 
@@ -311,7 +322,7 @@ This detailed guide provides step-by-step instructions for configuring the Splun
 1. **Create Index:**
    - Log in to the Splunk web portal.
    - Go to **Settings > Indexes**.
-   - Create a new index named `Endpoint`.
+   - Create a new index named `endpoint`.
 
 2. **Enable Receiving:**
    - Go to **Settings > Forwarding and Receiving**.
