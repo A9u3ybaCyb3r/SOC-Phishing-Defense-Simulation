@@ -276,8 +276,8 @@ This detailed guide provides step-by-step instructions for configuring the Splun
   4. Save the file as `inputs.conf` in the `local` directory.
 
 - **Configuration:**
+  
   ```
-
   [WinEventLog://Application]
 
   index = endpoint
