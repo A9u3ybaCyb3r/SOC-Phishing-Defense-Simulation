@@ -19,14 +19,53 @@ Developed by Lockheed Martin, it is a conceptual framework that describes the st
 - The attacker modifies the **Windows Registry** to create a backdoor for persistence.
 
 ## Command and Control Phase
-- The attacker executes commands remotely, disables Windows Defender to execute Mimikatz, explores the compromised system, and prepares for data exfiltration.
+- The attacker executes commands remotely, escalates privileges, disables Windows Defender to execute Mimikatz, explores the compromised system, and prepares for data exfiltration.
 
 ## Actions on Objectives Phase
 In this final phase of the Cyber Kill Chain, the attacker:
-- **Defender Deactivation** to dump all of the credentials using Mimikatz.
+- **Escalates Privileges** to have full control of the machine.  
+-  **Disables Windows Defender** to dump all of the credentials using Mimikatz.
 - Adds a new user: `EvilUser` to the computer.
 - **Exfiltrates sensitive data** (e.g., `passwords.txt`, `secrets.txt`).
 - Deletes the exfiltrated file and clears system logs to erase evidence.
+
+---
+
+# Step by Step to Full Compromise
+
+## Reconnaissance and Weaponization
+
+- We are going to assume that we already have the target's email.
+- Create an email:
+  ```
+  Social Media Policy Update
+  Subject: Mandatory: Review and Acknowledge Updated Social Media Policy
+  Email Body:
+  "Hi [Name],
+  We’ve updated our company’s social media policy. Please download and review the attached document, then confirm your acknowledgment by replying to this email.
+
+  [Download Policy Document]
+
+  Compliance is required by [specific date].
+
+  Best regards,
+  [Fake HR Department]"
+
+  Attachment: Social_Media_Policy.docx (macro-enabled Word document).
+  ```
+- Create the payload using DS Viper
+- Host the payload on Python HTTP server 
+  
+
+## Delivery Phase
+
+## Exploitation Phase
+
+## Exploitation Phase
+
+## Installation Phase
+
+## Command and Control Phase
 
 ---
 
