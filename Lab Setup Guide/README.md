@@ -673,6 +673,7 @@ Use community-supported configurations as a baseline for setup:
 
 - [**Olaf Hartong's Sysmon Modular**](https://github.com/olafhartong/sysmon-modular): A modular and customizable approach.
   - **We will choose this one to send the logs to Splunk**.
+  - Download the **sysmonconfig.xml** file
 
 ### 3. Install Sysmon
 
