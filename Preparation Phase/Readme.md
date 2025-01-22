@@ -255,6 +255,179 @@ rule Detect_winpeas {
 
 Examples: [Detection & Response Rules Examples](https://docs.limacharlie.io/v2/docs/detection-and-response-examples)
 
+## Create Generic D&R Rules For Yara Detections
+
+## Rule 1: General YARA Detection
+1. Navigate to **Automation > D&R Rules**.
+
+2. Create a new rule titled YARA Detection.
+
+3. Add the following Detect block:
+
+
+```
+event: YARA_DETECTION
+op: and
+rules:
+  - not: true
+    op: exists
+    path: event/PROCESS/*
+  - op: exists
+    path: event/RULE_NAME
+```
+
+
+4. Add the following Respond block:
+
+
+```
+- action: report
+  name: YARA Detection {{ .event.RULE_NAME }}
+- action: add tag
+  tag: yara_detection
+  ttl: 80000
+```
+
+
+
+Rule 2: YARA Detection in Memory
+1. Create another rule titled YARA Detection in Memory.
+
+2. Add the following Detect block:
+
+```
+event: YARA_DETECTION
+op: and
+rules:
+  - op: exists
+    path: event/RULE_NAME
+  - op: exists
+    path: event/PROCESS/*
+```
+
+
+3. Add the following Respond block:
+
+
+```
+- action: report
+  name: YARA Detection in Memory {{ .event.RULE_NAME }}
+- action: add tag
+  tag: yara_detection_memory
+  ttl: 80000
+```
+
+
+
+Step 3: Automate YARA Scans for Downloaded EXEs
+
+Rule: Automatically Scan Downloaded EXEs
+1. Create a rule titled YARA Scan Downloaded EXE.
+
+2. Add the following Detect block:
+
+
+```
+event: NEW_DOCUMENT
+op: and
+rules:
+  - op: starts with
+    path: event/FILE_PATH
+    value: C:\Users\
+  - op: contains
+    path: event/FILE_PATH
+    value: \Downloads\
+  - op: ends with
+    path: event/FILE_PATH
+    value: .exe
+```
+
+
+3. Add the following Respond block:
+
+
+```
+- action: report
+  name: EXE dropped in Downloads directory
+- action: task
+  command: >-
+    yara_scan hive://yara/mimikatz -f "{{ .event.FILE_PATH }}"
+  investigation: Yara Scan Exe
+  suppression:
+    is_global: false
+    keys:
+      - '{{ .event.FILE_PATH }}'
+      - Yara Scan Exe
+    max_count: 1
+    period: 1m
+```
+
+
+
+Step 4: Automate YARA Scans for Processes Launched from Downloads
+
+Rule: Automatically Scan Launched Processes
+1. Create a rule titled YARA Scan Process Launched from Downloads.
+
+2. Add the following Detect block:
+
+
+```
+event: NEW_PROCESS
+op: and
+rules:
+  - op: starts with
+    path: event/FILE_PATH
+    value: C:\Users\
+  - op: contains
+    path: event/FILE_PATH
+    value: \Downloads\
+```
+
+
+3. Add the following Respond block:
+
+```
+- action: report
+  name: Execution from Downloads directory
+- action: task
+  command: yara_scan hive://yara/mimikatz --pid "{{ .event.PROCESS_ID }}"
+  investigation: Yara Scan Process
+  suppression:
+    is_global: false
+    keys:
+      - '{{ .event.PROCESS_ID }}'
+      - Yara Scan Process
+    max_count: 1
+    period: 1m
+```
+
+
+
+Step 5: Test the Rules
+
+Simulate Download and Execution
+1. Place the Mimikatz executable (mimikatz.exe) in the C:\Users\User\Downloads folder.
+
+2. Move it to another location and back to trigger the NEW_DOCUMENT event using PowerShell or moving it manually:
+
+```
+Move-Item -Path C:\Users\User\Downloads\mimikatz.exe -Destination C:\Users\User\Documents\mimikatz.exe
+Move-Item -Path C:\Users\User\Documents\mimikatz.exe -Destination C:\Users\User\Downloads\mimikatz.exe
+```
+
+
+3. Launch the Mimikatz executable to trigger the NEW_PROCESS event:
+
+```
+C:\Users\User\Downloads\mimikatz.exe
+```
+
+
+4. Verify detections in the Detections tab.
+
+This approach ensures that both file and process activities involving Mimikatz are monitored and flagged automatically. You can further refine the YARA rule or detection logic based on your specific use case.
+
 ---
 
 # Setting Up Microsoft Sysmon for Splunk
