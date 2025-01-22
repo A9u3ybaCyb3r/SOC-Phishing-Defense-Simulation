@@ -253,75 +253,11 @@ rule Detect_winpeas {
 
 # LimaCharlie Detection & Response Rules with Yara
 
-Examples: [Detection & Response Rules Examples](https://docs.limacharlie.io/v2/docs/detection-and-response-examples)
+## Examples: [Detection & Response Rules Examples](https://docs.limacharlie.io/v2/docs/detection-and-response-examples)
 
-## Create Generic D&R Rules For Yara Detections
+## Step 1: Automate YARA Scans for Downloaded EXEs
 
-## Rule 1: General YARA Detection
-1. Navigate to **Automation > D&R Rules**.
-
-2. Create a new rule titled YARA Detection.
-
-3. Add the following Detect block:
-
-
-```
-event: YARA_DETECTION
-op: and
-rules:
-  - not: true
-    op: exists
-    path: event/PROCESS/*
-  - op: exists
-    path: event/RULE_NAME
-```
-
-
-4. Add the following Respond block:
-
-
-```
-- action: report
-  name: YARA Detection {{ .event.RULE_NAME }}
-- action: add tag
-  tag: yara_detection
-  ttl: 80000
-```
-
-
-
-Rule 2: YARA Detection in Memory
-1. Create another rule titled YARA Detection in Memory.
-
-2. Add the following Detect block:
-
-```
-event: YARA_DETECTION
-op: and
-rules:
-  - op: exists
-    path: event/RULE_NAME
-  - op: exists
-    path: event/PROCESS/*
-```
-
-
-3. Add the following Respond block:
-
-
-```
-- action: report
-  name: YARA Detection in Memory {{ .event.RULE_NAME }}
-- action: add tag
-  tag: yara_detection_memory
-  ttl: 80000
-```
-
-
-
-Step 3: Automate YARA Scans for Downloaded EXEs
-
-Rule: Automatically Scan Downloaded EXEs
+### Rule: Automatically Scan Downloaded EXEs
 1. Create a rule titled YARA Scan Downloaded EXE.
 
 2. Add the following Detect block:
@@ -364,9 +300,9 @@ rules:
 
 
 
-Step 4: Automate YARA Scans for Processes Launched from Downloads
+## Step 2: Automate YARA Scans for Processes Launched from Downloads
 
-Rule: Automatically Scan Launched Processes
+### Rule: Automatically Scan Launched Processes
 1. Create a rule titled YARA Scan Process Launched from Downloads.
 
 2. Add the following Detect block:
@@ -404,9 +340,9 @@ rules:
 
 
 
-Step 5: Test the Rules
+## Step 3: Test the Rules
 
-Simulate Download and Execution
+### Simulate Download and Execution
 1. Place the Mimikatz executable (mimikatz.exe) in the C:\Users\User\Downloads folder.
 
 2. Move it to another location and back to trigger the NEW_DOCUMENT event using PowerShell or moving it manually:
@@ -426,7 +362,7 @@ C:\Users\User\Downloads\mimikatz.exe
 
 4. Verify detections in the Detections tab.
 
-This approach ensures that both file and process activities involving Mimikatz are monitored and flagged automatically. You can further refine the YARA rule or detection logic based on your specific use case.
+This approach ensures that the file and process activities involving Mimikatz are monitored and flagged automatically. Based on your specific use case, you can further refine the YARA rule or detection logic.
 
 ---
 
