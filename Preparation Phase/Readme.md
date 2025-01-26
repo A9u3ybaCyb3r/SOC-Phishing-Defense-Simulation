@@ -147,7 +147,7 @@ By following these steps, Snort logs will be sent to Splunk for efficient analys
 ## YARA Rule for mimikatz
 
 ```yara
-{
+rule Detect_mimikatz {
      meta:
        description = "Detects Mimikatz executable"
        author = "Bryan"
