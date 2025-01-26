@@ -288,7 +288,8 @@ rules:
   name: EXE dropped in Downloads directory
 - action: task
   command: >-
-    yara_scan hive://yara/mimikatz -f "{{ .event.FILE_PATH }}"
+    yara_scan hive://yara/lazagne hive://yara/winpeas
+    hive://yara/mimikatz -f "{{ .event.FILE_PATH }}"
   investigation: Yara Scan Exe
   suppression:
     is_global: false
@@ -328,7 +329,9 @@ rules:
 - action: report
   name: Execution from Downloads directory
 - action: task
-  command: yara_scan hive://yara/mimikatz --pid "{{ .event.PROCESS_ID }}"
+  command: >-
+    yara_scan hive://yara/lazagne hive://yara/winpeas
+    hive://yara/mimikatz -f "{{ .event.FILE_PATH }}"
   investigation: Yara Scan Process
   suppression:
     is_global: false
