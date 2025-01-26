@@ -350,7 +350,7 @@ rules:
 1. Place the Mimikatz executable (mimikatz.exe) in the C:\Users\User\Downloads folder.
 
 2. Move it to another location and back to trigger the NEW_DOCUMENT event using PowerShell or moving it manually:
-
+- For example:
 ```
 Move-Item -Path C:\Users\User\Downloads\mimikatz.exe -Destination C:\Users\User\Documents\mimikatz.exe
 Move-Item -Path C:\Users\User\Documents\mimikatz.exe -Destination C:\Users\User\Downloads\mimikatz.exe
@@ -358,7 +358,7 @@ Move-Item -Path C:\Users\User\Documents\mimikatz.exe -Destination C:\Users\User\
 
 
 3. Launch the Mimikatz executable to trigger the NEW_PROCESS event:
-
+- For example:
 ```
 C:\Users\User\Downloads\mimikatz.exe
 ```
