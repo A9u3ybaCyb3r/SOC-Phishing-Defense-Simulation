@@ -37,3 +37,11 @@ The **NIST Cybersecurity Framework** (**CSF**) is a set of guidelines, best prac
 - Update incident response policies and procedures based on insights.
 - Share findings with relevant stakeholders to enhance organizational resilience.
 ---
+
+## Actions on Incident Response
+
+Here you can see all of the actions I did in each phase of the Incident Response.
+1. Preparation
+2. Detection and Analysis
+3. Containment, Eradication, and Recovery
+4. Post-Incident Activity
