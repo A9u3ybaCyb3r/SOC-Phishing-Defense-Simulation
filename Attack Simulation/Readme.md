@@ -41,3 +41,11 @@ DS Viper is a powerful tool designed to bypass Windows Defender's security mecha
 ### Emkei's Fake Mailer
 
 Emkei's Fake Mailer is an online tool that allows users to send spoofed emails by forging the "From" address and other email headers. It is typically used to simulate email communications from any sender address, making it appear as though the email originates from a legitimate source.
+
+### WinPEAS
+
+WinPEAS (**Windows Privilege Escalation Awesome Script**) is a post-exploitation enumeration tool designed to identify potential privilege escalation vectors on Windows systems. It is part of the Privilege Escalation Awesome Scripts Suite (**PEASS**) and is widely used by penetration testers and attackers to automate the process of discovering misconfigurations, vulnerabilities, or sensitive information that can be leveraged to gain higher privileges.
+
+### LaZagne
+
+LaZagne is an open-source tool specifically designed to retrieve stored passwords from various applications on a system. It automates the process of extracting credentials from commonly used software and is widely employed in penetration testing and red team engagements.
