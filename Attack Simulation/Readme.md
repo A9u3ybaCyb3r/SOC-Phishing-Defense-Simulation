@@ -31,46 +31,6 @@ In this final phase of the Cyber Kill Chain, the attacker:
 
 ---
 
-# Step by Step to Full Compromise
-
-## Reconnaissance and Weaponization
-
-- We are going to assume that we already have the target's email.
-- Create an email:
-  ```
-  Social Media Policy Update
-  Subject: Mandatory: Review and Acknowledge Updated Social Media Policy
-  Email Body:
-  "Hi [Name],
-  We’ve updated our company’s social media policy. Please download and review the attached document, then confirm your acknowledgment by replying to this email.
-
-  [Download Policy Document]
-
-  Compliance is required by [specific date].
-
-  Best regards,
-  [Fake HR Department]"
-
-  Attachment: Social_Media_Policy.docx (macro-enabled Word document).
-  ```
-- Create the payload using DS Viper
-- Host the payload on Python HTTP server on port **8000**
-  
-
-## Delivery Phase
-
-- We will send the email using Emkei's Fake Mailer
-
-## Exploitation Phase
-
-## Exploitation Phase
-
-## Installation Phase
-
-## Command and Control Phase
-
----
-
 ## Tools Utilized
 
 ### DS Viper
