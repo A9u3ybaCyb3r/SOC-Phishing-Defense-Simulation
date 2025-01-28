@@ -67,7 +67,7 @@ alert icmp any any -> 8.8.8.8 any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;
 - Run Snort in Console Mode:
 
 ```
-sudo snort -A console -q -c /etc/snort/snort.conf -i ens33
+sudo snort -A console -q -c /etc/snort/snort.conf -i [your interface]
 ```
 
 - Use the `-A` console option to display alerts in real-time.
