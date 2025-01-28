@@ -44,7 +44,10 @@ Alerts that we are going to create with Splunk:
 
 We will use [Snort Rule Generator](https://anir0y.in/snort2-rulgen/) to make our rules.
 
-First, we are going to create a rule for testing pings.
+1. Setting Up Snort Environment
+- Configuration File: Use `sudo nano` to edit the `local.rules` file in the Snort directory.
+
+2. Create a rule for testing pings.
 
 ```snort
 alert icmp any any -> 8.8.8.8 any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;)
@@ -60,7 +63,24 @@ alert icmp any any -> 8.8.8.8 any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;
   - **SID**: 1000001
   - **Revision**: 1
 
-Then we are going to create our rules for the lab.
+3. Test Snort Rules
+- Run Snort in Console Mode:
+
+```
+sudo snort -A console -q -c /etc/snort/snort.conf -i ens33
+```
+
+- Use the `-A` console option to display alerts in real-time.
+- `-q` to suppress unnecessary output.
+
+
+- Generating Traffic for Testing:
+  - Ping `8.8.8.8` to trigger the ICMP rule and observe alerts in the console.
+  - Ping a different IP (e.g., `8.8.4.4`) to confirm no alerts are generated for non-matching traffic.
+
+
+
+4. Then we are going to create our rules for the lab.
 
 ```snort
 alert tcp any 4444 -> 10.19.19.132 any (msg:"Reverse TCP connection detected"; sid:1000002; rev:2;)
