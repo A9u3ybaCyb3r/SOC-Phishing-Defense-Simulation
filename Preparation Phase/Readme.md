@@ -91,15 +91,66 @@ sudo snort -A console -q -c /etc/snort/snort.conf -i [your interface]
 
 4. Then we are going to create our rules for the lab.
 
+- **Rule 1** 
 ```snort
-alert tcp any 4444 -> 10.19.19.132 any (msg:"Reverse TCP connection detected"; sid:1000002; rev:2;)
+alert tcp any 4444 -> 10.19.19.133 any (msg:"Reverse TCP connection detected"; sid:1000002; rev:2;)
+```
+### What This Rule Detects
+The rule looks for TCP traffic originating from port `4444` on any source IP address and destined for the IP `10.19.19.133` (Windows Machine) on any port.
+Port `4444` is often associated with reverse shells, such as those created by Metasploit or other penetration testing tools, where an attacker gains control of a compromised system.
 
+### Example Scenario
+An attacker compromises a machine and sets up a reverse shell listener on port `4444`.
+The compromised machine with the IP of `10.19.19.133` initiates a connection to the attacker's machine.
+This rule detects the traffic and generates an alert with the message:
+`"Reverse TCP connection detected"`.
+
+- **Rule 2**
+```
 alert tcp any 8000:9000 -> any any (msg:"HTTP Traffic on common Non-Standard Port Detected"; sid:1000003; rev:3;)
+```
+### What This Rule Detects
+This rule detects **TCP traffic originating from ports 8000 to 9000**.
+These ports are often used for HTTP traffic on non-standard ports, such as web applications, proxy servers, or custom services.
+By monitoring this range, the rule identifies potentially suspicious or misconfigured web servers or malicious activities like command-and-control (C2) traffic disguised as HTTP.
 
+### Example Scenario
+A web server runs on port `8080` instead of the standard HTTP port (`80`).
+A user or attacker accesses the server, generating traffic from port `8080`.
+The rule detects this traffic and generates an alert with the message:
+`"HTTP Traffic on common Non-Standard Port Detected"`.
+
+
+- **Rule 3** 
+```
 alert tcp any 8000:9000 -> any any (msg:"HTTP on Non-Standard Port Payload contains executable"; file_data; content:"|4D 5A|"; sid:1000004; rev:4;)
+```
+### What This Rule Detects
+This rule identifies HTTP traffic on non-standard ports (8000 to 9000) where the payload contains a Windows executable file (indicated by the `4D 5A` magic bytes). This could be an attempt to:
+- Transfer a malicious executable (e.g., malware, trojans) over HTTP.
+- Deliver a payload for an exploit or compromise.
 
+### Example Scenario
+- A web server is running on port `8080` and serves a malicious `.exe` file.
+- A client downloads the file, generating HTTP traffic containing the executable in its payload.
+- The rule inspects the HTTP payload and detects the `4D 5A` magic bytes.
+- Snort generates an alert with the message:
+`"HTTP on Non-Standard Port Payload contains executable"`.
+
+- **Rule 4** 
+```
 alert tcp any any <> any 80 (msg:"HTTP Traffic Detected"; sid:1000005; rev:5;)
 ```
+### What This Rule Detects
+- The rule detects **any TCP traffic involving port 80**, which is the standard port for HTTP.
+- It does not analyze the payload or check for specific HTTP characteristics.
+- The rule is generic and will trigger on any bidirectional traffic involving port 80.
+
+### Example Scenario
+- A client sends an HTTP request to a web server on port `80`.
+- The web server responds with an HTTP response.
+- This bidirectional traffic matches the rule, and Snort generates an alert with the message:
+`"HTTP Traffic Detected"`.
 
 
 # Sending Snort Logs to Splunk
