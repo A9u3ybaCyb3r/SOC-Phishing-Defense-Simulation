@@ -45,7 +45,16 @@ Alerts that we are going to create with Splunk:
 We will use [Snort Rule Generator](https://anir0y.in/snort2-rulgen/) to make our rules.
 
 1. Setting Up Snort Environment
-- Configuration File: Use `sudo nano` to edit the `local.rules` file in the Snort directory.
+- Configuration File: Use `sudo subl` to edit the `local.rules` file in the Snort directory.
+- Go to the **Snort Rules** Directory: 
+```
+  cd /etc/snort/rules/
+```
+
+- Use **Sublime Text** to edit the rules.
+```
+  sudo subl local.rules
+```
 
 2. Create a rule for testing pings.
 
@@ -63,7 +72,7 @@ alert icmp any any -> 8.8.8.8 any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;
   - **SID**: 1000001
   - **Revision**: 1
 
-3. Test Snort Rules
+3. Test **Snort Rules**
 - Run Snort in Console Mode:
 
 ```
