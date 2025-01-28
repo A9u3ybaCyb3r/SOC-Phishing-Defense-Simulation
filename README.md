@@ -2,7 +2,7 @@
 
 ## Objective:
 
-To simulate a phishing attack in a controlled lab environment and demonstrate the full incident response lifecycle from attack preparation and execution to threat detection, analysis, and mitigation using tools like Splunk, Snort, Sysmon, and LimaCharlie. The project follows the NIST Incident Response Plan and Cyber Kill Chain framework to provide hands-on experience in detecting, analyzing, and responding to cyber threats while identifying key Indicators of Compromise (IOCs) and improving security measures.
+The project aims to simulate a phishing attack in a controlled lab environment and demonstrate the full incident response lifecycle, from attack preparation and execution to threat detection, analysis, and mitigation, using tools like Splunk, Snort, Sysmon, and LimaCharlie. It follows the NIST Incident Response Plan and Cyber Kill Chain framework to provide hands-on experience in detecting, analyzing, and responding to cyber threats while identifying key Indicators of Compromise (IOCs) and improving security measures.
 
 ## Overview
 
@@ -14,12 +14,12 @@ The project follows the NIST Incident Response Plan for blue teaming and the Cyb
 
 ## Attack Scenario
 
-On a standalone Windows 11 machine, an attacker sends a phishing email containing a malicious payload disguised as a critical software update. The victim downloads and executes the payload, establishing a reverse TCP connection to the attacker’s machine using Metasploit. To make the attack more realistic, the attacker employs techniques to bypass Windows Defender. The attacker escalates privileges, creates a new user account, and compromises the machine, gaining admin access. Sensitive data is exfiltrated from the machine, and the attacker clears logs to erase traces of the attack.
+On a standalone Windows 10 machine, an attacker sends a phishing email containing a malicious payload disguised as a critical software update. The victim downloads and executes the payload, establishing a reverse TCP connection to the attacker’s machine using DS Viper. To make the attack more realistic, the attacker employs techniques to bypass Windows Defender. The attacker escalates privileges, creates a new user account, and compromises the machine, gaining admin access. Sensitive data is exfiltrated from the machine, and the attacker clears logs to erase traces of the attack.
 
 ## Skills Learned:
 
 - **Intrusion Detection:** Configuring Snort IDS to identify and alert on network-based threats.
-- **Endpoint Threat Monitoring and Response:** Using LimaCharlie EDR to detect and contain endpoint threats in real time.
+- **Endpoint Threat Monitoring and Response:** Using LimaCharlie EDR to detect and contain endpoint threats in real-time.
 - **Security Information and Event Management (SIEM):** Setting up and managing Splunk SIEM for log analysis, alert configuration, and network anomaly tracking.
 - **Incident Response:** Applying the NIST Incident Response Plan framework to handle each phase of cyber incidents, from detection through to remediation.
 - **Threat Analysis:** Leveraging the MITRE ATT&CK Framework and Cyber Kill Chain to analyze attacker tactics, techniques, and procedures (TTPs).
