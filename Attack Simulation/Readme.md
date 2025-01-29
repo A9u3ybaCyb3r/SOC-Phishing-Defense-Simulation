@@ -52,4 +52,4 @@ LaZagne is an open-source tool for retrieving stored passwords from various syst
 
 ### Temp Mail
 
-Disposable email - is a free email service that allows you to receive email at a temporary address that self-destructed after a certain time elapses. [Link:](https://temp-mail.org/en/)
+Disposable email - is a free email service that allows you to receive email at a temporary address that self-destructed after a certain time elapses. [Link](https://temp-mail.org/en/)
