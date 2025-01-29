@@ -36,7 +36,7 @@ In this final phase of the Cyber Kill Chain, the attacker:
 
 ### DS Viper
 
-DS Viper is a powerful tool designed to bypass Windows Defender's security mechanisms, enabling seamless execution of payloads on Windows systems without triggering security alerts. It utilizes a combination of advanced techniques to manipulate and disguise payloads, providing cybersecurity professionals, red teamers, and penetration testers with a robust solution for achieving undetected access.
+DS Viper is a powerful tool designed to bypass Windows Defender's security mechanisms. It enables seamless execution of payloads on Windows systems without triggering security alerts. It utilizes a combination of advanced techniques to manipulate and disguise payloads, providing cybersecurity professionals, red teamers, and penetration testers with a robust solution for achieving undetected access.
 
 ### Emkei's Fake Mailer
 
@@ -44,8 +44,12 @@ Emkei's Fake Mailer is an online tool that allows users to send spoofed emails b
 
 ### WinPEAS
 
-WinPEAS (**Windows Privilege Escalation Awesome Script**) is a post-exploitation enumeration tool designed to identify potential privilege escalation vectors on Windows systems. It is part of the Privilege Escalation Awesome Scripts Suite (**PEASS**) and is widely used by penetration testers and attackers to automate the process of discovering misconfigurations, vulnerabilities, or sensitive information that can be leveraged to gain higher privileges.
+WinPEAS (Windows Privilege Escalation Awesome Script) is a post-exploitation enumeration tool designed to identify potential privilege escalation vectors on Windows systems. It is part of the Privilege Escalation Awesome Scripts Suite (PEASS). Penetration testers and attackers widely use WinPEAS to automate the process of discovering misconfigurations, vulnerabilities, or sensitive information that can be leveraged to gain higher privileges.
 
 ### LaZagne
 
-LaZagne is an open-source tool specifically designed to retrieve stored passwords from various applications on a system. It automates the process of extracting credentials from commonly used software and is widely employed in penetration testing and red team engagements.
+LaZagne is an open-source tool for retrieving stored passwords from various system applications. It automates extracting credentials from commonly used software and is widely employed in penetration testing and red team engagements.
+
+### Temp Mail
+
+Disposable email - is a free email service that allows you to receive email at a temporary address that self-destructed after a certain time elapses. [Link:](https://temp-mail.org/en/)
