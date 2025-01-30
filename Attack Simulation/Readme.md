@@ -2,7 +2,7 @@
 
 Developed by Lockheed Martin, it is a conceptual framework that describes the stages of a cyberattack. Originating from military concepts, the model parallels physical attack planning and execution, providing organizations with a systematic approach to understanding, detecting, and defending against cyber threats. We are going to use this framework for our attack simulation. 
 
-## [Reconnaissance](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Attack%20Simulation/Reconnaissance.md) and [Weaponization]()
+## [Reconnaissance](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Attack%20Simulation/Reconnaissance.md) and [Weaponization](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Attack%20Simulation/Weaponization.md)
 - The attacker (**Kali VM**) gathers a victim’s email from LinkedIn.
 - Creates a malicious payload (`payload.exe`) using DSViper to bypass Windows Defender.
 - Hosts the payload on port **8000** using Python HTTP server.
