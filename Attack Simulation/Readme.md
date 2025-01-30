@@ -11,7 +11,7 @@ Developed by Lockheed Martin, it is a conceptual framework that describes the st
 - Sends a spoofed phishing email with a disguised **shortened URL** linking to the payload using Emkei's Fake Mailer.
 - Subject: "*Critical Update: Immediate Action Required.*"
 
-## Exploitation Phase
+## [Exploitation Phase](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Attack%20Simulation/Exploitation%20Phase.md)
 - Victim downloads and executes `payload.exe`.
 - A reverse TCP connection is established on port **4444** using a **Meterpreter session**.
 
