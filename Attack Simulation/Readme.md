@@ -24,7 +24,7 @@ Developed by Lockheed Martin, it is a conceptual framework that describes the st
 - **Exfiltrate Data**: Send sensitive information back to the attacker's infrastructure.
 - **Enable Further Actions**: Support subsequent stages of the attack, such as lateral movement or data destruction.
 
-## Actions on Objectives Phase
+## [Actions on Objectives Phase](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Attack%20Simulation/Actions%20on%20Objectives.md)
 In this final phase of the Cyber Kill Chain, the attacker:
 - **Data Exfiltration**: Steal sensitive information such as intellectual property, credentials, or personal data.
 - **Lateral Movement and Persistence**: Can expand access to other systems to maintain long-term control.
