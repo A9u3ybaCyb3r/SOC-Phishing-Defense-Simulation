@@ -585,3 +585,7 @@ To download the latest version, visit [Exterro's FTK Product Downloads](https://
 1. Download and extract KAPE.
 2. Configure targets and modules for specific artifact extraction.
 3. Run KAPE on live systems for rapid data collection.
+
+---
+
+### Now that we are done with the lab and preparing our defenses we are going to jump to the [Attack Simulation](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/tree/main/Attack%20Simulation).
