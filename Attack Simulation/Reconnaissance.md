@@ -4,9 +4,9 @@
 
 ### Action:
 
-1. Use OSINT (Open-Source Intelligence) techniques to gather information about the target.
+1. Use **OSINT** (Open-Source Intelligence) techniques to gather information about the target.
 
-2. Assume we found the target's email address on Facebook by analyzing their public profile, posts, or comments.
+2. Assume we found the target's email address on **Facebook** by analyzing their public profile, posts, or comments.
 
 3. Additional information may include their job role, interests, or connections, which can be used to craft a convincing phishing email.
 
