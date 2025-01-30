@@ -18,7 +18,7 @@ Developed by Lockheed Martin, it is a conceptual framework that describes the st
 ## [Installation Phase](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Attack%20Simulation/Installation%20Phase.md)
 - The attacker modifies the **Windows Registry** to create a backdoor for persistence.
 
-## Command and Control Phase
+## [Command and Control Phase](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Attack%20Simulation/Command%20and%20Control%20Phase.md)
 - **Establish Persistent Access**: Maintain a reliable communication channel to the compromised systems.
 - **Issue Commands**: Execute malicious instructions, such as collecting data, escalating privileges, or disabling defenses.
 - **Exfiltrate Data**: Send sensitive information back to the attacker's infrastructure.
