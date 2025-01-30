@@ -1,5 +1,13 @@
 # Preparation Phase
 
+### Objectives
+- Establish and maintain an incident response policy and plan.
+- Train personnel and conduct awareness programs.
+- Develop and test incident handling procedures.
+- Set up necessary tools and resources, such as monitoring systems and forensic software.
+
+---
+
 In the preparation phase, several key configurations are made:
 - **Snort Rules**: Configured to detect potential threats, including:
   - Rule 1: Detects a reverse TCP connection on port 4444 to the Windows VM.
