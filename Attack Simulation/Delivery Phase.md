@@ -4,17 +4,15 @@
 
 ### Action:
 
-1. Send the spoofed email to the target's email address.
-
-2. The email may include a malicious attachment (e.g., a Word document with a macro) or a link to a malicious website hosting the payload.
-
-3. Use social engineering techniques to convince the target to open the attachment or click the link (e.g., "Urgent: Please review the attached document").
-
-2. Create a spoofed email using [Emkei's Fake Mailer](https://emkei.cz/) (a tool for sending emails with a forged sender address).
+1. Create a spoofed email using [Emkei's Fake Mailer](https://emkei.cz/) (a tool for sending emails with a forged sender address).
 
 ![image](https://github.com/user-attachments/assets/48236a67-3e18-43c9-b808-2f1b0ffcca06)
 
-3. Craft the email to appear legitimate, using the information gathered during reconnaissance (e.g., impersonating a service the target uses).
+2. The email includes a link to a malicious website hosting the payload.
+
+3. Use social engineering techniques to convince the target to open the attachment or click the link (e.g., "Urgent: Please review the attached document").
+
+4. Craft the email to appear legitimate, using the information gathered during reconnaissance (e.g., impersonating a service the target uses).
 
 ```
 Subject: Urgent: Critical Security Update Required
@@ -42,3 +40,5 @@ Best regards,
 IT Support Team
 Boriken Shield
 ```
+
+5. Send the spoofed email to the target's email address.
