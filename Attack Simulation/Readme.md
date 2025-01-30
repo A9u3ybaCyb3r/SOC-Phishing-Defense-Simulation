@@ -7,7 +7,7 @@ Developed by Lockheed Martin, it is a conceptual framework that describes the st
 - Creates a malicious payload (`payload.exe`) using DSViper to bypass Windows Defender.
 - Hosts the payload on port **8000** using Python HTTP server.
 
-## Delivery Phase
+## [Delivery Phase](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Attack%20Simulation/Delivery%20Phase.md)
 - Sends a spoofed phishing email with a disguised **shortened URL** linking to the payload using Emkei's Fake Mailer.
 - Subject: "*Critical Update: Immediate Action Required.*"
 
