@@ -15,7 +15,7 @@
 ![image](https://github.com/user-attachments/assets/f006f266-2f33-4bad-a03c-d92c6434114d)
 
 - Paste the link on the **Destination bar** and then hit **Create your link**
-![image](https://github.com/user-attachments/assets/188a0ef0-6b95-4b19-9826-65606249c3bd)
+![image](https://github.com/user-attachments/assets/609b9635-e0ae-4093-892a-cbc903c350ab)
 
 - This is the result.
 ![image](https://github.com/user-attachments/assets/5336073a-5b71-46d0-88e1-5feb09225061)
