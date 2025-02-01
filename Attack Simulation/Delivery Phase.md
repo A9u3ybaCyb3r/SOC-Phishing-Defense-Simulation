@@ -9,7 +9,17 @@
 ![image](https://github.com/user-attachments/assets/48236a67-3e18-43c9-b808-2f1b0ffcca06)
 
 2. The email includes a link to a malicious website hosting the payload.
-- Create a shortened email to make it look like it comes from the company.
+- We will do **URL Shortening** using [Bitly](https://app.bitly.com/Bp21hrdeijm/links) to obscure the true destinations.
+- To do this we need to have our **Python HTTP Server** running, open Firefox, and then visit `http://{your local machine ip}:8000`.
+- Look for the payload that you created, **Right-click**, and hit **Copy link**.
+![image](https://github.com/user-attachments/assets/f006f266-2f33-4bad-a03c-d92c6434114d)
+
+- Paste the link on the **Destination bar** and then hit **Create your link**
+![image](https://github.com/user-attachments/assets/188a0ef0-6b95-4b19-9826-65606249c3bd)
+
+- This is the result.
+![image](https://github.com/user-attachments/assets/5336073a-5b71-46d0-88e1-5feb09225061)
+
 
 3. Use social engineering techniques to convince the target to open the attachment or click the link (e.g., "Urgent: Please review the attached document").
 
