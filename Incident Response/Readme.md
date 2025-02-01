@@ -8,7 +8,7 @@ In the Incident Response phase of the project, the goal is to effectively identi
 
 The **NIST Cybersecurity Framework** (**CSF**) is a set of guidelines, best practices, and standards developed by the **National Institute of Standards and Technology** (**NIST**) to help organizations manage and reduce cybersecurity risks. It provides a flexible and comprehensive approach to improving the security and resilience of critical infrastructure and other systems.
 
-## Preparation
+## [Preparation](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Incident%20Response/Preparation.md)
 
 - Establish and maintain an incident response policy and plan.
 - Train personnel and conduct awareness programs.
