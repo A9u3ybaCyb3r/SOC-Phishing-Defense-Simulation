@@ -4,7 +4,7 @@
 
 ### Action:
 
-1. Use DSViper (a tool for creating payloads) to generate a malicious executable that can execute a Meterpreter shell (a Metasploit payload for remote control). The payload is used to bypass Windows Defender
+1. Use MSFVenom (a tool for creating payloads) to generate a malicious executable that can execute a Meterpreter shell (a Metasploit payload for remote control). 
 
-2. Host the payload in a python HTTP server.
+2. Host the payload in a Python HTTP server on port `8000`.
 
