@@ -24,9 +24,9 @@ On a standalone Windows 10 machine, an attacker sends a phishing email containin
 - **Incident Response:** Applying the NIST Incident Response Plan framework to handle each phase of cyber incidents, from detection through to remediation.
 - **Threat Analysis:** Leveraging the MITRE ATT&CK Framework and Cyber Kill Chain to analyze attacker tactics, techniques, and procedures (TTPs).
 - **Threat Simulation:** Creating realistic attack simulations, including phishing campaigns, reverse TCP sessions, and persistence tactics, for testing detection and response capabilities.
-- **Blue Team Operations:** Building defensive security skills and applying them to monitor, detect, and respond to threats in an Active Directory environment.
+- **Blue Team Operations:** Building defensive security skills and applying them to monitor, detect, and respond to threats.
 - **Network Traffic Analysis:** Gaining insights into network behavior, identifying suspicious patterns, and filtering malicious traffic.
-- **Malware Analysis Fundamentals:** Basic reverse-engineering of malware behaviors, such as persistence and lateral movement, to understand the threat landscape.
+
 
 ## Tools Used in the Lab
 
