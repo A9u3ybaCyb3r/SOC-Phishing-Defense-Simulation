@@ -34,9 +34,9 @@ In this final phase of the Cyber Kill Chain, the attacker:
 
 ## Tools Utilized
 
-### DS Viper
+### Metasploit
 
-DS Viper is a powerful tool designed to bypass Windows Defender's security mechanisms. It enables seamless execution of payloads on Windows systems without triggering security alerts. It utilizes a combination of advanced techniques to manipulate and disguise payloads, providing cybersecurity professionals, red teamers, and penetration testers with a robust solution for achieving undetected access.
+Metasploit is a penetration testing framework used for finding, exploiting, and validating vulnerabilities in systems. It provides a suite of tools for ethical hackers, security researchers, and red teamers to conduct security assessments and exploit known vulnerabilities in networks, applications, and operating systems.
 
 ### Emkei's Fake Mailer
 
