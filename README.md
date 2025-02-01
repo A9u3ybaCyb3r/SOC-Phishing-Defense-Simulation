@@ -14,7 +14,7 @@ The project follows the NIST Incident Response Plan for blue teaming and the Cyb
 
 ## Attack Scenario
 
-On a standalone Windows 10 machine, an attacker sends a phishing email containing a malicious payload disguised as a critical software update. The victim downloads and executes the payload, establishing a reverse TCP connection to the attacker’s machine using DS Viper. To make the attack more realistic, the attacker employs techniques to bypass Windows Defender. The attacker escalates privileges, creates a new user account, and compromises the machine, gaining admin access. Sensitive data is exfiltrated from the machine, and the attacker clears logs to erase traces of the attack.
+On a standalone Windows 10 machine, an attacker sends a phishing email containing a malicious payload disguised as a critical software update. The victim downloads and executes the payload, establishing a reverse TCP connection to the attacker’s machine using Metasploit. The attacker escalates privileges, creates a new user account, and compromises the machine, gaining admin access. Sensitive data is exfiltrated from the machine, and the attacker clears logs to erase traces of the attack.
 
 ## Skills Learned:
 
