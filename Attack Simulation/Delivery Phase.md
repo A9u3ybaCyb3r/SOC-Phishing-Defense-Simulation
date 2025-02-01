@@ -9,6 +9,7 @@
 ![image](https://github.com/user-attachments/assets/48236a67-3e18-43c9-b808-2f1b0ffcca06)
 
 2. The email includes a link to a malicious website hosting the payload.
+- Create a shortened email to make it look like it comes from the company.
 
 3. Use social engineering techniques to convince the target to open the attachment or click the link (e.g., "Urgent: Please review the attached document").
 
