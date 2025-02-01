@@ -57,3 +57,7 @@ Boriken Shield
 5. Send the spoofed email to the target's email address.
 
 ### Open both Emkei's Fake Mailer and Temp Mail on your Ubuntu machine. Then, send an email to the temporary mail you receive to download the *.eml* file for a phishing analysis. This is because we are using temporary emails.
+
+### Click on the Source icon to download the .eml file
+
+![image](https://github.com/user-attachments/assets/c145f18d-6821-4f98-a388-adcaac20a233)
