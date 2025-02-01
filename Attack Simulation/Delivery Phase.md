@@ -10,7 +10,7 @@
 
 2. The email includes a link to a malicious website hosting the payload.
 - We will do **URL Shortening** using [Bitly](https://app.bitly.com/Bp21hrdeijm/links) to obscure the true destinations.
-- To do this we need to have our **Python HTTP Server** running, open Firefox, and then visit `http://{your local machine ip}:8000`.
+- To do this we need to have our **Python HTTP Server** running, open **Firefox**, and then visit `http://{your local machine ip}:8000`.
 - Look for the payload that you created, **Right-click**, and hit **Copy link**.
 ![image](https://github.com/user-attachments/assets/f006f266-2f33-4bad-a03c-d92c6434114d)
 
