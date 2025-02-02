@@ -47,7 +47,8 @@ Use the `file` command to check the type of the generated file (`SecurityUpdate.
 This confirms that `SecurityUpdate.exe` is a **32-bit Windows executable** with a GUI. If run, it will execute the embedded Meterpreter payload.
 
 2. Host the Payload Using a Python HTTP Server.
-    Host the payload on a **Python HTTP server** running on port `8000`:
+
+   Host the payload on a **Python HTTP server** running on port `8000`:
 
 ![image](https://github.com/user-attachments/assets/1c66b5c9-4f4c-4285-8f5a-d86b5a14c244)
 
