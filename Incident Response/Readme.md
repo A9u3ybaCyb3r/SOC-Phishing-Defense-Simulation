@@ -16,7 +16,7 @@ The **NIST Cybersecurity Framework** (**CSF**) is a set of guidelines, best prac
 - Set up necessary tools and resources, such as monitoring systems and forensic software.
 ---
 
-## Detection and Analysis
+## [Detection and Analysis](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Incident%20Response/Detection%20and%20Analysis.md)
 
 - Monitor for potential security incidents through logs, alerts, and reports.
 - Identify and validate incidents using predefined criteria.
