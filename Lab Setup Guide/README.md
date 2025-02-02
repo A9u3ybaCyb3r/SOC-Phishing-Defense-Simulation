@@ -357,7 +357,7 @@ You can view the current IP of the machine.
 - During installation, Snort will ask for the local network address range. You can find this information using:
 
 	```bash
-	ifconfig
+	ip a
 
 - Note your IP address and subnet mask. For example, if your IP is `192.168.1.4` and subnet mask is `255.255.255.0`, the network range is `192.168.1.0/24`.
 
