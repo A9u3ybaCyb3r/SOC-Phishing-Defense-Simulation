@@ -1,29 +1,45 @@
 # Delivery
 
-### Objective: Deliver the weaponized payload to the target.
+## Objective:
+Deliver the weaponized payload to the target via social engineering and email.
 
-### Action:
+## Action:
+1. Create a Spoofed Email Using [Emkei's Fake Mailer](https://emkei.cz/)
 
-1. Create a spoofed email using [Emkei's Fake Mailer](https://emkei.cz/) (a tool for sending emails with a forged sender address).
+    Use **Emkei's Fake Mailer**, a tool that allows you to send emails with a forged sender address. This helps craft a **legitimate-looking email** for the target.
 
 ![image](https://github.com/user-attachments/assets/48236a67-3e18-43c9-b808-2f1b0ffcca06)
 
-2. The email includes a link to a malicious website hosting the payload.
-- We will do **URL Shortening** using [Bitly](https://app.bitly.com/Bp21hrdeijm/links) to obscure the true destinations.
-- To do this we need to have our **Python HTTP Server** running, open **Firefox**, and then visit `http://{your local machine ip}:8000`.
-- Look for the payload that you created, **Right-click**, and hit **Copy link**.
+2. Include a Link to the Malicious Website
+
+   The email will contain a link that points to a **malicious website** where the payload is hosted.
+
+    - Use **URL Shortening** via [Bitly](https://app.bitly.com/Bp21hrdeijm/links) to obscure the destination and make the link appear more legitimate.
+
+### Steps to Create a Shortened URL:
+
+- Ensure your **Python HTTP Server** is running (as per the previous step) and open **Firefox**.
+- Visit `http://{your local machine IP}:8000` to access the payload.
+- **Right-click** the payload and select **Copy Link**.
+
 ![image](https://github.com/user-attachments/assets/f006f266-2f33-4bad-a03c-d92c6434114d)
 
-- Paste the link on the **Destination bar** and then hit **Create your link**
+- Paste the link in the **Destination bar** and click **Create your link**.
+
 ![image](https://github.com/user-attachments/assets/609b9635-e0ae-4093-892a-cbc903c350ab)
 
-- This is the result.
+- The result will be a **shortened URL** that hides the true destination.
+
 ![image](https://github.com/user-attachments/assets/5336073a-5b71-46d0-88e1-5feb09225061)
 
+3. Use Social Engineering to Convince the Target
 
-3. Use social engineering techniques to convince the target to open the attachment or click the link (e.g., "Urgent: Please review the attached document").
+    Craft a message that convinces the target to open the attachment or click the link. For example, use a sense of urgency with a message like:
 
-4. Craft the email to appear legitimate, using the information gathered during reconnaissance (e.g., impersonating a service the target uses).
+    - “**Urgent: Please review the attached document** ”
+
+4. Craft the Email to Appear Legitimate
+Based on the information gathered during reconnaissance, craft the email to appear **trustworthy**. For instance, impersonate a service or entity the target uses. Here’s a sample email template:
 
 ```
 Subject: Urgent: Critical Security Update Required
@@ -54,7 +70,10 @@ Boriken Shield
 
 ![image](https://github.com/user-attachments/assets/41995845-6222-411f-9c5d-cceff97325a0)
 
-5. Send the spoofed email to the target's email address.
+5. Send the Spoofed Email to the Target’s Address
+After crafting the email with the **malicious link** and **social engineering message**, send the email to the victim's email address, ensuring it appears legitimate and trustworthy.
+
+
 
 ### Open both Emkei's Fake Mailer and Temp Mail on your Ubuntu machine. Then, send an email to the temporary mail you receive to download the *.eml* file for a phishing analysis. This is because we are using temporary emails.
 
