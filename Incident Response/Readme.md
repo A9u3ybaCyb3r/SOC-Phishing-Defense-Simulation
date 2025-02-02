@@ -24,7 +24,7 @@ The **NIST Cybersecurity Framework** (**CSF**) is a set of guidelines, best prac
 - Document all findings for subsequent phases.
 ---
 
-## Containment, Eradication, and Recovery
+## [Containment, Eradication, and Recovery](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Incident%20Response/Containment%2C%20Eradication%2C%20and%20Recovery.md)
 
 - **Containment**: Isolate affected systems to prevent further damage or spread.
 - **Eradication**: Remove malicious artifacts, such as malware, and address vulnerabilities exploited during the attack.
