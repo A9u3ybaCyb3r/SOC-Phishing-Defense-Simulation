@@ -1,18 +1,27 @@
 # Reconnaissance
 
-### Objective: Gather information about the target.
+## Objective:
+Gather information about the target to prepare for an attack.
 
-### Action:
+## Actions:
 
-1. Use **OSINT** (Open-Source Intelligence) techniques to gather information about the target.
+1. Utilize OSINT (Open-Source Intelligence) Techniques
+ 
+    - Gather publicly available information about the target.
 
-2. Assume we found the target's email address on **Facebook** by analyzing their public profile, posts, or comments.
+2. Identify Target’s Email Address
+ 
+    - Assume we found the target’s email on Facebook by analyzing their public profile, posts, or comments.
 
-3. Additional information may include their job role, interests, or connections, which can be used to craft a convincing phishing email.
+3. Collect Additional Information
+ 
+    - Gather details such as their job role, interests, or connections, which can be used to craft a convincing phishing email.
 
-### Since this is a simulation we are going to assume that we have gathered all of this information to craft the payload and the malicious email.
+## Simulation Assumption
+Since this is a controlled simulation, we will assume that we have successfully gathered all the necessary information to craft a malicious payload and phishing email.
 
-### Also, we are going to use [Temp Mail](https://temp-mail.org/en) to create a temporary email. This is going to be the victim's email that is going to receive the malicious email.
+## Creating a Temporary Email
+To simulate the attack, we will use [Temp Mail](https://temp-mail.org/en) to generate a temporary email address. This will serve as the victim’s email, which will receive the malicious email.
 
 ![image](https://github.com/user-attachments/assets/fccedbae-e5a8-41f0-8e4c-1f4377fb39e9)
 
