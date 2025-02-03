@@ -411,6 +411,10 @@ You can view the current IP of the machine.
  
  ![image](https://github.com/user-attachments/assets/aadf9cf5-13b0-421d-8a76-f3f557726a6c)
 
+- If we scroll up we can see that there no rules
+
+![image](https://github.com/user-attachments/assets/2ae21d69-fbae-45f8-9c88-26e1af79b3e8)
+
 
 ### Testing Configuration:
 
