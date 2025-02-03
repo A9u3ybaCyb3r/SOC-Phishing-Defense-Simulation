@@ -170,12 +170,13 @@ Before starting Snort, shut down your **Ubuntu machine** and adjust its network 
 
 Once your Ubuntu machine is back online, use the following command to activate Snort:
 ```
-sudo snort -q -A console -i enp0s3:enp0s8 -c /etc/snort/snort.conf --daq afpacket -Q
+sudo snort -q -l /var/log/snort -A full -i enp0s3:enp0s8 -c /etc/snort/snort.conf --daq afpacket -Q
 ```
 
 ### Command Breakdown:
 - `-q` → Quiet mode (suppresses banner output).
-- `-A console` → Displays alerts in the console.
+- `-l` → Directory of the log file.
+- `-A full` → Displays alerts in full.
 - `-i enp0s3:enp0s8` → Specifies two interfaces for inline mode.
 - `-c /etc/snort/snort.conf` → Loads the Snort configuration file.
 - `--daq afpacket` → Uses the AFPacket DAQ module for packet handling.
