@@ -403,7 +403,14 @@ You can view the current IP of the machine.
 
 ![image](https://github.com/user-attachments/assets/ede4059d-18bf-4fef-b37e-c2ad1e11d8f3)
 
-- **Comment out** (`#`) all of the rules except local.rules, since we are writing custom rules we do not want the default rules getting in the way.
+- **Comment out** (`#`) all of the rules except local rules. Since we are writing custom rules, we do not want the default rules to get in the way.
+- Test the configuration, if we get this message `Snort successfully validated the configuration!` it means that everything worked.
+
+	```bash
+ 	sudo snort -T -c /etc/snort/snort.conf
+ 
+ ![image](https://github.com/user-attachments/assets/aadf9cf5-13b0-421d-8a76-f3f557726a6c)
+
 
 ### Testing Configuration:
 
