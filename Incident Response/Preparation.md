@@ -256,7 +256,7 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
 
    - Click on **Save as** and you will see how it automatically did this for us.
 
-![image](https://github.com/user-attachments/assets/b583c4c5-4ed8-4c13-ad8e-233ffd562af0)
+![image](https://github.com/user-attachments/assets/bd68b80f-1877-4d51-b7bf-0aa289d3af7b)
 
 5. **App Context**
    - Choose `Snort Alert for Splunk (snortalert)`.
