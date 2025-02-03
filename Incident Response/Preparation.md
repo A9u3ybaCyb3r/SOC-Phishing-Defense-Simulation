@@ -41,11 +41,6 @@ In the preparation phase, several key configurations are made:
 - Clear the security log on the monitored Windows system to generate an Event ID 1102.
 - Confirm the alert triggers and appears in the **Triggered Alerts** section of Splunk.
 
-Alerts that we are going to create with Splunk:
-
-1. Windows Defender Disabled
-
-
 ---
 
 # Writing Snort Rules
@@ -101,10 +96,10 @@ sudo snort -A console -q -c /etc/snort/snort.conf -i [your interface]
 
 - **Rule 1** 
 ```snort
-alert tcp 10.19.19.6 4444 -> any any ( msg:"Reverse TCP connection detected";  sid:1000002; rev:1; )
+alert tcp any any -> any 4444 ( msg:"Reverse TCP connection detected";  sid:1000002; rev:1; )
 ```
 ### What This Rule Detects
-The rule looks for TCP traffic originating from port `4444` on IP `10.19.19.6` (Windows Machine) and destined for any IP address on any port.
+The rule looks for TCP traffic originating from any port on any IP and destined for any IP address on port 4444.
 Port `4444` is often associated with reverse shells, such as those created by Metasploit or other penetration testing tools, where an attacker gains control of a compromised system.
 
 ### Example Scenario
