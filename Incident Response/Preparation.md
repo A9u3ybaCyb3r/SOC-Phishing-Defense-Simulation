@@ -571,7 +571,7 @@ This detailed guide provides step-by-step instructions for configuring the Splun
 1. Go to **Apps > Search & Reporting**.
 2. Search for:
    ```
-   index=Endpoint
+   index=endpoint
    ```
 3. Verify:
    - Event count.
