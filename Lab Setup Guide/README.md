@@ -400,7 +400,10 @@ You can view the current IP of the machine.
 
 	```bash
 	include $RULE_PATH/local.rules
-	include $RULE_PATH/backdoor.rules
+
+![image](https://github.com/user-attachments/assets/ede4059d-18bf-4fef-b37e-c2ad1e11d8f3)
+
+- **Comment out** (`#`) all of the rules except local.rules, since we are writing custom rules we do not want the default rules getting in the way.
 
 ### Testing Configuration:
 
