@@ -222,11 +222,16 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
    - Add a new data input pointing to `/var/log/snort/`.
 
 4. **Set Source Type:**
-   - Choose `Network & Security > snort` as the source type.
+   - Choose `Select > Network & Security > snort` as the source type.
    - Also, you can create a custom source type if you need it.
 
-5. **Assign an Index:**
-   - Specify an index (e.g., `snort_logs`).
+5. **App Context**
+   - Choose `Snort Alert for Splunk (snortalert)`.
+
+6.  **Assign an Index:**
+   - Specify an index (e.g., `ids`).
+
+![image](https://github.com/user-attachments/assets/0860523e-7f02-48db-b3c7-517a3b88ea95)
 
 ![image](https://github.com/user-attachments/assets/059bc6cb-5bc7-488f-9c57-3936519b2c17)
 
