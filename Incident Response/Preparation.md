@@ -209,15 +209,23 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
 1. **Access Splunk Web Interface:**
    Open a browser and navigate to `http://localhost:8000`.
 
-2. **Create a Data Input:**
+2. **Install Snort Alert for Splunk App:**
+- Go to `Apps > Find More Apps`
+- On the search bar, search for **Snort** and install the app.
+
+![image](https://github.com/user-attachments/assets/a1daa98d-aaaf-46e8-868b-dc67100f1aaf)
+
+- Provide the credentials of your **Splunk.com**(the creds that you used to download **Splunk**) and install the app. 
+
+3. **Create a Data Input:**
    - Go to `Settings > Data Inputs > Files & Directories`.
    - Add a new data input pointing to `/var/log/snort/`.
 
-3. **Set Source Type:**
+4. **Set Source Type:**
    - Choose `Network & Security > snort` as the source type.
    - Also, you can create a custom source type if you need it.
 
-4. **Assign an Index:**
+5. **Assign an Index:**
    - Specify an index (e.g., `snort_logs`).
 
 ![image](https://github.com/user-attachments/assets/059bc6cb-5bc7-488f-9c57-3936519b2c17)
