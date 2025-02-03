@@ -101,10 +101,10 @@ sudo snort -A console -q -c /etc/snort/snort.conf -i [your interface]
 
 - **Rule 1** 
 ```snort
-alert tcp any 4444 -> 10.19.19.133 any (msg:"Reverse TCP connection detected"; sid:1000002; rev:2;)
+alert tcp 10.19.19.6 4444 -> any any ( msg:"Reverse TCP connection detected";  sid:1000002; rev:1; )
 ```
 ### What This Rule Detects
-The rule looks for TCP traffic originating from port `4444` on any source IP address and destined for the IP `10.19.19.133` (Windows Machine) on any port.
+The rule looks for TCP traffic originating from port `4444` on IP `10.19.19.6` (Windows Machine) and destined for any IP address on any port.
 Port `4444` is often associated with reverse shells, such as those created by Metasploit or other penetration testing tools, where an attacker gains control of a compromised system.
 
 ### Example Scenario
