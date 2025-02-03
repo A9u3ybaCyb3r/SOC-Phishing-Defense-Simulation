@@ -169,27 +169,38 @@ Before starting Snort, shut down your **Ubuntu machine** and adjust its network 
 ### Start Snort in Inline Mode 
 
 Once your Ubuntu machine is back online, use the following command to activate Snort:
+
 ```
 sudo snort -q -l /var/log/snort -A full -i enp0s3:enp0s8 -c /etc/snort/snort.conf --daq afpacket -Q
 ```
+This command will be used to forward Snort logs to Splunk. Additionally, it will be utilized when the attack begins.
 
 ### Command Breakdown:
 - `-q` → Quiet mode (suppresses banner output).
-- `-l` → Directory of the log file.
-- `-A full` → Displays alerts in full.
+- `-l` → Specifies the log directory.
+- `-A full` → Displays alerts in full detail.
 - `-i enp0s3:enp0s8` → Specifies two interfaces for inline mode.
 - `-c /etc/snort/snort.conf` → Loads the Snort configuration file.
 - `--daq afpacket` → Uses the AFPacket DAQ module for packet handling.
 - `-Q` → Enables inline mode for active intrusion prevention.
 
-### Verify Snort is Running
+### Test the rule of Reverse TCP Connection
 
+Add the following rule to your `local.rules` for testing:
+```
+drop tcp any any -> any 21 (msg:"Drop any FTP traffic"; sid:1000006; rev:6;)
+```
 To check if Snort is actively monitoring traffic, run:
 
 ```
-sudo snort -T -c /etc/snort/snort.conf
+sudo snort -q -A console -i enp0s3:enp0s8 -c /etc/snort/snort.conf --daq afpacket -Q
 ```
-If everything is set up correctly, Snort will initialize and start capturing network traffic.
+Then, in another terminal tab, execute:
+
+```
+ftp test.rebex.net
+```
+If the rule is working correctly, the connection to the FTP server will be blocked. You will not be prompted to enter credentials, and in the terminal where Snort is running, you should see the message: `Drop any FTP traffic`
 
 # Sending Snort Logs to Splunk
 
@@ -220,7 +231,20 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
 
 3. **Create a Data Input:**
    - Go to `Settings > Data Inputs > Files & Directories`.
-   - Add a new data input pointing to `/var/log/snort/`.
+   - Add a new data input pointing to `/var/log/snort/alert`.
+   - If the `alert` file is missing, run the following command to generate log entries:
+   ```
+   sudo snort -q -l /var/log/snort -A full -i enp0s3:enp0s8 -c /etc/snort/snort.conf --daq afpacket -Q`
+   ```
+   - In another terminal, perform a simple ping test:
+   ```
+   ping 8.8.8.8`
+   ```
+   - The generated alerts should be logged in `/var/log/snort/alert`. To verify, open the file with a text editor or cat:
+   ```
+   cat /var/log/snort/alert
+   ``` 
+
 
 4. **Set Source Type:**
    - Choose `Select > Network & Security > snort` as the source type.
