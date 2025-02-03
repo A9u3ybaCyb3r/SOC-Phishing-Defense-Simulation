@@ -570,7 +570,7 @@ After the installation, Windows will prompt for some initial configuration:
 	- Save the configuration to prepare the indexer for receiving forwarded events.
 
 2. **Installing the Splunk Universal Forwarder**
-	- Download the Universal Forwarder on the Windows 11 machine from Splunk's official site: https://www.splunk.com/en_us/download/universal-forwarder.html
+	- Download the Universal Forwarder on the Windows 10 machine from Splunk's official site: https://www.splunk.com/en_us/download/universal-forwarder.html
 	- During installation:
 		- Accept the **Terms and Conditions** then choose **Next**.
   		- Use the same **username** and **password** that you used to create Splunk earlier.
