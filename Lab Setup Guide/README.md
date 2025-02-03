@@ -2,16 +2,17 @@
 
 ## Table of Contents
 1. [Planning Phase](#planning-phase)
-2. [Create a new NAT Network](#create-a-new-nat-network)
-3. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
-4. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
-5. [Installing Snort](#installing-snort)
-6. [Setting up Kali Linux](#setting-up-kali-linux)
-7. [Installing Windows 10](#installing-windows-11)
-8. [Installing Splunk Forwarder](#installing-splunk-forwarder)
-9. [Installing LimaCharlie](#installing-limacharlie)
+2. [Downloading Virtualbox](#downloading-virtualbox)
+3. [Create a new NAT Network](#create-a-new-nat-network)
+4. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
+5. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
+6. [Installing Snort](#installing-snort)
+7. [Setting up Kali Linux](#setting-up-kali-linux)
+8. [Installing Windows 10](#installing-windows-11)
+9. [Installing Splunk Forwarder](#installing-splunk-forwarder)
+10. [Installing LimaCharlie](#installing-limacharlie)
 	- [Deploying Endpoint Agents](#deploying-endpoint-agents)
-10. [Installing Sysmon](#installing-sysmon)
+11. [Installing Sysmon](#installing-sysmon)
 
 
 ---
@@ -22,6 +23,73 @@ First, we build the network architecture for the lab environment using [Draw.io]
 
 - [Network Diagram](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Lab%20Setup%20Guide/CyberDefense-Lab%20Network%20Diagram.drawio.pdf)
 
+## Downloading Virtualbox
+
+## **1. Open Internet Browser**
+- Launch your preferred **web browser**.
+
+### **Search for VirtualBox**
+- You can either do a web search for **"VirtualBox download"** or directly navigate to the official website: [VirtualBox.org](https://www.virtualbox.org/).
+
+### **Access the Download Page**
+- Click on the **Download VirtualBox** link on the website.
+
+![image](https://github.com/user-attachments/assets/8d970060-385f-471c-8010-5f4307e6e151)
+
+### **Select the Appropriate Host Package**
+- Identify your operating system (**Windows, macOS, or Linux**) and click on the corresponding download link.
+- Example: Click on **Windows Host** if you are using Windows.
+
+
+## **2. Download the Installer**
+- The download will begin. Once it's completed, locate the installer file in your **Downloads folder**.
+
+![image](https://github.com/user-attachments/assets/abd99c34-e215-452c-8981-d4ecf657202b)
+
+### **Run the Installer**
+- **Double-click** the installer file to run it.
+- When prompted by the **User Account Control (UAC)**, click **Yes**.
+
+
+## **3. Install Microsoft Visual C++ (if necessary)**
+If you encounter an error indicating that **Microsoft Visual C++ 2019** is required, follow these steps:
+- Search for **Microsoft Visual C++ 2019 Redistributable**.
+- Go to the **official Microsoft link** and download the latest version (**click on x64 for a 64-bit system**).
+- After downloading, **run the Visual C++ installer**.
+
+![image](https://github.com/user-attachments/assets/fea04302-ed87-4364-849e-a5b0aa25cc9a)
+
+![image](https://github.com/user-attachments/assets/f321cf6c-f4d2-4bec-88a2-14b90ad01672)
+
+![image](https://github.com/user-attachments/assets/ee7bca59-73be-4c31-8b22-2c623bce0b07)
+
+![image](https://github.com/user-attachments/assets/1f609d4c-5c34-42cf-ae48-5c60991a84dc)
+
+![image](https://github.com/user-attachments/assets/da2bcb42-225f-4a37-ad5e-0147cb2f3938)
+
+
+## **4. Re-run the VirtualBox Installer**
+- Once **Visual C++ is installed**, double-click on the **VirtualBox installer** again to continue the installation.
+
+![image](https://github.com/user-attachments/assets/ecf37b22-9eb4-404e-aeba-a414ab68f0a8)
+
+### **Follow Installation Prompts**
+- Accept the **default settings** throughout the installation process.
+- When prompted about your **network interface**, acknowledge that it will temporarily reset.
+
+
+## **5. Complete the Installation**
+- Click on **Install** to start the installation.
+- Once the installation is finished, click on **Finish** to exit the installer.
+
+### **Launch VirtualBox**
+- Upon finishing the installation, the **Oracle VM VirtualBox Manager** should open automatically.
+- If it doesn't, you can find it in your **Start Menu**.
+
+### **Start Building Virtual Machines**
+- You are now ready to **create and manage virtual machines** using VirtualBox.
+
+---
 
 ## Creating a New NAT Network in VirtualBox
 
