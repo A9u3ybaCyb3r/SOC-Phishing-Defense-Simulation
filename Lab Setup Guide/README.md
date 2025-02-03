@@ -2,8 +2,7 @@
 
 ## Table of Contents
 1. [Planning Phase](#planning-phase)
-2. [Changing VMware NAT Subnet Settings](#changing-vmware-nat-subnet-settings)
-	- [(On Virtualbox) Create a new NAT Network](#(on-virtualbox)-create-a-new-nat-network)
+2. [Create a new NAT Network](#create-a-new-nat-network)
 3. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
 4. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
 5. [Installing Snort](#installing-snort)
@@ -23,60 +22,8 @@ First, we build the network architecture for the lab environment using [Draw.io]
 
 - [Network Diagram](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Lab%20Setup%20Guide/CyberDefense-Lab%20Network%20Diagram.drawio.pdf)
 
-## Changing VMware NAT Subnet Settings
 
-This guide outlines the steps for configuring a NAT network in VMware Workstation Pro.
-
-## Step 1: Open VMware Network Editor
-1. Launch VMware Workstation Pro.
-2. Go to the **Edit** menu and select **Virtual Network Editor**.
-3. On macOS, it may be under **Preferences**.
-
-## Step 2: Select the NAT Network
-1. In the Virtual Network Editor, look for the **NAT (VMnet8)** network.
-2. Select **VMnet8** from the list of virtual networks.
-
-## Step 3: Change the Subnet IP
-1. Click the **Change Settings** button (you may need administrative privileges to proceed).
-2. In the NAT settings for **VMnet8**:
-   - Locate the **Subnet IP** field (e.g., `192.168.1.0`).
-   - Change it to your desired subnet, such as `10.19.19.0`.
-   - Ensure the subnet mask is appropriate (usually `255.255.255.0` for `/24`).
-
-## Step 4: Update the DHCP Settings (Optional)
-If you want VMware to automatically assign IPs in the new subnet:
-1. Click the **DHCP Settings** button.
-2. Adjust the **Start IP Address** and **End IP Address** to match the new subnet range (e.g., `10.19.19.2` to `10.19.19.254`).
-
-## Step 5: Save Changes
-1. Click **OK** to save the changes in the Virtual Network Editor.
-2. Close the editor.
-
-## Step 6: Restart VMware Services
-Restart the VMware NAT Service to apply the changes:
-- **On Windows**:
-   1. Open the **Services** app (type `services.msc` in the Start menu).
-   2. Locate **VMware NAT Service** and **VMware DHCP Service**.
-   3. Right-click each service and select **Restart**.
-- **On macOS**, restart VMware Workstation.
-
-## Step 7: Verify the Changes
-1. Power on a virtual machine connected to the NAT network.
-2. Check the assigned IP address using a command:
-   - **On Linux**: `ifconfig` or `ip a`
-   - **On Windows**: `ipconfig`
-3. Confirm the IP address is in the new subnet range (e.g., `10.19.19.x`).
-
-## Step 8: Test Connectivity
-1. Ping the NAT gateway (e.g., `10.19.19.1`) to ensure proper routing.
-2. Test internet access from the virtual machine to confirm NAT functionality.
-
----
-
-**Note**: If you encounter any issues, ensure that your virtual machine is properly connected to the NAT network and that no firewall or network restrictions are blocking the connection.
-
-
-## (On Virtualbox) Creating a New NAT Network in VirtualBox
+## Creating a New NAT Network in VirtualBox
 
 1. Open VirtualBox and go to **File > Tools > Network Manager**.
 
@@ -483,67 +430,63 @@ You can view the current IP of the machine.
 
 ## Installing Windows 10
 
-## 1. Download the Windows 10 ISO:
-- Visit the Windows Evaluation Center.
-- Choose the 64-bit edition and English as the language.
-- Download the ISO file (approximately 5 GB in size). This may take a while depending on your internet speed.
+### **1. Download the Windows 10 ISO**
+- Visit the [Windows Evaluation Center](https://www.microsoft.com/en-us/evalcenter/).
+- Choose the **64-bit edition** and **English** as the language.
+- Download the ISO file (approximately **5 GB** in size). This may take a while depending on your internet speed.
 
-## 2. Create a New Virtual Machine in VMware Workstation:
-- Open VMware Workstation and click **Create a New Virtual Machine**.
-- Select **Typical (recommended)** and click **Next**.
-- Choose **Installer disc image file (ISO)** and browse to the Windows 10 ISO you downloaded.
-- Click **Next**.
-- Enter a name for the VM (e.g., `Bob-VM`) and specify a location for the VM files.
-- Allocate the disk size (e.g., 60 GB) and choose **Store virtual disk as a single file**.
-- Click **Finish** to create the VM.
+### **2. Create a New Virtual Machine in VirtualBox**
+- Open **VirtualBox** and click **New** to create a new virtual machine (VM).
+- Name the VM (e.g., `Bob-PC`).
+- Set the **machine folder** to the folder where you stored your ISO file.
+- Select the **ISO image** for the installation (the Windows 10 ISO you downloaded).
+- Ensure **Skip Unattended Installation** is checked and click **Next**.
 
-## 3. Configure VM Settings:
-- **Memory**: Allocate RAM for the VM. It’s recommended to use 6–8 GB of RAM if your physical machine supports it.
-- **Processors**: Assign at least 2 processors or cores for better performance.
-- Review other settings and adjust as needed (e.g., network adapter, USB controller).
+### **3. Configure VM Settings**
+- **Memory:** Allocate RAM for the VM. It’s recommended to use **6–8 GB** of RAM if your physical machine supports it.
+- **Virtual Hard Disk:** Create a new **dynamically allocated hard disk** with a default size of **50 GB** (this can be adjusted later).
+- Review your settings and click **Finish**.
 
-## 4. Start the VM:
-- Click **Power on this virtual machine** to boot up the VM. The system will load the Windows installation process.
+## **4. Start the VM**
+- Click **Start** to boot up the VM. The system will load the Windows installation process.
 
-## 5. Install Windows 10:
-- **Language and Region**: Select your preferred language, time, and keyboard layout, then click **Next**.
-- **Install Now**: Click **Install Now** to begin the installation process.
-- **License Agreement**: Accept the Windows license terms.
-- **Custom Installation**: Choose the **Custom Installation** option to perform a clean install.
-- **Drive Allocation**: Click **New** to create a partition on the virtual hard disk and click **Apply**. This will automatically create additional partitions necessary for the installation.
+## **5. Install Windows 10**
+- **Language and Region:** Select your preferred language, time, and keyboard layout, then click **Next**.
+- **Install Now:** Click **Install Now** to begin the installation process.
+- **License Agreement:** Accept the Windows license terms.
+- **Custom Installation:** Choose the **Custom installation** option to perform a clean install.
+- **Drive Allocation:** Click **New** to create a partition on the virtual hard disk and click **Apply**. This will automatically create additional partitions necessary for the installation.
 - Click **Next** to begin the installation. The process may take some time.
 
-## 6. Complete the Initial Setup:
-- After the installation, Windows will prompt for some initial configuration:
-  - **Keyboard Layout**: Confirm the layout and click **Next**.
-  - **Sign-in**: Choose **Domain Join** and set up a local account (e.g., Username: `Bob`, Password: `Password1`).
-  - **Security Questions**: Provide answers to security questions (e.g., first pet, childhood nickname, birthplace).
-  - **Privacy Settings**: Disable unwanted privacy features like tracking and telemetry.
-  - **Cortana**: Choose **Not Now** when prompted about Cortana.
+## **6. Complete the Initial Setup**
+After the installation, Windows will prompt for some initial configuration:
+- **Keyboard Layout:** Confirm the layout and click **Next**.
+- **Sign-in:** Choose **Domain Join** and set up a local account (e.g., `Username: Bob, Password: Password1`).
+- **Security Questions:** Provide answers to security questions (e.g., first pet, childhood nickname, birthplace).
+- **Privacy Settings:** Disable unwanted privacy features like tracking and telemetry.
+- **Cortana:** Choose **Not Now** when prompted about Cortana.
 
-## 7. Enhance VM Usability:
-- **Install VMware Tools**:
-  - In the VMware menu, go to **VM > Install VMware Tools**.
-  - Open **File Explorer** in the VM, locate the VMware Tools drive, and run the installer.
-  - Follow the on-screen instructions to complete the installation.
+## **8. Enhance VM Usability**
+- **Install Guest Additions:**
+  - In the **VirtualBox menu**, go to **Devices > Insert Guest Additions CD Image**.
+  - Open **This PC** and double-click the **VirtualBoxGuest Editions drive**.
+  - Run the installer (`VBoxWindowsAdditions-x86_64.exe`) and follow the on-screen instructions.
   - After installation, reboot the VM.
 
-## 8. Optimize VM Display:
-- Once the system restarts, adjust the display settings in the VM for optimal resolution.
+## **9. Optimize VM Display**
+- Once the system restarts, go to the **View** tab in VirtualBox and select **Full Screen Mode** for a better display experience.
 
-## 9. Enable Shared Features:
-- **Shared Clipboard and Drag-and-Drop**:
-  - In VMware, go to **VM > Settings > Options > Guest Isolation**.
-  - Enable both **Drag and Drop** and **Copy and Paste**.
+## **10. Enable Shared Clipboard**
+- In VirtualBox, go to **Devices > Shared Clipboard** and set it to **Bi-directional**.
+- This allows you to **copy and paste** between the host and the VM.
 
-## 10. Take a Snapshot:
-- To save the current state of your VM, go to **VM > Snapshot > Take Snapshot** in VMware.
+## **11. Take a Snapshot**
+- To save the current state of your VM, go to **Machine > Take Snapshot** in VirtualBox.
 - Name the snapshot (e.g., `Base-Install`) to preserve the clean installation state.
 
-## 11. Ready for Use:
-- Your Windows 10 VM is now ready for use. You can proceed with any additional configuration or software installation as needed.
-
-By following these steps, you will have a fully functional Windows 10 virtual machine in VMware Workstation, optimized for lab work and further configurations.
+## **12. Ready for Use**
+- Your **Windows 10 VM is now ready** for use.
+- You can proceed with any additional configuration or software installation as needed.
 
 ---
 
