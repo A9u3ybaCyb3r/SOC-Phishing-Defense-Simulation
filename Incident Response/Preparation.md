@@ -250,15 +250,24 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
    - Choose `Select > Network & Security > snort` as the source type.
    - Also, you can create a custom source type if you need it.
 
+   ![image](https://github.com/user-attachments/assets/2c25303c-db91-488f-a953-12474875eb24)
+
+   ![image](https://github.com/user-attachments/assets/fa47513a-e145-41a0-b42f-4a3e6f5ab2ff)
+
+   - Click on **Save as** and you will see how it automatically did this for us.
+
+![image](https://github.com/user-attachments/assets/b583c4c5-4ed8-4c13-ad8e-233ffd562af0)
+
 5. **App Context**
    - Choose `Snort Alert for Splunk (snortalert)`.
 
 6.  **Assign an Index:**
    - Specify an index (e.g., `ids`).
 
-![image](https://github.com/user-attachments/assets/0860523e-7f02-48db-b3c7-517a3b88ea95)
+![image](https://github.com/user-attachments/assets/0dfcd718-ab6b-4ace-86df-c4ca865d5df8)
 
-![image](https://github.com/user-attachments/assets/059bc6cb-5bc7-488f-9c57-3936519b2c17)
+![image](https://github.com/user-attachments/assets/bb71756b-799e-4065-b5b3-cd765c36c513)
+
 
 ---
 
