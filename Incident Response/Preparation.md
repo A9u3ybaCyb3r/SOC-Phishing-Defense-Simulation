@@ -155,6 +155,40 @@ alert tcp any any <> any 80 (msg:"HTTP Traffic Detected"; sid:1000005; rev:5;)
 - This bidirectional traffic matches the rule, and Snort generates an alert with the message:
 `"HTTP Traffic Detected"`.
 
+## Activating Snort for Intrusion Detection and Prevention
+
+### Configure Network Interfaces
+Before starting Snort, shut down your **Ubuntu machine** and adjust its network settings:
+
+1. Open the **VM Network Settings**.
+2. Add a **second network interface**.
+3. Set the new interface to the same **NAT Network** used in your lab.
+
+![image](https://github.com/user-attachments/assets/51594814-03e1-468b-84b0-974c10721e87)
+
+### Start Snort in Inline Mode 
+
+Once your Ubuntu machine is back online, use the following command to activate Snort:
+```
+sudo snort -q -A console -i enp0s3:enp0s8 -c /etc/snort/snort.conf --daq afpacket -Q
+```
+
+### Command Breakdown:
+- `-q` → Quiet mode (suppresses banner output).
+- `-A console` → Displays alerts in the console.
+- `-i enp0s3:enp0s8` → Specifies two interfaces for inline mode.
+- `-c /etc/snort/snort.conf` → Loads the Snort configuration file.
+- `--daq afpacket` → Uses the AFPacket DAQ module for packet handling.
+- `-Q` → Enables inline mode for active intrusion prevention.
+
+### Verify Snort is Running
+
+To check if Snort is actively monitoring traffic, run:
+
+```
+sudo snort -T -c /etc/snort/snort.conf
+```
+If everything is set up correctly, Snort will initialize and start capturing network traffic.
 
 # Sending Snort Logs to Splunk
 
