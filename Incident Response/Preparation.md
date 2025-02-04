@@ -96,7 +96,7 @@ sudo snort -A console -q -c /etc/snort/snort.conf -i [your interface]
 
 - **Rule 1** 
 ```snort
-alert tcp any any -> any 4444 ( msg:"Reverse TCP connection detected";  sid:1000002; rev:1; )
+alert tcp 10.19.19.6 any -> any 4444 (msg:"Reverse TCP on Port 4444"; sid:1000002; rev:2;)
 ```
 ### What This Rule Detects
 The rule looks for TCP traffic originating from any port on any IP and destined for any IP address on port 4444.
