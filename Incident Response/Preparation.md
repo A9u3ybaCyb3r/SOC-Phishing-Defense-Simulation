@@ -110,7 +110,7 @@ This rule detects the traffic and generates an alert with the message:
 
 - **Rule 2**
 ```
-alert tcp any 8000:9000 -> any any (msg:"HTTP Traffic on common Non-Standard Port Detected"; sid:1000003; rev:3;)
+alert tcp any 8000:9000 -> any any (msg:"HTTP Traffic on common Non-Standard Port Detected"; sid:1000003; rev:1;)
 ```
 ### What This Rule Detects
 This rule detects **TCP traffic originating from ports 8000 to 9000**.
@@ -126,7 +126,7 @@ The rule detects this traffic and generates an alert with the message:
 
 - **Rule 3** 
 ```
-alert tcp any 8000:9000 -> any any (msg:"HTTP on Non-Standard Port Payload contains executable"; file_data; content:"|4D 5A|"; sid:1000004; rev:4;)
+alert tcp any 8000:9000 -> any any (msg:"HTTP on Non-Standard Port Payload contains executable"; file_data; content:"|4D 5A|"; sid:1000004; rev:1;)
 ```
 ### What This Rule Detects
 This rule identifies HTTP traffic on non-standard ports (8000 to 9000) where the payload contains a Windows executable file (indicated by the `4D 5A` magic bytes). This could be an attempt to:
@@ -142,7 +142,7 @@ This rule identifies HTTP traffic on non-standard ports (8000 to 9000) where the
 
 - **Rule 4** 
 ```
-alert tcp any any <> any 80 (msg:"HTTP Traffic Detected"; sid:1000005; rev:5;)
+alert tcp any any <> any 80 (msg:"HTTP Traffic Detected"; sid:1000005; rev:1;)
 ```
 ### What This Rule Detects
 - The rule detects **any TCP traffic involving port 80**, which is the standard port for HTTP.
