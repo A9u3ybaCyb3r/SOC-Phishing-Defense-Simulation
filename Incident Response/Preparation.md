@@ -252,6 +252,8 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
 
    ![image](https://github.com/user-attachments/assets/0c10dd92-7bd4-454c-aee0-03730b2770fa)
 
+   ![image](https://github.com/user-attachments/assets/a66b01cd-07a4-4703-9007-4b76f1a515b4)
+
    ![image](https://github.com/user-attachments/assets/d9fad025-ff17-439a-8e23-085fa04c534d)
 
    - Click on **Save as** and you will see how it automatically did this for us.
