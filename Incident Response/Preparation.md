@@ -35,6 +35,9 @@ In the preparation phase, several key configurations are made:
 	- **Real-Time Alert**: Trigger per result as soon as the event is detected.
 	- **Actions**: Add to **Triggered Alerts** and configure alert severity (e.g., medium).
 	- Optionally, set up notifications via email, Slack, or other integrations.
+
+![image](https://github.com/user-attachments/assets/280199bf-960a-4252-8c7d-f51f3d68f1a7)
+
 3. **Simulate and Test the Alert**
 - Clear the security log on the monitored Windows system to generate an Event ID 1102.
 - Confirm the alert triggers and appears in the **Triggered Alerts** section of Splunk.
