@@ -255,19 +255,29 @@ By following these steps, Snort logs will be sent to Splunk for efficient analys
 ## YARA Rule for mimikatz
 
 ```yara
-rule Detect_mimikatz {
-     meta:
-       description = "Detects Mimikatz executable"
-       author = "Bryan"
-        reference = "https://blog.gentlekiwi.com/Mimikatz"
-        date = "2024-08-24"
+rule MAL_Mimikatz_WIN_EXE_Feb5 
+{
+  meta:
+    description = "Detects Mimikatz executable using a hardcoded URL string"
+    author = "Bryan"
+    date = "2025-02-05"
+    reference = "https://blog.gentlekiwi.com/Mimikatz"
+    tags = "malware, windows, lsass"
+    hash = ""
+    id = "12345"
+    version = "1.0"
+    
   
-    strings:
-        $mz_magic = { 4D 5A } // 'MZ' header (magic bytes)
+  strings:
+    $url = "http://blog.gentlekiwi.com/mimikatz" ascii
+    //$PE_signature = "MZ"
+    $PE_signature = { 4D 5A } // MZ in hexadecimal
   
   condition:
-       $mz_magic at 0 // 'MZ' must be at the beginning of the file
+    $PE_signature at 0 and
+    $url
 }
+
 ```
 
 ### Rule Highlights:
@@ -284,22 +294,35 @@ rule Detect_mimikatz {
 ## YARA Rule for LaZagne.exe
 
 ```yara
-rule Detect_lazagne {
+rule LaZagne
+{
     meta:
-        description = "Detects LaZagne executable"
-        author = "Bryan"
-        date = "2025-01-17"
+        id = "3DeKZTrvc1lTK9vNaoj7LG"
+        fingerprint = "81ef321369e94e5cb5bbf735ab7db8c6aafc1fc7564c76d53b3f0e0adb9e5c81"
+        version = "1.0"
+        creation_date = "2020-01-01"
+        first_imported = "2021-12-30"
+        last_modified = "2021-12-30"
+        status = "RELEASED"
+        sharing = "TLP:WHITE"
+        source = "BARTBLAZE"
+        author = "@bartblaze"
+        description = "Identifies LaZagne, credentials recovery project."
+        category = "TOOL"
+        tool = "LAZAGNE"
+        mitre_att = "S0349"
         reference = "https://github.com/AlessandroZ/LaZagne"
 
+
     strings:
-        $name = "lazagne" nocase
-        $url = "https://github.com/AlessandroZ/LaZagne" nocase
-        $string1 = "Retrieve credentials from browsers"
-        $string2 = "Dumping saved passwords"
-        $string3 = "Extracting credentials from system"
+        $ = "[!] Specify a directory, not a file !" ascii wide
+        $ = "lazagne.config" ascii wide
+        $ = "lazagne.softwares" ascii wide
+        $ = "blazagne.exe.manifest" ascii wide
+        $ = "slaZagne" ascii wide fullword
 
     condition:
-        any of ($name, $url, $string1, $string2, $string3)
+        any of them
 }
 ```
 
