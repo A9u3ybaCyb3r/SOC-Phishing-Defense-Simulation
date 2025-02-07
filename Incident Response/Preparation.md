@@ -227,11 +227,11 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
 
 2. Check Splunk for indexed logs:
    - Go to `Search > Data Summary`.
-   - Confirm logs are indexed under `snort_logs`.
+   - Confirm logs are indexed under `ids`.
 
 3. Run a search query to view logs:
    ```spl
-   index=snort_logs
+   index=ids
    ```
 
 ## 4. Optional: Field Extraction and Parsing
