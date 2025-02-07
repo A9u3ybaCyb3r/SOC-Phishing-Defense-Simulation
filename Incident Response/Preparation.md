@@ -20,8 +20,6 @@ In the preparation phase, several key configurations are made:
   - Both **Snort Logs** and **Sysmon Logs** are going to be sent to **Splunk** for centralised monitoring and analysis.
 - **Forensic Tools**: Tools like Kape, Registry Explorer, and FTK Imager are downloaded for forensic analysis.
 
----
-
 # Create a Real-Time Alert for reverse TCP on Splunk
 1. **Search for Critical Events**
 - Use Splunk to search for Event ID 1102, which indicates the clearing of security logs:
@@ -155,53 +153,6 @@ alert tcp any any <> any 80 (msg:"HTTP Traffic Detected"; sid:1000005; rev:1;)
 - This bidirectional traffic matches the rule, and Snort generates an alert with the message:
 `"HTTP Traffic Detected"`.
 
-## Activating Snort for Intrusion Detection and Prevention
-
-### Configure Network Interfaces
-Before starting Snort, shut down your **Ubuntu machine** and adjust its network settings:
-
-1. Open the **VM Network Settings**.
-2. Add a **second network interface**.
-3. Set the new interface to the same **NAT Network** used in your lab.
-
-![image](https://github.com/user-attachments/assets/51594814-03e1-468b-84b0-974c10721e87)
-
-### Start Snort in Inline Mode 
-
-Once your Ubuntu machine is back online, use the following command to activate Snort:
-
-```
-sudo snort -q -l /var/log/snort -A full -i enp0s3:enp0s8 -c /etc/snort/snort.conf --daq afpacket -Q
-```
-This command will be used to forward Snort logs to Splunk. Additionally, it will be utilized when the attack begins.
-
-### Command Breakdown:
-- `-q` → Quiet mode (suppresses banner output).
-- `-l` → Specifies the log directory.
-- `-A full` → Displays alerts in full detail.
-- `-i enp0s3:enp0s8` → Specifies two interfaces for inline mode.
-- `-c /etc/snort/snort.conf` → Loads the Snort configuration file.
-- `--daq afpacket` → Uses the AFPacket DAQ module for packet handling.
-- `-Q` → Enables inline mode for active intrusion prevention.
-
-### Test the rule of Reverse TCP Connection
-
-Add the following rule to your `local.rules` for testing:
-```
-drop tcp any any -> any 21 (msg:"Drop any FTP traffic"; sid:1000006; rev:6;)
-```
-To check if Snort is actively monitoring traffic, run:
-
-```
-sudo snort -q -A console -i enp0s3:enp0s8 -c /etc/snort/snort.conf --daq afpacket -Q
-```
-Then, in another terminal tab, execute:
-
-```
-ftp test.rebex.net
-```
-If the rule is working correctly, the connection to the FTP server will be blocked. You will not be prompted to enter credentials, and in the terminal where Snort is running, you should see the message: `Drop any FTP traffic`
-
 # Sending Snort Logs to Splunk
 
 This guide focuses on configuring Snort to send logs to Splunk, assuming both are already installed on the same system.
@@ -213,8 +164,6 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
    - Default directory: `/var/log/snort/`
 
 2. Confirm the log format is compatible with Splunk (e.g., plain text or syslog format).
-
----
 
 ## 2. Set Up Splunk to Monitor Snort Logs
 
@@ -234,7 +183,7 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
    - Add a new data input pointing to `/var/log/snort/alert`.
    - If the `alert` file is missing, run the following command to generate log entries:
    ```
-   sudo snort -q -l /var/log/snort -A full -i enp0s3:enp0s8 -c /etc/snort/snort.conf --daq afpacket -Q`
+   sudo snort -q -l /var/log/snort -A full -i enp0s3 -c /etc/snort/snort.conf
    ```
    - In another terminal, perform a simple ping test:
    ```
@@ -269,9 +218,6 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
 
 ![image](https://github.com/user-attachments/assets/bb71756b-799e-4065-b5b3-cd765c36c513)
 
-
----
-
 ## 3. Verify Logs in Splunk
 
 1. Trigger Snort alerts by simulating network activity (e.g., pinging or scanning):
@@ -288,8 +234,6 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
    index=snort_logs
    ```
 
----
-
 ## 4. Optional: Field Extraction and Parsing
 
 1. Use Splunk's field extraction feature to parse Snort logs into structured fields:
@@ -300,7 +244,6 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
 
 2. Use regex to extract fields if needed manually.
 
----
 
 By following these steps, Snort logs will be sent to Splunk for efficient analysis and monitoring.
 
