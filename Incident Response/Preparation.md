@@ -164,7 +164,7 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
    - Add a new data input pointing to `/var/log/snort/alert`.
    - If the `alert` file is missing, run the following command to generate log entries:
    ```
-   sudo snort -q -l /var/log/snort -A full -i enp0s3 -c /etc/snort/snort.conf
+   sudo snort -q -l /var/log/snort -A fast -i enp0s3 -c /etc/snort/snort.conf
    ```
    - In another terminal, perform a simple ping test:
    ```
@@ -201,7 +201,7 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
 
 ## 3. Verify Logs in Splunk
 
-1. Trigger Snort alerts by simulating network activity (e.g., pinging or scanning):
+1. Trigger Snort alerts by simulating network activity (e.g., pinging):
    ```bash
    sudo snort -q -l /var/log/snort/ -i [your interface] -A full -c /etc/snort/snort.conf
    ```
@@ -230,28 +230,40 @@ By following these steps, Snort logs will be sent to Splunk for efficient analys
 
 ---
 
-# Create a Real-Time Alert for reverse TCP on Splunk
-1. **Search for Critical Events**
-- Use Splunk to search for the snort alert **Reverse TCP**, which indicates a reverse TCP connection was established:
+# Creating a Real-Time Alert for Reverse TCP in Splunk
 
-  ```spl
-  index=* eventtype="snort-alert" name="Reverse TCP*"
-	
-- To verify the search logic, modify the query to test using the (*) on Reverse to see if you still get the same result.
-- If you do not have any logs generated, attack the machine using a meterpreter shell on port 4444.
-2. **Save Search as an Alert**
-- Click **Save As** and select **Alert**.
-- Configure alert settings:
-	- **Name**: Reverse TCP.
-	- **Real-Time Alert**: Trigger per result as soon as the event is detected.
-	- **Actions**: Add to **Triggered Alerts** and configure alert severity (e.g., critical).
-	- Optionally, set up notifications via email, Slack, or other integrations.
+## Step 1: Search for Critical Events
+To detect reverse TCP connections in Splunk, use the following search query to find Snort alerts indicating a potential compromise:
 
-![image](https://github.com/user-attachments/assets/003f311a-5d46-49ed-9348-ca714e7b6136)
+```spl
+index=* eventtype="snort-alert" name="Reverse TCP*"
+```
+![image](https://github.com/user-attachments/assets/63971e29-f381-49ed-84cb-8afa23e5ec89)
 
-3. **Simulate and Test the Alert**
-- Attack the Windows machine using Metasploit as your listener and meterpreter for your shell with snort activated.
-- Confirm the alert triggers and appears in the **Triggered Alerts** section of Splunk.
+### Verification
+- Modify the query by adjusting the wildcard (*) placement on "Reverse" to test if results remain consistent.
+- If no logs are generated, simulate an attack using a Meterpreter reverse shell on port 4444 to verify the detection.
+
+## Step 2: Save the Search as an Alert
+- Click **Save As → Alert**.
+- Configure the alert settings:
+- **Name**: Reverse TCP
+- **Alert Type**: Real-Time
+- **Trigger Condition**: Trigger per result (fires when an event is detected).
+
+### Actions:
+- Add to **Triggered Alerts**.
+- Set **Severity** to **Critical**.
+   - (Optional) Configure notifications via email, Slack, or other integrations.
+
+![image](https://github.com/user-attachments/assets/a6b1dc69-03bb-4505-91a8-a822c26bd07b)
+
+## Step 3: Simulate and Test the Alert
+- Simulate an Attack:
+  - Use **Metasploit** to set up a listener and establish a **Meterpreter** reverse shell.
+  - Ensure **Snort** is actively monitoring traffic.
+- Verify Alert Triggering:
+  - Check the Triggered Alerts section in Splunk to confirm detection.
 
 ---
 
