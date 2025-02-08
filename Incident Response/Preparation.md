@@ -20,28 +20,6 @@ In the preparation phase, several key configurations are made:
   - Both **Snort Logs** and **Sysmon Logs** are going to be sent to **Splunk** for centralised monitoring and analysis.
 - **Forensic Tools**: Tools like Kape, Registry Explorer, and FTK Imager are downloaded for forensic analysis.
 
-# Create a Real-Time Alert for reverse TCP on Splunk
-1. **Search for Critical Events**
-- Use Splunk to search for Event ID 1102, which indicates the clearing of security logs:
-
-  ```spl
-  index=* sourcetype="WinEventLog:Security" EventCode=1102
-	
-- To verify the search logic, modify the query to test using a different event code, such as 4624 (logon events).
-2. **Save Search as an Alert**
-- Click **Save As** and select **Alert**.
-- Configure alert settings:
-	- **Name**: Security Event Log Cleared.
-	- **Real-Time Alert**: Trigger per result as soon as the event is detected.
-	- **Actions**: Add to **Triggered Alerts** and configure alert severity (e.g., medium).
-	- Optionally, set up notifications via email, Slack, or other integrations.
-
-![image](https://github.com/user-attachments/assets/280199bf-960a-4252-8c7d-f51f3d68f1a7)
-
-3. **Simulate and Test the Alert**
-- Clear the security log on the monitored Windows system to generate an Event ID 1102.
-- Confirm the alert triggers and appears in the **Triggered Alerts** section of Splunk.
-
 ---
 
 # Writing Snort Rules
@@ -250,6 +228,30 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
 
 By following these steps, Snort logs will be sent to Splunk for efficient analysis and monitoring.
 
+---
+
+# Create a Real-Time Alert for reverse TCP on Splunk
+1. **Search for Critical Events**
+- Use Splunk to search for the snort alert **Reverse TCP**, which indicates a reverse TCP connection was established:
+
+  ```spl
+  index=* eventtype="snort-alert" name="Reverse TCP*"
+	
+- To verify the search logic, modify the query to test using the (*) on Reverse to see if you still get the same result.
+- If you do not have any logs generated, attack the machine using a meterpreter shell on port 4444.
+2. **Save Search as an Alert**
+- Click **Save As** and select **Alert**.
+- Configure alert settings:
+	- **Name**: Reverse TCP.
+	- **Real-Time Alert**: Trigger per result as soon as the event is detected.
+	- **Actions**: Add to **Triggered Alerts** and configure alert severity (e.g., critical).
+	- Optionally, set up notifications via email, Slack, or other integrations.
+
+![image](https://github.com/user-attachments/assets/003f311a-5d46-49ed-9348-ca714e7b6136)
+
+3. **Simulate and Test the Alert**
+- Attack the Windows machine using Metasploit as your listener and meterpreter for your shell with snort activated.
+- Confirm the alert triggers and appears in the **Triggered Alerts** section of Splunk.
 
 ---
 
