@@ -16,6 +16,7 @@ In the preparation phase, several key configurations are made:
   - Rule 4: Monitors standard HTTP traffic on port 80.
 - **Lima Charlie**: It is integrated with a Windows workstation for advanced threat detection and response capabilities.
   - **YARA Rules**: Rules are written to detect executable files in the downloads directory.
+  - **Automate YARA Scan**: YARA Scan files that are executed and scan files that are dropped in the Downloads directory.
 - **Splunk Configuration**: Alerts are set up to detect reverse TCP connections.
   - Both **Snort Logs** and **Sysmon Logs** are going to be sent to **Splunk** for centralised monitoring and analysis.
 - **Forensic Tools**: Tools like Kape, Registry Explorer, and FTK Imager are downloaded for forensic analysis.
@@ -467,12 +468,9 @@ This rule is targeted at YARA detections that involve a PROCESS object, indicati
 
 1. **Navigate to D&R Rules**
 - From the “**Automation**” > “**D&R Rules**” section, click “**New Rule**” to create another rule.
-2. Configure the Detection Block
-In the Detect block, paste the following YAML:
-
-yaml
-Copy
-Edit
+2. **Configure the Detection Block**
+In the **Detect** block, paste the following YAML:
+```
 event: YARA_DETECTION
 op: and
 rules:
@@ -480,32 +478,193 @@ rules:
     path: event/RULE_NAME
   - op: exists
     path: event/PROCESS/*
-Explanation:
-event: YARA_DETECTION
+```
+### Explanation:
+- **event: YARA_DETECTION**
 Ensures the rule processes only YARA detection events.
-First sub-rule:
-Confirms that the event includes a RULE_NAME field.
-Second sub-rule:
-Confirms that the event has a PROCESS object by checking for any data under event/PROCESS/*.
-2.3 Configure the Response Block
+- **First sub-rule**:
+Confirms that the event includes a `RULE_NAME` field.
+- **Second sub-rule**:
+Confirms that the event has a PROCESS object by checking for any data under `event/PROCESS/*`.
+
+3. **Configure the Response Block**
 In the Respond block, paste the following YAML:
 
-yaml
-Copy
-Edit
+```
 - action: report
   name: YARA Detection in Memory {{ .event.RULE_NAME }}
 - action: add tag
   tag: yara_detection_memory
   ttl: 80000
-Explanation:
-Report Action:
+```
+
+### Explanation:
+- **Report Action**:
 Reports the detection and dynamically includes the YARA rule name.
-Add Tag Action:
-Tags the sensor with yara_detection_memory for easier filtering and automated responses.
-2.4 Save the Rule
-Title the rule as “YARA Detection in Memory”.
-Click “Save” to deploy the rule.
+- **Add Tag Action**:
+Tags the sensor with `yara_detection_memory` for easier filtering and automated responses.
+4. **Save the Rule**
+- Title the rule as “**YARA Detection in Memory**”.
+- Click “Save” to deploy the rule.
+
+# Automate YARA Scanning
+
+## Overview
+This documentation explains how to set up two D&R rules in LimaCharlie that will:
+
+- Rule 1: **YARA Scan Downloaded EXE**
+Detect new `.exe` files appearing in any user’s Downloads folder and trigger a YARA scan against the file (using the LaZagne YARA signature).
+- Rule 2: **YARA Scan Process Launched from Downloads**
+Detect processes launched from a user’s Downloads directory and trigger an in-memory YARA scan on the running process (using a LaZagne-specific YARA rule for running processes).
+
+## Part 1: Automatically YARA Scan Downloaded EXE Files
+This rule detects when a new EXE file appears in a user’s Downloads folder (i.e. a NEW_DOCUMENT event) and triggers a YARA scan using the LaZagne signature.
+
+### Step 1.1: Create the Rule
+1. **Navigate to D&R Rules**:
+- In the LimaCharlie dashboard, go to “**Automation**” > “**D&R Rules**”.
+2. **Create a New Rule**:
+- Click on the “New Rule” button.
+
+### Step 1.2: Configure the Detect Block
+In the **Detect** block, paste the following YAML:
+```
+event: NEW_DOCUMENT
+op: and
+rules:
+  - op: starts with
+    path: event/FILE_PATH
+    value: C:\Users\
+  - op: contains
+    path: event/FILE_PATH
+    value: \Downloads\
+  - op: ends with
+    path: event/FILE_PATH
+    value: .exe
+```
+### Explanation:
+- Event Type: The rule only applies to `NEW_DOCUMENT` events.
+- File Path Conditions:
+  - **Starts with**: Ensures the file is under a user directory (e.g., `C:\Users\`).
+  - **Contains**: Checks that the file path includes `\Downloads\`.
+  - **Ends with**: Confirms the file is an `.exe` file.
+
+### Step 1.3: Configure the Respond Block
+In the `Respond` block, paste the following YAML:
+```
+- action: report
+  name: EXE dropped in Downloads directory
+- action: task
+  command: >-
+    yara_scan hive://yara/lazagne -f "{{ .event.FILE_PATH }}"
+  investigation: Yara Scan Exe
+  suppression:
+    is_global: false
+    keys:
+      - '{{ .event.FILE_PATH }}'
+      - Yara Scan Exe
+    max_count: 1
+    period: 1m
+```
+
+### Explanation:
+- **Report Action**: Generates an alert named “EXE dropped in Downloads directory.”
+- **Task Action**:
+  - Initiates a sensor command to perform a YARA scan.
+  - Uses the LaZagne YARA rule (`hive://yara/lazagne`) to scan the file specified by the `FILE_PATH` field.
+  - The **suppression** settings ensure that duplicate scans are prevented for the same file within one minute.
+
+### Step 1.4: Save the Rule
+- Title the rule as “**YARA Scan Downloaded EXE**”.
+- Click “**Save**” to deploy the rule.
+
+## Part 2: Automatically YARA Scan Processes Launched from Downloads
+This rule detects when a process is started from a user’s Downloads folder (i.e. a NEW_PROCESS event) and triggers an in-memory YARA scan using a LaZagne-specific signature.
+
+### Step 2.1: Create the Rule
+1. **Navigate to D&R Rules**:
+- In the LimaCharlie dashboard, under “**Automation**” > “**D&R Rules**”, click on “**New Rule**”.
+
+### Step 2.2: Configure the Detect Block
+In the **Detect** block, paste the following YAML:
+```
+event: NEW_PROCESS
+op: and
+rules:
+  - op: starts with
+    path: event/FILE_PATH
+    value: C:\Users\
+  - op: contains
+    path: event/FILE_PATH
+    value: \Downloads\
+```
+
+### Explanation:
+- **Event Type**: The rule applies to `NEW_PROCESS` events.
+- **File Path Conditions**:
+Checks that the process’s file path starts with C:\Users\ and includes \Downloads\, indicating it was launched from the Downloads directory.
+
+### Step 2.3: Configure the Respond Block
+In the **Respond** block, paste the following YAML:
+```
+- action: report
+  name: Execution from Downloads directory
+- action: task
+  command: yara_scan hive://yara/lazagne-process --pid "{{ .event.PROCESS_ID }}"
+  investigation: Yara Scan Process
+  suppression:
+    is_global: false
+    keys:
+      - '{{ .event.PROCESS_ID }}'
+      - Yara Scan Process
+    max_count: 1
+    period: 1m
+```
+### Explanation:
+- **Report Action**: Generates an alert named “Execution from Downloads directory.”
+- **Task Action**:
+  - Initiates a YARA scan on the running process using its `PROCESS_ID`.
+  - Uses the LaZagne-specific YARA rule for processes (`hive://yara/lazagne-process`).
+  - The suppression settings prevent duplicate scans for the same process within one minute.
+
+### Step 2.4: Save the Rule
+- Title the rule as “**YARA Scan Process Launched from Downloads**”.
+- Click “**Save**” to deploy the rule.
+
+## Part 3: Triggering and Testing the Rules
+
+### Testing the Downloaded EXE Rule
+1. **Simulate EXE Movement**:
+- Open an Administrative PowerShell prompt.
+- Move your LaZagne payload from the Downloads folder to Documents:
+```
+Move-Item -Path C:\Users\User\Downloads\LaZagne.exe -Destination C:\Users\User\Documents\LaZagne.exe
+```
+Then, move it back to the Downloads folder to generate a `NEW_DOCUMENT` event:
+```
+Move-Item -Path C:\Users\User\Documents\LaZagne.exe -Destination C:\Users\User\Downloads\LaZagne.exe
+```
+2. **Verify Detections**:
+- Go to your Detections tab in LimaCharlie.
+- You should see an alert titled “EXE dropped in Downloads directory” followed by a YARA detection report once the scan completes.
+- If no detection appears, check the Timeline for a `NEW_DOCUMENT` event showing the file movement.
+
+### Testing the Process Rule
+1. **Terminate Existing Instances**:
+- Open an Administrative PowerShell prompt.
+- Stop any running instances of LaZagne.exe (replace `LaZagne` with the payload name without the `.exe` extension):
+```
+Get-Process LaZagne | Stop-Process
+```
+- (Ignore errors if no instance is running.)
+2. **Launch the Payload**:
+- Execute LaZagne.exe from the Downloads folder:
+```
+C:\Users\User\Downloads\LaZagne.exe
+```
+3. **Verify Detections**:
+- Check your **Detections** tab.
+- You should see an alert titled “Execution from Downloads directory” followed by an in-memory YARA detection once the process scan is completed.
 
 ---
 
