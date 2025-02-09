@@ -399,122 +399,113 @@ rule Detect_winpeas {
 
 ---
 
-# LimaCharlie Detection & Response Rules with Yara
+# LimaCharlie Detection & Response Rules
 
-## Examples: [Detection & Response Rules Examples](https://docs.limacharlie.io/v2/docs/detection-and-response-examples)
+## Setting Up Generic YARA Detection D&R Rules in LimaCharlie
 
-## Step 1: Automate YARA Scans for Downloaded EXEs
+### Overview
+This guide describes the steps required to create two generic D&R rules in LimaCharlie. These rules are designed to:
 
-### Rule: Automatically Scan Downloaded EXEs
-1. Create a rule titled YARA Scan Downloaded EXE.
+- Rule 1 – YARA Detection: Detect and alert when a YARA detection occurs that does not include a PROCESS object.
+- Rule 2 – YARA Detection in Memory: Detect and alert when a YARA detection occurs that involves a PROCESS object.
 
-2. Add the following Detect block:
+### Step 1: Create the “YARA Detection” Rule
+This rule is designed to catch YARA detections that do not involve a PROCESS object (typically on-disk detections).
 
-
+1. **Navigate to D&R Rules**
+- Log in to your LimaCharlie dashboard.
+- In the left-hand menu, go to “**Automation**” > “**D&R Rules**”.
+2. **Create a New Rule**
+- Click the “**New Rule**” button to start a new rule.
+3. **Configure the Detection Block**
+In the rule’s **Detect** block, paste the following YAML:
 ```
-event: NEW_DOCUMENT
+event: YARA_DETECTION
 op: and
 rules:
-  - op: starts with
-    path: event/FILE_PATH
-    value: C:\Users\
-  - op: contains
-    path: event/FILE_PATH
-    value: \Downloads\
-  - op: ends with
-    path: event/FILE_PATH
-    value: .exe
-
+  - not: true
+    op: exists
+    path: event/PROCESS/*
+  - op: exists
+    path: event/RULE_NAME
 ```
+### Explanation:
 
+- **event: YARA_DETECTION**
+Specifies that the rule will only evaluate events labeled as `YARA_DETECTION`.
 
-3. Add the following Respond block:
+- **First sub-rule**:
+Uses `not: true` with the operator `exists` on the path `event/PROCESS/*`. This means the rule will only match if the event does not have any PROCESS-related data.
 
+- **Second sub-rule**:
+Uses `op: exists` to ensure that the event includes a `RULE_NAME` attribute.
+
+4. **Configure the Response Block**
+In the rule’s Respond block, paste the following YAML:
 
 ```
 - action: report
-  name: EXE dropped in Downloads directory
-- action: task
-  command: >-
-    yara_scan hive://yara/lazagne hive://yara/winpeas
-    hive://yara/mimikatz -f "{{ .event.FILE_PATH }}"
-  investigation: Yara Scan Exe
-  suppression:
-    is_global: false
-    keys:
-      - '{{ .event.FILE_PATH }}'
-      - Yara Scan Exe
-    max_count: 1
-    period: 1m
+  name: YARA Detection {{ .event.RULE_NAME }}
+- action: add tag
+  tag: yara_detection
+  ttl: 80000
 ```
+### Explanation:
 
+- **Report Action**:
+Generates a detection report. The detection name dynamically incorporates the YARA rule name from the event.
 
+- **Add Tag Action**:
+Tags the sensor with `yara_detection` for later filtering or automated actions, with a Time-To-Live (TTL) of 80,000 seconds.
 
-## Step 2: Automate YARA Scans for Processes Launched from Downloads
+5. **Save the Rule**
+- Title the rule as “**YARA Detection**”.
+- Click “**Save**” to deploy the rule.
 
-### Rule: Automatically Scan Launched Processes
-1. Create a rule titled YARA Scan Process Launched from Downloads.
+### Step 2: Create the “YARA Detection in Memory” Rule
+This rule is targeted at YARA detections that involve a PROCESS object, indicating an in-memory detection.
 
-2. Add the following Detect block:
+1. **Navigate to D&R Rules**
+- From the “**Automation**” > “**D&R Rules**” section, click “**New Rule**” to create another rule.
+2. Configure the Detection Block
+In the Detect block, paste the following YAML:
 
-
-```
-event: NEW_PROCESS
+yaml
+Copy
+Edit
+event: YARA_DETECTION
 op: and
 rules:
-  - op: starts with
-    path: event/FILE_PATH
-    value: C:\Users\
-  - op: contains
-    path: event/FILE_PATH
-    value: \Downloads\
-```
+  - op: exists
+    path: event/RULE_NAME
+  - op: exists
+    path: event/PROCESS/*
+Explanation:
+event: YARA_DETECTION
+Ensures the rule processes only YARA detection events.
+First sub-rule:
+Confirms that the event includes a RULE_NAME field.
+Second sub-rule:
+Confirms that the event has a PROCESS object by checking for any data under event/PROCESS/*.
+2.3 Configure the Response Block
+In the Respond block, paste the following YAML:
 
-
-3. Add the following Respond block:
-
-```
+yaml
+Copy
+Edit
 - action: report
-  name: Execution from Downloads directory
-- action: task
-  command: >-
-    yara_scan hive://yara/lazagne hive://yara/winpeas
-    hive://yara/mimikatz -f "{{ .event.FILE_PATH }}"
-  investigation: Yara Scan Process
-  suppression:
-    is_global: false
-    keys:
-      - '{{ .event.PROCESS_ID }}'
-      - Yara Scan Process
-    max_count: 1
-    period: 1m
-```
-
-
-
-## Step 3: Test the Rules
-
-### Simulate Download and Execution
-1. Place the Mimikatz executable (mimikatz.exe) in the C:\Users\User\Downloads folder.
-
-2. Move it to another location and back to trigger the NEW_DOCUMENT event using PowerShell or moving it manually:
-- For example:
-```
-Move-Item -Path C:\Users\User\Downloads\mimikatz.exe -Destination C:\Users\User\Documents\mimikatz.exe
-Move-Item -Path C:\Users\User\Documents\mimikatz.exe -Destination C:\Users\User\Downloads\mimikatz.exe
-```
-
-
-3. Launch the Mimikatz executable to trigger the NEW_PROCESS event:
-- For example:
-```
-C:\Users\User\Downloads\mimikatz.exe
-```
-
-
-4. Verify detections in the Detections tab.
-
-This approach ensures that the file and process activities involving Mimikatz are monitored and flagged automatically. Based on your specific use case, you can further refine the YARA rule or detection logic.
+  name: YARA Detection in Memory {{ .event.RULE_NAME }}
+- action: add tag
+  tag: yara_detection_memory
+  ttl: 80000
+Explanation:
+Report Action:
+Reports the detection and dynamically includes the YARA rule name.
+Add Tag Action:
+Tags the sensor with yara_detection_memory for easier filtering and automated responses.
+2.4 Save the Rule
+Title the rule as “YARA Detection in Memory”.
+Click “Save” to deploy the rule.
 
 ---
 
