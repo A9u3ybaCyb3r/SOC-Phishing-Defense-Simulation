@@ -378,6 +378,15 @@ rule laZagne_strings
 }
 ```
 
+### Explanation:
+
+- **Meta**: Provides context and attribution.
+- **Strings**:
+  - `$l1` looks for the string "`LaZagne`" (case-insensitive).
+  - `$l2` looks for the string "`GetPasswords`".
+- **Condition**:
+  - **any of them** means that any of $l1 or $l2 must be found in the scanned file or memory region for the rule to trigger.
+
 ## YARA Rule for Winpeas
 
 ```yara
@@ -436,7 +445,14 @@ rule winPEAS_strings
       any of them
 }
 ```
+### Explanation:
 
+- **Meta**: Contains basic documentation.
+- **Strings**:
+  - `$w1` searches for "winPEAS" in a case-insensitive manner.
+  - (Optionally, $w2 could check for a related string like "winpeas.exe".)
+- **Condition**:
+  - The rule will trigger with any of the strings.
 ---
 
 # LimaCharlie Detection & Response Rules
