@@ -360,6 +360,24 @@ rule LaZagne
 4. Case-Insensitive Matching:
 - Strings like **$name** and **$url** are marked with **nocase** to detect variations in capitalization.
 
+## YARA Rule for LaZagne-process
+
+```
+rule laZagne_strings 
+{
+    meta:
+      author = "BVega"
+      description = "Detects LaZagne post-exploitation tool based on key strings"
+  
+    strings:
+      $l1 = "LaZagne" ascii nocase
+      $l2 = "GetPasswords" ascii nocase
+  
+    condition:
+      any of them
+}
+```
+
 ## YARA Rule for Winpeas
 
 ```yara
@@ -398,6 +416,26 @@ rule Detect_winpeas {
 - Triggers if any of the defined strings are found in the scanned file.
 4. Case-Insensitive Matching:
 - Strings like **$name** and **$url** are marked with **nocase** to detect variations in capitalization.
+
+## YARA Rule for Winpeas-process
+
+```
+rule winPEAS_strings 
+{
+    meta:
+      author = "BVega"
+      description = "Detects winPEAS enumeration tool based on key strings"
+  
+    strings:
+      $w1 = "winPEAS" ascii nocase
+    // Optionally, add a second check:
+      $w2 = "winpeas.exe" ascii nocase
+      $w3 = "winPEASx64" ascii
+  
+    condition:
+      any of them
+}
+```
 
 ---
 
