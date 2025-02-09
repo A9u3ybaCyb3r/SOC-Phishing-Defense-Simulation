@@ -27,7 +27,7 @@ In the preparation phase, several key configurations are made:
     - [Sending Snort Logs to Splunk](#sending-snort-logs-to-splunk)
 2. [Creating a Real-Time Alert for Reverse TCP in Splunk](#creating-a-real-time-alert-for-reverse-tcp-in-splunk)
 3. [Writing YARA Rules](#writing-yara-rules)
-4. [LimaCharlie Detection & Response Rules](#LimaCharlie-Detection-and-Response-Rules)
+4. [LimaCharlie Detection and Response Rules](#LimaCharlie-Detection-and-Response-Rules)
 5. [Setting Up Microsoft Sysmon for Splunk](#setting-up-microsoft-sysmon-for-splunk)
 
 ---
@@ -455,7 +455,7 @@ rule winPEAS_strings
   - The rule will trigger with any of the strings.
 ---
 
-# LimaCharlie Detection & Response Rules
+# LimaCharlie Detection and Response Rules
 
 ## Setting Up Generic YARA Detection D&R Rules in LimaCharlie
 
