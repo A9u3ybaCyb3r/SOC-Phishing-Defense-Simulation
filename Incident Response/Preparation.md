@@ -324,7 +324,7 @@ rule LaZagne
 {
     meta:
         id = "67890"
-        hash = "" 
+        hash = "467e49f1f795c1b08245ae621c59cdf06df630fc1631dc0059da9a032858a486" 
         version = "1.0"
         date = "2025-02-09"
         author = "BVega"
@@ -369,7 +369,7 @@ rule Detect_winpeas {
         author = "Bryan"
         date = "2025-01-17"
         reference = "https://github.com/carlospolop/PEASS-ng"
-        hash = ""
+        hash = "40187c6d8fdb9c5c716ba1f8c6d916706fa7331f8338ed88a39b24e65e1252d6"
 
     strings:
         $name = "winpeas" nocase
