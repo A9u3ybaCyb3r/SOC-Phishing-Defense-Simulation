@@ -22,7 +22,15 @@ In the preparation phase, several key configurations are made:
 - **Forensic Tools**: Tools like Kape, Registry Explorer, and FTK Imager are downloaded for forensic analysis.
 
 ---
+## Table of Contents
+1. [Writing Snort Rules](#writing-snort-rules)
+    - [Sending Snort Logs to Splunk](#sending-snort-logs-to-splunk)
+2. [Creating a Real-Time Alert for Reverse TCP in Splunk](#creating-a-real-time-alert-for-reverse-tcp-in-splunk)
+3. [Writing YARA Rules](#writing-yara-rules)
+4. [LimaCharlie Detection & Response Rules](#limacharlie-detection-&-response-rules)
+5. [Setting Up Microsoft Sysmon for Splunk](#setting-up-microsoft-sysmon-for-splunk)
 
+---
 # Writing Snort Rules
 
 We will use [Snort Rule Generator](https://anir0y.in/snort2-rulgen/) to make our rules.
@@ -268,7 +276,7 @@ index=* eventtype="snort-alert" name="Reverse TCP*"
 
 ---
 
-# Writing Yara Rules
+# Writing YARA Rules
 
 ## YARA Rule for mimikatz
 
