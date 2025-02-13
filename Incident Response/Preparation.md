@@ -278,45 +278,6 @@ index=* eventtype="snort-alert" name="Reverse TCP*"
 
 # Writing YARA Rules
 
-## YARA Rule for mimikatz
-
-```yara
-rule MAL_Mimikatz_WIN_EXE_Feb5 
-{
-  meta:
-    description = "Detects Mimikatz executable using a hardcoded URL string"
-    author = "Bryan"
-    date = "2025-02-05"
-    reference = "https://blog.gentlekiwi.com/Mimikatz"
-    tags = "malware, windows, lsass"
-    hash = ""
-    id = "12345"
-    version = "1.0"
-    
-  
-  strings:
-    $url = "http://blog.gentlekiwi.com/mimikatz" ascii
-    //$PE_signature = "MZ"
-    $PE_signature = { 4D 5A } // MZ in hexadecimal
-  
-  condition:
-    $PE_signature at 0 and
-    $url
-}
-
-```
-
-### Rule Highlights:
-1. Metadata (**meta**):
-- Provides a description, author, and reference for documentation.
-2. Strings (**strings**):
-- Includes the tool's name and URL.
-- Adds specific commands or phrases commonly associated with Mimikatz, such as:
-  - **$mz_header** (identifies a Windows PE file).
-  - **$url** (URL of the creator).
-3. Condition (**condition**):
-- Triggers if any of the defined strings are found in the scanned file.
-
 ## YARA Rule for LaZagne.exe
 
 ```yara
@@ -623,11 +584,13 @@ In the `Respond` block, paste the following YAML:
 ```
 
 ### Explanation:
-- **Report Action**: Generates an alert named “EXE dropped in Downloads directory.”
+- **Report Action**: Generates an alert named “EXE dropped in Downloads directory (LaZagne).”
 - **Task Action**:
   - Initiates a sensor command to perform a YARA scan.
   - Uses the LaZagne YARA rule (`hive://yara/lazagne`) to scan the file specified by the `FILE_PATH` field.
   - The **suppression** settings ensure that duplicate scans are prevented for the same file within one minute.
+
+### Now do the same but with winPEAS YARA rule
 
 ### Step 1.4: Save the Rule
 - Title the rule as “**YARA Scan Downloaded EXE**”.
@@ -683,8 +646,10 @@ In the **Respond** block, paste the following YAML:
   - The suppression settings prevent duplicate scans for the same process within one minute.
 
 ### Step 2.4: Save the Rule
-- Title the rule as “**YARA Scan Process Launched from Downloads**”.
+- Title the rule as “**YARA Scan Process Launched from Downloads (LaZagne)**”.
 - Click “**Save**” to deploy the rule.
+
+### Now do the same but with winPEAS process YARA rule
 
 ## Part 3: Triggering and Testing the Rules
 
@@ -720,6 +685,8 @@ C:\Users\User\Downloads\LaZagne.exe
 3. **Verify Detections**:
 - Check your **Detections** tab.
 - You should see an alert titled “Execution from Downloads directory” followed by an in-memory YARA detection once the process scan is completed.
+
+### Do the same thing but wih winPEAS.
 
 ---
 
