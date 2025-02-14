@@ -1,4 +1,4 @@
-# Cyber Defense Lab
+# SOC Phishing Defense Simulation
 
 ## Objective:
 
