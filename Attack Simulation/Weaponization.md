@@ -8,7 +8,7 @@ Create a malicious payload and a delivery mechanism for the attack.
 
     Use **MSFVenom**, a tool for creating payloads, to generate a **malicious executable** that executes a **Meterpreter shell** (Metasploit's remote control payload). 
 
-![image](https://github.com/user-attachments/assets/fc6acd6d-1b8f-4dc9-8d76-ab57a5fc4574)
+![image](https://github.com/user-attachments/assets/636861be-e51d-4841-a33c-b1e6b0e7b608)
 
 ### Explanation of the Command:
 
