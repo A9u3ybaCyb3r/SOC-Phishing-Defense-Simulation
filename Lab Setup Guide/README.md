@@ -7,8 +7,8 @@
 4. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
 5. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
 6. [Installing Snort](#installing-snort)
-7. [Installing Metasploit Framework](#installing-metasploit-framework)
-8. [Wireshark Installation](#wireshark-installation)
+7. [Wireshark Installation](#wireshark-installation)
+8. [Setting up Kali Linux](#setting-up-kali-linux)
 9. [Installing Windows 10](#installing-windows-11)
 10. [Installing Splunk Forwarder](#installing-splunk-forwarder)
 11. [Installing LimaCharlie](#installing-limacharlie)
@@ -452,53 +452,6 @@ You can view the current IP of the machine.
 
 ---
 
-# Installing Metasploit Framework 
-
-## Objective
-
-Simulate a malware attack to understand attacker techniques, endpoint behavior, and defense mechanisms using the Metasploit Framework. This activity is purely for educational purposes within a controlled lab setup.
-
-### Step 1: Set Up the Environment
-
-1. Virtual Machines (VMs)
-
-- Ensure you have two virtual machines:
-
-  - **Attacker VM**: Ubuntu
-
-  - **Target VM**: Windows
-
-2. Networking
-
-- Attach both VMs to the same NAT network.
-
-- Verify connectivity by using the ping command between the two VMs.
-
-### Step 2: Install Metasploit Framework on Ubuntu
-
-1. Follow Rapid7 Documentation
-
-- Visit the official [Metasploit installation guide](https://docs.rapid7.com/metasploit/installing-the-metasploit-framework/) from Rapid7 for the latest installation steps.
-
-2. Command to Install Metasploit
-
-- Run the following command in the Ubuntu terminal:
-```
-curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall
-chmod 755 msfinstall && ./msfinstall
-```
-3. Verify Installation
-
-- Launch Metasploit:
-```
-msfconsole
-```
-- Initialize the database when prompted.
-- Now you have Metasploit installed and ready to simulate an attack.
-
-
----
-
 # Wireshark Installation
 
 ## Purpose
@@ -526,8 +479,53 @@ sudo apt update
 sudo apt install wireshark
 ```
 Now you have Wireshark ready for network analysis. 
+
 ---
 
+## Setting up Kali Linux
+
+### Downloading Kali Linux Virtual Machine Image
+
+1. Go to [Kali's official download page](https://kali.org/get-kali/).
+2. Click on **Virtual Machines** and download the 64-bit version for VirtualBox.
+
+   ![image](https://github.com/user-attachments/assets/ae2d558e-57a4-4d1a-8576-5ad25de659ec)
+   
+   ![image](https://github.com/user-attachments/assets/6430026d-9ca1-46db-9dd6-98e6d758617c)
+
+### Importing Kali Linux into VirtualBox
+
+1. After downloading, extract the `.ova` file.
+2. Open VirtualBox, click **Add**, and select the `.vbox` extension file from the extracted contents.
+
+   ![image](https://github.com/user-attachments/assets/37ef160d-c250-4151-80df-bdfb038f063c)
+   
+   ![image](https://github.com/user-attachments/assets/5cf67d2e-ebd6-4c6e-ab83-f49f87a27b82)
+
+### Configuring Network Settings
+
+1. Right-click on the Kali Linux machine in VirtualBox, then select **Settings > Network**.
+
+   ![image](https://github.com/user-attachments/assets/465b1135-d2b9-4e79-aa75-f6eb9f315ed1)
+
+2. Change the network adapter to the **NAT Network** that you created.
+
+   ![image](https://github.com/user-attachments/assets/13a03bdb-84e5-4cad-bac3-aa89af5adb77)
+
+### Adjusting System Resources
+
+1. To allocate more RAM, go to **Settings > System > Motherboard**. Increase the RAM based on your system’s resources (e.g., 8GB for resource-intensive tools).
+
+   ![image](https://github.com/user-attachments/assets/9cf482b6-64c7-48be-8248-fe25ad5868eb)
+
+### Starting Kali Linux
+
+1. Click **OK** to save the settings, then start the machine.
+2. Login using the default credentials: `kali` for both the username and password.
+
+   ![image](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
+
+---
 ## Installing Windows 10
 
 ### **1. Download the Windows 10 ISO**
