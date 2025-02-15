@@ -12,7 +12,7 @@ Developed by Lockheed Martin, it is a conceptual framework that describes the st
 - Subject: "*Critical Update: Immediate Action Required.*"
 
 ## [Exploitation Phase](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Attack%20Simulation/Exploitation%20Phase.md)
-- Victim downloads and executes `SecurityUpdate.exe`.
+- Victim downloads and executes `SecurityUpdate.exe` as an administrator.
 - A reverse TCP connection is established on port **4444** using a **Meterpreter session**.
 
 ## [Installation Phase](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Attack%20Simulation/Installation%20Phase.md)
