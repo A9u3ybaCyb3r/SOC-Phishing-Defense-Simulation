@@ -341,72 +341,7 @@ rule laZagne_strings
 - **Condition**:
   - **any of them** means that any of $l1 or $l2 must be found in the scanned file or memory region for the rule to trigger.
 
-## YARA Rule for Winpeas
 
-```yara
-rule Detect_winpeas {
-    meta:
-        description = "Detects winpeas executable or script"
-        author = "Bryan"
-        date = "2025-01-17"
-        reference = "https://github.com/carlospolop/PEASS-ng"
-        hash = "40187c6d8fdb9c5c716ba1f8c6d916706fa7331f8338ed88a39b24e65e1252d6"
-
-    strings:
-        $name = "winpeas" nocase
-        $url = "https://github.com/carlospolop/PEASS-ng" nocase
-        $string1 = "Checking Windows enumeration"
-        $string2 = "Find interesting files"
-        $string3 = "Checking for installed programs"
-
-    condition:
-        any of ($name, $url, $string1, $string2, $string3)
-}
-```
-
-### Rule Highlights:
-1. Metadata (**meta**):
-- Provides a description, author, and reference for documentation.
-2. Strings (**strings**):
-- Combines tool-specific and functional strings for reliable detection:
-  - **$name**: Matches the term "winpeas" in a case-insensitive manner (**nocase**).
-  - **$url**: Detects references to the GitHub repository for PEASS-ng.
-  - **$string1**, **$string2**, **$string3**: Captures descriptive strings commonly associated with WinPEAS functionality:
-    - **"Checking Windows enumeration"**
-    - **"Find interesting files"**
-    - **"Checking for installed programs"**
-3. Condition (**condition**):
-- Triggers if any of the defined strings are found in the scanned file.
-4. Case-Insensitive Matching:
-- Strings like **$name** and **$url** are marked with **nocase** to detect variations in capitalization.
-
-## YARA Rule for Winpeas-process
-
-```
-rule winPEAS_strings 
-{
-    meta:
-      author = "BVega"
-      description = "Detects winPEAS enumeration tool based on key strings"
-  
-    strings:
-      $w1 = "winPEAS" ascii nocase
-    // Optionally, add a second check:
-      $w2 = "winpeas.exe" ascii nocase
-      $w3 = "winPEASx64" ascii
-  
-    condition:
-      any of them
-}
-```
-### Explanation:
-
-- **Meta**: Contains basic documentation.
-- **Strings**:
-  - `$w1` searches for "winPEAS" in a case-insensitive manner.
-  - (Optionally, $w2 could check for a related string like "winpeas.exe".)
-- **Condition**:
-  - The rule will trigger with any of the strings.
 ---
 
 # LimaCharlie Detection and Response Rules
@@ -678,8 +613,6 @@ C:\Users\User\Downloads\LaZagne.exe
 3. **Verify Detections**:
 - Check your **Detections** tab.
 - You should see an alert titled “Execution from Downloads directory” followed by an in-memory YARA detection once the process scan is completed.
-
-### Do the same thing but wih winPEAS.
 
 ---
 
