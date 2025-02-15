@@ -42,9 +42,6 @@ Metasploit is a penetration testing framework used for finding, exploiting, and 
 
 Emkei's Fake Mailer is an online tool that allows users to send spoofed emails by forging the "From" address and other email headers. It is typically used to simulate email communications from any sender address, making it appear as though the email originates from a legitimate source.
 
-### WinPEAS
-
-WinPEAS (Windows Privilege Escalation Awesome Script) is a post-exploitation enumeration tool designed to identify potential privilege escalation vectors on Windows systems. It is part of the Privilege Escalation Awesome Scripts Suite (PEASS). Penetration testers and attackers widely use WinPEAS to automate the process of discovering misconfigurations, vulnerabilities, or sensitive information that can be leveraged to gain higher privileges.
 
 ### LaZagne
 
