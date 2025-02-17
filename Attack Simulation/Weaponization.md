@@ -1,12 +1,16 @@
-# Weaponization
+# Phase 2: Weaponization
 
-## Objective:
-Create a malicious payload and a delivery mechanism for the attack.
+## 🌟 Objective:
+Create a malicious payload that will allow the attacker to gain control of the victim's machine.
 
-## Action:
-1. Generate Malicious Payload with MSFVenom: 
+### Steps:
+#### Choosing the Exploit Delivery Mechanism:
+- The attacker decides to use Metasploit’s MSF Venom to create a reverse TCP payload.
+- The payload will execute a reverse shell, allowing the attacker to remotely control the victim’s system.
 
-    Use **MSFVenom**, a tool for creating payloads, to generate a **malicious executable** that executes a **Meterpreter shell** (Metasploit's remote control payload). 
+#### Generating the Payload:
+- The payload is created using MSF Venom and is compiled into a PP32 executable.
+- The payload file is named `SecurityUpdate.exe` to avoid suspicion.
 
 ![image](https://github.com/user-attachments/assets/a7b94074-04e0-431c-b011-2252d538c3de)
 
@@ -38,29 +42,7 @@ SecurityUpdate.exe: PE32+ executable (GUI) x86-64, for MS Windows, 3 sections
 - ✅ **Designed for Graphical UI**
 - ✅ **Portable Executable (PE) format**
 
-2. Host the Payload Using a Python HTTP Server.
-
-   Host the payload on a **Python HTTP server** running on port `8000`:
-
-![image](https://github.com/user-attachments/assets/1c66b5c9-4f4c-4285-8f5a-d86b5a14c244)
-
-### Command Explanation:
-
-```
-python3 -m http.server 8000
-```
-
-1. `python3` – Runs Python version 3.
-2. `-m http.server` – Uses Python’s built-in web server module to start a temporary HTTP server.
-3. `8000` – Specifies that the server should run on port 8000 (you can change this to any available port).
-
-### Output of the Command:
-
-  - `"Serving HTTP on 0.0.0.0 port 8000"` – The server is now running and accessible from any computer on the network.
-  - `"http://0.0.0.0:8000/"` – You (or others on the network) can access it by typing http://your-ip:8000/ in a web browser.
-
-### What This Means:
-
-  - If you run this command in a folder, Python will share all the files in that folder over HTTP.
-  - You can download files from this machine by visiting `http://your-ip:8000/` in a browser or using `wget` or `curl`.
-  - Useful for quick file sharing or setting up a local web server for testing.
+#### Configuring the Attacker's Machine:
+- The attacker's system is set up to listen for incoming connections on port **44444**.
+- This will allow the attacker to establish a reverse connection once the victim runs the payload.
+  
