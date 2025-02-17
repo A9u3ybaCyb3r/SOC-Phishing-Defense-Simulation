@@ -1,46 +1,47 @@
-# Delivery
+# Phase 3: Delivery
 
-## Objective:
-Deliver the weaponized payload to the target via social engineering and email.
+## 🌟 Objective:
+Deliver the malicious payload to the victim in a way that convinces them to execute it.
 
-## Action:
-1. Create a Spoofed Email Using [Emkei's Fake Mailer](https://emkei.cz/)
+### Steps:
+#### Hosting the Payload:
+- The attacker hosts the payload using Python’s built-in HTTP server:
+  ```bash
+  python3 -m http.server 8088
+  ```
+- This makes the payload accessible for download via HTTP on port **8088**.
 
-    Use **Emkei's Fake Mailer**, a tool that allows you to send emails with a forged sender address. This helps craft a **legitimate-looking email** for the target.
+![image](https://github.com/user-attachments/assets/1c66b5c9-4f4c-4285-8f5a-d86b5a14c244)
+
+### Command Explanation:
+
+```
+python3 -m http.server 8000
+```
+
+1. `python3` – Runs Python version 3.
+2. `-m http.server` – Uses Python’s built-in web server module to start a temporary HTTP server.
+3. `8000` – Specifies that the server should run on port 8000 (you can change this to any available port).
+
+### Output of the Command:
+
+  - `"Serving HTTP on 0.0.0.0 port 8000"` – The server is now running and accessible from any computer on the network.
+  - `"http://0.0.0.0:8000/"` – You (or others on the network) can access it by typing http://your-ip:8000/ in a web browser.
+
+### What This Means:
+
+  - If you run this command in a folder, Python will share all the files in that folder over HTTP.
+  - You can download files from this machine by visiting `http://your-ip:8000/` in a browser or using `wget` or `curl`.
+  - Useful for quick file sharing or setting up a local web server for testing.
+
+#### Creating the Phishing Email:
+- The attacker crafts a convincing email pretending to be from tech support.
+- Use [Emkei's Fake Mailer](https://emkei.cz/) a tool that allows you to send emails with a forged sender address. This helps craft a **legitimate-looking email** for the target.
 
 ![image](https://github.com/user-attachments/assets/48236a67-3e18-43c9-b808-2f1b0ffcca06)
 
-2. Include a Link to the Malicious Website
-
-   The email will contain a link that points to a **malicious website** where the payload is hosted.
-
-    - Use **URL Shortening** via [Bitly](https://app.bitly.com/Bp21hrdeijm/links) to obscure the destination and make the link appear more legitimate.
-
-### Steps to Create a Shortened URL:
-
-- Ensure your **Python HTTP Server** is running (as per the previous step) and open **Firefox**.
-- Visit `http://{your local machine IP}:8000` to access the payload.
-- **Right-click** the payload and select **Copy Link**.
-
-![image](https://github.com/user-attachments/assets/f006f266-2f33-4bad-a03c-d92c6434114d)
-
-- Paste the link in the **Destination bar** and click **Create your link**.
-
-![image](https://github.com/user-attachments/assets/609b9635-e0ae-4093-892a-cbc903c350ab)
-
-- The result will be a **shortened URL** that hides the true destination.
-
-![image](https://github.com/user-attachments/assets/5336073a-5b71-46d0-88e1-5feb09225061)
-
-3. Use Social Engineering to Convince the Target
-
-    Craft a message that convinces the target to open the attachment or click the link. For example, use a sense of urgency with a message like:
-
-    - “**Urgent: Please review the attached document** ”
-
-4. Craft the Email to Appear Legitimate
-Based on the information gathered during reconnaissance, craft the email to appear **trustworthy**. For instance, impersonate a service or entity the target uses. Here’s a sample email template:
-
+- The subject line is designed to create urgency:
+  - `Urgent: Critical Security Update Required`
 ```
 Subject: Urgent: Critical Security Update Required
 
@@ -70,10 +71,25 @@ Boriken Shield
 
 ![image](https://github.com/user-attachments/assets/41995845-6222-411f-9c5d-cceff97325a0)
 
-5. Send the Spoofed Email to the Target’s Address
-After crafting the email with the **malicious link** and **social engineering message**, send the email to the victim's email address, ensuring it appears legitimate and trustworthy.
+- The body of the email contains a shortened URL (via a URL shortening service) to hide the actual HTTP link to the payload.
+    - Use **URL Shortening** via [Bitly](https://app.bitly.com/Bp21hrdeijm/links) to obscure the destination and make the link appear more legitimate.
+    - **Steps to Create a Shortened URL**:
+        - Ensure your **Python HTTP Server** is running (as per the previous step) and open **Firefox**.
+        - Visit `http://{your local machine IP}:8000` to access the payload.
+        - **Right-click** the payload and select **Copy Link**.
+       
+        ![image](https://github.com/user-attachments/assets/f006f266-2f33-4bad-a03c-d92c6434114d)
+       
+        -  Paste the link in the **Destination bar** and click **Create your link**.
 
+        ![image](https://github.com/user-attachments/assets/609b9635-e0ae-4093-892a-cbc903c350ab)
 
+        - The result will be a **shortened URL** that hides the true destination.
+
+        ![image](https://github.com/user-attachments/assets/5336073a-5b71-46d0-88e1-5feb09225061)
+
+#### Sending the Phishing Email:
+- The attacker sends the email using **Temp Mail** to the victim, making it appear more legitimate.
 
 ### Open both Emkei's Fake Mailer and Temp Mail on your Ubuntu machine. Then, send an email to the temporary mail you receive to download the *.eml* file for a phishing analysis. This is because we are using temporary emails.
 
