@@ -1,21 +1,17 @@
-# Reconnaissance
+# Phase 1: Reconnaissance
 
-## Objective:
-Gather information about the target to prepare for an attack.
+## 🌟 Objective:
+Gather intelligence on the target, including email addresses and other publicly available information, to craft a convincing phishing attack.
 
-## Actions:
+### Steps:
+#### Information Gathering:
+- The attacker searches for the victim’s LinkedIn profile.
+- They obtain the victim’s email address from LinkedIn.
 
-1. Utilize OSINT (Open-Source Intelligence) Techniques
- 
-    - Gather publicly available information about the target.
-
-2. Identify Target’s Email Address
- 
-    - Assume we found the target’s email on Facebook by analyzing their public profile, posts, or comments.
-
-3. Collect Additional Information
- 
-    - Gather details such as their job role, interests, or connections, which can be used to craft a convincing phishing email.
+#### Attack Planning:
+- The attacker identifies the best social engineering tactic to use.
+- Since the target is likely to trust emails from technical support, the attacker spoofs a tech support email.
+- The phishing email will create a sense of urgency to pressure the victim into taking immediate action.
 
 ## Simulation Assumption
 Since this is a controlled simulation, we will assume that we have successfully gathered all the necessary information to craft a malicious payload and phishing email.
