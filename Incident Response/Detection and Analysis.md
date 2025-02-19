@@ -1,222 +1,64 @@
 # Detection and Analysis
 
-## Monitoring
+## Monitoring for Alerts
 
-### Objective:
-Monitor network activity and detect potential security threats.
+In this phase, active monitoring is conducted using SIEM tools like Splunk and endpoint detection and response (EDR) solutions.
 
-### Action:
+### Example Scenario:
 
-- Access Splunk to monitor for alerts.
-
-- Observe alerts related to reverse TCP connection.
-
-### Result:
-
-- [Insert Screenshot: Splunk alert showing reverse TCP connection]
-
-## Detection
-
-### Objective:
-Identify suspicious activities using Endpoint Detection and Response (EDR) and Splunk.
-
-### Action:
-
-- Use Lima Charmin EDR to check detections.
-
-- Review Splunk for triggered detections.
-
-### Result:
-
-- [Insert Screenshot: EDR detections for reverse TCP connection]
-
-- Detections observed:
-
-  - Executable dropped in the Downloads directory.
-
-  - Autorun key modification for backdoor persistence.
-
+- **Monitoring in Splunk**: Checking for alerts related to a reverse TCP connection.
+- **EDR Analysis (LimaCharlie)**: Reviewing detections such as:
+  - Executable drop in the download directory.
+  - Execution from the download directory.
+  - Registry modification indicating a backdoor.
   - New user account creation.
+  - System log deletion.
 
-  - Clearing of Windows system and security logs.
+### Indicators of Compromise (IOCs) Identified:
 
-- [Insert Screenshot: EDR detection of executable drop]
-
-### Network Analysis:
-
-- Snort logs in Splunk provide further insights, including attacker IP (192.168.1.5) and port (4444).
-
-- [Insert Screenshot: Snort logs showing attacker IP and port]
-
-## Indicators of Compromise (IOCs)
-
-### Objective:
-Identify key signs of compromise to aid analysis and response.
-
-### IOCs Identified:
-
-1. File hash of the malicious payload.
-
+1. Malicious file hash.
 2. Modified registry key.
-
-3. Creation of a new user account.
-
-4. Deletion of log files.
-
-5. Non-standard port usage (port 4444).
-
-6. Shortened URLs with read-only access.
-
-- [Insert Screenshot: List of IOCs from Splunk and EDR]
-
-# Analysis 
-
-## Phishing Analysis
-
-### Objective:
-Analyze the phishing email used for initial compromise.
-
-### Action:
-
-- Use Phish Tool to analyze the phishing email.
-
-- Identify sender, receiver, return path, and download link.
-
-### Result:
-
-- [Insert Screenshot: Extracted phishing email details]
-
-- Unshorten the URL to reveal attacker’s IP and payload location.
-
-- [Insert Screenshot: Unshortened phishing URL details]
-
-## Network Analysis
-
-### Objective:
-Analyze network traffic to identify malicious communication.
-
-### Action:
-
-- Use Wireshark to inspect captured packets.
-
-- Filter for port 4444 and analyze ASCII and hex dump data.
-
-### Result:
-
-- [Insert Screenshot: Wireshark analysis of C2 communication]
-
-- Identify payload strings and execution attempts.
-
-- [Insert Screenshot: Malicious payload details in Wireshark]
-
-## System & Security Log Analysis
-
-### Objective:
-Analyze system logs for suspicious activities.
-
-### Action:
-
-- Search for new user creation logs in Sysmon.
-
-- Analyze Windows Security logs for event code 1102 (log clearing).
-
-- Conduct IDS analysis for port 8088 to detect non-standard HTTP traffic.
-
-- Identify executable transfers over non-standard ports.
-
-### Result:
-
-- [Insert Screenshot: Sysmon logs showing new user creation]
-
-- [Insert Screenshot: Windows security logs showing log clearing]
-
-- [Insert Screenshot: IDS detection of non-standard HTTP traffic]
-
-- [Insert Screenshot: IDS alert for executable transfer]
-
-## Endpoint & Malware Analysis
-
-### Objective:
-Verify and analyze malicious files using VirusTotal.
-
-### Action:
-
-- Copy file hash from EDR and check in VirusTotal.
-
-### Result:
-
-- [Insert Screenshot: VirusTotal results for malicious file]
-
-- Confirm that "notmalicious.exe" is flagged as malware by 61/73 vendors.
-
-- Identify C2 communication details.
-
-- [Insert Screenshot: C2 connection details from VirusTotal]
-
-## Forensic Analysis
-
-### Objective:
-Recover deleted artifacts and investigate system compromise.
-
-### Action:
-
-- Use GKEG to extract compromised machine’s disk for triage.
-
-- Load security account manager (SAM) hive to recover deleted user accounts.
-
-- Load end-user hive to find backdoor evidence.
-
-- Extract artifacts before eradication.
-
-### Result:
-
-- [Insert Screenshot: SAM database showing deleted user recovery]
-
-- [Insert Screenshot: Registry Explorer showing backdoor evidence]
-
-## Data Recovery
-
-### Objective:
-Recover deleted files for further investigation.
-
-### Action:
-
-- Use FTK Manager to restore deleted .txt files.
-
-- Recover "important_doc.txt" from the secret folder.
-
-### Result:
-
-- [Insert Screenshot: FTK Manager showing recovered file]
-
-## Identified TTPs
-
-### Objective:
-Recognize attacker behavior through tactics, techniques, and procedures (TTPs).
-
-### TTPs Identified:
-
-1. Gather Victim Identity Information.
-
-2. User Execution Malicious File.
-
-3. Phishing.
-
-4. Hide Infrastructure.
-
-5. Exploitation for Client Execution.
-
-6. Registry Run Keys/Startup Folder.
-
-7. Non-Standard Ports.
-
-8. Exfiltration Over C2 Channel.
-
-9. File Directory Permissions Modification.
-
-10. Create Account.
-
-11. Account Manipulation.
-
-12. Indicator Removal Controls.
+3. Unauthorized user account creation.
+4. System log deletion.
+5. Use of non-standard port 4444 for C2 communication.
+6. Phishing email with a shortened URL (e.g., greet-link).
+
+## Analysis
+
+### Phishing Analysis
+
+- Downloading and analyzing phishing emails.
+- Unshortening malicious URLs to trace attacker infrastructure.
+- Inspecting email headers and attachments for malware.
+
+### Network and Log Analysis
+
+- **Wireshark** will be used to analyze network packets for signs of C2 communication.
+- Examining **Splunk** logs for:
+  - Sysmon log anomalies.
+  - Windows event logs (e.g., event ID 1102 for audit log clearance).
+  - IDS logs for unauthorized HTTP traffic on port 8088.
+- **EDR file hash analysis** using VirusTotal to verify malware presence.
+
+### Forensic Analysis
+
+- Extracting compromised machine artifacts using **GKAPE**.
+- **Analyzing Windows Security Account Manager (SAM)** database for deleted user accounts.
+- Recovering deleted files using **FTK Manager**.
+
+### Identified Tactics, Techniques, and Procedures (TTPs)
+
+1. T1589: Gathering victim identity information. 
+2. T1204.002: User execution of malicious files.
+3. T1566: Phishing attacks.
+4. T1665: Hiding Infrastructure
+5. T1204: User Execution
+6. T1203: Exploitation for Client Execution
+7. T1547.001: Registry Run Keys/Startup Folder
+8. T1571: Non-Standard Port
+9. T1041: Exfiltration over C2 channel.
+10. T1222: File and Directory Permissions Modification
+11. T1136: Create Account
+12. T1098: Account Manipulation
+13. T1070: Indicator Removal on Host
 
