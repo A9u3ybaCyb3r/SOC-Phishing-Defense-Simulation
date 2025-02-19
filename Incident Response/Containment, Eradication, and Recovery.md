@@ -2,45 +2,16 @@
 
 ## Containment
 
-### Objective:
-Prevent further damage by isolating the compromised endpoint.
-
-### Action:
-
-- Isolate the compromised endpoint from the network.
-
-- Disable Autorun entry for backdoor removal.
-
-### Result:
-
-- [Insert Screenshot: Isolating compromised endpoint in EDR]
+- **Isolate compromised systems** from the network.
+- **Disable persistence mechanisms** (e.g., backdoors in the registry using Autoruns).
 
 ## Eradication
 
-### Objective:
-Remove malicious artifacts and prevent re-entry.
-
-### Action:
-
-Use EDR to remove malware.
-
-Blacklist attacker's IP in Windows Firewall.
-
-### Result:
-
-- [Insert Screenshot: Deleting malware from EDR]
-
-- [Insert Screenshot: Blocking IP address in Windows Firewall]
+- **Use EDR solutions** to delete malware (e.g., SecurityUpdate.exe).
+- **Blacklist the attacker's IP address** via Windows Firewall.
 
 ## Recovery
 
-### Objective:
-Restore system to a clean state.
-
-### Action:
-
-- Restore Windows Virtual Machine from a clean snapshot.
-
-### Result:
-
-- [Insert Screenshot: Restoring VM from snapshot]
+- Restore the compromised system from a clean snapshot.
+- Verify system integrity before reconnecting to the network.
+- Conduct a final review to ensure all traces of compromise are removed.
