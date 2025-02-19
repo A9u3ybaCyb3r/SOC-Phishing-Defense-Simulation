@@ -96,7 +96,7 @@ alert tcp any 4444 -> 10.19.19.6 any (msg:"Reverse TCP on Port 4444"; sid:100000
 
 ### Rule 2: Detect HTTP Traffic on Non-Standard Ports (8001-9000)
 ```
-alert tcp any any -> $HOME_NET 8001:9000 (msg:"HTTP Traffic on Non-Standard Port Detected"; sid:1000003; rev:1;)
+alert tcp any 8001:9000 -> 10.19.19.6 any (msg:"HTTP Traffic on Non-Standard Port Detected"; sid:1000003; rev:1;)
 ```
 ### What This Rule Detects:
  - Identifies HTTP-like traffic on ports 8000-9000.
