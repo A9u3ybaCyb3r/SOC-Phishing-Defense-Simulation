@@ -110,7 +110,7 @@ alert tcp any any -> $HOME_NET 8001:9000 (msg:"HTTP Traffic on Non-Standard Port
 
 ### Rule 3: Detect Any HTTP Traffic on Port 80
 ```
-alert tcp any any <> $HOME_NET 80 (msg:"HTTP Traffic Detected"; sid:1000004; rev:1;)
+alert tcp any 80 -> 10.19.19.6 any (msg:"HTTP Traffic Detected"; sid:1000004; rev:1;)
 ```
 ### What This Rule Detects:
  - Identifies TCP traffic directed to port 80 (standard HTTP traffic).
