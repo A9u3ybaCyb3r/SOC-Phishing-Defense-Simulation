@@ -1,15 +1,15 @@
 # Post-Incident Activity
 
-## Lessons Learned
+## Lessons Learned & Improvement
 
-#### Objective:
-Assess and improve incident response effectiveness.
+- **Monitoring effectiveness**: Did the detection tools effectively identify the attack?
+- **Detection gaps**: Were there parts of the attack that went unnoticed?
+- **Response speed**: How quickly was the threat identified and mitigated?
 
-### Key Questions:
+## Final Documentation
 
-1. **Monitoring Effectiveness**: Did IDS, EDR, and logging solutions detect the attack efficiently?
+- Prepare an **Incident Report** summarizing the attack, detection, containment, and eradication.
+- Conduct a **post-mortem review** to refine the Incident Response Plan.
 
-2. **Detection Gaps**: Were there aspects of the attack that were missed?
-
-3. **Response Speed**: How quickly was the incident handled?
-
+## Conclusion:
+### Following the NIST Incident Response Framework ensures a structured approach to handling cybersecurity incidents, improving organizational resilience, and reducing the impact of security threats.
