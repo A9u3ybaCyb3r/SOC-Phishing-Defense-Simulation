@@ -83,7 +83,7 @@ sudo snort -A console -q -c /etc/snort/snort.conf -i [your interface]
 
 ### Rule 1: Detect Reverse TCP on Port 4444
 ```
-alert tcp any any -> $HOME_NET 4444 (msg:"Reverse TCP on Port 4444"; sid:1000002; rev:1;)
+alert tcp any 4444 -> 10.19.19.6 any (msg:"Reverse TCP on Port 4444"; sid:1000002; rev:1;)
 ```
 ### What This Rule Detects:
  - Identifies TCP traffic directed to port 4444 within $HOME_NET.
@@ -110,7 +110,7 @@ alert tcp any any -> $HOME_NET 8001:9000 (msg:"HTTP Traffic on Non-Standard Port
 
 ### Rule 3: Detect Any HTTP Traffic on Port 80
 ```
-alert tcp any any -> $HOME_NET 80 (msg:"HTTP Traffic Detected"; sid:1000004; rev:1;)
+alert tcp any any <> $HOME_NET 80 (msg:"HTTP Traffic Detected"; sid:1000004; rev:1;)
 ```
 ### What This Rule Detects:
  - Identifies TCP traffic directed to port 80 (standard HTTP traffic).
@@ -120,21 +120,6 @@ alert tcp any any -> $HOME_NET 80 (msg:"HTTP Traffic Detected"; sid:1000004; rev
  - A user browses a website on port 80.
  - The web server responds, generating bidirectional traffic.
  - Snort triggers an alert for HTTP communication.
-
-
-### Rule 4: Detect HTTP Requests Containing .exe on Non-Standard Ports
-```
-alert tcp any any -> $HOME_NET 8000:9000 (msg:"HTTP URI on Non-Standard Port contains .exe"; content:"|2e|exe"; nocase; http_uri; sid:1000005; rev:1;)
-```
-### What This Rule Detects:
- - Identifies HTTP traffic on ports 8000-9000 where the requested URI contains `.exe`.
- - Potentially detects malware downloads or executable file transfers.
-
-# Example Scenario:
- - A malicious web server on port 8080 hosts malware.exe.
- - A user attempts to download the file via HTTP request.
- - Snort detects ".exe" in the request URI and triggers an alert.
-
 
 # Sending Snort Logs to Splunk
 
