@@ -326,6 +326,73 @@ rule laZagne_strings
 - **Condition**:
   - **any of them** means that any of $l1 or $l2 must be found in the scanned file or memory region for the rule to trigger.
 
+## Yara Rule Meterpreter Reverse TCP Payload
+
+```
+rule Meterpreter_Reverse_TCP
+{
+    meta:
+        author = "BVega"
+        description = "Detects Windows x64 Meterpreter Reverse TCP payload"
+        date = "2025-02-22"
+    
+    strings:
+        // PE Header check (Windows EXE)
+        $mz = { 4D 5A }  // MZ Header
+        $pe = { 50 45 00 00 } // PE Header
+
+        // Common Meterpreter shellcode patterns
+        $meterpreter_1 = { FC 48 83 E4 F0 E8 CC 00 00 00 41 51 41 50 52 48 31 D2 65 48 8B 52 60 } 
+        $meterpreter_2 = { 6A 02 5F 6A 01 5E 6A 06 5A 48 89 E1 49 89 C8 49 89 D1 4D 31 C9 4D 31 C0 }
+        $meterpreter_3 = { 48 8B 05 ?? ?? ?? ?? 48 8D 0D ?? ?? ?? ?? FF 15 ?? ?? ?? ?? }
+        
+        // Windows API functions commonly used by Meterpreter
+        $exit_process = "ExitProcess" ascii
+        $virtual_alloc = "VirtualAlloc" ascii
+        $kernel32 = "KERNEL32.dll" ascii
+
+        // DOS Stub string in PE files
+        $dos_stub = "This program cannot be run in DOS mode" ascii
+
+    condition:
+        // Ensure it's a PE file
+        uint16(0) == 0x5A4D and 
+
+        // Match any of the core Meterpreter shellcode patterns
+        (any of ($meterpreter*) or
+
+        // Match Meterpreter's API calls and DOS stub
+        all of ($exit_process, $virtual_alloc, $kernel32) or
+
+        // Ensure it’s an EXE with expected PE format
+        ($mz and $pe and $dos_stub))
+}
+```
+### Explanation:
+
+- **Meta**:
+  - Provides context about the rule, including the author, description, and creation date.
+  - Describes the purpose of detecting **Windows x64 Meterpreter Reverse TCP payloads**.
+
+- **Strings**:
+  - `$mz` looks for the "**MZ**" (`4D 5A`) header, which identifies Windows executable files.
+  - `$pe` looks for the "**PE**" (`50 45 00 00`) header, confirming that the file is a **Portable Executable** (**PE**).
+  - `$meterpreter_1` detects a **common Meterpreter shellcode** pattern used for memory allocation and execution.
+  - `$meterpreter_2` identifies the **reverse TCP socket setup**, which Meterpreter uses to establish a connection.
+  - `$meterpreter_3` looks for **networking-related API** calls, crucial for initiating a reverse connection.
+  - `$exit_process` detects the "**ExitProcess**" function, which Meterpreter calls when terminating.
+  - `$virtual_alloc` identifies "**VirtualAlloc**", which allocates memory for shellcode execution.
+  - `$kernel32` checks for "**KERNEL32.dll**", a Windows API library required for process execution.
+  - `$dos_stub` looks for the standard "**This program cannot be run in DOS mode**" message, which appears in Windows PE files.
+
+- **Condition**:
+  - Ensures the file starts with **MZ** (`0x5A4D`), confirming it’s a Windows executable.
+  - The rule triggers if:
+    - Any of the `$meterpreter_*` patterns are found OR
+    - The file contains all three API function calls (`$exit_process`, `$virtual_alloc`, `$kernel32`) OR
+    - The file contains both `$mz` and `$pe` headers along with the DOS stub.
+
+This ensures accurate detection of **Meterpreter reverse TCP** payloads while avoiding false positives.
 
 ---
 
