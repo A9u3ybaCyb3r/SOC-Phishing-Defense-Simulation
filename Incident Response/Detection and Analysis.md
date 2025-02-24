@@ -1,18 +1,21 @@
 # Detection and Analysis
 
-## Monitoring for Alerts
 
-In this phase, active monitoring is conducted using SIEM tools like Splunk and endpoint detection and response (EDR) solutions.
+## Monitoring Phase
 
-### Example Scenario:
+During this phase, we actively monitor security alerts and events using Splunk to identify potential threats. In this scenario, we observed triggered alerts for a **reverse TCP connection** in Splunk.
 
-- **Monitoring in Splunk**: Checking for alerts related to a reverse TCP connection.
-- **EDR Analysis (LimaCharlie)**: Reviewing detections such as:
-  - Executable drop in the download directory.
-  - Execution from the download directory.
-  - Registry modification indicating a backdoor.
-  - New user account creation.
-  - System log deletion.
+## Detection Phase
+
+In this phase, we analyze alerts and detections using **Endpoint Detection and Response (EDR)** tools, like as **LimaCharlie**, and continue to investigate in Splunk. The detections observed include:
+
+- **Executable Drop in Download Directory**: This was triggered by a YARA rule created during the preparation phase. The malicious file **SecurityUpdate.exe** and its file hash were detected.
+- **Execution from Download Directory**: Another detection based on a URL rule.
+- **Direct Autorun Key Modification**: Indicating a registry modification used to create a backdoor.
+- **New User Creation**: The attacker created a new user.
+- **Windows System and Security Logs Deletion**: Logs were cleared to hide malicious activity.
+
+Splunk logs further provide details on the attack, such as the **attacker's IP (10.19.19.134)** and port (**4444**) used for C2 communication.
 
 ### Indicators of Compromise (IOCs) Identified:
 
