@@ -57,7 +57,7 @@ Instructions:
 
 1. Click the link above to download the tool.
 2. Run the tool (as administrator) and follow the on-screen instructions.
-3. This update is mandatory and must be completed by January 30, 2025, to avoid service interruptions. Failure to comply may result in account suspension.
+3. This update is mandatory to avoid service interruptions. Failure to comply may result in account suspension.
 
 If you have any questions, please contact the IT Help Desk at helpdesk@borikenshield.com or call 1-800-123-4567.
 
