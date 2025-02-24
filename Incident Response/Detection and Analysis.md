@@ -43,6 +43,8 @@ In this phase, we analyze alerts and detections using **Endpoint Detection and R
 
 Splunk logs further provide details on the attack, such as the **attacker's IP (10.19.19.134)** and port (**4444**) used for C2 communication.
 
+![image](https://github.com/user-attachments/assets/2a1352e1-bd76-4604-b239-d52a5332ea1c)
+
 ### Indicators of Compromise (IOCs) Identified:
 
 1. Malicious file hash.
