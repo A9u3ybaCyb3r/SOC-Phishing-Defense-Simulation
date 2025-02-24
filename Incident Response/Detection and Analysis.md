@@ -123,8 +123,45 @@ Splunk logs further provide details on the attack, such as the **attacker's IP (
 ### Forensic Analysis
 
 - Extracting compromised machine artifacts using **GKAPE**.
+
+![image](https://github.com/user-attachments/assets/3b62b0b3-84f1-4975-ad2a-54b14534b816)
+
+![image](https://github.com/user-attachments/assets/95458ed6-d63e-4259-95ab-651144e17ced)
+
+![image](https://github.com/user-attachments/assets/a22bb3ff-2ea2-448e-8f32-33303488eb82)
+
+![image](https://github.com/user-attachments/assets/8118de5d-dc0f-45ab-b798-cb5560859d3d)
+
+- Extract the Registry Hives to the Compromised Folder created to use it for evaluations.
+
+  ![image](https://github.com/user-attachments/assets/eeee63e1-d314-448d-b43f-011cb23c4bd9)
+
 - **Analyzing Windows Security Account Manager (SAM)** database for deleted user accounts.
+  - Open **Registry Explorer** to analyze the extracted artifacts.
+
+![image](https://github.com/user-attachments/assets/4842e184-5831-4924-bf34-ebb97a038f23)
+
+![image](https://github.com/user-attachments/assets/e20438e7-735a-4526-98ea-4014c340fd1d)
+
+![image](https://github.com/user-attachments/assets/b62ad4de-d665-432c-b3a6-e966a45245bd)
+
+   - We can confirm that the user that the attacker created was deleted.
+
+      ![image](https://github.com/user-attachments/assets/6f29dbb9-730e-4ca8-a4ce-e1bcef34d7cb)
+     
+   - Next, we are going to load the NTUSER.DAT file and look for the backdoor that the attacker created. Look for the RUN folder.
+   
+   ![image](https://github.com/user-attachments/assets/0f596ff0-0508-40ae-a722-fb9b798a8f55)
+
+   - Here we can identify that the attacker created a backdoor to the machine using the malicious payload that the attacker created.
+
 - Recovering deleted files using **FTK Manager**.
+   - The attacker extracted files from the **Secrets** folder. We can see that the folder is empty.
+   
+   ![image](https://github.com/user-attachments/assets/ddad5872-e61f-41c6-85a8-b6959ab90f38)
+   
+   - Create a new folder and name it **Recovered** and open up **Exterro FTK Imager** to recover the data lost. 
+
 
 ### Identified Tactics, Techniques, and Procedures (TTPs)
 
