@@ -45,10 +45,6 @@ Splunk logs further provide details on the attack, such as the **attacker's IP (
 
 ![image](https://github.com/user-attachments/assets/2a1352e1-bd76-4604-b239-d52a5332ea1c)
 
-Download the .eml file if you have not done it yet.
-
-![image](https://github.com/user-attachments/assets/e5bccb96-c184-4ccd-93b5-b33e36a95a45)
-
 ### Indicators of Compromise (IOCs) Identified:
 
 1. Malicious file hash.
@@ -62,9 +58,24 @@ Download the .eml file if you have not done it yet.
 
 ### Phishing Analysis
 
-- Downloading and analyzing phishing emails.
+- Download the .eml file if you have not done it
+
+![image](https://github.com/user-attachments/assets/e5bccb96-c184-4ccd-93b5-b33e36a95a45)
+
+- Go to [Phishtool](https://app.phishtool.com/submit) and choose the .eml file that you downloaded.
+
+![image](https://github.com/user-attachments/assets/58e68194-17dd-4b90-9c08-3201577ca87c)
+
+![image](https://github.com/user-attachments/assets/c2421f9d-4912-4c29-bf1b-c9aeb34928db)
+
 - Unshortening malicious URLs to trace attacker infrastructure.
-- Inspecting email headers and attachments for malware.
+  - Copy the shortened link and paste it in [URL Expander Tool](https://www.bing.com/ck/a?!&&p=e4c94fa102759f71528b69a24210c528e8d83d620f0ef91e8e8458218145bd2dJmltdHM9MTc0MDM1NTIwMA&ptn=3&ver=2&hsh=4&fclid=05217751-e29b-69ad-1992-62d9e33c683b&psq=link+unshortener&u=a1aHR0cHM6Ly90Lmx5L3Rvb2xzL2xpbmstZXhwYW5kZXI&ntb=1)
+
+![image](https://github.com/user-attachments/assets/ea5d590b-19c9-41a4-8042-c040a7effe6d)
+
+![image](https://github.com/user-attachments/assets/5434000a-eb4a-4b27-90d0-d19f1897e95c)
+
+- We can see here the IP address of the attacker, the port that was used to host the payload, and the file path.
 
 ### Network and Log Analysis
 
