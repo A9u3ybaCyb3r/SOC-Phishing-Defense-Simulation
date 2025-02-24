@@ -68,7 +68,7 @@ IT Support Team
 Boriken Shield
 ```
 
-
+![image](https://github.com/user-attachments/assets/7e074809-53fc-4daa-8e22-b54f818eaab5)
 
 - The body of the email contains a shortened URL (via a URL shortening service) to hide the actual HTTP link to the payload.
     - Use **URL Shortening** via [Bitly](https://app.bitly.com/Bp21hrdeijm/links) to obscure the destination and make the link appear more legitimate.
@@ -85,7 +85,7 @@ Boriken Shield
 
         - The result will be a **shortened URL** that hides the true destination.
 
-        
+        ![image](https://github.com/user-attachments/assets/42efe46a-856d-444a-a338-bf924b03de9b)
 
 #### Sending the Phishing Email:
 - The attacker sends the email to the victim using **Temp Mail**, making it appear more legitimate.
