@@ -11,7 +11,7 @@ Deliver the malicious payload to the victim in a way that convinces them to exec
   ```
 - This makes the payload accessible for download via HTTP on port **8088**.
 
-![image](https://github.com/user-attachments/assets/1c66b5c9-4f4c-4285-8f5a-d86b5a14c244)
+![image](https://github.com/user-attachments/assets/cdbda6d0-356f-41c7-9682-c0025751f498)
 
 ### Command Explanation:
 
@@ -68,7 +68,7 @@ IT Support Team
 Boriken Shield
 ```
 
-![image](https://github.com/user-attachments/assets/41995845-6222-411f-9c5d-cceff97325a0)
+
 
 - The body of the email contains a shortened URL (via a URL shortening service) to hide the actual HTTP link to the payload.
     - Use **URL Shortening** via [Bitly](https://app.bitly.com/Bp21hrdeijm/links) to obscure the destination and make the link appear more legitimate.
@@ -77,15 +77,15 @@ Boriken Shield
         - Visit `http://{your local machine IP}:8080` to access the payload.
         - **Right-click** the payload and select **Copy Link**.
        
-        ![image](https://github.com/user-attachments/assets/f006f266-2f33-4bad-a03c-d92c6434114d)
+       ![image](https://github.com/user-attachments/assets/d470cdad-11f7-4623-9dd9-d482a6285304)
        
         -  Paste the link in the **Destination bar** and click **Create your link**.
 
-        ![image](https://github.com/user-attachments/assets/609b9635-e0ae-4093-892a-cbc903c350ab)
+       ![image](https://github.com/user-attachments/assets/63d48125-d3a0-4f9b-8952-70138169650f)
 
         - The result will be a **shortened URL** that hides the true destination.
 
-        ![image](https://github.com/user-attachments/assets/5336073a-5b71-46d0-88e1-5feb09225061)
+        
 
 #### Sending the Phishing Email:
 - The attacker sends the email to the victim using **Temp Mail**, making it appear more legitimate.
