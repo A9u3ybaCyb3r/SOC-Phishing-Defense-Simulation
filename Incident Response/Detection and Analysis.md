@@ -80,6 +80,13 @@ Splunk logs further provide details on the attack, such as the **attacker's IP (
 ### Network and Log Analysis
 
 - **Wireshark** will be used to analyze network packets for signs of C2 communication.
+
+![image](https://github.com/user-attachments/assets/5fbba53a-4afb-4bf4-8ffb-b4f28d29ec9d)
+
+![image](https://github.com/user-attachments/assets/3c0d8179-9b8f-40ac-b366-54c1385b873c)
+
+![image](https://github.com/user-attachments/assets/cf2e6f50-1237-4edb-b518-b76852b83055)
+
 - Examining **Splunk** logs for:
   - Sysmon log anomalies.
   - Windows event logs (e.g., event ID 1102 for audit log clearance).
