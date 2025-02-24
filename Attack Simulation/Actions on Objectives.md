@@ -7,8 +7,10 @@ Exfiltrate data, manipulate the system, and cover tracks to avoid detection.
 #### Creating a New User:
 - The attacker creates a new user named `guest` with password `password123` using:
   ```bash
-  net user guest password123 /add
+  net user guesstt Password123 /add
   ```
+  ![image](https://github.com/user-attachments/assets/0538c131-2050-4555-a199-2b8de4241b1d)
+
 - This allows the attacker to **re-enter the system at will**.
 
 #### Exfiltrating Data:
