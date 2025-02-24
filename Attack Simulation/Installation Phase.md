@@ -25,7 +25,7 @@ Here's what this command does:
 - `/d "C:\Users\Bob\Downloads\SecurityUpdate.exe"` – The path to the malicious executable that will be run at startup.
 - `/f` – Forces the update without asking for confirmation.
 
-![image](https://github.com/user-attachments/assets/5cc9b67d-0148-4f63-9a99-89d2c3dd7bbe)
+![image](https://github.com/user-attachments/assets/73d813bc-eccb-4d4b-b376-1bb7e980b069)
 
 #### Ensuring Long-Term Access:
 - The attacker verifies that the backdoor works by restarting the victim’s machine and checking if access is maintained.
