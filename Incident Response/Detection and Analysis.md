@@ -115,6 +115,10 @@ Splunk logs further provide details on the attack, such as the **attacker's IP (
 
 ![image](https://github.com/user-attachments/assets/7be8304d-7135-41d2-a9ff-c915ca6be8db)
 
+   - Here we can confirm that the Security Update is indeed a malicious file.
+- If we go to behavior we can see the IP address of your attacker machine and the port that was used for C2 Communications
+
+  ![image](https://github.com/user-attachments/assets/6462020d-5a5f-4193-a443-e13bde1ef5c5)
 
 ### Forensic Analysis
 
