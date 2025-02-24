@@ -15,7 +15,7 @@ In this phase, we analyze alerts and detections using **Endpoint Detection and R
 
 ![image](https://github.com/user-attachments/assets/11edcdac-e209-4410-ae46-528d4f72a980)
 
-- **Executable Drop in Download Directory**: This was triggered by a YARA rule created during the preparation phase. The malicious file **SecurityUpdate.exe** and its file hash were detected.
+- **Executable Drop in Download Directory**: This was triggered by a D&R created during the preparation phase. The malicious file **SecurityUpdate.exe** and its file hash were detected.
   ![image](https://github.com/user-attachments/assets/1261b8d1-594b-433c-8512-b57febe4ac19)
   - The YARA scan detected that it was a **Meterpreter Reverse TCP Payload**.
   ![image](https://github.com/user-attachments/assets/95934230-55ef-484c-a815-8c4264bb7764)
