@@ -68,6 +68,8 @@ IT Support Team
 Boriken Shield
 ```
 
+![image](https://github.com/user-attachments/assets/d335d713-0573-42f7-94d8-37f7041a89f1)
+
 ![image](https://github.com/user-attachments/assets/7e074809-53fc-4daa-8e22-b54f818eaab5)
 
 - The body of the email contains a shortened URL (via a URL shortening service) to hide the actual HTTP link to the payload.
