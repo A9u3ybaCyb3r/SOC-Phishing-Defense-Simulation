@@ -20,10 +20,26 @@ In this phase, we analyze alerts and detections using **Endpoint Detection and R
   - The YARA scan detected that it was a **Meterpreter Reverse TCP Payload**.
   ![image](https://github.com/user-attachments/assets/95934230-55ef-484c-a815-8c4264bb7764)
 
+  - Another exe file was downloaded.
+    ![image](https://github.com/user-attachments/assets/36f82cf5-5be3-4152-9845-55af3c2aa8cc)
+
+  
 - **Execution from Download Directory**: Another detection based on a D&R rule.
+  ![image](https://github.com/user-attachments/assets/a46a48a0-8cf0-4ae2-9b2e-a0ace0eb7208)
+  - YARA Scan detected that it was **LaZagne**
+    ![image](https://github.com/user-attachments/assets/154cb1ff-7554-4c2d-a626-9659ce370be2)
+
 - **Direct Autorun Key Modification**: Indicating a registry modification used to create a backdoor.
+  ![image](https://github.com/user-attachments/assets/37479115-e504-4cf2-ba0a-cce3f0447e41)
+
 - **New User Creation**: The attacker created a new user.
+  ![image](https://github.com/user-attachments/assets/088390e6-ff33-4377-aec6-fa6bd921e46c)
+
+- **Dumping Credentials**: Sensitive hives were dumped via Reg.exe.
+  ![image](https://github.com/user-attachments/assets/769d3607-8ed1-42e0-a3cd-5016fb332912)
+
 - **Windows System and Security Logs Deletion**: Logs were cleared to hide malicious activity.
+  ![image](https://github.com/user-attachments/assets/a0c302a5-b9b9-4950-99a1-94cbb4c2a6bf)
 
 Splunk logs further provide details on the attack, such as the **attacker's IP (10.19.19.134)** and port (**4444**) used for C2 communication.
 
