@@ -45,6 +45,10 @@ Splunk logs further provide details on the attack, such as the **attacker's IP (
 
 ![image](https://github.com/user-attachments/assets/2a1352e1-bd76-4604-b239-d52a5332ea1c)
 
+Download the .eml file if you have not done it yet.
+
+![image](https://github.com/user-attachments/assets/e5bccb96-c184-4ccd-93b5-b33e36a95a45)
+
 ### Indicators of Compromise (IOCs) Identified:
 
 1. Malicious file hash.
@@ -52,7 +56,7 @@ Splunk logs further provide details on the attack, such as the **attacker's IP (
 3. Unauthorized user account creation.
 4. System log deletion.
 5. Use of non-standard port 4444 for C2 communication.
-6. Phishing email with a shortened URL (e.g., greet-link).
+6. Phishing email with a shortened URL (e.g., Bitly link).
 
 ## Analysis
 
