@@ -16,11 +16,14 @@ In this phase, we analyze alerts and detections using **Endpoint Detection and R
 ![image](https://github.com/user-attachments/assets/11edcdac-e209-4410-ae46-528d4f72a980)
 
 - **Executable Drop in Download Directory**: This was triggered by a D&R created during the preparation phase. The malicious file **SecurityUpdate.exe** and its file hash were detected.
-  ![image](https://github.com/user-attachments/assets/1261b8d1-594b-433c-8512-b57febe4ac19)
+
+   ![image](https://github.com/user-attachments/assets/1261b8d1-594b-433c-8512-b57febe4ac19)
   - The YARA scan detected that it was a **Meterpreter Reverse TCP Payload**.
-  ![image](https://github.com/user-attachments/assets/95934230-55ef-484c-a815-8c4264bb7764)
+
+   ![image](https://github.com/user-attachments/assets/95934230-55ef-484c-a815-8c4264bb7764)
 
   - Another exe file was downloaded.
+  
     ![image](https://github.com/user-attachments/assets/36f82cf5-5be3-4152-9845-55af3c2aa8cc)
 
   
@@ -89,9 +92,29 @@ Splunk logs further provide details on the attack, such as the **attacker's IP (
 
 - Examining **Splunk** logs for:
   - Sysmon log anomalies.
+
+     ![image](https://github.com/user-attachments/assets/e2ef3580-64fb-41a9-9803-52f88836a197)
+    
+    ![image](https://github.com/user-attachments/assets/796c83cf-317b-4a99-bf9e-ef00641ea50b)
+    
+    ![image](https://github.com/user-attachments/assets/a6555bac-f584-4a3e-88d1-60ae1c655dea)
+      
+      - Here we can see the user that was created and when was deleted. 
+
   - Windows event logs (e.g., event ID 1102 for audit log clearance).
-  - IDS logs for unauthorized HTTP traffic on port 8088.
-- **EDR file hash analysis** using VirusTotal to verify malware presence.
+
+     ![image](https://github.com/user-attachments/assets/3c69c8a5-e321-4ddb-8d2d-7dc2f03676d9)
+
+  - IDS logs for unauthorized HTTP traffic on port 8080.
+
+     ![image](https://github.com/user-attachments/assets/27411d9c-d223-4fc4-9f81-8d0ea0d61af9)
+
+- **EDR file hash analysis** using [VirusTotal](https://www.virustotal.com/gui/home/search) to verify malware presence.
+
+![image](https://github.com/user-attachments/assets/05716a9c-d470-44bf-aaba-efd0ed9c709a)
+
+![image](https://github.com/user-attachments/assets/7be8304d-7135-41d2-a9ff-c915ca6be8db)
+
 
 ### Forensic Analysis
 
