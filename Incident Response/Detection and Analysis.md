@@ -5,12 +5,22 @@
 
 During this phase, we actively monitor security alerts and events using Splunk to identify potential threats. In this scenario, we observed triggered alerts for a **reverse TCP connection** in Splunk.
 
+- Go to **Activity > Triggered Alerts** and we will see the alerts that were triggered in Splunk.
+
+![image](https://github.com/user-attachments/assets/734071cd-58ae-4f34-a1bf-eea2784b1bce)
+
 ## Detection Phase
 
 In this phase, we analyze alerts and detections using **Endpoint Detection and Response (EDR)** tools, like as **LimaCharlie**, and continue to investigate in Splunk. The detections observed include:
 
+![image](https://github.com/user-attachments/assets/11edcdac-e209-4410-ae46-528d4f72a980)
+
 - **Executable Drop in Download Directory**: This was triggered by a YARA rule created during the preparation phase. The malicious file **SecurityUpdate.exe** and its file hash were detected.
-- **Execution from Download Directory**: Another detection based on a URL rule.
+  ![image](https://github.com/user-attachments/assets/1261b8d1-594b-433c-8512-b57febe4ac19)
+  - The YARA scan detected that it was a **Meterpreter Reverse TCP Payload**.
+  ![image](https://github.com/user-attachments/assets/95934230-55ef-484c-a815-8c4264bb7764)
+
+- **Execution from Download Directory**: Another detection based on a D&R rule.
 - **Direct Autorun Key Modification**: Indicating a registry modification used to create a backdoor.
 - **New User Creation**: The attacker created a new user.
 - **Windows System and Security Logs Deletion**: Logs were cleared to hide malicious activity.
