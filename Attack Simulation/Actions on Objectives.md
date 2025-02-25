@@ -31,11 +31,13 @@ Exfiltrate data, manipulate the system, and cover tracks to avoid detection.
 
 #### Deleting Evidence on the Victim’s Machine:
 - The attacker deletes `Secret Storage.txt` from the victim’s machine:
+  - Go to the directory of `Secrets` and use the command `del`:
   ```bash
-  del "C:\Users\Bob\Secrets\Secret Storage.txt"
+  del "Secret Storage.txt"
   ```
 
-![image](https://github.com/user-attachments/assets/a484140e-fe48-401a-a666-82071249971c)
+![image](https://github.com/user-attachments/assets/3643df55-9185-4242-aea6-fcc154eba029)
+
 
 #### Removing Traces of the Attack:
 - The attacker removes the created user:
