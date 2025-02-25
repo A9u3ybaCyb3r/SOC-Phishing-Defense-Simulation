@@ -32,7 +32,7 @@ Exfiltrate data, manipulate the system, and cover tracks to avoid detection.
 #### Deleting Evidence on the Victim’s Machine:
 - The attacker deletes `Secret Storage.txt` from the victim’s machine:
   ```bash
-  del "C:\Users\Bob\Secrets\Secret\ Storage.txt"
+  del "C:\Users\Bob\Secrets\Secret Storage.txt"
   ```
 
 ![image](https://github.com/user-attachments/assets/a484140e-fe48-401a-a666-82071249971c)
