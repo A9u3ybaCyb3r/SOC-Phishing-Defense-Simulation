@@ -578,11 +578,16 @@ After the installation, Windows will prompt for some initial configuration:
 - In VirtualBox, go to **Devices > Shared Clipboard** and set it to **Bi-directional**.
 - This allows you to **copy and paste** between the host and the VM.
 
-## **11. Take a Snapshot**
+## **11. Create a Secrets folder**
+- Create a new folder on the Desktop and name it `Secrets`.
+- Go to `Secrets` folder and create a new text document named `Secret Storage`
+	- (Optional) open it with **Notepad** and write something inside the txt file and save it.
+   
+## **12. Take a Snapshot**
 - To save the current state of your VM, go to **Machine > Take Snapshot** in VirtualBox.
 - Name the snapshot (e.g., `Base-Install`) to preserve the clean installation state.
 
-## **12. Ready for Use**
+## **13. Ready for Use**
 - Your **Windows 10 VM is now ready** for use.
 - You can proceed with any additional configuration or software installation as needed.
 
