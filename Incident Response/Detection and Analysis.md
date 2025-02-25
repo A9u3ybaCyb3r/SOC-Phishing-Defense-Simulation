@@ -161,12 +161,22 @@ Splunk logs further provide details on the attack, such as the **attacker's IP (
    ![image](https://github.com/user-attachments/assets/ddad5872-e61f-41c6-85a8-b6959ab90f38)
    
    - Create a new folder and name it **Recovered** and open up **Exterro FTK Imager** to recover the data lost.
-   - `File > Add Evidence Item > Physical Drive`
+   - Go to `File > Add Evidence Item > Physical Drive`
    
    ![image](https://github.com/user-attachments/assets/559d53ef-89a0-4173-ad8d-8143897bb085)
 
    ![image](https://github.com/user-attachments/assets/05e8e80d-3c32-483f-ade0-0e329ec90f97)
 
+   ![image](https://github.com/user-attachments/assets/8709630a-3061-4275-9cd7-65b7c6da0e1a)
+
+   - We can see that the file is still there even though it was deleted. It has a red X indicating that it was deleted.
+   - To recover the file right-click on the file and then click on `Export Files`
+   
+   ![image](https://github.com/user-attachments/assets/02c75315-a868-451b-89b3-e82549c20edf)
+   
+   - Export the file to the Recovered folder to recover the deleted file.
+
+   ![image](https://github.com/user-attachments/assets/10183fa7-fc84-4249-af00-5ffe9c4cb5dc)
 
 
 
