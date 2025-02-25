@@ -9,7 +9,7 @@
 6. [Installing Snort](#installing-snort)
 7. [Wireshark Installation](#wireshark-installation)
 8. [Setting up Kali Linux](#setting-up-kali-linux)
-9. [Installing Windows 10](#installing-windows-11)
+9. [Installing Windows 10](#installing-windows-10)
 10. [Installing Splunk Forwarder](#installing-splunk-forwarder)
 11. [Installing LimaCharlie](#installing-limacharlie)
 	- [Deploying Endpoint Agents](#deploying-endpoint-agents)
