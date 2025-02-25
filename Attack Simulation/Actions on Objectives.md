@@ -30,9 +30,9 @@ Exfiltrate data, manipulate the system, and cover tracks to avoid detection.
 ![image](https://github.com/user-attachments/assets/e48caaaf-4265-494b-91bd-e619d47f4879)
 
 #### Deleting Evidence on the Victim’s Machine:
-- The attacker deletes `important_doc.txt` from the victim’s machine:
+- The attacker deletes `Secret Storage.txt` from the victim’s machine:
   ```bash
-  del "C:\Users\Bob\secret_folder\important_doc.txt"
+  del "C:\Users\Bob\Secrets\Secret\ Storage.txt"
   ```
 
 ![image](https://github.com/user-attachments/assets/a484140e-fe48-401a-a666-82071249971c)
@@ -40,7 +40,7 @@ Exfiltrate data, manipulate the system, and cover tracks to avoid detection.
 #### Removing Traces of the Attack:
 - The attacker removes the created user:
   ```bash
-  net user guest /delete
+  net user guesstt /delete
   ```
   ![image](https://github.com/user-attachments/assets/98f4e8c7-524f-49e7-b0e4-c56519bec77f)
 
