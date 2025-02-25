@@ -160,7 +160,14 @@ Splunk logs further provide details on the attack, such as the **attacker's IP (
    
    ![image](https://github.com/user-attachments/assets/ddad5872-e61f-41c6-85a8-b6959ab90f38)
    
-   - Create a new folder and name it **Recovered** and open up **Exterro FTK Imager** to recover the data lost. 
+   - Create a new folder and name it **Recovered** and open up **Exterro FTK Imager** to recover the data lost.
+   - `File > Add Evidence Item > Physical Drive`
+   
+   ![image](https://github.com/user-attachments/assets/559d53ef-89a0-4173-ad8d-8143897bb085)
+
+   ![image](https://github.com/user-attachments/assets/05e8e80d-3c32-483f-ade0-0e329ec90f97)
+
+
 
 
 ### Identified Tactics, Techniques, and Procedures (TTPs)
