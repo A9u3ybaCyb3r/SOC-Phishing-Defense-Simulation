@@ -7,8 +7,11 @@
   * In **LimaCharlie**, isolate the system to cut off attacker communication:
 
     ![LimaCharlie Isolation Step 1](https://github.com/user-attachments/assets/6b172adb-25a7-461f-a0fd-2b7031f4a12a)
-    ![LimaCharlie Isolation Step 2](https://github.com/user-attachments/assets/41eeb892-65e0-41da-aedf-efdc759e5bed)
+
+     ![LimaCharlie Isolation Step 2](https://github.com/user-attachments/assets/41eeb892-65e0-41da-aedf-efdc759e5bed)
+
     ![LimaCharlie Isolation Step 3](https://github.com/user-attachments/assets/9e14af56-6174-4cb7-835e-5fe46e74b787)
+
     ![LimaCharlie Isolation Step 4](https://github.com/user-attachments/assets/480df2dc-8138-4cea-a46b-37113e642285)
 
 * **Disable persistence mechanisms** such as registry-based backdoors.
@@ -65,4 +68,5 @@
 * Alternatively, **power off the virtual machine** and restore snapshot from the VirtualBox manager:
 
   ![VirtualBox Shutdown](https://github.com/user-attachments/assets/30a50276-fe25-42a1-83c0-b04072bd2a62)
+
   ![VirtualBox Snapshot Recovery](https://github.com/user-attachments/assets/5c4348dd-d18c-4fac-9e6b-c78b8b15f677)
