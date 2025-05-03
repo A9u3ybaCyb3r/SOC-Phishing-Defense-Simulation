@@ -1,75 +1,64 @@
 # Cyber Kill Chain
 
-Developed by Lockheed Martin, it is a conceptual framework that describes the stages of a cyberattack. Originating from military concepts, the model parallels physical attack planning and execution, providing organizations with a systematic approach to understanding, detecting, and defending against cyber threats. We will use this framework for our attack simulation. 
+The Cyber Kill Chain, developed by Lockheed Martin, is a seven-stage framework originally inspired by military operations. It outlines the lifecycle of a cyberattack from initial reconnaissance to data exfiltration or system damage allowing defenders to identify, disrupt, and mitigate intrusions at each step. This guide applies the model in a realistic attack simulation to demonstrate how adversaries operate and how defenders can respond.
 
-## [Reconnaissance](https://github.com/A9u3ybaCyb3r/SOC-Phishing-Defense-Simulation/blob/main/Attack%20Simulation/Reconnaissance.md) 
+## [Reconnaissance](https://github.com/A9u3ybaCyb3r/SOC-Phishing-Defense-Simulation/blob/main/Attack%20Simulation/Reconnaissance.md)
 
-- The attacker gathers information about the victim from their **Facebook** profile.
-- The victim’s **email address** is obtained.
-- The attacker plans a **spear-phishing** attack targeting the victim.
+* The attacker gathers intelligence from the victim’s **Facebook** profile.
+* The attacker obtains the victim’s **email address**.
+* The attacker plans a **spear-phishing** campaign specifically targeting the victim.
 
 ## [Weaponization](https://github.com/A9u3ybaCyb3r/SOC-Phishing-Defense-Simulation/blob/main/Attack%20Simulation/Weaponization.md)
 
-- The attacker uses **MSF Venom** (part of the Metasploit framework) to create a **malicious payload**.
-- The payload is a PP32 executable file named `SecurityUpdate.exe`.
-- The payload is designed to establish a **reverse TCP connection** to the attacker's machine.
+* The attacker uses **MSFVenom**, a Metasploit payload generator, to craft a **malicious executable**.
+* The payload is named `SecurityUpdate.exe` and designed to appear legitimate.
+* The executable is configured to initiate a **reverse TCP connection** back to the attacker’s machine.
 
 ## [Delivery Phase](https://github.com/A9u3ybaCyb3r/SOC-Phishing-Defense-Simulation/blob/main/Attack%20Simulation/Delivery%20Phase.md)
 
-- The attacker **hosts the payload** using **Python's HTTP** server, making it available for download.
-- A **phishing email** is sent to the victim via **Temp Mail** (you can use any email for this test), masquerading as a **tech support email**.
-- Sends a spoofed phishing email with a disguised **shortened URL** linking to the payload using **Emkei's Fake Mailer**.
-- The email subject creates a **sense of urgency**:
-  - **Subject**: "`Critical Update: Immediate Action Required`"
+* The attacker hosts the payload using a **Python HTTP server**.
+* The attacker sends a **phishing email** to the victim via **Temp Mail**, posing as **tech support**.
+* The email contains a disguised **shortened URL** generated using **Emkei's Fake Mailer**.
+* The email subject line is designed to induce urgency:
+
+  * **Subject**: "`Critical Update: Immediate Action Required`"
 
 ## [Exploitation Phase](https://github.com/A9u3ybaCyb3r/SOC-Phishing-Defense-Simulation/blob/main/Attack%20Simulation/Exploitation%20Phase.md)
 
-- The victim **receives the phishing email**, clicks the link, and **downloads the malicious executable**.
-- The victim runs `SecurityUpdate.exe` via the **command prompt** as an **administrator**. 
-- The payload **executes**, triggering a **reverse TCP connection** to the attacker's machine.
-- The attacker has now compromised the Windows machine.
+* The victim receives the phishing email and clicks on the malicious link.
+* The victim downloads and runs `SecurityUpdate.exe` as an administrator via the **command prompt**.
+* The payload executes, establishing a **reverse TCP session** with the attacker’s system.
+* The attacker now has remote access to the victim's Windows machine.
 
 ## [Installation Phase](https://github.com/A9u3ybaCyb3r/SOC-Phishing-Defense-Simulation/blob/main/Attack%20Simulation/Installation%20Phase.md)
 
-- The attacker **modifies the Windows registry** to create **persistence**.
-- A backdoor named `update.exe` is added to **autoruns**, ensuring the attacker maintains access even after the system reboots.
-- The name is to  help the backdoor blend in with legitimate software.
-- Attackers rely on a system's sheer volume of files to obscure their malicious presence.
+* The attacker modifies the Windows **Registry** to achieve **persistence**.
+* A backdoor named `update.exe` is added to the system’s **autorun** entries.
+* The attacker names the backdoor `update.exe` to mimic legitimate system files and avoid detection.
+* The attacker relies on the sheer number of legitimate files in the system to hide malicious ones.
 
 ## [Command and Control Phase](https://github.com/A9u3ybaCyb3r/SOC-Phishing-Defense-Simulation/blob/main/Attack%20Simulation/Command%20and%20Control%20Phase.md)
 
-- The attacker **sends commands** (e.g., `cd`, `ls`) to **navigate the compromised system**.
-- The attacker **searches for sensitive information**, including folders, user accounts, and stored data.
+* The attacker sends shell commands such as `cd` and `ls` to navigate the compromised system.
+* The attacker searches for sensitive data including user credentials, documents, and folders.
 
 ## [Actions on Objectives Phase](https://github.com/A9u3ybaCyb3r/SOC-Phishing-Defense-Simulation/blob/main/Attack%20Simulation/Actions%20on%20Objectives.md)
 
-- The attacker **creates a new user** named `guest` with password `password123`.
-- **Data exfiltration**:
-  - The attacker navigates to `secret_folder`.
-  - A file named `important_doc.txt` is downloaded to the attacker's machine.
-- **Data destruction**:
-  - The attacker deletes `important_doc.txt` from the victim’s machine.
-- **Covering tracks**:
-  - The attacker **removes the created user** (`guest`).
-  - The attacker **clears Windows system and security logs** to eliminate traces of the attack.
+* The attacker creates a new user account named `guest` with the password `password123`.
+* The attacker accesses a directory named `secret_folder` and downloads `important_doc.txt`.
+* The attacker deletes `important_doc.txt` from the victim’s machine to cover their tracks.
+* The attacker removes the created `guest` user account.
+* The attacker clears the Windows **system and security logs** to erase evidence of the breach.
 
 ---
 
-## Tools Utilized
+## 🛠️ Tools Utilized
 
-### Metasploit
+| Tool                  | Purpose                                                                 |
+|-----------------------|-------------------------------------------------------------------------|
+| **Metasploit**        | To create and deliver the payload (`msfvenom`) and handle the exploit. |
+| **Emkei’s Fake Mailer** | To send spoofed phishing emails with fake sender addresses.           |
+| **LaZagne**           | To extract stored passwords post-exploitation.                          |
+| **Temp Mail**         | To receive phishing emails without exposing real inboxes.              |
 
-Metasploit is a penetration testing framework used for finding, exploiting, and validating vulnerabilities in systems. It provides a suite of tools for ethical hackers, security researchers, and red teamers to conduct security assessments and exploit known vulnerabilities in networks, applications, and operating systems.
-
-### Emkei's Fake Mailer
-
-Emkei's Fake Mailer is an online tool that allows users to send spoofed emails by forging the "From" address and other email headers. It is typically used to simulate email communications from any sender address, making it appear as though the email originates from a legitimate source.
-
-
-### LaZagne
-
-LaZagne is an open-source tool for retrieving stored passwords from various system applications. It automates extracting credentials from commonly used software and is widely employed in penetration testing and red team engagements.
-
-### Temp Mail
-
-Disposable email - is a free email service that allows you to receive email at a temporary address that self-destructed after a certain time elapses. 
+This simulation demonstrates how a single phishing email can lead to a full system compromise. By analyzing each phase of the Cyber Kill Chain, defenders can better detect, disrupt, and mitigate attacks before damage is done.
