@@ -86,7 +86,9 @@ sudo snort -A console -q -c /etc/snort/snort.conf -i [your interface]
 Generate traffic for each rule, if you see the alerts then it is working.
 
 Then set the rules to generate logs and monitor the network:
-![98d72e5211d2ea27dcd3fa41f4fe1e00.png](:/ded3c0f478224aa3952f9d49d6167e76)
+
+![image](https://github.com/user-attachments/assets/ea7f41e3-c75b-4aab-8353-1169b3500c44)
+
 ```bash
 sudo snort -A fast -l /var/log/snort -i [your interface] -c /etc/snort/snort.conf  -q
 ```
