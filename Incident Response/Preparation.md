@@ -798,4 +798,4 @@ To download the latest version, visit [Exterro's FTK Product Downloads](https://
 
 ---
 
-### Now that we are done with the lab and preparing our defenses we are going to jump to the [Attack Simulation](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/tree/main/Attack%20Simulation).
+### Now that we are done with the lab and preparing our defenses we are going to jump to the [Attack Simulation](https://github.com/A9u3ybaCyb3r/SOC-Phishing-Defense-Simulation/tree/main/Attack%20Simulation).
