@@ -15,7 +15,7 @@ This project simulates a phishing attack in a controlled lab and demonstrates th
 
 # 🧩 Overview of the Project
 
-## 🛡️Defense Scenario (Following the NIST Incident Response Plan Phases)
+## Defense Scenario (Following the NIST Incident Response Plan Phases)
 
 This project is structured around the **NIST Incident Response Lifecycle**, providing a hands-on simulation of how security teams prepare for, detect, contain, and recover from cyberattacks. Each phase includes specific tools, configurations, and techniques to demonstrate professional blue team operations.
 
@@ -80,7 +80,7 @@ This feedback loop leads to updated Snort/YARA rules, improved automation, and b
 
 ---
 
-## ⚔️ Attack Scenario (Following the Cyber Kill Chain)
+## Attack Scenario (Following the Cyber Kill Chain)
 
 This simulation models a realistic phishing-based compromise on a standalone **Windows 10** machine. The attack follows the **Cyber Kill Chain** framework, progressing through all key adversarial phases:
 
