@@ -2,8 +2,8 @@
 
 ## 📚 Table of Contents
 - [Objective](#objective)
-- [NIST Incident Response Plan](#-nist-incident-response-plan-phases)
-- [Cyber Kill Chain Scenario](#-attack-scenario-following-the-cyber-kill-chain)
+- [NIST Incident Response Plan](#nist-incident-response-plan-phases)
+- [Cyber Kill Chain Scenario](#attack-scenario-(following-the-cyber-kill-chain))
 - [Skills Learned](#skills-learned)
 - [Disclaimer](#disclaimer)
 
