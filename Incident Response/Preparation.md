@@ -1,29 +1,18 @@
-# Preparation Phase
+# 🛡️ Preparation Phase
 
-### Objectives
-- Establish and maintain an incident response policy and plan.
-- Train personnel and conduct awareness programs.
-- Develop and test incident handling procedures.
-- Set up necessary tools and resources, such as monitoring systems and forensic software.
+## 🎯 Objectives
 
----
+* ✅ Establish and maintain an incident response policy and plan
+* 🧠 Train personnel and run awareness programs
+* 🧪 Develop & test incident handling procedures
+* 🛠️ Set up monitoring systems, forensic tools, and detection software
 
-In the preparation phase, several key configurations are made:
-- **Snort Rules**: Configured to detect potential threats, including:
-  - Rule 1: Detects a reverse TCP connection on port 4444 to the Windows VM.
-  - Rule 2: Monitors HTTP traffic on non-standard ports (8001 to 9000).
-    - In my case, Splunk is hosted on port 8000 
-  - Rule 3: Checks for executable files in HTTP traffic looking for  requested URI.
-  - Rule 4: Monitors standard HTTP traffic on port 80.
-- **Lima Charlie**: It is integrated with a Windows workstation for advanced threat detection and response capabilities.
-  - **YARA Rules**: Rules are written to detect executable files in the downloads directory.
-  - **Automate YARA Scan**: YARA Scan files that are executed and scan files that are dropped in the Downloads directory.
-- **Splunk Configuration**: Alerts are set up to detect reverse TCP connections.
-  - Both **Snort Logs** and **Sysmon Logs** are going to be sent to **Splunk** for centralised monitoring and analysis.
-- **Forensic Tools**: Tools like Kape, Registry Explorer, and FTK Imager are downloaded for forensic analysis.
+📘 *This preparation phase aligns with the NIST SP 800-61 Computer Security Incident Handling Guide and SANS Incident Response methodology.*
 
 ---
-## Table of Contents
+
+## 📚 Table of Contents
+
 1. [Writing Snort Rules](#writing-snort-rules)
     - [Sending Snort Logs to Splunk](#sending-snort-logs-to-splunk)
 2. [Creating a Real-Time Alert for Reverse TCP in Splunk](#creating-a-real-time-alert-for-reverse-tcp-in-splunk)
@@ -32,96 +21,79 @@ In the preparation phase, several key configurations are made:
 5. [Setting Up Microsoft Sysmon for Splunk](#setting-up-microsoft-sysmon-for-splunk)
 
 ---
-# Writing Snort Rules
 
-We will use [Snort Rule Generator](https://anir0y.in/snort2-rulgen/) to make our rules.
+## 🔍 Writing Snort Rules
 
-1. Setting Up Snort Environment
+Configured Snort rules using [Snort Rule Generator](https://anir0y.in/snort2-rulgen/) to detect suspicious behavior in our lab:
+
+Setting Up Snort Environment
 - Configuration File: Use `sudo subl` to edit the `local.rules` file in the Snort directory.
 - Go to the **Snort Rules** Directory: 
-```
+```bash
   cd /etc/snort/rules/
 ```
 
 - Use **Sublime Text** to edit the rules.
-```
+```bash
   sudo subl local.rules
 ```
 
-2. Create a rule for testing pings.
+### 🚨 Lab Rules
+
+* **Rule 1: Reverse TCP Detection**
+
+  * Detects reverse shell connections over TCP port 4444 (commonly used by Metasploit payloads).
+```snort
+alert tcp any 4444 -> 10.19.19.6 any (msg:"Reverse TCP on Port 4444"; sid:1000002; rev:1;)
+```
+
+* **Rule 2: HTTP on Non-Standard Ports (8001–9000)**
+
+  * Monitors web traffic on ports frequently used by C2 channels or misconfigured applications.
+  * *Note: Splunk is hosted on port 8000 in this setup.*
+```snort
+alert tcp any 8001:9000 -> 10.19.19.6 any (msg:"HTTP Traffic on Non-Standard Port Detected"; sid:1000003; rev:1;)
+```
+
+* **Rule 3: HTTP on Port 80**
+
+  * Baseline detection of standard HTTP communication.
+```snort
+alert tcp any 80 -> 10.19.19.6 any (msg:"HTTP Traffic Detected"; sid:1000004; rev:1;)
+```
+
+Example of ICMP Ping Rule:
 
 ```snort
 alert icmp any any -> 8.8.8.8 any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;)
 ```
 
-- **Action**: alert
-- **Protocol**: ICMP
-- **Source**: Any IP and port.
-- **Direction**: From source to destination.
-- **Destination**: IP 8.8.8.8, any port.
-- **Options**:
-  - **Message**: "ICMP Ping Detected"
-  - **SID**: 1000001
-  - **Revision**: 1
+Test with:
 
-3. Test **Snort Rules**
+```bash
+ping 8.8.8.8
+```
+
+### Test **Snort Rules**
 - Run Snort in Console Mode:
 
-```
+```bash
 sudo snort -A console -q -c /etc/snort/snort.conf -i [your interface]
 ```
 
 - Use the `-A` console option to display alerts in real-time.
 - `-q` to suppress unnecessary output.
+Generate traffic for each rule, if you see the alerts then it is working.
 
-
-- Generating Traffic for Testing:
-  - Ping `8.8.8.8` to trigger the ICMP rule and observe alerts in the console.
-  - Ping a different IP (e.g., `8.8.4.4`) to confirm no alerts are generated for non-matching traffic.
-
-## Creating Our Rules for the Lab
-
-### Rule 1: Detect Reverse TCP on Port 4444
+Then set the rules to generate logs and monitor the network:
+![98d72e5211d2ea27dcd3fa41f4fe1e00.png](:/ded3c0f478224aa3952f9d49d6167e76)
+```bash
+sudo snort -A fast -l /var/log/snort -i [your interface] -c /etc/snort/snort.conf  -q
 ```
-alert tcp any 4444 -> 10.19.19.6 any (msg:"Reverse TCP on Port 4444"; sid:1000002; rev:1;)
-```
-### What This Rule Detects:
- - Identifies TCP traffic directed to port 4444 within $HOME_NET.
- - Port 4444 is commonly used for reverse shells (e.g., Metasploit).
 
-### Example Scenario:
- - A compromised machine (10.19.19.133) initiates a reverse shell connection on port 4444.
- - Snort detects the traffic and generates an alert.
+---
 
-
-### Rule 2: Detect HTTP Traffic on Non-Standard Ports (8001-9000)
-```
-alert tcp any 8001:9000 -> 10.19.19.6 any (msg:"HTTP Traffic on Non-Standard Port Detected"; sid:1000003; rev:1;)
-```
-### What This Rule Detects:
- - Identifies HTTP-like traffic on ports 8000-9000.
- - These ports are often used for web applications, proxy servers, or C2 communications.
-
-### Example Scenario:
- - A web application is running on port 8080.
- - A user or attacker accesses the server, generating traffic.
- - Snort detects the activity and triggers an alert.
-
-
-### Rule 3: Detect Any HTTP Traffic on Port 80
-```
-alert tcp any 80 -> 10.19.19.6 any (msg:"HTTP Traffic Detected"; sid:1000004; rev:1;)
-```
-### What This Rule Detects:
- - Identifies TCP traffic directed to port 80 (standard HTTP traffic).
- - Does not inspect payloads or analyze attack patterns.
-
-### Example Scenario:
- - A user browses a website on port 80.
- - The web server responds, generating bidirectional traffic.
- - Snort triggers an alert for HTTP communication.
-
-# Sending Snort Logs to Splunk
+## ## 📤 Sending Snort Logs to Splunk
 
 This guide focuses on configuring Snort to send logs to Splunk, assuming both are already installed on the same system.
 
@@ -150,15 +122,15 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
    - Go to `Settings > Data Inputs > Files & Directories`.
    - Add a new data input pointing to `/var/log/snort/alert`.
    - If the `alert` file is missing, run the following command to generate log entries:
-   ```
+   ```bash
    sudo snort -q -l /var/log/snort -A fast -i enp0s3 -c /etc/snort/snort.conf
    ```
    - In another terminal, perform a simple ping test:
-   ```
-   ping 8.8.8.8`
+   ```bash
+   ping 8.8.8.8
    ```
    - The generated alerts should be logged in `/var/log/snort/alert`. To verify, open the file with a text editor or cat:
-   ```
+   ```bash
    cat /var/log/snort/alert
    ``` 
 
@@ -301,7 +273,7 @@ rule LaZagne
 
 ## YARA Rule for LaZagne-process
 
-```
+```yara
 rule laZagne_strings 
 {
     meta:
@@ -328,7 +300,7 @@ rule laZagne_strings
 
 ## Yara Rule Meterpreter Reverse TCP Payload
 
-```
+```yara
 rule Meterpreter_Reverse_TCP
 {
     meta:
@@ -416,7 +388,7 @@ This rule is designed to catch YARA detections that do not involve a PROCESS obj
 - Click the “**New Rule**” button to start a new rule.
 3. **Configure the Detection Block**
 In the rule’s **Detect** block, paste the following YAML:
-```
+```yaml
 event: YARA_DETECTION
 op: and
 rules:
@@ -440,7 +412,7 @@ Uses `op: exists` to ensure that the event includes a `RULE_NAME` attribute.
 4. **Configure the Response Block**
 In the rule’s Respond block, paste the following YAML:
 
-```
+```yaml
 - action: report
   name: YARA Detection {{ .event.RULE_NAME }}
 - action: add tag
@@ -466,7 +438,7 @@ This rule is targeted at YARA detections that involve a PROCESS object, indicati
 - From the “**Automation**” > “**D&R Rules**” section, click “**New Rule**” to create another rule.
 2. **Configure the Detection Block**
 In the **Detect** block, paste the following YAML:
-```
+```yaml
 event: YARA_DETECTION
 op: and
 rules:
@@ -486,7 +458,7 @@ Confirms that the event has a PROCESS object by checking for any data under `eve
 3. **Configure the Response Block**
 In the Respond block, paste the following YAML:
 
-```
+```yaml
 - action: report
   name: YARA Detection in Memory {{ .event.RULE_NAME }}
 - action: add tag
@@ -524,7 +496,7 @@ This rule detects when a new EXE file appears in a user’s Downloads folder (i.
 
 ### Step 1.2: Configure the Detect Block
 In the **Detect** block, paste the following YAML:
-```
+```yaml
 event: NEW_DOCUMENT
 op: and
 rules:
@@ -547,7 +519,7 @@ rules:
 
 ### Step 1.3: Configure the Respond Block
 In the `Respond` block, paste the following YAML:
-```
+```yaml
 - action: report
   name: EXE dropped in Downloads directory
 - action: task
@@ -585,7 +557,7 @@ This rule detects when a process is started from a user’s Downloads folder (i.
 
 ### Step 2.2: Configure the Detect Block
 In the **Detect** block, paste the following YAML:
-```
+```yaml
 event: NEW_PROCESS
 op: and
 rules:
@@ -604,7 +576,7 @@ Checks that the process’s file path starts with C:\Users\ and includes \Downlo
 
 ### Step 2.3: Configure the Respond Block
 In the **Respond** block, paste the following YAML:
-```
+```yaml
 - action: report
   name: Execution from Downloads directory
 - action: task
@@ -637,11 +609,11 @@ In the **Respond** block, paste the following YAML:
 1. **Simulate EXE Movement**:
 - Open an Administrative PowerShell prompt.
 - Move your LaZagne payload from the Downloads folder to Documents:
-```
+```powershell
 Move-Item -Path C:\Users\User\Downloads\LaZagne.exe -Destination C:\Users\User\Documents\LaZagne.exe
 ```
 Then, move it back to the Downloads folder to generate a `NEW_DOCUMENT` event:
-```
+```powershell
 Move-Item -Path C:\Users\User\Documents\LaZagne.exe -Destination C:\Users\User\Downloads\LaZagne.exe
 ```
 2. **Verify Detections**:
@@ -653,13 +625,13 @@ Move-Item -Path C:\Users\User\Documents\LaZagne.exe -Destination C:\Users\User\D
 1. **Terminate Existing Instances**:
 - Open an Administrative PowerShell prompt.
 - Stop any running instances of LaZagne.exe (replace `LaZagne` with the payload name without the `.exe` extension):
-```
+```powershell
 Get-Process LaZagne | Stop-Process
 ```
 - (Ignore errors if no instance is running.)
 2. **Launch the Payload**:
 - Execute LaZagne.exe from the Downloads folder:
-```
+```powershell
 C:\Users\User\Downloads\LaZagne.exe
 ```
 3. **Verify Detections**:
@@ -743,7 +715,7 @@ This detailed guide provides step-by-step instructions for configuring the Splun
 
 1. Go to **Apps > Search & Reporting**.
 2. Search for:
-   ```
+   ```spl
    index=endpoint
    ```
 3. Verify:
@@ -798,4 +770,4 @@ To download the latest version, visit [Exterro's FTK Product Downloads](https://
 
 ---
 
-### Now that we are done with the lab and preparing our defenses we are going to jump to the [Attack Simulation](https://github.com/A9u3ybaCyb3r/SOC-Phishing-Defense-Simulation/tree/main/Attack%20Simulation).
+## 🔚 Next Step: [➡️ Attack Simulation Phase](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/tree/main/Attack%20Simulation)
