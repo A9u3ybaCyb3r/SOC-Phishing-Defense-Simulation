@@ -815,7 +815,7 @@ Use community-supported configurations as a baseline for setup:
 
 ## ✅ Lab Setup Complete!  
 
-➡️ Continue to [Preparation Phase »](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Incident%20Response/Preparation.md)
+➡️ Continue to [Preparation Phase »](https://github.com/A9u3ybaCyb3r/SOC-Phishing-Defense-Simulation/blob/main/Incident%20Response/Preparation.md)
 
 
 
