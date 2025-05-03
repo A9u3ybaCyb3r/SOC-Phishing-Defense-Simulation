@@ -56,6 +56,8 @@ The attacker uses [**Emkei's Fake Mailer**](https://emkei.cz/) to spoof a tech s
 
 ![image](https://github.com/user-attachments/assets/d335d713-0573-42f7-94d8-37f7041a89f1)
 
+![image](https://github.com/user-attachments/assets/7e074809-53fc-4daa-8e22-b54f818eaab5)
+
 ---
 
 ### 🔗 Creating a Shortened URL
