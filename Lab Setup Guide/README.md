@@ -28,7 +28,7 @@ First, we build the network architecture for the lab environment using [Draw.io]
 
 <details>
 	
-## Downloading Virtualbox
+## Installing Virtualbox
 
 ## **1. Open Internet Browser**
 - Launch your preferred **web browser**.
