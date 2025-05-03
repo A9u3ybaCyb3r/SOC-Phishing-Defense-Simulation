@@ -108,7 +108,7 @@ If you encounter an error indicating that **Microsoft Visual C++ 2019** is requi
 
 3. Configure the network by setting your preferred **name** and **IP address range**.
 
-  ![72f9641b88adf38179c65e53b2928ef2.png](:/f6456866ab8844e08481911c5509705b)
+  ![image](https://github.com/user-attachments/assets/114eb586-d303-496f-ae88-78afd80ee9e3)
 
 </details>
 
