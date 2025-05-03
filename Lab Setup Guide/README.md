@@ -1,20 +1,20 @@
 # Lab Setup
 
-## Table of Contents
-1. [Planning Phase](#planning-phase)
-2. [Downloading Virtualbox](#downloading-virtualbox)
-3. [Create a new NAT Network](#create-a-new-nat-network)
-4. [Setting up Ubuntu Desktop](#setting-up-ubuntu-desktop)
-5. [Installing Splunk on Ubuntu](#installing-splunk-on-ubuntu)
-6. [Installing Snort](#installing-snort)
-7. [Wireshark Installation](#wireshark-installation)
-8. [Setting up Kali Linux](#setting-up-kali-linux)
-9. [Installing Windows 10](#installing-windows-10)
-10. [Installing Splunk Forwarder](#installing-splunk-forwarder)
-11. [Installing LimaCharlie](#installing-limacharlie)
-	- [Deploying Endpoint Agents](#deploying-endpoint-agents)
-12. [Installing Sysmon](#installing-sysmon)
+This guide walks through the complete setup of a blue team cybersecurity lab environment using VirtualBox, Splunk, Snort, Sysmon, LimaCharlie, and more all within isolated VMs. Perfect for hands-on SOC simulation and incident response training.
 
+## 📚 Quick Table of Contents
+
+* [Planning Phase (Draw.io)](#planning-phase)
+* [Installing VirtualBox](#installing-virtualbox)
+* [Creating a NAT Network](#creating-a-new-nat-network-in-virtualbox)
+* [Ubuntu Setup + Splunk](#setting-up-ubuntu-desktop)
+* [Installing Snort](#installing-snort)
+* [Installing Wireshark](#wireshark-installation)
+* [Kali Linux Setup](#setting-up-kali-linux)
+* [Windows 10 + Splunk Forwarder](#installing-windows-10)
+* [LimaCharlie Deployment](#installing-limacharlie)
+* [Installing Sysmon](#installing-sysmon)
+* [Lab Setup Complete!](#lab-setup-complete!)
 
 ---
 
@@ -24,6 +24,10 @@ First, we build the network architecture for the lab environment using [Draw.io]
 
 - [Network Diagram](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Lab%20Setup%20Guide/CyberDefense-Lab%20Network%20Diagram.drawio.pdf)
 
+---
+
+<details>
+	
 ## Downloading Virtualbox
 
 ## **1. Open Internet Browser**
@@ -104,10 +108,14 @@ If you encounter an error indicating that **Microsoft Visual C++ 2019** is requi
 
 3. Configure the network by setting your preferred **name** and **IP address range**.
 
-   ![image](https://github.com/user-attachments/assets/8565b6fa-bb0b-498b-8d4c-ee3aded21032)
+  ![72f9641b88adf38179c65e53b2928ef2.png](:/f6456866ab8844e08481911c5509705b)
+
+</details>
 
 ---
 
+<details>
+	
 ## Setting up Ubuntu Desktop
 
 ### Download the ISO File
@@ -244,7 +252,8 @@ If you encounter an error indicating that **Microsoft Visual C++ 2019** is requi
 
     ```bash
     ip a
-
+	```
+	   
 You can view the current IP of the machine.
 
 ![image](https://github.com/user-attachments/assets/9a659493-91b2-40b3-8e72-201f6522a7af)
@@ -265,11 +274,16 @@ You can view the current IP of the machine.
 
    ```bash
    ip a
-
+	```
+	  
 ![image](https://github.com/user-attachments/assets/b56054d4-b4ae-430e-8cf0-5d13052231f4)
 
+</details>
+	
 ---
 
+<details>
+	
 ## Installing Splunk on Ubuntu
 
 ### Download Splunk Enterprise
@@ -289,14 +303,16 @@ You can view the current IP of the machine.
 
    ```bash
    sudo tar xvzf splunk-file.tgz -C /opt
-
+	```
+	  
 ![image](https://github.com/user-attachments/assets/1647559c-cd30-4931-a285-bd8185e2b0ca)
 
 2. Change to the Splunk directory:
 
    ```bash
    cd /opt/splunk/bin
-
+	```
+	  
 ![image](https://github.com/user-attachments/assets/5267939f-0a7b-4e22-a306-8b1d6978ad63)
 
 ![image](https://github.com/user-attachments/assets/0dd806ab-e1bd-4de4-bb6c-3e98f04d04d4)
@@ -305,7 +321,8 @@ You can view the current IP of the machine.
 
    ```bash
    sudo ./splunk start --accept-license
-
+	```
+	  
 ![image](https://github.com/user-attachments/assets/ecbe0a05-e233-4292-9725-a63e8a3dc700)
 
 4. You will be prompted to create a username and password for Splunk.
@@ -339,7 +356,8 @@ You can view the current IP of the machine.
 
    ```bash
    sudo ./splunk enable boot-start
-
+	```
+	  
 ![image](https://github.com/user-attachments/assets/2e1ced1f-1e41-4a01-8d79-dc6b6865dec6)
 
 ### Managing Splunk on Your Lab Machine
@@ -348,32 +366,38 @@ You can view the current IP of the machine.
 
    ```bash
    sudo /opt/splunk/bin/splunk stop
-
+	```
 2. To disable Splunk from starting automatically at boot:
 
    ```bash
    sudo systemctl disable splunk
-
+	```
 3. If needed, you can re-enable it later with:
 
    ```bash
    sudo systemctl enable splunk
+	```
 
+</details>
+	
 ---
 
+<details>
+	
 ## Installing Snort
 
 1. Open a terminal and run:
 
 	```bash
 	sudo apt install snort
-
+	```
 - Enter your password if prompted.
 
 - During installation, Snort will ask for the local network address range. You can find this information using:
 
 	```bash
 	ip a
+	```
 
 - Note your IP address and subnet mask. For example, if your IP is `192.168.1.4` and subnet mask is `255.255.255.0`, the network range is `192.168.1.0/24`.
 
@@ -381,7 +405,7 @@ You can view the current IP of the machine.
 
 	```bash
 	snort --version
-
+	```
 3. Directory and Files Overview
 
 - Configuration File: Located at `/etc/snort/snort.conf`. This file controls Snort's settings, including network variables and rules.
@@ -392,6 +416,7 @@ You can view the current IP of the machine.
 
 	```bash
 	sudo cp /etc/snort/snort.conf /etc/snort/snort.conf.bak
+	```
 
 ### Editing Configuration
 
@@ -399,24 +424,28 @@ You can view the current IP of the machine.
 
 	```bash
 	sudo nano /etc/snort/snort.conf
-
+	```
+	
 2. Set Network Variables:
 
 - `HOME_NET`: Defines the monitored subnet. For example:
 
 	```bash
 	var HOME_NET 192.168.1.0/24
-
+	```
+	
 - `EXTERNAL_NET`: Defines the external network. Use:
 
 	```bash
 	var EXTERNAL_NET any
-
+	```
+	
 - Rule Configuration: Locate the rules section and ensure it points to your rule files:
 
 	```bash
 	include $RULE_PATH/local.rules
-
+	```
+	
 ![image](https://github.com/user-attachments/assets/ede4059d-18bf-4fef-b37e-c2ad1e11d8f3)
 
 - **Comment out** (`#`) all of the rules except local rules. Since we are writing custom rules, we do not want the default rules to get in the way.
@@ -428,7 +457,8 @@ You can view the current IP of the machine.
 
 	```bash
 	sudo snort -T -c /etc/snort/snort.conf
-
+	```
+	
 ![image](https://github.com/user-attachments/assets/aadf9cf5-13b0-421d-8a76-f3f557726a6c)
 
 - A successful test ensures that changes don't introduce errors.
@@ -443,15 +473,20 @@ You can view the current IP of the machine.
 
 	```bash
 	sudo snort -i <interface>
-
+	```
+	
 3. Displays captured packet headers.
 
 - Packet Logger Mode: Stores packets in files for analysis.
 
 - IDS/IPS Mode: Implements rule-based monitoring and prevention.
 
+</details>
+	
 ---
 
+<details>
+	
 # Wireshark Installation
 
 ## Purpose
@@ -480,8 +515,12 @@ sudo apt install wireshark
 ```
 Now you have Wireshark ready for network analysis. 
 
+</details>
+
 ---
 
+<details>
+	
 ## Setting up Kali Linux
 
 ### Downloading Kali Linux Virtual Machine Image
@@ -525,7 +564,12 @@ Now you have Wireshark ready for network analysis.
 
    ![image](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
 
+</details>
+	
 ---
+
+<details>
+	
 ## Installing Windows 10
 
 ### **1. Download the Windows 10 ISO**
@@ -612,7 +656,7 @@ After the installation, Windows will prompt for some initial configuration:
     		- Skip the **Deployment Server**.
 		- Specify the Splunk server's IP address and port (default: 9997 for telemetry) on the **Receiving Indexer**.
 		- Complete the installation.
-4. **Configuring Firewall Rules**
+3. **Configuring Firewall Rules**
 	- Allow Splunk's necessary ports (8089 and 9997) in **Windows Defender Firewall** for both inbound and outbound rules.
 	- Create rules under **Advanced Settings**:
 		- **Inbound Rule**: Allow TCP ports 8089 and 9997.
@@ -620,17 +664,21 @@ After the installation, Windows will prompt for some initial configuration:
   		- **Allow the connection** on both of the rules.
     		- Use all of the profiles.
 		- Name the rules "Splunk Forwarder."
-5. **Verifying Data Transmission**
+4. **Verifying Data Transmission**
 	- In Splunk, go to **Apps > Search & Reporting**.
 	- Click **Data Summary** and verify the host and event logs appear.
 	- Run a basic query to confirm events are being indexed:
-
+	
 	```spl
 	index=* | stats count by host, sourcetype
+	```
 
-
+</details>
+	
 ---
 
+<details>
+	
 ## Installing LimaCharlie
 
 1. Create an Account:
@@ -696,7 +744,8 @@ After the installation, Windows will prompt for some initial configuration:
 
       ```cmd
       ./sensor_binary_name.exe -i <installation_key>
-			
+		```	
+
    - Confirm successful installation by verifying the agent appears under the Sensors List in the LimaCharlie dashboard.
 
 5. Validate Deployment
@@ -715,8 +764,12 @@ After the installation, Windows will prompt for some initial configuration:
 
 - Leverage the Console for remote command execution and endpoint management.
 
+</details>
+	
 ---
 
+<details>
+	
 ## Installing Sysmon
 
 ### 1. Download Sysmon
@@ -756,9 +809,14 @@ Use community-supported configurations as a baseline for setup:
    Open the Event Viewer and navigate to **Applications and Service Logs > Microsoft > Windows > Sysmon > Operational**
    - Verify that Sysmon is logging events as expected.
 
-
+</details>
+	
 ---
-### Now that we are done with the Lab Setup let's go to the [Preparation Phase](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Incident%20Response/Preparation.md) to configure alerts and integrate logs to Splunk.
+
+## ✅ Lab Setup Complete!  
+
+➡️ Continue to [Preparation Phase »](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Incident%20Response/Preparation.md)
+
 
 
 
