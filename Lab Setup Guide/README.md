@@ -22,7 +22,7 @@ This guide walks through the complete setup of a blue team cybersecurity lab env
 
 First, we build the network architecture for the lab environment using [Draw.io](https://www.drawio.com/). This includes creating a detailed network diagram outlining the lab's structure, components, and connections. The diagram helps visualize how different elements interact, ensuring a well-organized setup for testing and security exercises.
 
-- [Network Diagram](https://github.com/A9u3ybaCyb3r/Cyber_Defense_Lab/blob/main/Lab%20Setup%20Guide/CyberDefense-Lab%20Network%20Diagram.drawio.pdf)
+- [Network Diagram](https://github.com/A9u3ybaCyb3r/SOC-Phishing-Defense-Simulation/blob/main/Lab%20Setup%20Guide/SOC-Phish-Sim-Lab%20Network%20Diagram.drawio.pdf)
 
 ---
 
