@@ -49,9 +49,11 @@ The attacker uses [**Emkei's Fake Mailer**](https://emkei.cz/) to spoof a tech s
 > — *IT Support Team, Boriken Shield*
 
 📷 Email Interface (Emkei’s Mailer):
+
 ![image](https://github.com/user-attachments/assets/48236a67-3e18-43c9-b808-2f1b0ffcca06)
 
 📷 Final Email Preview:
+
 ![image](https://github.com/user-attachments/assets/d335d713-0573-42f7-94d8-37f7041a89f1)
 
 ---
@@ -62,11 +64,16 @@ To mask the true destination of the payload, the attacker uses [**Bitly**](https
 
 1. Ensure the Python HTTP server is running.
 2. Right-click your payload in the browser and choose **Copy Link**.
+
    ![copy link](https://github.com/user-attachments/assets/d470cdad-11f7-4623-9dd9-d482a6285304)
+
 3. Paste the link into Bitly and click **Create Link**.
+
    ![bitly](https://github.com/user-attachments/assets/63d48125-d3a0-4f9b-8952-70138169650f)
+
 4. Use the generated **shortened link** in your phishing email.
-   ![shortened url](https://github.com/user-attachments/assets/42efe46a-856d-444a-a338-bf924b03de9b)
+
+    ![shortened url](https://github.com/user-attachments/assets/42efe46a-856d-444a-a338-bf924b03de9b)
 
 ---
 
