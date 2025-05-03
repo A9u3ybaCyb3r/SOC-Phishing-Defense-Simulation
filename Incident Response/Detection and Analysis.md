@@ -1,128 +1,114 @@
-# Detection and Analysis
+# 🔍 Detection and Analysis
 
-
-## Monitoring Phase
+## 🛁 Monitoring Phase
 
 During this phase, we actively monitor security alerts and events using Splunk to identify potential threats. In this scenario, we observed triggered alerts for a **reverse TCP connection** in Splunk.
 
-- Go to **Activity > Triggered Alerts** and we will see the alerts that were triggered in Splunk.
+* Go to **Activity > Triggered Alerts** to view active alerts in Splunk.
 
 ![image](https://github.com/user-attachments/assets/734071cd-58ae-4f34-a1bf-eea2784b1bce)
 
-## Detection Phase
+---
 
-In this phase, we analyze alerts and detections using **Endpoint Detection and Response (EDR)** tools, like as **LimaCharlie**, and continue to investigate in Splunk. The detections observed include:
+## 🚨 Detection Phase
 
-![image](https://github.com/user-attachments/assets/11edcdac-e209-4410-ae46-528d4f72a980)
+In this phase, we analyze alerts and detections using **Endpoint Detection and Response (EDR)** tools, such as **LimaCharlie**, and continue to investigate within Splunk. Detections included:
 
-- **Executable Drop in Download Directory**: This was triggered by a D&R created during the preparation phase. The malicious file **SecurityUpdate.exe** and its file hash were detected.
+* **Executable Drop in Download Directory**: Triggered by a D\&R rule. The malicious file **SecurityUpdate.exe** and its hash were detected.
 
-   ![image](https://github.com/user-attachments/assets/1261b8d1-594b-433c-8512-b57febe4ac19)
-  - The YARA scan detected that it was a **Meterpreter Reverse TCP Payload**.
+  * The YARA scan identified it as a **Meterpreter Reverse TCP Payload**.
+  * Additional suspicious executable files were also detected.
 
-   ![image](https://github.com/user-attachments/assets/95934230-55ef-484c-a815-8c4264bb7764)
+![image](https://github.com/user-attachments/assets/1261b8d1-594b-433c-8512-b57febe4ac19)
 
-  - Another exe file was downloaded.
-  
-    ![image](https://github.com/user-attachments/assets/36f82cf5-5be3-4152-9845-55af3c2aa8cc)
+![image](https://github.com/user-attachments/assets/95934230-55ef-484c-a815-8c4264bb7764)
 
-  
-- **Execution from Download Directory**: Another detection based on a D&R rule.
-  ![image](https://github.com/user-attachments/assets/a46a48a0-8cf0-4ae2-9b2e-a0ace0eb7208)
-  - YARA Scan detected that it was **LaZagne**
-    ![image](https://github.com/user-attachments/assets/154cb1ff-7554-4c2d-a626-9659ce370be2)
+![image](https://github.com/user-attachments/assets/36f82cf5-5be3-4152-9845-55af3c2aa8cc)
 
-- **Direct Autorun Key Modification**: Indicating a registry modification used to create a backdoor.
-  ![image](https://github.com/user-attachments/assets/37479115-e504-4cf2-ba0a-cce3f0447e41)
+* **Execution from Download Directory**: Another detection by D\&R.
 
-- **New User Creation**: The attacker created a new user.
-  ![image](https://github.com/user-attachments/assets/088390e6-ff33-4377-aec6-fa6bd921e46c)
+  * The YARA scan confirmed it was **LaZagne**.
 
-- **Dumping Credentials**: Sensitive hives were dumped via Reg.exe.
-  ![image](https://github.com/user-attachments/assets/769d3607-8ed1-42e0-a3cd-5016fb332912)
+![image](https://github.com/user-attachments/assets/a46a48a0-8cf0-4ae2-9b2e-a0ace0eb7208)
+![image](https://github.com/user-attachments/assets/154cb1ff-7554-4c2d-a626-9659ce370be2)
 
-- **Windows System and Security Logs Deletion**: Logs were cleared to hide malicious activity.
-  ![image](https://github.com/user-attachments/assets/a0c302a5-b9b9-4950-99a1-94cbb4c2a6bf)
+* **Direct Autorun Key Modification**: Indicates a registry modification used to create a backdoor.
 
-Splunk logs further provide details on the attack, such as the **attacker's IP (10.19.19.134)** and port (**4444**) used for C2 communication.
+![image](https://github.com/user-attachments/assets/37479115-e504-4cf2-ba0a-cce3f0447e41)
+
+* **New User Creation**: Indicates privilege escalation or lateral movement.
+
+![image](https://github.com/user-attachments/assets/088390e6-ff33-4377-aec6-fa6bd921e46c)
+
+* **Dumping Credentials**: Registry hives dumped using Reg.exe.
+
+![image](https://github.com/user-attachments/assets/769d3607-8ed1-42e0-a3cd-5016fb332912)
+
+* **Windows Log Deletion**: System and security logs were cleared.
+
+![image](https://github.com/user-attachments/assets/a0c302a5-b9b9-4950-99a1-94cbb4c2a6bf)
+
+Splunk logs revealed additional context including the **attacker's IP (10.19.19.134)** and port (**4444**) used for C2.
 
 ![image](https://github.com/user-attachments/assets/2a1352e1-bd76-4604-b239-d52a5332ea1c)
 
-### Indicators of Compromise (IOCs) Identified:
+---
 
-1. Malicious file hash.
-2. Modified registry key.
-3. Unauthorized user account creation.
-4. System log deletion.
-5. Use of non-standard port 4444 for C2 communication.
-6. Phishing email with a shortened URL (e.g., Bitly link).
+## 🧪 Phishing Analysis
 
-## Analysis
-
-### Phishing Analysis
-
-- Download the .eml file if you have not done it
+* Download the `.eml` file of the phishing email.
+* Submit it to [PhishTool](https://app.phishtool.com/submit).
 
 ![image](https://github.com/user-attachments/assets/e5bccb96-c184-4ccd-93b5-b33e36a95a45)
-
-- Go to [Phishtool](https://app.phishtool.com/submit) and choose the .eml file that you downloaded.
-
 ![image](https://github.com/user-attachments/assets/58e68194-17dd-4b90-9c08-3201577ca87c)
 
-![image](https://github.com/user-attachments/assets/c2421f9d-4912-4c29-bf1b-c9aeb34928db)
-
-- Unshortening malicious URLs to trace attacker infrastructure.
-  - Copy the shortened link and paste it in [URL Expander Tool](https://www.bing.com/ck/a?!&&p=e4c94fa102759f71528b69a24210c528e8d83d620f0ef91e8e8458218145bd2dJmltdHM9MTc0MDM1NTIwMA&ptn=3&ver=2&hsh=4&fclid=05217751-e29b-69ad-1992-62d9e33c683b&psq=link+unshortener&u=a1aHR0cHM6Ly90Lmx5L3Rvb2xzL2xpbmstZXhwYW5kZXI&ntb=1)
+* Expand malicious URLs using a [URL Expander Tool](https://t.ly/tools/link-expander).
 
 ![image](https://github.com/user-attachments/assets/ea5d590b-19c9-41a4-8042-c040a7effe6d)
 
-![image](https://github.com/user-attachments/assets/5434000a-eb4a-4b27-90d0-d19f1897e95c)
+---
 
-- We can see here the IP address of the attacker, the port that was used to host the payload, and the file path.
+## 🌐 Network and Log Analysis
 
-### Network and Log Analysis
-
-- **Wireshark** will be used to analyze network packets for signs of C2 communication.
+* Analyze packets in **Wireshark** for C2 indicators.
 
 ![image](https://github.com/user-attachments/assets/5fbba53a-4afb-4bf4-8ffb-b4f28d29ec9d)
 
-![image](https://github.com/user-attachments/assets/3c0d8179-9b8f-40ac-b366-54c1385b873c)
+* Look for `port 4444` and click `Follow > TCP Stream`
+  ![image](https://github.com/user-attachments/assets/3c0d8179-9b8f-40ac-b366-54c1385b873c)
 
 ![image](https://github.com/user-attachments/assets/cf2e6f50-1237-4edb-b518-b76852b83055)
+* In this case, Snort did not detect the file download due to configuration issues, but other tools like YARA and LimaCharlie successfully identified the download activity.
 
-- Examining **Splunk** logs for:
-  - Sysmon log anomalies.
+* Search **Splunk logs** for:
 
-     ![image](https://github.com/user-attachments/assets/e2ef3580-64fb-41a9-9803-52f88836a197)
+  * Sysmon anomalies (user creation/deletion, autorun keys).
+![image](https://github.com/user-attachments/assets/e2ef3580-64fb-41a9-9803-52f88836a197)
     
     ![image](https://github.com/user-attachments/assets/796c83cf-317b-4a99-bf9e-ef00641ea50b)
     
     ![image](https://github.com/user-attachments/assets/a6555bac-f584-4a3e-88d1-60ae1c655dea)
-      
-      - Here we can see the user that was created and when was deleted. 
+	
+  * Windows Event ID `1102` for log clearance.
+  ![image](https://github.com/user-attachments/assets/3c69c8a5-e321-4ddb-8d2d-7dc2f03676d9)
 
-  - Windows event logs (e.g., event ID 1102 for audit log clearance).
+   * Unauthorized HTTP traffic on port `8080`.
+   ![image](https://github.com/user-attachments/assets/27411d9c-d223-4fc4-9f81-8d0ea0d61af9)
 
-     ![image](https://github.com/user-attachments/assets/3c69c8a5-e321-4ddb-8d2d-7dc2f03676d9)
-
-  - IDS logs for unauthorized HTTP traffic on port 8080.
-
-     ![image](https://github.com/user-attachments/assets/27411d9c-d223-4fc4-9f81-8d0ea0d61af9)
-
-- **EDR file hash analysis** using [VirusTotal](https://www.virustotal.com/gui/home/search) to verify malware presence.
+* Use [VirusTotal](https://www.virustotal.com/gui/home/search) to verify malicious file hashes.
+* Take the file hash from **LimaCharlie EDR**
 
 ![image](https://github.com/user-attachments/assets/05716a9c-d470-44bf-aaba-efd0ed9c709a)
 
 ![image](https://github.com/user-attachments/assets/7be8304d-7135-41d2-a9ff-c915ca6be8db)
 
-   - Here we can confirm that the Security Update is indeed a malicious file.
-- If we go to behavior we can see the IP address of your attacker machine and the port that was used for C2 Communications
+![image](https://github.com/user-attachments/assets/6462020d-5a5f-4193-a443-e13bde1ef5c5)
 
-  ![image](https://github.com/user-attachments/assets/6462020d-5a5f-4193-a443-e13bde1ef5c5)
+---
 
-### Forensic Analysis
+## 🧬 Forensic Analysis
 
-- Extracting compromised machine artifacts using **GKAPE**.
+* Use **GKAPE** to extract evidence and artifacts from the compromised system.
 
 ![image](https://github.com/user-attachments/assets/3b62b0b3-84f1-4975-ad2a-54b14534b816)
 
@@ -131,68 +117,65 @@ Splunk logs further provide details on the attack, such as the **attacker's IP (
 ![image](https://github.com/user-attachments/assets/a22bb3ff-2ea2-448e-8f32-33303488eb82)
 
 ![image](https://github.com/user-attachments/assets/8118de5d-dc0f-45ab-b798-cb5560859d3d)
+* Open extracted registry hives using **Registry Explorer** to:
 
-- Extract the Registry Hives to the Compromised Folder created to use it for evaluations.
+ ![image](https://github.com/user-attachments/assets/eeee63e1-d314-448d-b43f-011cb23c4bd9)
 
-  ![image](https://github.com/user-attachments/assets/eeee63e1-d314-448d-b43f-011cb23c4bd9)
-
-- **Analyzing Windows Security Account Manager (SAM)** database for deleted user accounts.
-  - Open **Registry Explorer** to analyze the extracted artifacts.
-
+  * Confirm deleted accounts in SAM.
 ![image](https://github.com/user-attachments/assets/4842e184-5831-4924-bf34-ebb97a038f23)
 
 ![image](https://github.com/user-attachments/assets/e20438e7-735a-4526-98ea-4014c340fd1d)
 
 ![image](https://github.com/user-attachments/assets/b62ad4de-d665-432c-b3a6-e966a45245bd)
 
-   - We can confirm that the user that the attacker created was deleted.
+  * Identify persistence mechanisms via autorun keys in `NTUSER.DAT`.
 
-      ![image](https://github.com/user-attachments/assets/6f29dbb9-730e-4ca8-a4ce-e1bcef34d7cb)
-     
-   - Next, we are going to load the NTUSER.DAT file and look for the backdoor that the attacker created. Look for the RUN folder.
-   
-   ![image](https://github.com/user-attachments/assets/0f596ff0-0508-40ae-a722-fb9b798a8f55)
+![image](https://github.com/user-attachments/assets/0f596ff0-0508-40ae-a722-fb9b798a8f55)
 
-   - Here we can identify that the attacker created a backdoor to the machine using the malicious payload that the attacker created.
+* Recover deleted files using **FTK Imager**:
 
-- Recovering deleted files using **FTK Manager**.
-   - The attacker extracted files from the **Secrets** folder. We can see that the folder is empty.
-   
-   ![image](https://github.com/user-attachments/assets/ddad5872-e61f-41c6-85a8-b6959ab90f38)
-   
-   - Create a new folder and name it **Recovered** and open up **Exterro FTK Imager** to recover the data lost.
-   - Go to `File > Add Evidence Item > Physical Drive`
-   
-   ![image](https://github.com/user-attachments/assets/559d53ef-89a0-4173-ad8d-8143897bb085)
+  * Add evidence > Physical drive
+  * Export files with red X to a recovery directory.
 
-   ![image](https://github.com/user-attachments/assets/05e8e80d-3c32-483f-ade0-0e329ec90f97)
+![image](https://github.com/user-attachments/assets/559d53ef-89a0-4173-ad8d-8143897bb085)
 
-   ![image](https://github.com/user-attachments/assets/8709630a-3061-4275-9cd7-65b7c6da0e1a)
+![image](https://github.com/user-attachments/assets/05e8e80d-3c32-483f-ade0-0e329ec90f97)
 
-   - We can see that the file is still there even though it was deleted. It has a red X indicating that it was deleted.
-   - To recover the file right-click on the file and then click on `Export Files`
-   
-   ![image](https://github.com/user-attachments/assets/02c75315-a868-451b-89b3-e82549c20edf)
-   
-   - Export the file to the Recovered folder to recover the deleted file.
+![image](https://github.com/user-attachments/assets/8709630a-3061-4275-9cd7-65b7c6da0e1a)
+  
+![image](https://github.com/user-attachments/assets/02c75315-a868-451b-89b3-e82549c20edf)
 
-   ![image](https://github.com/user-attachments/assets/10183fa7-fc84-4249-af00-5ffe9c4cb5dc)
+![image](https://github.com/user-attachments/assets/10183fa7-fc84-4249-af00-5ffe9c4cb5dc)
+  
+---
 
+## 🧠 Indicators of Compromise (IOCs)
 
+| **Indicator**             | **Description**                           |
+| ------------------------- | ----------------------------------------- |
+| Malicious file hash       | Meterpreter payload: `SecurityUpdate.exe` |
+| Registry key modification | Autorun key added for persistence         |
+| Unauthorized user account | Attacker-created admin account            |
+| System log deletion       | Audit logs wiped via `event ID 1102`      |
+| Port 4444                 | Used for reverse TCP C2 channel           |
+| Bitly link in email       | Embedded in phishing lure to victim       |
 
-### Identified Tactics, Techniques, and Procedures (TTPs)
+---
 
-1. T1589: Gathering victim identity information. 
-2. T1204.002: User execution of malicious files.
-3. T1566: Phishing attacks.
-4. T1665: Hiding Infrastructure
-5. T1204: User Execution
-6. T1203: Exploitation for Client Execution
-7. T1547.001: Registry Run Keys/Startup Folder
-8. T1571: Non-Standard Port
-9. T1041: Exfiltration over C2 channel.
-10. T1222: File and Directory Permissions Modification
-11. T1136: Create Account
-12. T1098: Account Manipulation
-13. T1070: Indicator Removal on Host
+## 🎯 Identified MITRE ATT\&CK TTPs
 
+| **TTP ID** | **Technique Name**                          | **Tactic Category**  |
+| ---------- | ------------------------------------------- | -------------------- |
+| T1589      | Gather Victim Identity Information          | Reconnaissance       |
+| T1566      | Phishing                                    | Initial Access       |
+| T1204      | User Execution                              | Execution            |
+| T1204.002  | User Execution: Malicious File              | Execution            |
+| T1203      | Exploitation for Client Execution           | Execution            |
+| T1665      | Hiding Infrastructure                       | Defense Evasion      |
+| T1547.001  | Registry Run Keys / Startup Folder          | Persistence          |
+| T1571      | Non-Standard Port                           | Command and Control  |
+| T1041      | Exfiltration Over C2 Channel                | Exfiltration         |
+| T1222      | File and Directory Permissions Modification | Defense Evasion      |
+| T1136      | Create Account                              | Persistence          |
+| T1098      | Account Manipulation                        | Privilege Escalation |
+| T1070      | Indicator Removal on Host                   | Defense Evasion      |
