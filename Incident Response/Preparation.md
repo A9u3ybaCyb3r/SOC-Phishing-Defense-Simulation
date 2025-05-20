@@ -123,7 +123,10 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
 3. **Create a Data Input:**
    - Go to `Settings > Data Inputs > Files & Directories`.
    - Add a new data input pointing to `/var/log/snort/alert`.
-   - If the `alert` file is missing, run the following command to generate log entries:
+
+    ![image](https://github.com/user-attachments/assets/262424a0-b369-4b12-b3b7-9384582ff9ae)
+
+    - If the `alert` file is missing, run the following command to generate log entries:
    ```bash
    sudo snort -q -l /var/log/snort -A fast -i enp0s3 -c /etc/snort/snort.conf
    ```
@@ -137,7 +140,7 @@ This guide focuses on configuring Snort to send logs to Splunk, assuming both ar
    ``` 
 
 
-4. **Set Source Type:**
+5. **Set Source Type:**
    - Choose `Select > Network & Security > snort` as the source type.
    - Also, you can create a custom source type if you need it.
 
