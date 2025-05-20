@@ -138,7 +138,8 @@ If you encounter an error indicating that **Microsoft Visual C++ 2019** is requi
 
 4. Set your network to **NAT Network**, and choose the name of the network that you created, then click **OK**.
 
-   ![image](https://github.com/user-attachments/assets/1c22e291-17bb-4247-985f-dc98c2fdad6e)
+  ![image](https://github.com/user-attachments/assets/c5ec8ef3-f01d-4415-a70b-b5746535b8e2)
+
 
 ### Installing Ubuntu Desktop
 
