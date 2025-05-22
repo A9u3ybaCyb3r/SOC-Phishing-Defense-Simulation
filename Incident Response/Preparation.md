@@ -44,7 +44,7 @@ Setting Up Snort Environment
 
   * Detects reverse shell connections over TCP port 4444 (commonly used by Metasploit payloads).
 ```snort
-alert tcp any 4444 -> 10.19.19.6 any (msg:"Reverse TCP on Port 4444"; sid:1000002; rev:1;)
+alert tcp any any -> any 4444 (msg:"Connection to remote IP on port 4444"; sid:1000002; rev:1;)
 ```
 
 * **Rule 2: HTTP on Non-Standard Ports (8001–9000)**
