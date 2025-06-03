@@ -79,6 +79,7 @@ Splunk logs revealed additional context including the **attacker's IP (10.19.19.
 
 ![image](https://github.com/user-attachments/assets/cf2e6f50-1237-4edb-b518-b76852b83055)
 * In this case, Snort did not detect the file download due to configuration issues, but other tools like YARA and LimaCharlie successfully identified the download activity.
+* The misconfiguration was intentional. In the Post-Incident Activity, you will find the explanation.
 
 * Search **Splunk logs** for:
 
